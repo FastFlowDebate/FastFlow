@@ -24,19 +24,21 @@
             <h2>Content</h2>
             <text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo','redo']]" id="tooldbar" id="content"></text-angular>
         </div>
+        <button type="button" id="save" class="btn btn-default">Save Card</button>
+
     </div>
 
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="js/cardEditorNG.js"></script>
-    
-    
-    <script>  
-    var socket = io.connect('http://localhost:4200');
-    socket.on('connect', function(data) {
-        socket.emit('join', 'Hello World from client');
-    });
-</script>
+
+
+    <script>
+        var socket = io.connect('http://localhost:4200');
+        socket.on('connect', function (data) {
+            socket.emit('join', 'Hello World from client');
+        });
+    </script>
 </body>
 
 </html>

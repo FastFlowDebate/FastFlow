@@ -17,8 +17,13 @@
     align-content: center;
     width: 95%;
     margin: 20px auto;
+    padding-bottom: 50px;
 }
 
 body {
     align-content: center;
+}
+
+#save {
+    float: right;
 }

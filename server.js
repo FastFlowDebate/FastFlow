@@ -6,7 +6,7 @@ var io = require('socket.io')(server);
 
 app.use(express.static(__dirname + '/WebContent/'));  
 app.get('/', function(req, res,next) {  
-    res.sendFile(__dirname + '/WebContent/cardEditor.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function(client) {  
