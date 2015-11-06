@@ -5,11 +5,14 @@
 
 
 ## Usage
+at the moment all libraries are got via cdn, but they are in package.json, to install locally use:
+
+> npm init
 
 
 
 ## Developing
-
+Being developed using NodeJS, AngularJS, TextAngular, Java, Pythong.. We have big stack
 
 
 ### Tools
