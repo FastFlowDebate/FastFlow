@@ -1,0 +1,22 @@
+{
+  "name": "fastflow",
+  "version": "1.0.0",
+  "description": "An application for flowing and filing debate information",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "Debate"
+  ],
+  "author": "Adam Towers, Issac Lo",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "express": "^4.13.3",
+    "http": "0.0.0",
+    "socket.io": "^1.3.7",
+    "textangular": "^1.4.6"
+  }
+}

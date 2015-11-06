@@ -1,0 +1,24 @@
+.ta-editor {
+    min-height: 50px;
+    height: auto;
+    overflow: auto;
+    font-family: inherit;
+    font-size: 200%;
+    margin: 20px auto;
+    width: 90%;
+}
+
+#content {
+    min-height: 300px;
+    font-size: 100%;
+}
+
+#editor {
+    align-content: center;
+    width: 95%;
+    margin: 20px auto;
+}
+
+body {
+    align-content: center;
+}

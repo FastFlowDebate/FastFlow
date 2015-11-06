@@ -1,0 +1,42 @@
+<!doctype html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Testing</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.2.3/rangy-core.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular-sanitize.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js'></script>
+
+
+</head>
+
+<body ng-app="myApp">
+    <div class="well" id="editor">
+        <div ng-controller="AppCtrl">
+            <h2>Tagline</h2>
+            <text-angular ta-toolbar="[]" id="tooldbar"></text-angular>
+            <h2>Citation</h2>
+            <text-angular ta-toolbar="[]" id="tooldbar"></text-angular>
+            <h2>Content</h2>
+            <text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo','redo']]" id="tooldbar" id="content"></text-angular>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="js/cardEditorNG.js"></script>
+    
+    
+    <script>  
+    var socket = io.connect('http://localhost:4200');
+    socket.on('connect', function(data) {
+        socket.emit('join', 'Hello World from client');
+    });
+</script>
+</body>
+
+</html>
