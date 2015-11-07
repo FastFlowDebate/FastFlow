@@ -1,4 +1,5 @@
 import os
+import json
 '''
 searches through a folder for files with tags, and compiles them for better indexing
 '''
@@ -6,7 +7,8 @@ searches through a folder for files with tags, and compiles them for better inde
 #this is where the directory is
 #this will read from conf file later
 directoryPath = raw_input("directory: ")
-#input goes here, called "query"
+#where the dicionary data should be logged
+dataLog = raw_input("log location: ")
 #uses raw_input() for now, but can be removed later
 print
 #tag index
@@ -25,7 +27,7 @@ def check(directory):
             #opens file to read
             file = open(directory + "/" + contents[i], 'r')
             #reads first line of file
-            tagInfo = file.readline()
+            tagInfo = file.readline().lower()
             #checks if the file has the html comment
             if tagInfo[0:4] == "<!--":
                 #removes html comment tags
@@ -44,4 +46,7 @@ def check(directory):
 #start main
 check(directoryPath)
 #prints the dictionary
+tagIndex = [tagIndex.keys(),tagIndex.values()]
 print tagIndex
+with open(str(dataLog) + "/" + 'data.json', 'w') as fp:
+    json.dump(tagIndex, fp)

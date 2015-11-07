@@ -9,7 +9,7 @@ directoryPath = raw_input("directory: ")
 
 #input goes here, called "query"
 #uses raw_input() for now, but can be removed later
-query = raw_input("query: ")
+query = raw_input("query: ").lower()
 print
 queryLen = len(query)
 #searches and returns contents of folder
