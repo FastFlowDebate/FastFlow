@@ -1,7 +1,6 @@
 import os
 '''
-compiles tags into a list to be used for easier searching
-compiles at runtime
+searches through a folder for a certain tag
 '''
 
 #this is where the directory is
