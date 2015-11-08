@@ -45,8 +45,18 @@ def check(directory):
 
 #start main
 check(directoryPath)
+#
 #prints the dictionary
-tagIndex = [tagIndex.keys(),tagIndex.values()]
+#tagIndex = sorted(tagIndex.items())
+#tagIndex = [tagIndex.keys(),tagIndex.values()]
+keys = []
+values = []
+
+for key in sorted(tagIndex.iterkeys()):
+    keys.append(key)
+    values.append(tagIndex[key])
+tagIndex = [keys,values]
 print tagIndex
+#print tagIndex
 with open(str(dataLog) + "/" + 'data.json', 'w') as fp:
     json.dump(tagIndex, fp)
