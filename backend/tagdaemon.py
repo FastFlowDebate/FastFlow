@@ -2,7 +2,9 @@ import json
 '''
 tag daemon
 1st input: index data.json folder location (don't append in the data.json filename)
-2nd to infinty input: single characters directly taken from the typing. (or enter "quit" to exit)
+2nd to infinty input: single characters directly taken from the typing.
+    (enter "quit" to exit)
+    (if you enter a space, it clears the previous characters)
     output:(TBD)
 
 '''
@@ -29,6 +31,10 @@ while True:
     #tagIndex[1] has the values of the dictionary
     if tag == "quit":
         exit()
+    elif tag == " ":
+        fullTag = []
+        keyPosition = []
+        newkeyPosition = []
     else:
         #loop
         if len(fullTag) == 1:
