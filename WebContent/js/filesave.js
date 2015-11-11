@@ -29,9 +29,20 @@ function filesave(tags, content, location, filename) {
   });
 */
   // end the input stream and allow the process to exit
+
+  var indexShell = new PythonShell('backend/tagindex.py');
+  indexShell.send(location)
+  indexShell.send(location)
+
+  indexshell.end(function (err) {
+    if (err) throw err;
+    console.log('finished');
+  });
+
   pyshell.end(function (err) {
     if (err) throw err;
     console.log('finished');
   });
+
 }
 filesave(process.argv[2], process.argv[3], process.argv[4], process.argv[5]);
