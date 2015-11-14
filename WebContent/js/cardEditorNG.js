@@ -18,10 +18,11 @@ app.controller('AppCtrl', function ($scope) {
             $scope.showInfo = true;
             $scope.info = "Data is populated and passed required validation test";
             $scope.error = false;
-            socket.emit('join', 'sending dope data');
+            socket.emit('newCard', {tag: $scope.dataT, cite: $scope.dataC, data: $scope.dataD});
             //send to server
             //close window
         } else {
+            //$btn.button('reset');
             $scope.showInfo = true;
             $scope.info = "Data is empty but required validation passed";
             $scope.error = true;
