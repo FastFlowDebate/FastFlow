@@ -2,6 +2,11 @@
 'use strict';
 var app = angular.module('cardCreator', ['textAngular']);
 
+var socket = io.connect('http://localhost:4200');
+socket.on('connect', function (data) {
+    socket.emit('join', 'Hello World from client');
+});
+
 app.controller('AppCtrl', function ($scope) {
     $scope.message = "Default message";
 
@@ -13,6 +18,7 @@ app.controller('AppCtrl', function ($scope) {
             $scope.showInfo = true;
             $scope.info = "Data is populated and passed required validation test";
             $scope.error = false;
+            socket.emit('join', 'sending dope data');
             //send to server
             //close window
         } else {

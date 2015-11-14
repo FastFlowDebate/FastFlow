@@ -16,6 +16,7 @@ io.on('connection', function(client) {
         console.log(data);
     });
     client.on('newCard', function(data) {
+    	console.log("card:" + data);
     	//TODO parse data - card content and save to new card then return cardSaved(cardID);
     });
 
