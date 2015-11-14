@@ -34,15 +34,7 @@ function filesave(tags, content, location, filename) {
   indexShell.send(location)
   indexShell.send(location)
 
-  indexshell.end(function (err) {
-    if (err) throw err;
-    console.log('finished');
-  });
-
-  pyshell.end(function (err) {
-    if (err) throw err;
-    console.log('finished');
-  });
 
 }
-filesave(process.argv[2], process.argv[3], process.argv[4], process.argv[5]);
+
+//filesave(process.argv[2], process.argv[3], process.argv[4], process.argv[5]);

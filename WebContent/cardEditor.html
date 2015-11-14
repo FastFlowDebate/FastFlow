@@ -10,6 +10,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular-sanitize.min.js'></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js'></script>
+    <script src = "js/filesave.js"></script>
 
 
 </head>
@@ -24,7 +25,7 @@
             <h2>Content</h2>
             <text-angular ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo','redo']]" id="tooldbar" id="content"></text-angular>
         </div>
-        <button type="button" id="save" class="btn btn-default">Save Card</button>
+        <button type="button" id="save" class="btn btn-default" onclick = "filesave()">Save Card</button>
 
     </div>
 
