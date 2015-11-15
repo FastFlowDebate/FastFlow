@@ -1,0 +1,31 @@
+
+html {
+  min-height: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-color: gray;
+}
+head {
+    padding: 0px;
+}
+body {
+  margin: 0px;
+  font-family: 'Helvetica', sans-serif;
+  color: black;
+  font-size: 20px;
+  background-color: gray;
+
+}
+
+#sidebar {
+    padding-top: 0px;
+    padding-left: 0px;
+    width: 35%;
+    height: 100%;
+    position: fixed;
+    background-color: darkmagenta;
+}
+
+#display {
+    padding-left: 35%;
+}
