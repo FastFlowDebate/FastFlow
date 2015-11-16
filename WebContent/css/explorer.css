@@ -1,20 +1,20 @@
-
 html {
-  min-height: 100%;
-  margin: 0px;
-  padding: 0px;
-  background-color: gray;
-}
-head {
+    min-height: 100%;
+    margin: 0px;
     padding: 0px;
+    background-color: gray;
 }
-body {
-  margin: 0px;
-  font-family: 'Helvetica', sans-serif;
-  color: black;
-  font-size: 20px;
-  background-color: gray;
 
+body {
+    margin: 0px;
+    font-family: 'Helvetica', sans-serif;
+    color: black;
+    font-size: 20px;
+    background-color: gray;
+}
+
+head {
+    padding-left: 0px;
 }
 
 #sidebar {
@@ -23,9 +23,24 @@ body {
     width: 35%;
     height: 100%;
     position: fixed;
-    background-color: darkmagenta;
 }
 
+.tab-content{
+    padding: 0.5%;
+    height: 100%;
+    background-color: darkmagenta;
+
+}
+
+.nav-tabs {
+       background-color: darkgray;
+ 
+}
 #display {
-    padding-left: 35%;
+    margin-left: 35%;
+    padding: 0.5%;
+}
+
+#navbar {
+    
 }

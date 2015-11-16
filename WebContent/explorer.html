@@ -12,8 +12,9 @@
 
     <link rel="stylesheet" href="css/navBar.css">
     <link rel="stylesheet" href="css/explorer.css">
+    <script src="js/explorerTabs.js"></script>
 
-    <nav class="navbar navbar-custom">
+    <nav class="navbar navbar-custom" id="navbar">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -55,12 +56,32 @@
         <!-- /.container-fluid -->
     </nav>
 </head>
+
 <body>
     <div id="sidebar">
-        content yo
+        <div>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#Cards" aria-controls="Cards" role="tab" data-toggle="tab">Cards</a></li>
+                <li role="presentation"><a href="#Blocks" aria-controls="Blocks" role="tab" data-toggle="tab">Blocks</a></li>
+                <li role="presentation"><a href="#Starred" aria-controls="Starred" role="tab" data-toggle="tab">Starred</a></li>
+                <li role="presentation"><a href="#Settings" aria-controls="Settings" role="tab" data-toggle="tab">Settings</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="tab Cards">This is content</div>
+                <div role="tabpanel" class="tab-pane" id="tab Blocks">...</div>
+                <div role="tabpanel" class="tab-pane" id="tab Starred">...</div>
+                <div role="tabpanel" class="tab-pane" id="tab Settings">...</div>
+            </div>
+
+        </div>
     </div>
     <div id="display">
         this is the main screen for displaying stuff lol
     </div>
 </body>
+
 </html>
