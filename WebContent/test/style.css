@@ -77,7 +77,7 @@ a:active {
 
 
 .mode:hover span {display: none;}
-.mode:hover:before {content: "FLOW";}
+.mode:hover:before {content: "FLOW MODE";}
 
 input[type="text"] {
   padding: 7px;
