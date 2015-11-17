@@ -2,6 +2,7 @@ html {
     min-height: 100%;
     position: relative;
 }
+
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: #4c3e9d;
@@ -17,38 +18,48 @@ body {
     top: -5px;
     left: 10px;
 }
-  #sidebar ul, li {
+
+#sidebar ul,
+li {
     padding: 5px 0px 5px 0px;
     margin: 5px -50px 5px -5px;
     list-style: none;
-  }
-  #sidebar a:link {
-      display: block;
-      width: 290px;
-      padding: 5px 0px 5px 20px;
-      margin-bottom: -5px 0px -5px 0px;
-      text-decoration: none;
-      color: white;
-  }
-  #sidebar a:hover {
-      display: block;
-      width: 290px;
-      color: white;
-      background-color: #6c5cc9;
-      text-decoration: none;
-  }
-  #sidebar a:active {
-      display: block;
-      width: 290px;
-      color: white;
-      background-color: #6c5cc9;
-      text-decoration: none;
-  }
+}
 
-  .mode:hover span {display: none;}
-  .mode:hover:before {content: "FILE MODE";}
+#sidebar a:link {
+    display: block;
+    width: 290px;
+    padding: 5px 0px 5px 20px;
+    margin-bottom: -5px 0px -5px 0px;
+    text-decoration: none;
+    color: white;
+}
 
-  #sidebar input[type="text"] {
+#sidebar a:hover {
+    display: block;
+    width: 290px;
+    color: white;
+    background-color: #6c5cc9;
+    text-decoration: none;
+}
+
+#sidebar a:active {
+    display: block;
+    width: 290px;
+    color: white;
+    background-color: #6c5cc9;
+    text-decoration: none;
+}
+
+.mode:hover span {
+    display: none;
+}
+
+.mode:hover:before {
+    content: "FILE MODE";
+}
+
+#sidebar input[type="text"] {
     font-size: 18px;
     padding: 7px 20px 7px 20px;
     outline: none;
@@ -58,8 +69,7 @@ body {
     color: white;
     width: 260px;
     margin-top: -5px;
-  }
-
+}
 
 #page {
     padding: 10px 15px 0px 15px;
