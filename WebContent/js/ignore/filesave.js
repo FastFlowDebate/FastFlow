@@ -37,4 +37,4 @@ function filesave(tags, content, location, filename) {
 
 }
 
-//filesave(process.argv[2], process.argv[3], process.argv[4], process.argv[5]);
+filesave(process.argv[2], process.argv[3], process.argv[4], process.argv[5]);

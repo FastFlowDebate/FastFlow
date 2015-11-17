@@ -19,6 +19,14 @@ app.controller('AppCtrl', function ($scope) {
             $scope.info = "Data is populated and passed required validation test";
             $scope.error = false;
             socket.emit('newCard', {tag: $scope.dataT, cite: $scope.dataC, content: $scope.dataD});
+            //$.getscript("filesave.js",function($scope.dataT,"lol","backend/testfolder", $scope.dataC){
+            //filesave();
+            //console.log("hello pls");
+
+                });
+
+            });
+
             //close window
         } else {
             //$btn.button('reset');
