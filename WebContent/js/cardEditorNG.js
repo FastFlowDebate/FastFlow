@@ -18,8 +18,7 @@ app.controller('AppCtrl', function ($scope) {
             $scope.showInfo = true;
             $scope.info = "Data is populated and passed required validation test";
             $scope.error = false;
-            socket.emit('newCard', {tag: $scope.dataT, cite: $scope.dataC, data: $scope.dataD});
-            //send to server
+            socket.emit('newCard', {tag: $scope.dataT, cite: $scope.dataC, content: $scope.dataD});
             //close window
         } else {
             //$btn.button('reset');
