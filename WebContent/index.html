@@ -1,49 +1,33 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-
-<head>
-
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.2.3/rangy-core.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular-sanitize.min.js'></script>
-    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js'></script>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="js/controllers.js"></script>
-
-    <title>
-        FastFlow
-    </title>
-</head>
-
-<body ng-app="fastFlow">
-    <div id="sidebar">
-        <ul>
+   <head>
+      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" href="/css/style.css">
+      <title>
+         FastFlow
+      </title>
+   </head>
+   <body>
+      <div id = "sidebar">
+         <ul>
             <li>
-                <span style="padding-left: 20px; color: white;">
-                    FASTFLOW
+               <span style = "padding-left: 20px; color: white;">
+               FASTFLOW&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                </span>
-                <a href="settings.html" style="float:right; margin-right: -110px; margin-top: -5px; color: white;">&#9776;</a>
+               <a href = "settings.html" style = "display: inline; margin-right: -20px; padding-right: 20px;">&#9776;</a>
             </li>
             <li>
-                <a href="cardEditor.html" class="mode">
-                    <span style="color: white;">FLOW MODE</span>
-                </a>
+               <a href = "cardEditor.html" class = "mode">
+               <span style = "color: white;">FLOW MODE</span>
+               </a>
             </li>
             <li>
-                <input type="text" class="searchbar">
+               <input type="text" class = "searchbar">
             </li>
-        </ul>
-    </div>
-    <div id="page" ng-controller="cardProvider">
-        <div id="pageContent">
-            <div id="title">{{tag}}</div>
-            <p> {{cite}}
-
-                <p>{{content}}
-        </div>
-    </div>
-</body>
-
+         </ul>
+      </div>
+      <div id = "page">
+        <iframe src = "cardviewframe.html" style = "border: 0; width">
+      </div>
+   </body>
 </html>
