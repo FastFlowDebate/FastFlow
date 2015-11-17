@@ -16,7 +16,7 @@ io.on('connection', function(client) {
         console.log(data);
     });
     client.on('newCard', function(data) {
-    	console.log("card:" + data);
+    	console.log("card{ tag: " + data.tag + ", cite: " + data.cite + ", content: " + data.content + "}");
     	//do stuff with data, at the moment doesn't print data properly lol
     	//TODO parse data - card content and save to new card then return cardSaved(cardID);
     });
