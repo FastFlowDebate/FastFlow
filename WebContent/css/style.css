@@ -86,6 +86,6 @@ li {
 #title {
     font-size: 30px;
     font-weight: bold;
-    margin: 0px;
+    margin: 0px auto;
     padding: 0px;
 }
