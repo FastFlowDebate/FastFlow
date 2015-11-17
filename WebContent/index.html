@@ -2,15 +2,23 @@
 <html>
 
 <head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
     <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.2.3/rangy-core.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular-sanitize.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js'></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="js/controllers.js"></script>
+
     <title>
         FastFlow
     </title>
 </head>
 
-<body>
-    <div id="sidebar">
+<body ng-app="fastFlow">
+    <div id="sidebar" ng-controller="cardProvider">
         <ul>
             <li>
                 <span style="padding-left: 20px; color: white;">
@@ -28,9 +36,11 @@
             </li>
         </ul>
     </div>
-    <div id="page">
-        <div id="title">El Card</div>
-        <p>Lorem ipsum dolor sit amet, meliore minimum perpetua mea ad, pro in modo harum iriure, nec case cibo voluptatum an. Te vix putant indoctum, eius ceteros sapientem ei cum. Dicant soleat in sea, quaestio adipiscing ne eam, persius nostrud iudicabit eum eu. Quod lucilius incorrupte et vel, ut pri quem odio disputationi. Prodesset constituto no ius, sit ea error docendi. Te his singulis referrentur theophrastus, discere voluptua assueverit ad vel. Ei sed unum voluptaria theophrastus. Everti blandit expetenda ei vix, in reque rationibus eam, te suas adhuc quidam sed. Erant volumus eos ex, verear quaestio no sed, vel quas nulla ex. Quo illum tritani te. Corpora liberavisse per ea, ex vim adolescens conclusionemque. Fierent perfecto ut sed, cum sumo maiestatis incorrupte cu. Cu usu sanctus sententiae. Ne rebum civibus vix. Te nullam praesent postulant vim. Ex primis aliquam perpetua mei. Patrioque adolescens complectitur eu nec, te has principes molestiae. Mea sale sanctus theophrastus an, ad quo adhuc etiam eloquentiam, et corrumpit contentiones intellegebat has. Id ignota offendit duo. Cu mea porro munere aperiri. Ad est civibus denique iudicabit. At cum sapientem pertinacia delicatissimi, mundi accusamus definitionem at mel. Assum fuisset eam ne. Natum facer ad eam, invidunt insolens inimicus sea ut, sed in labitur accumsan mnesarchum. Labitur hendrerit ei duo. Verear prompta qui no, agam eleifend mea id.
+    <div id="page" ng-controller="cardProvider">
+        <div id="title">{{tag}}</div>
+        <p>
+            {{cite}}<br>
+            {{content}}
         </p>
     </div>
 </body>

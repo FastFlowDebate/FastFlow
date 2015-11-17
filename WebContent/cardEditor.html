@@ -12,30 +12,28 @@
     <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js'></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-    <script src="js/cardEditorNG.js"></script>
+    <script src="js/controllers.js"></script>
 
 
 </head>
 
-<body ng-app="cardCreator">
-    <div class="well" id="editor">
-        <div ng-controller="AppCtrl">
-            <div class="alert" ng-show="showInfo" ng-class="{'alert-info': !error, 'alert-danger': error}" role="alert">{{info}}</div>
+<body ng-app="fastFlow">
+    <div class="well" id="editor" ng-controller="cardCreator">
+        <div class="alert" ng-show="showInfo" ng-class="{'alert-info': !error, 'alert-danger': error}" role="alert">{{info}}</div>
 
-            <form ng-submit="save(contents)" name="saveCard">
-                <div class="form-group">
-                    <h2>Tagline</h2>
-                    <text-angular ng-model="dataT" ta-toolbar="[]" id="tooldbar" id="tag"></text-angular>
-                    <h2>Citation</h2>
-                    <text-angular ng-model="dataC" ta-toolbar="[]" id="tooldbar" id="cite"></text-angular>
-                    <h2>Content</h2>
-                    <text-angular ng-model="dataD" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo','redo']]" id="tooldbar" id="content"></text-angular>
-                </div>
-                <hr/>
-                <button class="btn btn-success" type="submit" id="save">Save Card</button>
+        <form ng-submit="save(contents)" name="saveCard">
+            <div class="form-group">
+                <h2>Tagline</h2>
+                <text-angular ng-model="dataT" ta-toolbar="[]" id="tooldbar" id="tag"></text-angular>
+                <h2>Citation</h2>
+                <text-angular ng-model="dataC" ta-toolbar="[]" id="tooldbar" id="cite"></text-angular>
+                <h2>Content</h2>
+                <text-angular ng-model="dataD" ta-toolbar="[['h1','h2','h3'],['bold','italics','underline'],['undo','redo']]" id="tooldbar" id="content"></text-angular>
+            </div>
+            <hr/>
+            <button class="btn btn-success" type="submit" id="save">Save Card</button>
 
-            </form>
-        </div>
+        </form>
     </div>
 </body>
 
