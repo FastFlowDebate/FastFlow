@@ -12,11 +12,10 @@ body {
 
 #sidebar {
     color: white;
-    position: fixed;
+    position: relative;
     float: left;
-    width: 290px;
+    width: 22%;
     top: -5px;
-    left: 10px;
 }
 
 #sidebar ul,
@@ -28,8 +27,7 @@ li {
 
 #sidebar a:link {
     display: block;
-    width: 280px;
-    padding: 5px 0px 5px 20px;
+    padding: 5px 4% 5px 4%;
     margin-bottom: -5px 0px -5px 0px;
     text-decoration: none;
     color: white;
@@ -44,7 +42,7 @@ li {
 
 #sidebar a:active {
     display: block;
-    width: 290px;
+    width: 100%;
     color: white;
     background-color: #6c5cc9;
     text-decoration: none;
@@ -62,7 +60,7 @@ li {
     border-bottom: solid 2px #e6e6e6;
     background-color: #6c5cc9;
     color: white;
-    width: 260px;
+    width: 98%;
     margin-top: -5px;
 }
 
@@ -72,7 +70,7 @@ li {
     float: right;
     top: 0px;
     right: 0px;
-    width: calc(100% - 290px);
+    width: 78%;
     height: 100%;
     background-color: white;
     overflow: auto;
