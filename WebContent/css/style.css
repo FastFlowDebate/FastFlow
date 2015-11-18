@@ -26,6 +26,7 @@ li {
 }
 
 #sidebar a:link {
+    position: inherit;
     display: block;
     padding: 5px 4% 5px 4%;
     margin-bottom: -5px 0px -5px 0px;
@@ -60,8 +61,8 @@ li {
     border-bottom: solid 2px #e6e6e6;
     background-color: #6c5cc9;
     color: white;
-    width: 98%;
     margin-top: -5px;
+    width: 98%;
 }
 
 #page {
