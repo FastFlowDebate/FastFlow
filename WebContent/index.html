@@ -1,33 +1,40 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-   <head>
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-      <link rel="stylesheet" href="/css/style.css">
-      <title>
-         FastFlow
-      </title>
-   </head>
-   <body>
-      <div id = "sidebar">
-         <ul>
+
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/style.css">
+    <title>
+        FastFlow
+    </title>
+</head>
+<style>
+    .mode:hover:before {
+        content: "FLOW MODE";
+    }
+</style>
+<body>
+    <div id="sidebar">
+        <ul>
             <li>
-               <span style = "padding-left: 20px; color: white;">
-               FASTFLOW
+               <span style="padding-left: 20px;">
+                    FASTFLOW
                </span>
-               <a href = "settings.html" style = "float: right; color: white; margin-right: -90px; margin-top: -5px;">&#9776;</a>
+                <a href="settings.html" style="float: right; color: white; margin-right: -90px; margin-top: -5px;">&#9776;</a>
             </li>
             <li>
-               <a href = "cardEditor.html" class = "mode">
-               <span style = "color: white;">FILE MODE</span>
-               </a>
+                <a href="cardEditor.html" class="mode">
+                    <span style="color: white;">FILE MODE</span>
+                </a>
             </li>
             <li>
-               <input type="text" class = "searchbar">
+                <input type="text" class="searchbar">
             </li>
-         </ul>
-      </div>
-      <div id = "page">
-        <iframe src = "cardviewframe.html" style = "border: 0; width">
-      </div>
-   </body>
+        </ul>
+    </div>
+    <div id="page">
+        <iframe src="cardviewframe.html" style="border: 0; width">
+    </div>
+</body>
+
 </html>

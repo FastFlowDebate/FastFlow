@@ -55,10 +55,6 @@ li {
     display: none;
 }
 
-.mode:hover:before {
-    content: "FILE MODE";
-}
-
 #sidebar input[type="text"] {
     font-size: 18px;
     padding: 7px 20px 7px 20px;
