@@ -49,6 +49,11 @@ io.on('connection', function(client) {
         console.log(location);
         //indexShell.send(location);
 
+        indexShell.end(function (err) {
+          if (err) throw err;
+          console.log('finished');
+        });
+
       }
 
       filesave(data.tag.toString(), "ugh", "backend/testfolder", data.cite.toString());

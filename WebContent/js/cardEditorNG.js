@@ -1,6 +1,7 @@
 /* global angular */
 'use strict';
-var app = angular.module('cardCreator', ['textAngular']);
+//var app = angular.module('cardCreator', ['textAngular']);
+var app = angular.module('cardCreator', [require('angular-sanitize'), require('textAngular')]);
 
 var socket = io.connect('http://localhost:4200');
 socket.on('connect', function (data) {

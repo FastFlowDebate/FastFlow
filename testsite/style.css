@@ -5,7 +5,7 @@
 html,
 body {
   height: 100%;
-  background-color: white;
+  background-color: #eee;
 }
 
 html,
@@ -40,12 +40,8 @@ buttons {
   left: -200px;
   overflow: auto;
   z-index: 2;
-  color: #424242;
-  background-color: #EEEEEE;
+  background-color: #fff;
   transition: transform 0.2s;
-}
-#sidedrawer a {
-  color: #424242;
 }
 
 #content-wrapper {
@@ -53,7 +49,7 @@ buttons {
   overflow-x: hidden;
   margin-left: 0px;
   transition: margin-left 0.2s;
-
+  
   /* sticky bottom */
   margin-bottom: -160px;
   padding-bottom: 160px;
@@ -69,31 +65,31 @@ buttons {
   #header {
     left: 200px;
   }
-
+  
   #sidedrawer {
     transform: translate(200px);
   }
-
+  
   #content-wrapper {
     margin-left: 200px;
   }
-
+  
   #footer {
     margin-left: 200px;
   }
-
+  
   body.hide-sidedrawer #header {
     left: 0;
   }
-
+  
   body.hide-sidedrawer #sidedrawer {
     transform: translate(0px);
   }
-
+  
   body.hide-sidedrawer #content-wrapper {
     margin-left: 0;
   }
-
+  
   body.hide-sidedrawer #footer {
     margin-left: 0;
   }
@@ -113,7 +109,7 @@ buttons {
  */
 
 .sidedrawer-toggle {
-  color: white;
+  color: #fff;
   cursor: pointer;
   font-size: 20px;
   line-height: 20px;
@@ -121,7 +117,7 @@ buttons {
 }
 
 .sidedrawer-toggle:hover {
-  color: white;
+  color: #fff;
   text-decoration: none;
 }
 
@@ -153,8 +149,7 @@ buttons {
 }
 
 #sidedrawer strong:hover {
-  color: white;
-  background-color: #7E57C2;
+  background-color: #E0E0E0;
 }
 
 #sidedrawer strong + ul > li {
@@ -167,23 +162,11 @@ buttons {
  */
 
 #footer {
-  background-color: white;
-  color: black;
+  background-color: #0288D1;
+  color: #fff;
 }
 
 #footer a {
+  color: #fff;
   text-decoration: underline;
-}
-
-
-.mui-appbar{
-  background-color: #673AB7;
-  color: black;
-}
-
-#sidebarinput{
-  background-color: #F5F5F5;
-  height: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
 }
