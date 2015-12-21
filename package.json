@@ -16,14 +16,17 @@
     "angular": "^1.4.7",
     "express": "^4.13.3",
     "http": "0.0.0",
+    "react-ui-tree": "^2.4.1",
     "socket.io": "^1.3.7",
     "textangular": "^1.4.6"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Zarkoix/FastFlow.git"
+    "url": "git+https://github.com/Zarkoix/FastFlow.git"
   },
   "bugs": {
     "url": "https://github.com/Zarkoix/FastFlow/issues"
-  }
+  },
+  "homepage": "https://github.com/Zarkoix/FastFlow#readme",
+  "devDependencies": {}
 }
