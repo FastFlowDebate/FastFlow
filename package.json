@@ -64,11 +64,7 @@
     "type": "git",
     "url": "git+https://github.com/zarkoix/fastflow.git"
   },
-  "author": {
-    "name": "Adam Towers",
-    "email": "adam.towers@icloud.com",
-    "url": "https://github.com/zarkoix"
-  },
+  "author": "Adam Towers <adam.towers@icloud.com> (https://github.com/zarkoix)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/zarkoix/FastFlow/issues"
