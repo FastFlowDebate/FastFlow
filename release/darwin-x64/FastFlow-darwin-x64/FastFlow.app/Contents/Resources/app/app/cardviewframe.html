@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rangy/1.2.3/rangy-core.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular-sanitize.min.js'></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/textAngular/1.2.0/textAngular.min.js'></script>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script src="js/controllers.js"></script>
+
+    <style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: white;
+        font-size: 20px;
+    }
+    </style>
+
+    <title>
+        FastFlow
+    </title>
+</head>
+
+<body ng-app="fastFlow">
+    <div id="page" ng-controller="cardProvider">
+        <div id="pageContent">
+            <div id="title">{{tag}}</div>
+            <p> {{cite}}
+
+                <p>{{content}}
+        </div>
+    </div>
+</body>
+
+</html>
