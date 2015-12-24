@@ -1,3 +1,9 @@
+# 0.1.2 (2015.12.23)
+
+#### More Improvements
+- **fixed el jqueryerino! :(**
+- **doesnt look like Windows 95**
+
 # 0.1.1 (2015.12.23)
 
 #### More Improvements
@@ -14,4 +20,3 @@
 - **using electron-react-boilerplate**
 - **broke lots of Issac's stuff**
 - **oops!**
-
