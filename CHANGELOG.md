@@ -1,3 +1,9 @@
+# 0.1.3 (2015.12.23)
+
+#### More Improvements
+- **got rid of old stuff**
+- **less clunk. old stuff is in /oldstuff**
+
 # 0.1.2 (2015.12.23)
 
 #### More Improvements
