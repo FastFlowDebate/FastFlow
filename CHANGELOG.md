@@ -1,3 +1,9 @@
+# 0.1.4 (2015.12.23)
+
+#### More Improvements
+- **tried to work on webpack.config.js to build bundle.js, epic fail**
+- **helperino por favor**
+
 # 0.1.3 (2015.12.23)
 
 #### More Improvements

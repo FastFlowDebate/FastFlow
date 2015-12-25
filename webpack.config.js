@@ -1,7 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 
-var entry = ['./demos/index.js'];
+var entry = ['./app/js/index.js'];
 
 if (process.env.NODE_ENV === 'development') {
   entry = entry.concat([
@@ -16,7 +16,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'demos'),
     filename: 'bundle.js',
-    publicPath: '/demos/',
+    publicPath: '/app/js/',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
