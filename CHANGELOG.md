@@ -1,5 +1,12 @@
+#0.16 (2015.12.28)
+#### semi-saving
+- **when you click the "save" button at the bottom of the Flow page, it will output 3 window alerts**
+- **first, the title text**
+- **second, the tag text**
+- third, the html code for the content you edit
+
 #0.15 (2015.12.28)
-####AlloyEditor
+#### AlloyEditor
 - **added alloy editor. click on Flow to see**
 
 # 0.1.4 (2015.12.23)
