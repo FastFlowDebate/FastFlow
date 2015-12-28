@@ -1,3 +1,7 @@
+#0.15 (2015.12.28)
+####AlloyEditor
+- **added alloy editor. click on Flow to see**
+
 # 0.1.4 (2015.12.23)
 
 #### More Improvements
