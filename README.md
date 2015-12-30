@@ -1,13 +1,14 @@
 # FastFlow
 
 Debate organization suite for making High School/Collegiate debate much for effeicient.
-* installation
 
-      npm install
+installation
 
-* running
+    npm install
 
-      npm start
+running
+
+    npm start
 
 See [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate) for additional information about how the non-/app components work.
 
