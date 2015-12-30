@@ -1,9 +1,15 @@
 #0.18 (2015.12.30)
+<<<<<<< HEAD
 #### bugfix
 - **now fixed the freezing bug (i was sending messages synchronously, needed async.)**
 -- **not sure how to set PATH, given that the directory structure of the built version and unbuilt version is different.**
 -- **May just ignore problem until we set up settings page.**
 -- **saving Does work if you give it the right directory structure**
+=======
+#### FIXED SAVING!!!!
+- **no longer freezes on save, moved from saveSync to just save; see [this](https://github.com/atom/electron/blob/master/docs/api/ipc-renderer.md)**
+- **muy exite!**
+>>>>>>> 55decc7650950713cf1e0f6d41e3b67ceb57f32c
 
 #0.17 (2015.12.29)
 #### ADDED SAVING!!!!

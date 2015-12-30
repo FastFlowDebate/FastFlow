@@ -1,50 +1,46 @@
-jQuery(function($) {
+jQuery(function ($) {
   var $bodyEl = $('body'),
-      $sidedrawerEl = $('#sidedrawer');
-
+      $sidedrawerEl = $('#sidedrawer')
 
   // ==========================================================================
   // Toggle Sidedrawer
   // ==========================================================================
-  function showSidedrawer() {
+  function showSidedrawer () {
     // show overlay
     var options = {
-      onclose: function() {
+      onclose: function () {
         $sidedrawerEl
           .removeClass('active')
-          .appendTo(document.body);
+          .appendTo(document.body)
       }
-    };
+    }
 
-    var $overlayEl = $(mui.overlay('on', options));
+    var $overlayEl = $(mui.overlay('on', options))
 
     // show element
-    $sidedrawerEl.appendTo($overlayEl);
-    setTimeout(function() {
-      $sidedrawerEl.addClass('active');
-    }, 20);
+    $sidedrawerEl.appendTo($overlayEl)
+    setTimeout(function () {
+      $sidedrawerEl.addClass('active')
+    }, 20)
   }
 
-
-  function hideSidedrawer() {
-    $bodyEl.toggleClass('hide-sidedrawer');
+  function hideSidedrawer () {
+    $bodyEl.toggleClass('hide-sidedrawer')
   }
 
-
-  $('.js-show-sidedrawer').on('click', showSidedrawer);
-  $('.js-hide-sidedrawer').on('click', hideSidedrawer);
-
+  $('.js-show-sidedrawer').on('click', showSidedrawer)
+  $('.js-hide-sidedrawer').on('click', hideSidedrawer)
 
   // ==========================================================================
   // Animate menu
   // ==========================================================================
-  var $titleEls = $('strong', $sidedrawerEl);
+  var $titleEls = $('strong', $sidedrawerEl)
 
   $titleEls
     .next()
-    .hide();
+    .hide()
 
-  $titleEls.on('click', function() {
-    $(this).next().slideToggle(200);
-  });
-});
+  $titleEls.on('click', function () {
+    $(this).next().slideToggle(200)
+  })
+})
