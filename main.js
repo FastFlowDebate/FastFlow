@@ -13,9 +13,6 @@ let menu;
 let template;
 let mainWindow = null;
 
-var path = require('path');
-app.setPath("userData", path.join(process.cwd(), "/"));
-
 crashReporter.start();
 
 if (process.env.NODE_ENV === 'development') {
@@ -248,10 +245,16 @@ app.on('ready', () => {
 
   /*saving*/
   ipcMain.on('FileSave', function(event, arg) {
+      var TheDirectory = __dirname
       console.log(arg);
+      var filesavepyFolder = TheDirectory + "/app/backend/filesave.py"
+      var filesavepy = new PythonShell(filesavepyFolder);
+      console.log(filesavepyFolder)
 
-      var filesavepy = new PythonShell('app/backend/filesave.py');
-      var indexShell = new PythonShell('app/backend/tagindex.py');
+      var tagindexFolder = TheDirectory + "/app/backend/tagindex.py"
+      var indexShell = new PythonShell(tagindexFolder);
+      console.log(tagindexFolder)
+
 
       var tags;
       var content;
@@ -280,18 +283,19 @@ app.on('ready', () => {
 
   }
 
-  filesave(arg[1], arg[2], "testfolder", arg[0]);
+  filesave(arg[1], arg[2], TheDirectory + "/testfolder", arg[0]);
 
+  filesavepy.end(function (err) {
+  if (err) throw err;
+  console.log('finished');
+  });
+  indexShell.end(function (err) {
+  if (err) throw err;
+  console.log('finished');
+  });
 
     // end the input stream and allow the process to exit
-    filesavepy.end(function (err) {
-    if (err) throw err;
-    console.log('finished');
-    });
-    indexShell.end(function (err) {
-    if (err) throw err;
-    console.log('finished');
-    });
+
 
   });
 
