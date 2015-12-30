@@ -1,3 +1,8 @@
+#0.18 (2015.12.30)
+#### FIXED SAVING!!!!
+- **no longer freezes on save, moved from saveSync to just save; see [this](https://github.com/atom/electron/blob/master/docs/api/ipc-renderer.md)**
+- **muy exite!**
+
 #0.17 (2015.12.29)
 #### ADDED SAVING!!!!
 - **now saves to a file in /app/backend/testfolder :)**
