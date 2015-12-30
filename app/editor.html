@@ -68,7 +68,6 @@
 <div class="ae-placeholder" contenteditable="true" data-placeholder="Tags" id="tags"></div>
 <p></p>
 <div id="content" contenteditable="true" data-placeholder="Content">
-    <p>pls yo soy en la casa</p>
 </div>
 
 <button class="mui-btn mui-btn--primary" id = "save">Save</button>
@@ -79,14 +78,14 @@ const ipcRenderer = require('electron').ipcRenderer;
     var editor2 = AlloyEditor.editable('tags');
     var editor3 = AlloyEditor.editable('content');
 
-$( '#save' ).click ( function () {
-  var TitleString = $( "#title" ).text();
-  var TagString = $( "#tags" ).text();
-  var ContentString = $( "#content" ).html();
-  console.log(ipcRenderer.sendSync('FileSave', [TitleString, TagString, ContentString]));
-  window.alert("Saved!");
+  $( '#save' ).click ( function () {
+    var TitleString = $( "#title" ).text();
+    var TagString = $( "#tags" ).text();
+    var ContentString = $( "#content" ).html();
+    ipcRenderer.send('FileSave', [TitleString, TagString, ContentString]);
+    window.alert("Saved!");
 
-  } );
+    } );
 </script>
 
     <footer id="footer">

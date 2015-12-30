@@ -1,3 +1,10 @@
+#0.18 (2015.12.30)
+#### bugfix
+- **now fixed the freezing bug (i was sending messages synchronously, needed async.)**
+-- **not sure how to set PATH, given that the directory structure of the built version and unbuilt version is different.**
+-- **May just ignore problem until we set up settings page.**
+-- **saving Does work if you give it the right directory structure**
+
 #0.17 (2015.12.29)
 #### ADDED SAVING!!!!
 - **now saves to a file in /app/backend/testfolder :)**

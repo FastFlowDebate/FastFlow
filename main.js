@@ -13,6 +13,8 @@ let menu;
 let template;
 let mainWindow = null;
 
+var path = require('path');
+app.setPath("userData", path.join(process.cwd(), "/"));
 
 crashReporter.start();
 
@@ -278,7 +280,7 @@ app.on('ready', () => {
 
   }
 
-  filesave(arg[1], arg[2], "app/backend/testfolder", arg[0]);
+  filesave(arg[1], arg[2], "testfolder", arg[0]);
 
 
     // end the input stream and allow the process to exit

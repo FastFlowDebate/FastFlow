@@ -60,3 +60,5 @@ print tagIndex
 #print tagIndex
 with open(str(dataLog) + "/" + 'data.json', 'w') as fp:
     json.dump(tagIndex, fp)
+
+exit()

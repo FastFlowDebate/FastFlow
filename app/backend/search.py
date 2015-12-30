@@ -32,3 +32,4 @@ def check(directory):
                     print directory + "/" + contents[i]
 #start main
 check(directoryPath)
+exit()

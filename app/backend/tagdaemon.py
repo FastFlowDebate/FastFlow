@@ -53,3 +53,4 @@ while True:
         newkeyPosition = []
 
         print
+exit()

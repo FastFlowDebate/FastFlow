@@ -11,3 +11,4 @@ file = open(str(destination) + "/" + filename, 'r')
 #print the file listed
 print
 print file.read()
+exit()

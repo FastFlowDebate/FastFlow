@@ -15,3 +15,4 @@ file.truncate()
 #writes text to file
 file.write("<!--" + tags + "-->\n")
 file.write(text)
+exit()

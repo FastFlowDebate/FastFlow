@@ -21,3 +21,4 @@ for i in xrange(0,len(tagIndex[0])):
     if tag == str(tagIndex[0][i][0:tagLen]):
         #print the name of the parts
         print tagIndex[1][i]
+exit()
