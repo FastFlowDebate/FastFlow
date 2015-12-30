@@ -1,12 +1,14 @@
 /* eslint strict: 0 */
 'use strict';
 
+var PythonShell = require('python-shell');
 const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 const Menu = electron.Menu;
 const crashReporter = electron.crashReporter;
 const shell = electron.shell;
+const ipcMain = require('electron').ipcMain;
 let menu;
 let template;
 let mainWindow = null;
@@ -40,6 +42,7 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools();
   }
+
 
   if (process.platform === 'darwin') {
     template = [{
@@ -240,4 +243,54 @@ app.on('ready', () => {
     menu = Menu.buildFromTemplate(template);
     mainWindow.setMenu(menu);
   }
+
+  /*saving*/
+  ipcMain.on('FileSave', function(event, arg) {
+      console.log(arg);
+
+      var filesavepy = new PythonShell('app/backend/filesave.py');
+      var indexShell = new PythonShell('app/backend/tagindex.py');
+
+      var tags;
+      var content;
+      var location;
+      var filename;
+
+      function filesave(tags, content, location, filename) {
+        filesavepy.send(tags);
+        console.log(tags);
+        //content
+        filesavepy.send(content);
+        console.log(content);
+        //folder location
+        filesavepy.send(location);
+        console.log(location);
+        //filename
+        filesavepy.send(filename);
+        console.log(filename);
+
+        indexShell.send(location);
+        console.log(location);
+
+        indexShell.send(location);
+        console.log(location);
+        //indexShell.send(location);
+
+  }
+
+  filesave(arg[1], arg[2], "app/backend/testfolder", arg[0]);
+
+
+    // end the input stream and allow the process to exit
+    filesavepy.end(function (err) {
+    if (err) throw err;
+    console.log('finished');
+    });
+    indexShell.end(function (err) {
+    if (err) throw err;
+    console.log('finished');
+    });
+
+  });
+
 });

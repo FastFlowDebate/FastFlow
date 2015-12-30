@@ -5,6 +5,7 @@ const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const config = require('./webpack.config.development');
+const ipc = require('ipc');
 
 const app = express();
 const compiler = webpack(config);

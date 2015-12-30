@@ -1,3 +1,9 @@
+#0.17 (2015.12.29)
+#### ADDED SAVING!!!!
+- **now saves to a file in /app/backend/testfolder :)**
+- **bug: freezes immediatly (sry bad spelling) after saving**
+- **muy exite!**
+
 #0.16 (2015.12.28)
 #### semi-saving
 - **when you click the "save" button at the bottom of the Flow page, it will output 3 window alerts**
