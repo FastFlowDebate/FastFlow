@@ -1,7 +1,9 @@
 /* eslint strict: 0 */
 'use strict';
 
-var path = require('path')
+var path = require('path');
+var fs = require('fs');
+
 var PythonShell = require('python-shell');
 const electron = require('electron');
 const app = electron.app;
@@ -25,8 +27,12 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
+app.setAppPath(__dirname);
 
 app.on('ready', () => {
+
+
+
   mainWindow = new BrowserWindow({ width: 1024, height: 728 });
 
   if (process.env.HOT) {
@@ -244,15 +250,40 @@ app.on('ready', () => {
     mainWindow.setMenu(menu);
   }
 
+
+
   /*saving*/
   ipcMain.on('FileSave', function(event, arg) {
-      console.log(arg);
-      
-      var filesavepy = new PythonShell(path.join(__dirname, "/app/backend/filesave.py"));
-      console.log(path.join(__dirname, "/app/backend/filesave.py"));
 
-      var indexShell = new PythonShell(path.join(__dirname, "/app/backend/tagindex.py"));
-      console.log(path.join(__dirname, "/app/backend/tagindex.py"));
+    if (fs.existsSync('./backend')) {
+      var fileDirectory = "./backend/filesave.py";
+      var indexFolder = "./backend/tagindex.py";
+      var TestFolder = "./testfolder";
+    }
+    else {
+      var fileDirectory = "./resources/app/backend/filesave.py";
+      var indexFolder = "./resources/app/backend/tagindex.py";
+      var TestFolder = "./resources/app/testfolder";
+    }
+
+
+
+
+      console.log(arg);
+
+
+      var filesavepy = new PythonShell(fileDirectory);
+      console.log(fileDirectory);
+
+      console.log("BREAK BREAK BREAK")
+
+
+
+
+      var indexShell = new PythonShell(indexFolder);
+      console.log(indexFolder)
+
+      console.log("BREAK BREAK BREAK")
 
 
       var tags;
@@ -282,7 +313,7 @@ app.on('ready', () => {
 
   }
 
-  filesave(arg[1], arg[2], __dirname + "/testfolder", arg[0]);
+  filesave(arg[1], arg[2], TestFolder, arg[0]);
 
   filesavepy.end(function (err) {
   if (err) throw err;

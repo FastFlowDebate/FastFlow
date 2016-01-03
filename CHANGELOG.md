@@ -1,3 +1,7 @@
+#0.20 (2016.1.2)
+-- **saves when built! :)**
+-- **(at least for linux)**
+
 #0.19 (2015.12.30)
 -- **tried to fix directory problem with "__dirname", but it's not working. not sure why, but pls fix**
 
