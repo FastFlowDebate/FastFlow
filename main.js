@@ -1,6 +1,7 @@
 /* eslint strict: 0 */
 'use strict';
 
+var path = require('path')
 var PythonShell = require('python-shell');
 const electron = require('electron');
 const app = electron.app;
@@ -245,15 +246,13 @@ app.on('ready', () => {
 
   /*saving*/
   ipcMain.on('FileSave', function(event, arg) {
-      var TheDirectory = __dirname
       console.log(arg);
-      var filesavepyFolder = TheDirectory + "/app/backend/filesave.py"
-      var filesavepy = new PythonShell(filesavepyFolder);
-      console.log(filesavepyFolder)
+      
+      var filesavepy = new PythonShell(path.join(__dirname, "/app/backend/filesave.py"));
+      console.log(path.join(__dirname, "/app/backend/filesave.py"));
 
-      var tagindexFolder = TheDirectory + "/app/backend/tagindex.py"
-      var indexShell = new PythonShell(tagindexFolder);
-      console.log(tagindexFolder)
+      var indexShell = new PythonShell(path.join(__dirname, "/app/backend/tagindex.py"));
+      console.log(path.join(__dirname, "/app/backend/tagindex.py"));
 
 
       var tags;
@@ -283,7 +282,7 @@ app.on('ready', () => {
 
   }
 
-  filesave(arg[1], arg[2], TheDirectory + "/testfolder", arg[0]);
+  filesave(arg[1], arg[2], __dirname + "/testfolder", arg[0]);
 
   filesavepy.end(function (err) {
   if (err) throw err;
