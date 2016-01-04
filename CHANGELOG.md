@@ -1,3 +1,8 @@
+#0.22 (2016.1.3)
+#### filemanager-ish
+-- **semi-finished js file manager**
+-- **now refreshes**
+
 #0.21 (2016.1.3)
 #### filemanager-ish
 -- **semi-finished js file manager**

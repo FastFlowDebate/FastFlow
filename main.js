@@ -26,6 +26,10 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
+require('electron-debug')({
+    showDevTools: true
+});
+
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 1024,
@@ -247,11 +251,38 @@ app.on('ready', () => {
   }
 
   ipcMain.on('FileManager', function (event, arg) {
-    var dataJSON = require(path.join(__dirname, 'testfolder', 'data.json'))
+    var unparseddataJSON =  fs.readFileSync(path.join(__dirname, 'testfolder', 'data.json'))
+    var dataJSON = JSON.parse(unparseddataJSON)
 
     console.log(arg)
+    console.log(dataJSON)
 
     event.returnValue = dataJSON
+
+    if (fs.existsSync('./backend')) {
+      var indexFolder = './backend/tagindex.py'
+      var TestFolder = './testfolder'
+    } else if (fs.existsSync('./resources/app/backend')) {
+      var indexFolder = './resources/app/backend/tagindex.py'
+      var TestFolder = './resources/app/testfolder'
+    } else {
+      var indexFolder = './Contents/Resources/app/backend/tagindex.py'
+      var TestFolder = './Contents/Resources/app/testfolder'
+    }
+
+    var indexShell = new PythonShell(indexFolder)
+
+    indexShell.send(TestFolder)
+    console.log(TestFolder)
+
+    indexShell.send(TestFolder)
+    console.log(TestFolder)
+
+    indexShell.end(function (err) {
+      if (err) throw err
+      console.log('finished')
+    })
+
   })
 
   /*saving*/
