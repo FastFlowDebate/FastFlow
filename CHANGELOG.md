@@ -1,3 +1,8 @@
+#0.21 (2016.1.3)
+#### filemanager-ish
+-- **semi-finished js file manager**
+-- **problem: doesnt refresh when you edit another thing**
+
 #0.20 (2016.1.2)
 -- **saves when built! :)**
 -- **(at least for linux)**

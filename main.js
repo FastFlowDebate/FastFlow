@@ -27,7 +27,6 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
 });
 
-app.setAppPath(__dirname);
 
 app.on('ready', () => {
 
@@ -248,9 +247,20 @@ app.on('ready', () => {
     }];
     menu = Menu.buildFromTemplate(template);
     mainWindow.setMenu(menu);
+
   }
 
 
+
+  ipcMain.on('FileManager', function(event, arg) {
+
+    var dataJSON = require(path.join(__dirname, "testfolder", "data.json"));
+
+    console.log(arg);
+
+    event.returnValue = dataJSON;
+
+  });
 
   /*saving*/
   ipcMain.on('FileSave', function(event, arg) {
@@ -260,10 +270,15 @@ app.on('ready', () => {
       var indexFolder = "./backend/tagindex.py";
       var TestFolder = "./testfolder";
     }
-    else {
+    else if (fs.existsSync('./resources/app/backend')){
       var fileDirectory = "./resources/app/backend/filesave.py";
       var indexFolder = "./resources/app/backend/tagindex.py";
       var TestFolder = "./resources/app/testfolder";
+    }
+    else {
+      var fileDirectory = "./Contents/Resources/app/backend/filesave.py";
+      var indexFolder = "./Contents/Resources/app/backend/tagindex.py";
+      var TestFolder = "./Contents/Resources/app/testfolder";
     }
 
 
@@ -275,15 +290,15 @@ app.on('ready', () => {
       var filesavepy = new PythonShell(fileDirectory);
       console.log(fileDirectory);
 
-      console.log("BREAK BREAK BREAK")
+      console.log("BREAK BREAK BREAK");
 
 
 
 
       var indexShell = new PythonShell(indexFolder);
-      console.log(indexFolder)
+      console.log(indexFolder);
 
-      console.log("BREAK BREAK BREAK")
+      console.log("BREAK BREAK BREAK");
 
 
       var tags;
@@ -291,42 +306,46 @@ app.on('ready', () => {
       var location;
       var filename;
 
-      function filesave(tags, content, location, filename) {
-        filesavepy.send(tags);
-        console.log(tags);
-        //content
-        filesavepy.send(content);
-        console.log(content);
-        //folder location
-        filesavepy.send(location);
-        console.log(location);
-        //filename
-        filesavepy.send(filename);
-        console.log(filename);
+        function filesave(tags, content, location, filename) {
+          filesavepy.send(tags);
+          console.log(tags);
+          //content
+          filesavepy.send(content);
+          console.log(content);
+          //folder location
+          filesavepy.send(location);
+          console.log(location);
+          //filename
+          filesavepy.send(filename);
+          console.log(filename);
 
-        indexShell.send(location);
-        console.log(location);
+          indexShell.send(location);
+          console.log(location);
 
-        indexShell.send(location);
-        console.log(location);
-        //indexShell.send(location);
+          indexShell.send(location);
+          console.log(location);
+          //indexShell.send(location);
 
-  }
+    }
 
-  filesave(arg[1], arg[2], TestFolder, arg[0]);
+    filesave(arg[1], arg[2], TestFolder, arg[0]);
 
-  filesavepy.end(function (err) {
-  if (err) throw err;
-  console.log('finished');
-  });
-  indexShell.end(function (err) {
-  if (err) throw err;
-  console.log('finished');
-  });
+    filesavepy.end(function (err) {
+    if (err) throw err;
+    console.log('finished');
+    });
+    indexShell.end(function (err) {
+    if (err) throw err;
+    console.log('finished');
+    });
+
 
     // end the input stream and allow the process to exit
 
 
   });
+
+
+
 
 });
