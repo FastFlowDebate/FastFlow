@@ -13,7 +13,7 @@ file = open(str(destination) + "/" + filename, 'w')
 #deletes previous contents of file
 file.truncate()
 #this line initializes the string that will be entered into the file
-strTag = tag[0]
+strTag = tags[0]
 #then we iterate through all the tags to add them to the list
 #we skip the first one for formatting reasons
 for tag in tags:
