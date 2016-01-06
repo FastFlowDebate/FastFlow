@@ -2,6 +2,8 @@
 
 Debate organization suite for making High School/Collegiate debate much for effeicient.
 
+requires [NodeJS](https://nodejs.org/en/)
+
 installation
 
     npm install
