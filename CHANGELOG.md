@@ -1,3 +1,8 @@
+#0.23 (2016.1.4)
+####filemanager####
+-- **don't see any tag issues for me**
+-- **html page now refreshes every time you visit, to update content**
+
 #0.22 (2016.1.3)
 #### filemanager-ish
 -- **semi-finished js file manager**

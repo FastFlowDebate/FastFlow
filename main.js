@@ -259,30 +259,6 @@ app.on('ready', () => {
 
     event.returnValue = dataJSON
 
-    if (fs.existsSync('./backend')) {
-      var indexFolder = './backend/tagindex.py'
-      var TestFolder = './testfolder'
-    } else if (fs.existsSync('./resources/app/backend')) {
-      var indexFolder = './resources/app/backend/tagindex.py'
-      var TestFolder = './resources/app/testfolder'
-    } else {
-      var indexFolder = './Contents/Resources/app/backend/tagindex.py'
-      var TestFolder = './Contents/Resources/app/testfolder'
-    }
-
-    var indexShell = new PythonShell(indexFolder)
-
-    indexShell.send(TestFolder)
-    console.log(TestFolder)
-
-    indexShell.send(TestFolder)
-    console.log(TestFolder)
-
-    indexShell.end(function (err) {
-      if (err) throw err
-      console.log('finished')
-    })
-
   })
 
   /*saving*/
