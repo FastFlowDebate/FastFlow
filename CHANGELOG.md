@@ -1,6 +1,6 @@
 #0.24 (2016.1.7)
 ####editing####
--- **now can open files from app.html**
+-- **now can open files from app.html but cant save yet**
 
 #0.23 (2016.1.4)
 ####filemanager####
