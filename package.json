@@ -1,7 +1,7 @@
 {
-  "name": "electron-react-boilerplate",
+  "name": "FastFlow",
   "productName": "FastFlow",
-  "version": "0.1.0",
+  "version": "0.2.5",
   "description": "Debate application for keeping your files organized",
   "main": "main.js",
   "scripts": {
