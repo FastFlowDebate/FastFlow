@@ -275,9 +275,6 @@ app.on('ready', () => {
       event.returnValue = TheArray;
     }
 
-
-
-
   })
 
   ipcMain.on('FileManager', function (event, arg) {

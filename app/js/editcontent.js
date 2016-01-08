@@ -1,4 +1,5 @@
 const ipcRenderer = require('electron').ipcRenderer
+
 $(document).ready(function () {
 
   var theURI = window.location.search

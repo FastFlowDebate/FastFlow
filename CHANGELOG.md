@@ -1,3 +1,7 @@
+#0.25 (2016.1.7)
+####cleaning####
+-- **got rid of some junk**
+
 #0.24 (2016.1.7)
 ####editing####
 -- **now can open files from app.html but cant save yet**
