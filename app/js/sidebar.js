@@ -1,6 +1,6 @@
 jQuery(function ($) {
-  var $bodyEl = $('body'),
-      $sidedrawerEl = $('#sidedrawer')
+  var $bodyEl = $('body')
+  var $sidedrawerEl = $('#sidedrawer')
 
   // ==========================================================================
   // Toggle Sidedrawer

@@ -1,85 +1,88 @@
-
 <!doctype html>
 <html>
-  <head>
-        <script>window.$ = window.jQuery = require('jquery');</script>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/mui.min.css" rel="stylesheet" type="text/css" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <script src="js/mui.min.js"></script>
-    <script src="js/script.js"></script>
+<head>
+  <script>
+    window.$ = window.jQuery = require('jquery');
+  </script>
 
-    <link href="alloy-editor/assets/alloy-editor-ocean.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FastFlow</title>
+  <link href="css/mui.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <script src="js/mui.min.js"></script>
+  <script src="js/sidebar.js"></script>
+
+  <link href="alloy-editor/assets/alloy-editor-ocean.css" rel="stylesheet">
 
   <script src="alloy-editor/alloy-editor-all.js"></script>
 
-<style>
-  body{
-    margin-right: 100px;
-    margin-left: 100px;
-  }
-</style>
+  <style>
+    body {
+      margin-right: 100px;
+      margin-left: 100px;
+    }
+  </style>
 
-  </head>
-  <body>
+</head>
 
-    <div id="sidedrawer" class="mui--no-user-select">
-      <div id="sidedrawer-brand" class="mui--appbar-line-height mui--text-title" style = "background-color: #673AB7; color: white;">FastFlow</div>
-      <div class="mui-divider"></div>
-      <ul>
-        <li>
-          <strong>Mode</strong>
-          <ul>
-            <li><a href="app.html">Files</a></li>
-            <li><a href="editor.html">Editor</a></li>
-          </ul>
-        </li>
-        <li>
+<body>
 
-              <div class="mui-textfield">
-                <input type="text" placeholder = "Search" id = "sidebarinput">
-              </div>
-        </li>
-      </ul>
-    </div>
-    <header id="header">
-      <div class="mui-appbar mui--appbar-line-height">
-        <div class="mui-container-fluid">
-          <a class="sidedrawer-toggle mui--visible-xs-inline-block js-show-sidedrawer">☰</a>
-          <a class="sidedrawer-toggle mui--hidden-xs js-hide-sidedrawer">☰</a>
+  <div id="sidedrawer" class="mui--no-user-select">
+    <div id="sidedrawer-brand" class="mui--appbar-line-height mui--text-title" style="background-color: #673AB7; color: white;">FastFlow</div>
+    <div class="mui-divider"></div>
+    <ul>
+      <li>
+        <strong>Mode</strong>
+        <ul>
+          <li><a href="app.html">Files</a></li>
+          <li><a href="editor.html">Editor</a></li>
+        </ul>
+      </li>
+      <li>
 
-          <span class="mui--text-title mui--visible-xs-inline-block" style ="color: white;">FastFlow</span>
+        <div class="mui-textfield">
+          <input type="text" placeholder="Search" id="sidebarinput">
         </div>
+      </li>
+    </ul>
+  </div>
+  <header id="header">
+    <div class="mui-appbar mui--appbar-line-height">
+      <div class="mui-container-fluid">
+        <a class="sidedrawer-toggle mui--visible-xs-inline-block js-show-sidedrawer">☰</a>
+        <a class="sidedrawer-toggle mui--hidden-xs js-hide-sidedrawer">☰</a>
+
+        <span class="mui--text-title mui--visible-xs-inline-block" style="color: white;">FastFlow</span>
       </div>
-    </header>
-    <div id="content-wrapper">
-      <div class="mui--appbar-height"></div>
+    </div>
+  </header>
+  <div id="content-wrapper">
+    <div class="mui--appbar-height"></div>
 
 
-      <div class="mui-container-fluid" id = "ActualContent" style = "font-size: 14px;">
-        <h1>
-            <div class="ae-placeholder" contenteditable="true" data-placeholder="Title" id="title"></div>
-        </h1>
+    <div class="mui-container-fluid" id="ActualContent" style="font-size: 14px;">
+      <h1>
+        <div class="ae-placeholder" contenteditable="true" data-placeholder="Title" id="title"></div>
+      </h1>
 
-        <div class="ae-placeholder" contenteditable="true" data-placeholder="Tags" id="tags"></div>
-        <p></p>
+      <div class="ae-placeholder" contenteditable="true" data-placeholder="Tags" id="tags"></div>
+      <p></p>
 
-        <div contenteditable="true" data-placeholder="Content" id="content"></div>
+      <div contenteditable="true" data-placeholder="Content" id="content"></div>
 
-<script src = "js/editcontent.js"></script>
+      <script src="js/editcontent.js"></script>
 
-<button class="mui-btn mui-btn--primary" id = "save">Save</button>
-<script src = "js/editor.js"></script>
-
-</div>
+      <button class="mui-btn mui-btn--primary" id="save">Save</button>
+      <script src="js/editor.js"></script>
+    </div>
+  </div>
     <footer id="footer">
       <div class="mui-container-fluid">
-        <br>
-        FastFlow, by Isaac Lo and Adam Towers
+        <br> FastFlow, by Isaac Lo and Adam Towers
       </div>
     </footer>
-  </body>
+</body>
 </html>

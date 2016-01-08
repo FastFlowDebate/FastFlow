@@ -169,6 +169,7 @@ buttons {
 #footer {
   background-color: white;
   color: black;
+  text-align: left;
 }
 
 #footer a {
