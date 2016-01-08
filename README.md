@@ -13,6 +13,7 @@ Installation
 Make sure you have the following npm modules installed globally:
 
 * python-shell
+* node-gyp
 
 Running
 
@@ -22,7 +23,7 @@ See [electron-react-boilerplate](https://github.com/chentsulin/electron-react-bo
 
 ## Contribution
 
-* Use the [Javascript Standard code style](https://github.com/feross/standard) for any and all JS development!
+* Use the [Javascript Standard code style](https://github.com/feross/standard) for any and all JS development!!!
 
 * Try to keep the CHANGELOG.md updated, especially for features, improvements, and bug fixes.
 
