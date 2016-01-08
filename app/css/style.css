@@ -59,12 +59,6 @@ buttons {
   padding-bottom: 160px;
 }
 
-#footer {
-  height: 160px;
-  margin-left: 0px;
-  transition: margin-left 0.2s;
-}
-
 @media (min-width: 768px) {
   #header {
     left: 200px;
@@ -160,22 +154,6 @@ buttons {
 #sidedrawer strong + ul > li {
   padding: 6px 0px;
 }
-
-
-/**
- * Footer CSS
- */
-
-#footer {
-  background-color: white;
-  color: black;
-  text-align: left;
-}
-
-#footer a {
-  text-decoration: underline;
-}
-
 
 .mui-appbar{
   background-color: #673AB7;

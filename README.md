@@ -6,11 +6,16 @@ Debate organization suite for making High School/Collegiate debate much for effe
 
 requires [NodeJS](https://nodejs.org/en/)
 
-installation
+Installation
 
     npm install
+    
+Make sure you have the following npm modules installed globally:
 
-running
+* python-shell
+* node-gyp
+
+Running
 
     npm start
 
@@ -18,7 +23,7 @@ See [electron-react-boilerplate](https://github.com/chentsulin/electron-react-bo
 
 ## Contribution
 
-* Use the [Javascript Standard code style](https://github.com/feross/standard) for any and all JS development!
+* Use the [Javascript Standard code style](https://github.com/feross/standard) for any and all JS development!!!
 
 * Try to keep the CHANGELOG.md updated, especially for features, improvements, and bug fixes.
 

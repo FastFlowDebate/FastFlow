@@ -1,0 +1,15 @@
+#footer {
+  height: 160px;
+  margin-left: 0px;
+  transition: margin-left 0.2s;
+}
+
+#footer {
+  background-color: white;
+  color: black;
+  text-align: left;
+}
+
+#footer a {
+  text-decoration: underline;
+}
