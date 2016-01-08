@@ -1,0 +1,6 @@
+<link href="css/footer.css" rel="stylesheet" type="text/css" />
+<footer id="footer">
+  <div class="mui-container-fluid">
+    <br> FastFlow, by Isaac Lo and Adam Towers
+  </div>
+</footer>
