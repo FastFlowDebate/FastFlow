@@ -4,7 +4,7 @@
 var path = require('path')
 var fs = require('fs')
 
-var PythonShell = require('python-shell')
+//var PythonShell = require('python-shell')
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -253,24 +253,19 @@ app.on('ready', () => {
   ipcMain.on('FileOpen', function (event, arg) {
     var FileArray = fs.readFileSync(path.join(__dirname, arg)).toString().split('\n');
     console.log(FileArray)
-    console.log("BREAK BREAK BREAK")
 
     if (FileArray[0].substring(0, 4) == "<!--"){
       var Title = path.basename(arg)
       console.log(Title)
-      console.log("BREAK BREAK BREAK")
 
       var Tags = FileArray[0].slice(4,FileArray[0].length - 3)
       console.log(Tags)
-      console.log("BREAK BREAK BREAK")
 
       var Content = FileArray[1]
       console.log(Content)
-      console.log("BREAK BREAK BREAK")
 
       var TheArray = [Title, Tags, Content]
       console.log(TheArray)
-      console.log("BREAK BREAK BREAK")
 
       event.returnValue = TheArray;
     }
@@ -278,7 +273,7 @@ app.on('ready', () => {
   })
 
   ipcMain.on('FileManager', function (event, arg) {
-    var unparseddataJSON =  fs.readFileSync(path.join(__dirname, 'testfolder', 'data.json'))
+    var unparseddataJSON =  fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
     var dataJSON = JSON.parse(unparseddataJSON)
 
     console.log(arg)
@@ -291,70 +286,74 @@ app.on('ready', () => {
   /*saving*/
   ipcMain.on('FileSave', function (event, arg) {
 
-    if (fs.existsSync('./backend')) {
-      var fileDirectory = './backend/filesave.py'
-      var indexFolder = './backend/tagindex.py'
-      var TestFolder = './testfolder'
-    } else if (fs.existsSync('./resources/app/backend')) {
-      var fileDirectory = './resources/app/backend/filesave.py'
-      var indexFolder = './resources/app/backend/tagindex.py'
-      var TestFolder = './resources/app/testfolder'
-    } else {
-      var fileDirectory = './Contents/Resources/app/backend/filesave.py'
-      var indexFolder = './Contents/Resources/app/backend/tagindex.py'
-      var TestFolder = './Contents/Resources/app/testfolder'
-    }
-
     console.log(arg)
+    //[TitleString, TagString, ContentString]
+    var TitleString = arg[0]
+    var TagString = arg[1]
+    var ContentString = arg[2]
 
-    var filesavepy = new PythonShell(fileDirectory)
-    console.log(fileDirectory)
+    var FilePath = path.join(__dirname, "documents", TitleString)
 
-    console.log('BREAK BREAK BREAK')
+    var stream = fs.createWriteStream(FilePath)
 
-    var indexShell = new PythonShell(indexFolder)
-    console.log(indexFolder)
-
-    console.log('BREAK BREAK BREAK')
-
-
-    var tags
-    var content
-    var location
-    var filename
-
-    function filesave (tags, content, location, filename) {
-      filesavepy.send(tags)
-      console.log(tags)
-      // content
-      filesavepy.send(content)
-      console.log(content)
-      // folder location
-      filesavepy.send(location)
-      console.log(location)
-      // filename
-      filesavepy.send(filename)
-      console.log(filename)
-
-      indexShell.send(location)
-      console.log(location)
-
-      indexShell.send(location)
-      console.log(location)
-      // indexShell.send(location);
+    if (FilePath.existsSync == true){
+      fs.unlinkSync(FilePath)
     }
 
-    filesave(arg[1], arg[2], TestFolder, arg[0])
+    stream.once('open', function(fd) {
+      stream.write("<!--" + TagString + "-->\n")
+      stream.write(ContentString)
+      stream.end()
+    });
 
-    filesavepy.end(function (err) {
-      if (err) throw err
-      console.log('finished')
-    })
-    indexShell.end(function (err) {
-      if (err) throw err
-      console.log('finished')
-    })
+    var tagFilePath = path.join(__dirname, "documents")
 
-    // end the input stream and allow the process to exit
+    /*tagindexing*/
+    var TagArray = {}
+
+    var DocumentArray = fs.readdirSync(tagFilePath)
+
+    for (var i = 0; i < DocumentArray.length; i++) {
+      if (DocumentArray[i] != "data.json") {
+
+        var Lines = fs.readFileSync(path.join(tagFilePath, DocumentArray[i])).toString().split('\n')
+
+        if (Lines[0].substring(0, 4) == "<!--") {
+          var TheTag = Lines[0].slice(4,Lines[0].length - 3)
+          console.log(TheTag)
+        }
+
+        var TagList = TheTag.split(", ")
+
+        for (var j = 0; j < TagList.length; j++){
+          if (TagList[j] in TagArray){
+            TagArray[TagList[j]] = [path.join(tagFilePath, DocumentArray[i])]
+          }
+          else {
+            TagArray[TagList[j]].push(path.join(tagFilePath, DocumentArray[i]))
+          }
+
+        }
+
+      }
+    }
+
+  TagArray.sort()
+  var ReturnValue = [TagArray.keys(), TagArray.values()]
+  event.returnValue = ReturnValue
+  console.log(ReturnValue)
+
+  if (FilePath.existsSync == true){
+    fs.unlinkSync(path.join(tagFilePath, "data.json"))
+  }
+
+  stream.once('open', function(fd) {
+    stream.write(ReturnValue)
+    stream.end()
+  });
+
+
+
+
   })
 })
