@@ -1,5 +1,6 @@
 # FastFlow
 [![Build Status](https://travis-ci.org/Zarkoix/FastFlow.svg?branch=master)](https://travis-ci.org/Zarkoix/FastFlow)
+[![Dependancy Status](https://david-dm.org/Zarkoix/FastFlow.svg)](https://david-dm.org)
 
 Debate organization suite for making High School/Collegiate debate much for effeicient.
 
