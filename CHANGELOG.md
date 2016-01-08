@@ -1,3 +1,10 @@
+#0.26 (2016.1.8)
+####javascript migration####
+-- **no more python!!! (bittersweet for me)**
+-- **still able to edit, but save button doesnt work**
+-- **someone try to fix that pls**
+-- **files concerned are editor.html, editcontent.js, and editor.js**
+
 #0.25 (2016.1.7)
 ####cleaning####
 -- **got rid of some junk**
