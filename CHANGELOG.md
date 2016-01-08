@@ -1,3 +1,7 @@
+#0.24 (2016.1.7)
+####editing####
+-- **now can open files from app.html**
+
 #0.23 (2016.1.4)
 ####filemanager####
 -- **don't see any tag issues for me**

@@ -250,6 +250,36 @@ app.on('ready', () => {
     mainWindow.setMenu(menu)
   }
 
+  ipcMain.on('FileOpen', function (event, arg) {
+    var FileArray = fs.readFileSync(path.join(__dirname, arg)).toString().split('\n');
+    console.log(FileArray)
+    console.log("BREAK BREAK BREAK")
+
+    if (FileArray[0].substring(0, 4) == "<!--"){
+      var Title = path.basename(arg)
+      console.log(Title)
+      console.log("BREAK BREAK BREAK")
+
+      var Tags = FileArray[0].slice(4,FileArray[0].length - 3)
+      console.log(Tags)
+      console.log("BREAK BREAK BREAK")
+
+      var Content = FileArray[1]
+      console.log(Content)
+      console.log("BREAK BREAK BREAK")
+
+      var TheArray = [Title, Tags, Content]
+      console.log(TheArray)
+      console.log("BREAK BREAK BREAK")
+
+      event.returnValue = TheArray;
+    }
+
+
+
+
+  })
+
   ipcMain.on('FileManager', function (event, arg) {
     var unparseddataJSON =  fs.readFileSync(path.join(__dirname, 'testfolder', 'data.json'))
     var dataJSON = JSON.parse(unparseddataJSON)
@@ -263,6 +293,7 @@ app.on('ready', () => {
 
   /*saving*/
   ipcMain.on('FileSave', function (event, arg) {
+
     if (fs.existsSync('./backend')) {
       var fileDirectory = './backend/filesave.py'
       var indexFolder = './backend/tagindex.py'
@@ -276,6 +307,7 @@ app.on('ready', () => {
       var indexFolder = './Contents/Resources/app/backend/tagindex.py'
       var TestFolder = './Contents/Resources/app/testfolder'
     }
+
     console.log(arg)
 
     var filesavepy = new PythonShell(fileDirectory)
