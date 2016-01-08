@@ -6,11 +6,15 @@ Debate organization suite for making High School/Collegiate debate much for effe
 
 requires [NodeJS](https://nodejs.org/en/)
 
-installation
+Installation
 
     npm install
+    
+Make sure you have the following npm modules installed globally:
 
-running
+* python-shell
+
+Running
 
     npm start
 
