@@ -1,4 +1,13 @@
 #0.26 (2016.1.8)
+####CHANGESS####
+-- **removed alloyeditor because of its problems**
+--**added "easyeditor"**
+-- **editing AND saving work**
+-- **tagIndex has issues when you change tags when saving**
+-- **someone please fix easyeditor.css so that the toolbar doesnt have huge margin to left.**
+-- **try to make the placeholder text for the editor gray (se bottom of style.css)**
+
+#0.26 (2016.1.8)
 ####javascript migration####
 -- **no more python!!! (bittersweet for me)**
 -- **still able to edit, but save button doesnt work**

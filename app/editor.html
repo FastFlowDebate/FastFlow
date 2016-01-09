@@ -15,9 +15,7 @@
   <script src="js/mui.min.js"></script>
   <script src="js/sidebar.js"></script>
 
-  <link href="alloy-editor/assets/alloy-editor-ocean.css" rel="stylesheet">
-
-  <script src="alloy-editor/alloy-editor-all.js"></script>
+  <link rel="stylesheet" href="css/easyeditor.css">
 
   <style>
     body {
@@ -62,22 +60,22 @@
   <div id="content-wrapper">
     <div class="mui--appbar-height"></div>
 
-
-    <div class="mui-container-fluid" id="ActualContent" style="font-size: 14px;">
       <h1>
-        <div class="ae-placeholder" contenteditable="true" data-placeholder="Title" id="title"></div>
+        <div contenteditable="true" data-ph="Untitled Card" id="title"></div>
       </h1>
 
-      <div class="ae-placeholder" contenteditable="true" data-placeholder="Tags" id="tags"></div>
+      <div contenteditable="true" data-ph="Tag1, Tag2, Tag3" id="tags"></div>
       <p></p>
 
-      <div contenteditable="true" data-placeholder="Content" id="content"></div>
+      <div id="content" style = "font-size: 18px;" placeholder="Type here ..."></div>
 
-      <button class="mui-btn mui-btn--primary" id="save">Save</button>
-      <script src = "js/editcontent.js"></script>
-      <script src="js/editor.js"></script>
+      <script src="js/jquery.easyeditor.js"></script>
+
+
+      <button class="mui-btn mui-btn--primary" id="save" onclick = "saveFunction()">Save</button>
+      <script src = "js/editor.js"></script>
     </div>
-  </div>
+
   <script src="js/footer.js"></script>
 </body>
 

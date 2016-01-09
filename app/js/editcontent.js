@@ -16,3 +16,15 @@ $(document).ready(function () {
   }
 
 })
+
+function save() {
+  var TitleString = $( "#title" ).text();
+  var TagString = $( "#tags" ).text();
+  var ContentString = $( "#content" ).html();
+  ipcRenderer.send('FileSave', [TitleString, TagString, ContentString]);
+  window.alert("Saved!");
+}
+
+function boldText() {
+  yourRichTextEditorObject.execCommand("bold", false, null);
+}

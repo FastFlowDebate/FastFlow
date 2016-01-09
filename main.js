@@ -49,8 +49,6 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools()
   }
-  //calls tagindex on start
-  tagindex()
 
   if (process.platform === 'darwin') {
     template = [{
@@ -274,17 +272,6 @@ app.on('ready', () => {
 
   })
 
-  ipcMain.on('FileManager', function (event, arg) {
-    var unparseddataJSON =  fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
-    var dataJSON = JSON.parse(unparseddataJSON)
-
-    console.log(arg)
-    console.log(dataJSON)
-
-    event.returnValue = dataJSON
-
-  })
-
   function tagindex(){
     /*tagindexing*/
     var tagFilePath = path.join(__dirname, "documents")
@@ -347,6 +334,18 @@ app.on('ready', () => {
       tagstream.end()
     });
   }
+
+  ipcMain.on('FileManager', function (event, arg) {
+    var unparseddataJSON =  fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
+    var dataJSON = JSON.parse(unparseddataJSON)
+
+    console.log(arg)
+    console.log(dataJSON)
+
+    event.returnValue = dataJSON
+
+  })
+
 
   /*saving*/
   ipcMain.on('FileSave', function (event, arg) {
