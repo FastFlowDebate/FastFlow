@@ -17,6 +17,12 @@ $(document).ready(function () {
 
 })
 
+$(document).ready(function () {
+
+var editor = AlloyEditor.editable('content');
+
+})
+
 function saveFunction() {
   var TitleString = $( "#title" ).text();
   var TagString = $( "#tags" ).text();
@@ -24,38 +30,3 @@ function saveFunction() {
   ipcRenderer.send('FileSave', [TitleString, TagString, ContentString]);
   window.alert("Saved!");
 }
-
-EasyEditor.prototype.highlight = function(){
-    var _this = this;
-    var settings = {
-        buttonIdentifier: 'highlight',
-        buttonHtml: 'H',
-        clickHandler: function(){
-            _this.wrapSelectionWithNodeName({ style: 'background-color: #FFFF00', keepHtml: true });
-        }
-    };
-
-    _this.injectButton(settings);
-};
-
-EasyEditor.prototype.underline = function(){
-        var _this = this;
-        var settings = {
-            buttonIdentifier: 'underline',
-            buttonHtml: 'U',
-            clickHandler: function(){
-                _this.wrapSelectionWithNodeName({ style:'text-decoration: underline;', keepHtml: true });
-            }
-        };
-
-        _this.injectButton(settings);
-    };
-
-
-jQuery(document).ready(function($) {
-
-    new EasyEditor('#content', {
-            buttons: ['bold', 'italic', 'underline','highlight', 'x'],
-
-  });
-});
