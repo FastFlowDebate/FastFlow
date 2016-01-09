@@ -1,6 +1,7 @@
 #0.27 (2016.1.8)
 ####CHANGESS####
 -- **it works and has alloyeditor**
+-- **change toolbar contents adam pls**
 
 #0.26 (2016.1.8)
 ####CHANGESS####
