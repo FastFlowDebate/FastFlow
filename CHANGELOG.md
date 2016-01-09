@@ -1,3 +1,7 @@
+#0.27 (2016.1.8)
+####CHANGESS####
+-- **it works and has alloyeditor**
+
 #0.26 (2016.1.8)
 ####CHANGESS####
 -- **removed alloyeditor because of its problems**
