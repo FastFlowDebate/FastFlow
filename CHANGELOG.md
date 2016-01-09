@@ -3,9 +3,8 @@
 -- **removed alloyeditor because of its problems**
 --**added "easyeditor"**
 -- **editing AND saving work**
--- **tagIndex has issues when you change tags when saving**
 -- **someone please fix easyeditor.css so that the toolbar doesnt have huge margin to left.**
--- **try to make the placeholder text for the editor gray (se bottom of style.css)**
+-- **try to make the placeholder text for the editor gray (see bottom of style.css, uses data-ph)**
 
 #0.26 (2016.1.8)
 ####javascript migration####
