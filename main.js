@@ -4,7 +4,7 @@
 var path = require('path')
 var fs = require('fs')
 
-//var PythonShell = require('python-shell')
+// var PythonShell = require('python-shell')
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -28,7 +28,7 @@ app.on('window-all-closed', () => {
 
 require('electron-debug')({
     showDevTools: true
-});
+})
 
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
@@ -49,7 +49,7 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools()
   }
-  //calls tagindex on start
+  // calls tagindex on start
   tagindex()
 
   if (process.platform === 'darwin') {
@@ -253,14 +253,14 @@ app.on('ready', () => {
   }
 
   ipcMain.on('FileOpen', function (event, arg) {
-    var FileArray = fs.readFileSync(arg).toString().split('\n');
+    var FileArray = fs.readFileSync(arg).toString().split('\n')
     console.log(FileArray)
 
-    if (FileArray[0].substring(0, 4) == "<!--"){
+    if (FileArray[0].substring(0, 4) === '<!--') {
       var Title = path.basename(arg)
       console.log(Title)
 
-      var Tags = FileArray[0].slice(4,FileArray[0].length - 3)
+      var Tags = FileArray[0].slice(4, FileArray[0].length - 3)
       console.log(Tags)
 
       var Content = FileArray[1]
@@ -269,58 +269,50 @@ app.on('ready', () => {
       var TheArray = [Title, Tags, Content]
       console.log(TheArray)
 
-      event.returnValue = TheArray;
+      event.returnValue = TheArray
     }
-
   })
 
   ipcMain.on('FileManager', function (event, arg) {
-    var unparseddataJSON =  fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
+    var unparseddataJSON = fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
     var dataJSON = JSON.parse(unparseddataJSON)
 
     console.log(arg)
     console.log(dataJSON)
 
     event.returnValue = dataJSON
-
   })
 
-  function tagindex(){
-    /*tagindexing*/
-    var tagFilePath = path.join(__dirname, "documents")
+  function tagindex () {
+    /* tagindexing */
+    var tagFilePath = path.join(__dirname, 'documents')
 
     var TagArray = {}
 
     var DocumentArray = fs.readdirSync(tagFilePath)
 
     for (var i = 0; i < DocumentArray.length; i++) {
-      if (DocumentArray[i] != "data.json") {
-
+      if (DocumentArray[i] !== 'data.json') {
         var Lines = fs.readFileSync(path.join(tagFilePath, DocumentArray[i])).toString().split('\n')
 
-        if (Lines[0].substring(0, 4) == "<!--") {
-          var TheTag = Lines[0].slice(4,Lines[0].length - 3)
-          console.log("TAG: " + TheTag)
+        if (Lines[0].substring(0, 4) === '<!--') {
+          var TheTag = Lines[0].slice(4, Lines[0].length - 3)
+          console.log('TAG: ' + TheTag)
         }
 
-        var TagList = TheTag.split(", ")
+        var TagList = TheTag.split(', ')
 
-        for (var j = 0; j < TagList.length; j++){
-
-          if (TagList[j] in TagArray){
-            console.log("THEPART: " + TagList[j])
+        for (var j = 0; j < TagList.length; j++) {
+          if (TagList[j] in TagArray) {
+            console.log('THEPART: ' + TagList[j])
             console.log(TagArray[TagList[j]])
             TagArray[TagList[j]].push(path.join(tagFilePath, DocumentArray[i]))
           }
           else {
-            console.log("TAGLIST:" + TagList[j])
+            console.log('TAGLIST:' + TagList[j])
             TagArray[TagList[j]] = [path.join(tagFilePath, DocumentArray[i])]
-            console.log("THETHING: " + TagArray[TagList[j]])
-
-          }
-
+            console.log('THETHING: ' + TagArray[TagList[j]]) }
         }
-
       }
     }
 
@@ -329,51 +321,47 @@ app.on('ready', () => {
 
     var values = []
 
-    for (var i = 0; i < keys.length; i++){
+    for (var i = 0; i < keys.length; i++) {
       values.push(TagArray[keys[i]])
     }
 
     var ReturnValue = [keys, values]
-    console.log("BREAK BREAK BREAK")
+    console.log('BREAK BREAK BREAK')
     console.log(ReturnValue)
 
 
-    if (fs.existsSync(path.join(tagFilePath, "data.json")) == true){
-      fs.unlinkSync(path.join(tagFilePath, "data.json"))
+    if (fs.existsSync(path.join(tagFilePath, 'data.json')) === true) {
+      fs.unlinkSync(path.join(tagFilePath, 'data.json'))
     }
-    var tagstream = fs.createWriteStream(path.join(tagFilePath, "data.json"))
-      tagstream.once('open', function(fd) {
+    var tagstream = fs.createWriteStream(path.join(tagFilePath, 'data.json'))
+      tagstream.once('open', function (fd) {
       tagstream.write(JSON.stringify(ReturnValue))
       tagstream.end()
-    });
+    })
   }
 
   /*saving*/
   ipcMain.on('FileSave', function (event, arg) {
-
     console.log(arg)
     //[TitleString, TagString, ContentString]
     var TitleString = arg[0]
     var TagString = arg[1]
     var ContentString = arg[2]
 
-    var FilePath = path.join(__dirname, "documents", TitleString)
+    var FilePath = path.join(__dirname, 'documents', TitleString)
 
     var stream = fs.createWriteStream(FilePath)
 
-    if (FilePath.existsSync == true){
+    if (FilePath.existsSync === true) {
       fs.unlinkSync(FilePath)
     }
 
-    stream.once('open', function(fd) {
-      stream.write("<!--" + TagString + "-->\n")
+    stream.once('open', function (fd) {
+      stream.write('<!--' + TagString + '-->\n')
       stream.write(ContentString)
       stream.end()
     })
 
     tagindex()
-
-
-
   })
 })
