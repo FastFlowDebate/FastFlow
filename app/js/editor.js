@@ -1,47 +1,33 @@
 const ipcRenderer = require('electron').ipcRenderer
 
-$(document).ready(function () {
+$(document).ready(function() {
 
   var theURI = window.location.search
 
-  if (theURI.length > 0){
+  if (theURI.length > 0) {
     var decodedURI = decodeURIComponent(theURI).substring(1)
 
     FileArray = ipcRenderer.sendSync('FileOpen', decodedURI)
 
-    document.getElementById("title").innerHTML = FileArray[0]
-    document.getElementById("tags").innerHTML = FileArray[1]
-    document.getElementById("content").innerHTML = FileArray[2]
-
-    }
-
+    document.getElementById('title').innerHTML = FileArray[0]
+    document.getElementById('tags').innerHTML = FileArray[1]
+    document.getElementById('content').innerHTML = FileArray[2]
+  }
 })
 
 $(document).ready(function () {
-
-var editor = AlloyEditor.editable('content')
-
+  var editor = AlloyEditor.editable('content')
+  $('#saveButton').hide();
 })
 
 function saveFunction() {
-  var TitleString = $( "#title" ).text()
-  var TagString = $( "#tags" ).text()
-  var ContentString = $( "#content" ).html()
+  var TitleString = $('#title').text()
+  var TagString = $('#tags').text()
+  var ContentString = $('#content').html()
   ipcRenderer.send('FileSave', [TitleString, TagString, ContentString])
-  window.alert("Saved!")
+  window.alert('Saved!')
 }
 
-function saveShow() {
-  //<button class="mui-btn mui-btn--primary" id="save" onclick = "saveFunction()">Save</button>
-
-  var theSaveButton = document.getElementById("savebutton")
-  var theButton = document.createElement("BUTTON")
-  var theText = document.createTextNode("Save")
-
-  theButton.appendChild(theText)
-  theButton.className += "mui-btn mui-btn--primary"
-  theButton.setAttribute("onclick", "saveFunction()")
-
-  theSaveButton.parentNode.replaceChild(theButton, theSaveButton)
-
+function saveShow () {
+  $('#saveButton').show();
 }
