@@ -1,7 +1,6 @@
 const ipcRenderer = require('electron').ipcRenderer
 
 $(document).ready(function() {
-
   var theURI = window.location.search
 
   if (theURI.length > 0) {
@@ -15,9 +14,51 @@ $(document).ready(function() {
   }
 })
 
+var bar = {
+  add: {
+    buttons: ['image', 'hline', 'table'],
+    tabIndex: 2
+  },
+  styles: {
+    selections: Selections,
+    tabIndex: 1
+  }
+}
+
+var Selections = [{
+        name: 'link',
+        buttons: ['linkEdit'],
+        test: AlloyEditor.SelectionTest.link
+    }, {
+        name: 'image',
+        buttons: ['imageLeft', 'imageRight'],
+        test: AlloyEditor.SelectionTest.image
+    }, {
+        name: 'text',
+        buttons: ['bold', 'italic', 'underline', 'link'],
+        test: AlloyEditor.SelectionTest.text
+    }, {
+        name: 'table',
+        buttons: ['tableRow', 'tableColumn', 'tableCell', 'tableRemove'],
+        getArrowBoxClasses: AlloyEditor.SelectionGetArrowBoxClasses.table,
+        setPosition: AlloyEditor.SelectionSetPosition.table,
+        test: AlloyEditor.SelectionTest.table
+}]
+
 $(document).ready(function () {
-  var editor = AlloyEditor.editable('content')
-  $('#saveButton').hide();
+  var editor = AlloyEditor.editable('content', {
+    toolbars: {
+      add: {
+        buttons: ['image', 'hline', 'table'],
+        tabIndex: 2
+      },
+      styles: {
+        selections: Selections,
+        tabIndex: 1
+      }
+    }
+  })
+  $('#saveButton').hide()
 })
 
 function saveFunction() {
@@ -28,6 +69,6 @@ function saveFunction() {
   window.alert('Saved!')
 }
 
-function saveShow () {
-  $('#saveButton').show();
+function saveShow() {
+  $('#saveButton').show()
 }
