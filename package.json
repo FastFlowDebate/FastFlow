@@ -22,7 +22,7 @@
     "start": {
       "command": "electron ./",
       "env": {
-        "NODE_ENV": "production"
+        "NODE_ENV": "development"
       }
     },
     "start-hot": {
