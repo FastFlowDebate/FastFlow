@@ -19,14 +19,29 @@ $(document).ready(function () {
 
 $(document).ready(function () {
 
-var editor = AlloyEditor.editable('content');
+var editor = AlloyEditor.editable('content')
 
 })
 
 function saveFunction() {
-  var TitleString = $( "#title" ).text();
-  var TagString = $( "#tags" ).text();
-  var ContentString = $( "#content" ).html();
-  ipcRenderer.send('FileSave', [TitleString, TagString, ContentString]);
-  window.alert("Saved!");
+  var TitleString = $( "#title" ).text()
+  var TagString = $( "#tags" ).text()
+  var ContentString = $( "#content" ).html()
+  ipcRenderer.send('FileSave', [TitleString, TagString, ContentString])
+  window.alert("Saved!")
+}
+
+function saveShow() {
+  //<button class="mui-btn mui-btn--primary" id="save" onclick = "saveFunction()">Save</button>
+
+  var theSaveButton = document.getElementById("savebutton")
+  var theButton = document.createElement("BUTTON")
+  var theText = document.createTextNode("Save")
+
+  theButton.appendChild(theText)
+  theButton.className += "mui-btn mui-btn--primary"
+  theButton.setAttribute("onclick", "saveFunction()")
+
+  theSaveButton.parentNode.replaceChild(theButton, theSaveButton)
+
 }
