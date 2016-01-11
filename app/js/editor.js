@@ -49,7 +49,7 @@ $(document).ready(function () {
   var editor = AlloyEditor.editable('content', {
     toolbars: {
       add: {
-        buttons: ['image', 'hline', 'table'],
+        buttons: ['hline', 'table'],
         tabIndex: 2
       },
       styles: {
@@ -69,6 +69,6 @@ function saveFunction() {
   window.alert('Saved!')
 }
 
-function saveShow() {
+function saveShow () {
   $('#saveButton').show()
 }
