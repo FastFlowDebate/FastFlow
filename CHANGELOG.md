@@ -1,4 +1,8 @@
 #0.27 (2016.1.8)
+####SAVEBUTTON####
+-- **save button now only appears when you click on a part of the editor**
+
+#0.27 (2016.1.8)
 ####CHANGESS####
 -- **it works and has alloyeditor**
 -- **change toolbar contents adam pls**
