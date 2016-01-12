@@ -21,7 +21,7 @@ $(document).ready(function () {
       var element1 = document.createElement("LI");
       var link = document.createElement("A")
 
-      link.href = "editor.html?" + encodeURIComponent(dataJSON[1][i][j])
+      link.href = "cardEditor.html?" + encodeURIComponent(dataJSON[1][i][j])
 
       text1 = document.createTextNode(path.basename(dataJSON[1][i][j]))
 

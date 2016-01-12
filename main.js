@@ -27,7 +27,7 @@ app.on('window-all-closed', () => {
 })
 
 require('electron-debug')({
-    showDevTools: true
+  showDevTools: true
 })
 
 app.on('ready', () => {
@@ -83,7 +83,7 @@ app.on('ready', () => {
       }, {
         label: 'Quit',
         accelerator: 'Command+Q',
-        click () {
+        click() {
           app.quit()
         }
       }]
@@ -121,25 +121,25 @@ app.on('ready', () => {
       submenu: (process.env.NODE_ENV === 'development') ? [{
         label: 'Reload',
         accelerator: 'Command+R',
-        click () {
+        click() {
           mainWindow.restart()
         }
       }, {
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
-        click () {
+        click() {
           mainWindow.setFullScreen(!mainWindow.isFullScreen())
         }
       }, {
         label: 'Toggle Developer Tools',
         accelerator: 'Alt+Command+I',
-        click () {
+        click() {
           mainWindow.toggleDevTools()
         }
       }] : [{
         label: 'Toggle Full Screen',
         accelerator: 'Ctrl+Command+F',
-        click () {
+        click() {
           mainWindow.setFullScreen(!mainWindow.isFullScreen())
         }
       }]
@@ -163,22 +163,22 @@ app.on('ready', () => {
       label: 'Help',
       submenu: [{
         label: 'Learn More',
-        click () {
+        click() {
           shell.openExternal('http://electron.atom.io')
         }
       }, {
         label: 'Documentation',
-        click () {
+        click() {
           shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
         }
       }, {
         label: 'Community Discussions',
-        click () {
+        click() {
           shell.openExternal('https://discuss.atom.io/c/electron')
         }
       }, {
         label: 'Search Issues',
-        click () {
+        click() {
           shell.openExternal('https://github.com/atom/electron/issues')
         }
       }]
@@ -195,7 +195,7 @@ app.on('ready', () => {
       }, {
         label: '&Close',
         accelerator: 'Ctrl+W',
-        click () {
+        click() {
           mainWindow.close()
         }
       }]
@@ -204,25 +204,25 @@ app.on('ready', () => {
       submenu: (process.env.NODE_ENV === 'development') ? [{
         label: '&Reload',
         accelerator: 'Ctrl+R',
-        click () {
+        click() {
           mainWindow.restart()
         }
       }, {
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
-        click () {
+        click() {
           mainWindow.setFullScreen(!mainWindow.isFullScreen())
         }
       }, {
         label: 'Toggle &Developer Tools',
         accelerator: 'Alt+Ctrl+I',
-        click () {
+        click() {
           mainWindow.toggleDevTools()
         }
       }] : [{
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
-        click () {
+        click() {
           mainWindow.setFullScreen(!mainWindow.isFullScreen())
         }
       }]
@@ -230,22 +230,22 @@ app.on('ready', () => {
       label: 'Help',
       submenu: [{
         label: 'Learn More',
-        click () {
+        click() {
           shell.openExternal('http://electron.atom.io')
         }
       }, {
         label: 'Documentation',
-        click () {
+        click() {
           shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
         }
       }, {
         label: 'Community Discussions',
-        click () {
+        click() {
           shell.openExternal('https://discuss.atom.io/c/electron')
         }
       }, {
         label: 'Search Issues',
-        click () {
+        click() {
           shell.openExternal('https://github.com/atom/electron/issues')
         }
       }]
@@ -256,26 +256,26 @@ app.on('ready', () => {
 
   ipcMain.on('FileOpen', function (event, arg) {
     var FileArray = fs.readFileSync(arg).toString().split('\n')
-    console.log(FileArray)
+    // console.log(FileArray)
 
     if (FileArray[0].substring(0, 4) === '<!--') {
       var Title = path.basename(arg)
-      console.log(Title)
+      // console.log(Title)
 
       var Tags = FileArray[0].slice(4, FileArray[0].length - 3)
-      console.log(Tags)
+      // console.log(Tags)
 
       var Content = FileArray[1]
-      console.log(Content)
+      // console.log(Content)
 
       var TheArray = [Title, Tags, Content]
-      console.log(TheArray)
+      // console.log(TheArray)
 
       event.returnValue = TheArray
     }
   })
 
-  function tagindex () {
+  function tagindex() {
     /* tagindexing */
     var tagFilePath = path.join(__dirname, 'documents')
 
@@ -289,21 +289,21 @@ app.on('ready', () => {
 
         if (Lines[0].substring(0, 4) === '<!--') {
           var TheTag = Lines[0].slice(4, Lines[0].length - 3)
-          console.log('TAG: ' + TheTag)
+          // console.log('TAG: ' + TheTag)
         }
 
         var TagList = TheTag.split(', ')
 
         for (var j = 0; j < TagList.length; j++) {
           if (TagList[j] in TagArray) {
-            console.log('THEPART: ' + TagList[j])
-            console.log(TagArray[TagList[j]])
+            // console.log('THEPART: ' + TagList[j])
+            // console.log(TagArray[TagList[j]])
             TagArray[TagList[j]].push(path.join(tagFilePath, DocumentArray[i]))
-          }
-          else {
-            console.log('TAGLIST:' + TagList[j])
+          } else {
+            // console.log('TAGLIST:' + TagList[j])
             TagArray[TagList[j]] = [path.join(tagFilePath, DocumentArray[i])]
-            console.log('THETHING: ' + TagArray[TagList[j]]) }
+            // console.log('THETHING: ' + TagArray[TagList[j]])
+          }
         }
       }
     }
@@ -326,28 +326,28 @@ app.on('ready', () => {
       fs.unlinkSync(path.join(tagFilePath, 'data.json'))
     }
     var tagstream = fs.createWriteStream(path.join(tagFilePath, 'data.json'))
-      tagstream.once('open', function (fd) {
+    tagstream.once('open', function(fd) {
       tagstream.write(JSON.stringify(ReturnValue))
       tagstream.end()
     })
   }
 
-  ipcMain.on('FileManager', function (event, arg) {
-    var unparseddataJSON =  fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
+  ipcMain.on('FileManager', function(event, arg) {
+    var unparseddataJSON = fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
     var dataJSON = JSON.parse(unparseddataJSON)
 
-    console.log(arg)
-    console.log(dataJSON)
+    // console.log(arg)
+    // console.log(dataJSON)
 
     event.returnValue = dataJSON
 
   })
 
 
-  /*saving*/
+  /* card saving */
   ipcMain.on('FileSave', function (event, arg) {
     console.log(arg)
-    //[TitleString, TagString, ContentString]
+      //[TitleString, TagString, ContentString]
     var TitleString = arg[0]
     var TagString = arg[1]
     var ContentString = arg[2]
@@ -360,7 +360,7 @@ app.on('ready', () => {
       fs.unlinkSync(FilePath)
     }
 
-    stream.once('open', function (fd) {
+    stream.once('open', function(fd) {
       stream.write('<!--' + TagString + '-->\n')
       stream.write(ContentString)
       stream.end()
@@ -369,5 +369,6 @@ app.on('ready', () => {
     })
 
   })
+
 
 })
