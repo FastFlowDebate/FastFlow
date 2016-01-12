@@ -86,6 +86,7 @@
     "babel-eslint": "^4.1.1",
     "babel-loader": "^5.4.0",
     "babel-plugin-react-transform": "^1.1.1",
+    "babel-preset-react": "^6.3.13",
     "babelify": "^7.2.0",
     "better-npm-run": "0.0.5",
     "chai": "^3.3.0",
