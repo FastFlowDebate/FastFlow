@@ -24,7 +24,7 @@ var Selections = [{
         test: AlloyEditor.SelectionTest.image
     }, {
         name: 'text',
-        buttons: ['bold', 'italic', 'underline', 'link'],
+        buttons: ['bold', 'italic', 'underline', 'link', 'cardReference'],
         test: AlloyEditor.SelectionTest.text
     }, {
         name: 'table',
