@@ -51,6 +51,9 @@ app.on('ready', () => {
   }
 
   // calls tagindex on start
+  // we might have to work on this function a little bit so that it does not
+  //take too long to index all of this stuff
+
   tagindex()
 
 
