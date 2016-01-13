@@ -9,7 +9,7 @@ requires [NodeJS](https://nodejs.org/en/)
 Installation
 
     npm install
-    
+
 Make sure you have the following npm modules installed globally:
 
 * python-shell
@@ -29,4 +29,8 @@ See [electron-react-boilerplate](https://github.com/chentsulin/electron-react-bo
 
 * Try to keep package.json as clean as possible, use devDependencies over dependencies when ever possible.
 
-* Update this README with any installation/building changes. 
+* Update this README with any installation/building changes.
+
+* For using jsx use this command in seperate terminal tab to auto convert
+
+    babel --presets react app/jsx --watch --out-dir app/js

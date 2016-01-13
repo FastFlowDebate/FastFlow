@@ -1,6 +1,6 @@
 const ipcRenderer = require('electron').ipcRenderer
 
-$(document).ready(function() {
+$(document).ready(function () {
   var theURI = window.location.search
 
   if (theURI.length > 0) {
@@ -13,17 +13,6 @@ $(document).ready(function() {
     document.getElementById('content').innerHTML = FileArray[2]
   }
 })
-
-var bar = {
-  add: {
-    buttons: ['image', 'hline', 'table'],
-    tabIndex: 2
-  },
-  styles: {
-    selections: Selections,
-    tabIndex: 1
-  }
-}
 
 var Selections = [{
         name: 'link',
@@ -61,7 +50,7 @@ $(document).ready(function () {
   $('#saveButton').hide()
 })
 
-function saveFunction() {
+function saveFunction () {
   var TitleString = $('#title').text()
   var TagString = $('#tags').text()
   var ContentString = $('#content').html()
