@@ -1,3 +1,7 @@
+/* global AlloyEditor
+ * global $
+*/
+
 const ipcRenderer = require('electron').ipcRenderer
 
 $(document).ready(function () {
@@ -6,7 +10,7 @@ $(document).ready(function () {
   if (theURI.length > 0) {
     var decodedURI = decodeURIComponent(theURI).substring(1)
 
-    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI)
+    var FileArray = ipcRenderer.sendSync('FileOpen', decodedURI)
 
     document.getElementById('title').innerHTML = FileArray[0]
     document.getElementById('tags').innerHTML = FileArray[1]
@@ -35,7 +39,32 @@ var Selections = [{
 }]
 
 $(document).ready(function () {
-  var editor = AlloyEditor.editable('content', {
+  $('#saveButton').hide()
+  addBlock()
+})
+
+function saveFunction () {
+  var TitleString = $('#title').text()
+  var TagString = $('#tags').text()
+  var ContentString = $('#content').html()
+  ipcRenderer.send('FileSave', [TitleString, TagString, ContentString])
+  window.alert('Saved!')
+}
+
+function addBlock () {
+  /* $('#addBlock').before(
+    "<response><div id='content' style = 'font-size: 18px;' data-placeholder='Type here ...' onclick = 'showSave()'></div></response>"
+  ) */
+  var block = document.createElement('div')
+  block.setAttribute('class', 'content')
+  block.setAttribute('id', 'block')
+  block.style.fontSize = 'large'
+  block.setAttribute('onclick', 'showSave()')
+  block.setAttribute('date-placeholder', 'Type here ...')
+
+  $('#addBlock').before(block)
+
+  var editor = AlloyEditor.editable('block', {
     toolbars: {
       add: {
         buttons: ['hline', 'table'],
@@ -47,17 +76,9 @@ $(document).ready(function () {
       }
     }
   })
-  $('#saveButton').hide()
-})
-
-function saveFunction () {
-  var TitleString = $('#title').text()
-  var TagString = $('#tags').text()
-  var ContentString = $('#content').html()
-  ipcRenderer.send('FileSave', [TitleString, TagString, ContentString])
-  window.alert('Saved!')
+  console.log('exec')
 }
 
-function saveShow () {
+function showSave () {
   $('#saveButton').show()
 }
