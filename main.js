@@ -198,7 +198,7 @@ app.on('ready', () => {
       }, {
         label: '&Close',
         accelerator: 'Ctrl+W',
-        click() {
+        click () {
           mainWindow.close()
         }
       }]
@@ -207,25 +207,25 @@ app.on('ready', () => {
       submenu: (process.env.NODE_ENV === 'development') ? [{
         label: '&Reload',
         accelerator: 'Ctrl+R',
-        click() {
+        click () {
           mainWindow.restart()
         }
       }, {
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
-        click() {
+        click () {
           mainWindow.setFullScreen(!mainWindow.isFullScreen())
         }
       }, {
         label: 'Toggle &Developer Tools',
         accelerator: 'Alt+Ctrl+I',
-        click() {
+        click () {
           mainWindow.toggleDevTools()
         }
       }] : [{
         label: 'Toggle &Full Screen',
         accelerator: 'F11',
-        click() {
+        click () {
           mainWindow.setFullScreen(!mainWindow.isFullScreen())
         }
       }]
@@ -233,22 +233,22 @@ app.on('ready', () => {
       label: 'Help',
       submenu: [{
         label: 'Learn More',
-        click() {
+        click () {
           shell.openExternal('http://electron.atom.io')
         }
       }, {
         label: 'Documentation',
-        click() {
+        click () {
           shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
         }
       }, {
         label: 'Community Discussions',
-        click() {
+        click () {
           shell.openExternal('https://discuss.atom.io/c/electron')
         }
       }, {
         label: 'Search Issues',
-        click() {
+        click () {
           shell.openExternal('https://github.com/atom/electron/issues')
         }
       }]
@@ -278,7 +278,7 @@ app.on('ready', () => {
     }
   })
 
-  function tagindex() {
+  function tagindex () {
     /* tagindexing */
     var tagFilePath = path.join(__dirname, 'documents')
 
@@ -324,18 +324,17 @@ app.on('ready', () => {
     console.log('BREAK BREAK BREAK')
     console.log(ReturnValue)
 
-
     if (fs.existsSync(path.join(tagFilePath, 'data.json')) === true) {
       fs.unlinkSync(path.join(tagFilePath, 'data.json'))
     }
     var tagstream = fs.createWriteStream(path.join(tagFilePath, 'data.json'))
-    tagstream.once('open', function(fd) {
+    tagstream.once('open', function (fd) {
       tagstream.write(JSON.stringify(ReturnValue))
       tagstream.end()
     })
   }
 
-  ipcMain.on('FileManager', function(event, arg) {
+  ipcMain.on('FileManager', function (event, arg) {
     var unparseddataJSON = fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
     var dataJSON = JSON.parse(unparseddataJSON)
 
@@ -343,14 +342,12 @@ app.on('ready', () => {
     // console.log(dataJSON)
 
     event.returnValue = dataJSON
-
   })
-
 
   /* card saving */
   ipcMain.on('FileSave', function (event, arg) {
     console.log(arg)
-      //[TitleString, TagString, ContentString]
+    // [TitleString, TagString, ContentString]
     var TitleString = arg[0]
     var TagString = arg[1]
     var ContentString = arg[2]
@@ -363,15 +360,12 @@ app.on('ready', () => {
       fs.unlinkSync(FilePath)
     }
 
-    stream.once('open', function(fd) {
+    stream.once('open', function (fd) {
       stream.write('<!--' + TagString + '-->\n')
       stream.write(ContentString)
       stream.end()
 
       tagindex()
     })
-
   })
-
-
 })
