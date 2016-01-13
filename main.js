@@ -1,20 +1,40 @@
 /* eslint strict: 0 */
 'use strict'
+
+
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : '127.0.0.1',
   user     : 'root',
-  password : 'Pranav100'
+  password : 'Pranav100',
+  database : "carddatabase"
 });
 
-connection.connect(function(err) {
-  if (err) {
-    console.error('error connecting: ' + err.stack);
+connection.connect(function(err){
+  if(err){
+    console.log('Error connecting to Db');
     return;
   }
-
-  console.log('connected as id ' + connection.threadId);
+  console.log('Connection established');
 });
+
+var card = { name: 'Winnie', tags: 'Australia', content: "fhd;sfjldksfdslsthahet dfhjstsjfndskat sthsjt snfdk tthat shit is the best muthafucka"};
+connection.query('INSERT INTO testCardTable SET ?', card, function(err,res){
+  if(err) throw err;
+
+  console.log('Last insert ID:', res.insertId);
+});
+
+connection.query('SELECT * FROM testCardTable',function(err,rows){
+  if(err) throw err;
+
+  console.log('Data received from Db:\n');
+  console.log(rows);
+});
+
+
+
+connection.end();
 
 
 var path = require('path')
