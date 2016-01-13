@@ -19,11 +19,11 @@ connection.connect(function(err){
 });
 
 var card = { name: 'Winnie', tags: 'Australia', content: "fhd;sfjldksfdslsthahet dfhjstsjfndskat sthsjt snfdk"};
-connection.query('INSERT INTO test2 SET ?', card, function(err,res){
+connection.query('INSERT INTO testtablefinal SET ?', card, function(err,res){
   if(err) throw err;
 });
 
-connection.query('SELECT * FROM test2',function(err,rows){
+connection.query('SELECT * FROM testtablefinal',function(err,rows){
   if(err) throw err;
 
   console.log('Data received from Db:\n');
