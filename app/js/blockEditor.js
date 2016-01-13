@@ -55,16 +55,24 @@ function addBlock () {
   /* $('#addBlock').before(
     "<response><div id='content' style = 'font-size: 18px;' data-placeholder='Type here ...' onclick = 'showSave()'></div></response>"
   ) */
+  var number = 1
+  $('.content').each(function (i, obj) {
+    var idNum = obj.attr('id').substring(5, obj.attr('id').length)
+    if (idNum > number) {
+      number = idNum
+    }
+  })
+
   var block = document.createElement('div')
   block.setAttribute('class', 'content')
-  block.setAttribute('id', 'block')
+  block.setAttribute('id', 'block' + number)
   block.style.fontSize = 'large'
   block.setAttribute('onclick', 'showSave()')
   block.setAttribute('date-placeholder', 'Type here ...')
 
   $('#addBlock').before(block)
 
-  var editor = AlloyEditor.editable('block', {
+  var editor = AlloyEditor.editable('block + number', {
     toolbars: {
       add: {
         buttons: ['hline', 'table'],
