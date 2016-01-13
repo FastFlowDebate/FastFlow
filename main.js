@@ -293,19 +293,18 @@ app.on('ready', () => {
         if (Lines[0].substring(0, 4) === '<!--') {
           var TheTag = Lines[0].slice(4, Lines[0].length - 3)
           // console.log('TAG: ' + TheTag)
-        }
+          var TagList = TheTag.split(', ')
 
-        var TagList = TheTag.split(', ')
-
-        for (var j = 0; j < TagList.length; j++) {
-          if (TagList[j] in TagArray) {
-            // console.log('THEPART: ' + TagList[j])
-            // console.log(TagArray[TagList[j]])
-            TagArray[TagList[j]].push(path.join(tagFilePath, DocumentArray[i]))
-          } else {
-            // console.log('TAGLIST:' + TagList[j])
-            TagArray[TagList[j]] = [path.join(tagFilePath, DocumentArray[i])]
-            // console.log('THETHING: ' + TagArray[TagList[j]])
+          for (var j = 0; j < TagList.length; j++) {
+            if (TagList[j] in TagArray) {
+              // console.log('THEPART: ' + TagList[j])
+              // console.log(TagArray[TagList[j]])
+              TagArray[TagList[j]].push(path.join(tagFilePath, DocumentArray[i]))
+            } else {
+              // console.log('TAGLIST:' + TagList[j])
+              TagArray[TagList[j]] = [path.join(tagFilePath, DocumentArray[i])]
+              // console.log('THETHING: ' + TagArray[TagList[j]])
+            }
           }
         }
       }
