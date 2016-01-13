@@ -18,15 +18,20 @@ connection.connect(function(err){
   console.log('Connection established');
 });
 
-var card = { name: 'Winnie', tags: 'Australia', content: "fhd;sfjldksfdslsthahet dfhjstsjfndskat sthsjt snfdk tthat shit is the best muthafucka"};
-connection.query('INSERT INTO testCardTable SET ?', card, function(err,res){
+var card = { name: 'Winnie', tags: 'Australia', content: "fhd;sfjldksfdslsthahet dfhjstsjfndskat sthsjt snfdk"};
+connection.query('INSERT INTO test2 SET ?', card, function(err,res){
   if(err) throw err;
-
-  console.log('Last insert ID:', res.insertId);
 });
 
-connection.query('SELECT * FROM testCardTable',function(err,rows){
+connection.query('SELECT * FROM test2',function(err,rows){
   if(err) throw err;
+
+  console.log('Data received from Db:\n');
+  console.log(rows);
+});
+
+connection.query('CALL getTags()',function(err,rows){
+  if (err) throw err;
 
   console.log('Data received from Db:\n');
   console.log(rows);
