@@ -6,7 +6,6 @@
     window.$ = window.jQuery = require('jquery');
   </script>
 
-  <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,19 +15,13 @@
   <script src="js/mui.min.js"></script>
   <script src="js/sidebar.js"></script>
 
+  <link href="alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet">
+<script src="alloy-editor/alloy-editor-all-min.js"></script>
+
   <style>
     body {
-      font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-      font-weight: 300;
-    }
-
-    .container {
-      display: -webkit-flex;
-      display: flex;
-      -webkit-justify-content: space-around;
-      justify-content: space-around;
-      width: 80%;
-      margin: auto;
+      margin-right: 100px;
+      margin-left: 100px;
     }
   </style>
 
@@ -47,7 +40,6 @@
           <li><a href="cardEditor.html">Create a Card</a></li>
           <li><a href="blockEditor.html">Create a Block</a></li>
         </ul>
-
       </li>
       <li>
 
@@ -67,20 +59,24 @@
       </div>
     </div>
   </header>
-
   <div id="content-wrapper">
     <div class="mui--appbar-height"></div>
-    <div class="mui-container-fluid">
+
+      <h1>
+        <div contenteditable="true" data-ph="A2: Untitled" id="title" onclick = "$('#saveButton').show()"></div>
+      </h1>
+
+      <div contenteditable="true" data-ph="Tag1, Tag2, Tag3" id="tags" onclick = "$('#saveButton').show()"></div>
+      <p></p>
+
       <br>
-      <h1>FastFlow</h1>
+      <button id="addBlock" class="mui-btn mui-btn--flat mui-btn--primary" onClick="addBlock()">Add Response</button><br>
+      <button id="saveButton" class="mui-btn mui-btn--primary" onclick="saveFunction()">Save</button>
 
-      <div id="thefilemanager"></div>
-
-      <script src="js/filemanager.js"></script>
-
+      <!---<script src = "build/cardReferenceButton.js"></script>-->
+      <script src = "js/blockEditor.js"></script>
     </div>
 
-  </div>
   <script src="js/footer.js"></script>
 </body>
 
