@@ -1,21 +1,21 @@
 /* eslint strict: 0 */
 'use strict'
 
-var mysql      = require('mysql');
+var mysql = require('mysql')
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'Pranav100',
-  database : "carddatabase"
-});
+  database : 'carddatabase'
+})
 
-connection.connect(function(err){
-  if(err){
-    console.log('Error connecting to Db');
-    return;
+connection.connect(function (err) {
+  if (err) {
+    console.log('Error connecting to Db')
+    return
   }
-  console.log('Connection established');
-});
+  console.log('Connection established')
+})
 
 /*
 var card = { name: 'Winnie', tags: 'Australia', content: "fhd;sfjldksfdslsthahet dfhjstsjfndskat sthsjt snfdk"};
@@ -23,22 +23,19 @@ connection.query('INSERT INTO testtablefinal SET ?', card, function(err,res){
   if(err) throw err;
 });
 */
-function dynamicSearch(searchPhrase){
-  var returnVar;
-  connection.query('SELECT name FROM testtablefinal WHERE name LIKE "%' + searchPhrase + '%"',function(err,names){
-    if(err) throw err;
+function dynamicSearch (searchPhrase) {
+  var returnVar
+  connection.query('SELECT name FROM testtablefinal WHERE name LIKE "%' + searchPhrase + '%"', function (err, names) {
+    if (err) throw err
 
-    returnVar = names;
-  });
-  return returnVar;
+    returnVar = names
+  })
+  return returnVar
   // cannot figure out how to return names for some reason it is not working
 }
 
-console.log(dynamicSearch("win"));
-
-connection.end();
-
-
+console.log(dynamicSearch('win'))
+connection.end()
 
 var path = require('path')
 var fs = require('fs')
