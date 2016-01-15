@@ -1,10 +1,9 @@
 /* eslint strict: 0 */
 'use strict'
 
-
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
-  host     : '127.0.0.1',
+  host     : 'localhost',
   user     : 'root',
   password : 'Pranav100',
   database : "carddatabase"
@@ -18,28 +17,27 @@ connection.connect(function(err){
   console.log('Connection established');
 });
 
+/*
 var card = { name: 'Winnie', tags: 'Australia', content: "fhd;sfjldksfdslsthahet dfhjstsjfndskat sthsjt snfdk"};
 connection.query('INSERT INTO testtablefinal SET ?', card, function(err,res){
   if(err) throw err;
 });
+*/
+function dynamicSearch(searchPhrase){
+  var returnVar;
+  connection.query('SELECT name FROM testtablefinal WHERE name LIKE "%' + searchPhrase + '%"',function(err,names){
+    if(err) throw err;
 
-connection.query('SELECT * FROM testtablefinal',function(err,rows){
-  if(err) throw err;
+    returnVar = names;
+  });
+  return returnVar;
+  // cannot figure out how to return names for some reason it is not working
+}
 
-  console.log('Data received from Db:\n');
-  console.log(rows);
-});
-
-connection.query('CALL getTags()',function(err,rows){
-  if (err) throw err;
-
-  console.log('Data received from Db:\n');
-  console.log(rows);
-});
-
-
+console.log(dynamicSearch("win"));
 
 connection.end();
+
 
 
 var path = require('path')
