@@ -1,6 +1,6 @@
 /* eslint strict: 0 */
 'use strict'
-
+/*
 var mysql = require('mysql')
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -17,12 +17,12 @@ connection.connect(function (err) {
   console.log('Connection established')
 })
 
-/*
+
 var card = { name: 'Winnie', tags: 'Australia', content: "fhd;sfjldksfdslsthahet dfhjstsjfndskat sthsjt snfdk"};
 connection.query('INSERT INTO testtablefinal SET ?', card, function(err,res){
   if(err) throw err;
 });
-*/
+
 function dynamicSearch (searchPhrase) {
   var returnVar
   connection.query('SELECT name FROM testtablefinal WHERE name LIKE "%' + searchPhrase + '%"', function (err, names) {
@@ -36,6 +36,15 @@ function dynamicSearch (searchPhrase) {
 
 console.log(dynamicSearch('win'))
 connection.end()
+*/
+
+var PouchDB = require('pouchdb');
+var kitData = new PouchDB('kittens');
+
+kitData.info().then(function (info) {
+  console.log(info);
+})
+
 
 var path = require('path')
 var fs = require('fs')
