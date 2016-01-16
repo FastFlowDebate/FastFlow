@@ -5,9 +5,11 @@
 var PouchDB = require('pouchdb');
 var kitData = new PouchDB('http://localhost:5984/kittens');
 
-kitData.info().then(function (info) {
-  console.log(info);
-})
+function basicInfo(db){
+  db.info().then(function (info) {
+    console.log(info);
+  }
+}
 
 function slowSearch(db,searchTerm){
   db.query(function (doc, emit) {
@@ -19,18 +21,17 @@ function slowSearch(db,searchTerm){
   });
 }
 
-function addCard(db, id, name, tags, content){
+function addCard(db, id, tags, content){
   var doc = {
     "_id" : id,
-    "name": name,
     "tags": tags,
     "content": content,
   };
   db.put(doc);
 }
 
-addCard(kitData,"randomID","kit2",["name","bood","babeisBae"],"Allthis contenfisallthecontenftajsthstistakksfsd")
-slowSearch(kitData, "kit1")
+addCard(kitData,"kittenAwesome",["name","bootlegger","babeisBae"],"Allthis contenfisallthecontenftajsthstistakksfsd");
+addCard(kitData,"kittenAwesome",["name","bootlegger","babeisBae"],"contenfisallthecontenftajsthstistakksfsd");
 
 var path = require('path')
 var fs = require('fs')
