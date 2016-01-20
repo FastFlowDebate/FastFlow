@@ -3,7 +3,17 @@
 
 
 var PouchDB = require('pouchdb');
+<<<<<<< HEAD
 var cardDatabase = new PouchDB('http://localhost:5984/testcard');
+=======
+var kitData = new PouchDB('http://localhost:5984/kittens');
+
+function basicInfo(db){
+  db.info().then(function (info) {
+    console.log(info);
+  }
+}
+>>>>>>> origin/mysqlBranch
 
 function slowSearch(db,searchTerm){
   db.query(function (doc, emit) {
@@ -24,6 +34,11 @@ function addCard(db, id, tags, content){
   db.put(doc);
 }
 
+<<<<<<< HEAD
+=======
+addCard(kitData,"kittenAwesome",["name","bootlegger","babeisBae"],"Allthis contenfisallthecontenftajsthstistakksfsd");
+addCard(kitData,"kittenAwesome",["name","bootlegger","babeisBae"],"contenfisallthecontenftajsthstistakksfsd");
+>>>>>>> origin/mysqlBranch
 
 var path = require('path')
 var fs = require('fs')
