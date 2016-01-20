@@ -3,11 +3,7 @@
 
 
 var PouchDB = require('pouchdb');
-var kitData = new PouchDB('http://localhost:5984/kittens');
-
-kitData.info().then(function (info) {
-  console.log(info);
-})
+var cardDatabase = new PouchDB('http://localhost:5984/testcard');
 
 function slowSearch(db,searchTerm){
   db.query(function (doc, emit) {
@@ -19,18 +15,15 @@ function slowSearch(db,searchTerm){
   });
 }
 
-function addCard(db, id, name, tags, content){
+function addCard(db, id, tags, content){
   var doc = {
     "_id" : id,
-    "name": name,
     "tags": tags,
     "content": content,
   };
   db.put(doc);
 }
 
-addCard(kitData,"randomID","kit2",["name","bood","babeisBae"],"Allthis contenfisallthecontenftajsthstistakksfsd")
-slowSearch(kitData, "kit1")
 
 var path = require('path')
 var fs = require('fs')
@@ -379,10 +372,11 @@ app.on('ready', () => {
     console.log(arg)
     // [TitleString, TagString, ContentString]
     var TitleString = arg[0]
-    var TagString = arg[1]
+    var TagString = arg[1].split(",")
     var ContentString = arg[2]
 
-    var FilePath = path.join(__dirname, 'documents', TitleString)
+    addCard(cardDatabase,TitleString, TagString,ContentString)
+    /*var FilePath = path.join(__dirname, 'documents', TitleString)
 
     var stream = fs.createWriteStream(FilePath)
 
@@ -396,6 +390,6 @@ app.on('ready', () => {
       stream.end()
 
       tagindex()
-    })
+    })*/
   })
 })
