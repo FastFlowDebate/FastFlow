@@ -1,6 +1,5 @@
 'use strict'
 
-<<<<<<< HEAD
 var loki = require("lokijs")
 var db = new loki('testCardSet',
   {
@@ -57,30 +56,6 @@ function tagpathFromDatabase(db){
 
 }*/
 
-=======
-
-var PouchDB = require('pouchdb');
-var cardDatabase = new PouchDB('http://localhost:5984/testcard');
-
-function slowSearch(db,searchTerm){
-  db.query(function (doc, emit) {
-    emit(doc.name);
-  }, {key: searchTerm}).then(function (result) {
-        console.log(result);
-  }).catch(function (err) {
-        return -1;
-  });
-}
->>>>>>> origin/mysqlBranch
-
-function addCard(db, id, tags, content){
-  var doc = {
-    "_id" : id,
-    "tags": tags,
-    "content": content,
-  };
-  db.put(doc);
-}
 
 var path = require('path')
 var fs = require('fs')
@@ -418,12 +393,9 @@ app.on('ready', () => {
     var TagString = arg[1].split(",")
     var ContentString = arg[2]
 
-<<<<<<< HEAD
     addCardToLoki(db, TitleString, TagString, ContentString);
     tagpathFromDatabase(db);
     tagindex()
-=======
-    addCard(cardDatabase,TitleString, TagString,ContentString)
     /*var FilePath = path.join(__dirname, 'documents', TitleString)
 
     var stream = fs.createWriteStream(FilePath)
@@ -439,6 +411,5 @@ app.on('ready', () => {
 
       tagindex()
     })*/
->>>>>>> origin/mysqlBranch
   })
 })
