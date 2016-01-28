@@ -1,17 +1,66 @@
 'use strict'
 
+var loki = require("lokijs")
+var db = new loki('testCardSet',
+  {
+    autoload: true,
+    autoloadCallback : loadHandler,
+    autosave: true,
+    autosaveInterval: 10000,
+  });
 
-var PouchDB = require('pouchdb');
-var kitData = new PouchDB('kittens', { db: require('sqldown') });
+function loadHandler() {
+  var coll = db.getCollection('cards');
+  if (coll === null) {
+    coll = db.addCollection('cards');
+  }
+}
 
-kitData.info().then(function (info) {
-  console.log(info);
-})
+function addCardToLoki(db, cardName, cardTags, cardContent){
+  var cards = db.getCollection("cards");
+  cards.insert({
+    name:cardName,
+    tags:cardTags,
+    content:cardContent
+  });
+
+  db.saveDatabase();
+}
+
+function tagpathFromDatabase(db){
+
+  var cards = db.getCollection("cards");
+  var tagArray = [];
+  var tag;
+  var tags;
+  var tempTagList;
+  for(tags in cards.data){
+      tempTagList = cards.data[tags].tags;
+      for(tag in tempTagList){
+        tagArray.push({
+        tagName: tempTagList[tag],
+        cards: []
+        });
+      }
+  }
+  console.log(tagArray);
+}
+
+/*
+  var card;
+  var names = new Array();
+  for(card in cards.data){
+      names.push(cards.data[card].name)
+  }
+  console.log(names);
+
+}*/
+
+
 
 var path = require('path')
 var fs = require('fs')
 
-// var PythonShell = require('python-shell')
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -299,25 +348,21 @@ app.on('ready', () => {
 
         if (Lines[0].substring(0, 4) === '<!--') {
           var TheTag = Lines[0].slice(4, Lines[0].length - 3)
-          // console.log('TAG: ' + TheTag)
+
           var TagList = TheTag.split(', ')
 
           for (var j = 0; j < TagList.length; j++) {
             if (TagList[j] in TagArray) {
-              // console.log('THEPART: ' + TagList[j])
-              // console.log(TagArray[TagList[j]])
               TagArray[TagList[j]].push(path.join(tagFilePath, DocumentArray[i]))
             } else {
-              // console.log('TAGLIST:' + TagList[j])
               TagArray[TagList[j]] = [path.join(tagFilePath, DocumentArray[i])]
-              // console.log('THETHING: ' + TagArray[TagList[j]])
             }
           }
         }
       }
     }
 
-    console.log(TagArray)
+    //console.log(TagArray)
     var keys = Object.keys(TagArray)
 
     var values = []
@@ -327,51 +372,30 @@ app.on('ready', () => {
     }
 
     var ReturnValue = [keys, values]
-    console.log('BREAK BREAK BREAK')
-    console.log(ReturnValue)
+    //console.log('BREAK BREAK BREAK')
+    //console.log(ReturnValue)
 
-    if (fs.existsSync(path.join(tagFilePath, 'data.json')) === true) {
-      fs.unlinkSync(path.join(tagFilePath, 'data.json'))
-    }
-    var tagstream = fs.createWriteStream(path.join(tagFilePath, 'data.json'))
-    tagstream.once('open', function (fd) {
-      tagstream.write(JSON.stringify(ReturnValue))
-      tagstream.end()
-    })
   }
 
+//I dont think we need this anymore
   ipcMain.on('FileManager', function (event, arg) {
     var unparseddataJSON = fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
     var dataJSON = JSON.parse(unparseddataJSON)
-
-    // console.log(arg)
-    // console.log(dataJSON)
-
     event.returnValue = dataJSON
   })
+
+
 
   /* card saving */
   ipcMain.on('FileSave', function (event, arg) {
     console.log(arg)
     // [TitleString, TagString, ContentString]
     var TitleString = arg[0]
-    var TagString = arg[1]
+    var TagString = arg[1].split(",")
     var ContentString = arg[2]
 
-    var FilePath = path.join(__dirname, 'documents', TitleString)
-
-    var stream = fs.createWriteStream(FilePath)
-
-    if (FilePath.existsSync === true) {
-      fs.unlinkSync(FilePath)
-    }
-
-    stream.once('open', function (fd) {
-      stream.write('<!--' + TagString + '-->\n')
-      stream.write(ContentString)
-      stream.end()
-
-      tagindex()
-    })
+    addCardToLoki(db, TitleString, TagString, ContentString);
+    tagpathFromDatabase(db);
+    tagindex()
   })
 })
