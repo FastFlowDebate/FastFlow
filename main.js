@@ -1,7 +1,7 @@
 'use strict'
 
 var loki = require("lokijs")
-var db = new loki('testCardSet',
+var db = new loki('newTestStuff',
   {
     autoload: true,
     autoloadCallback : loadHandler,
@@ -16,45 +16,30 @@ function loadHandler() {
   }
 }
 
-function addCardToLoki(db, cardName, cardTags, cardContent){
-  var cards = db.getCollection("cards");
-  cards.insert({
-    name:cardName,
-    tags:cardTags,
-    content:cardContent
-  });
-
-  db.saveDatabase();
-}
-
 function tagpathFromDatabase(db){
 
   var cards = db.getCollection("cards");
-  var tagArray = [];
+  var tagArray = {};
   var tag;
   var tags;
   var tempTagList;
+  var card;
+  var names = [];
   for(tags in cards.data){
       tempTagList = cards.data[tags].tags;
       for(tag in tempTagList){
-        tagArray.push({
-        tagName: tempTagList[tag],
-        cards: []
-        });
+        var names = [];
+        for(card in cards.data){
+          if (cards.data[card].tags.indexOf(tempTagList[tag]) != -1){
+            names.push(cards.data[card].name)
+          }
+        }
+        tagArray[tempTagList[tag]] = names;
       }
   }
   console.log(tagArray);
 }
 
-/*
-  var card;
-  var names = new Array();
-  for(card in cards.data){
-      names.push(cards.data[card].name)
-  }
-  console.log(names);
-
-}*/
 
 
 var path = require('path')
@@ -333,36 +318,39 @@ app.on('ready', () => {
     }
   })
 
+  function addCardToLoki(db, cardName, cardTags, cardContent){
+    var cards = db.getCollection("cards");
+    cards.insert({
+      name:cardName,
+      tags:cardTags,
+      content:cardContent
+    });
+
+    db.saveDatabase();
+  }
+
   function tagindex () {
     /* tagindexing */
-    var tagFilePath = path.join(__dirname, 'documents')
-
-    var TagArray = {}
-
-    var DocumentArray = fs.readdirSync(tagFilePath)
-
-    for (var i = 0; i < DocumentArray.length; i++) {
-      if (DocumentArray[i] !== 'data.json') {
-        var Lines = fs.readFileSync(path.join(tagFilePath, DocumentArray[i])).toString().split('\n')
-
-        if (Lines[0].substring(0, 4) === '<!--') {
-          var TheTag = Lines[0].slice(4, Lines[0].length - 3)
-
-          var TagList = TheTag.split(', ')
-
-          for (var j = 0; j < TagList.length; j++) {
-            if (TagList[j] in TagArray) {
-              TagArray[TagList[j]].push(path.join(tagFilePath, DocumentArray[i]))
-            } else {
-              TagArray[TagList[j]] = [path.join(tagFilePath, DocumentArray[i])]
+    var cards = db.getCollection("cards");
+    var tagArray = {};
+    var tag;
+    var tags;
+    var tempTagList;
+    var card;
+    var names = [];
+    for(tags in cards.data){
+        tempTagList = cards.data[tags].tags;
+        for(tag in tempTagList){
+          var names = [];
+          for(card in cards.data){
+            if (cards.data[card].tags.indexOf(tempTagList[tag]) != -1){
+              names.push(cards.data[card].name)
             }
           }
+          tagArray[tempTagList[tag]] = names;
         }
-      }
     }
-
-    //console.log(TagArray)
-    var keys = Object.keys(TagArray)
+    var keys = Object.keys(tagArray)
 
     var values = []
 
@@ -371,8 +359,6 @@ app.on('ready', () => {
     }
 
     var ReturnValue = [keys, values]
-    //console.log('BREAK BREAK BREAK')
-    //console.log(ReturnValue)
 
   }
 
@@ -394,7 +380,6 @@ app.on('ready', () => {
     var ContentString = arg[2]
 
     addCardToLoki(db, TitleString, TagString, ContentString);
-    tagpathFromDatabase(db);
     tagindex()
     /*var FilePath = path.join(__dirname, 'documents', TitleString)
 
