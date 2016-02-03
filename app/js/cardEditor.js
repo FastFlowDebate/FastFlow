@@ -4,9 +4,9 @@ $(document).ready(function () {
   var theURI = window.location.search
 
   if (theURI.length > 0) {
-    var decodedURI = decodeURIComponent(theURI).substring(1)
+    var decodedURI = decodeURIComponent(theURI).substring(1).split("\\")
 
-    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI)
+    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI[decodedURI.length - 1])
 
     document.getElementById('title').innerHTML = FileArray[0]
     document.getElementById('tags').innerHTML = FileArray[1]

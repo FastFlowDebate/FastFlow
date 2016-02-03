@@ -314,24 +314,15 @@ app.on('ready', () => {
   }
 
   ipcMain.on('FileOpen', function (event, arg) {
-    var FileArray = fs.readFileSync(arg).toString().split('\n')
-    // console.log(FileArray)
+    var cards = db.getCollection("cards");
+    var FileArray = arg
+    var foundCard = cards.find({'name' : arg})
+    var Title = foundCard[0].name
+    var Tags = foundCard[0].tags
+    var Content = foundCard[0].content
+    var TheArray = [Title, Tags, Content]
+    event.returnValue = TheArray
 
-    if (FileArray[0].substring(0, 4) === '<!--') {
-      var Title = path.basename(arg)
-      // console.log(Title)
-
-      var Tags = FileArray[0].slice(4, FileArray[0].length - 3)
-      // console.log(Tags)
-
-      var Content = FileArray[1]
-      // console.log(Content)
-
-      var TheArray = [Title, Tags, Content]
-      // console.log(TheArray)
-
-      event.returnValue = TheArray
-    }
   })
 
   ipcMain.on('FileManager', function (event, arg) {
