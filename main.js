@@ -1,7 +1,7 @@
 'use strict'
 
-var loki = require("lokijs")
-var db = new loki('newTestStuff',
+const loki = require("lokijs")
+const db = new loki('newTestStuff',
   {
     autoload: true,
     autoloadCallback : loadHandler,
@@ -16,8 +16,19 @@ function loadHandler() {
   }
 }
 
-function tagpathFromDatabase(db){
+function addCardToLoki(db, cardName, cardTags, cardContent){
+  var cards = db.getCollection("cards");
+  cards.insert({
+    name:cardName,
+    tags:cardTags,
+    content:cardContent
+  });
 
+  db.saveDatabase();
+}
+
+function tagindex (db) {
+  /* tagindexing */
   var cards = db.getCollection("cards");
   var tagArray = {};
   var tag;
@@ -37,8 +48,20 @@ function tagpathFromDatabase(db){
         tagArray[tempTagList[tag]] = names;
       }
   }
-  console.log(tagArray);
+  var keys = Object.keys(tagArray)
+
+  var values = []
+
+  for (var i = 0; i < keys.length; i++) {
+    values.push(tagArray[keys[i]])
+  }
+
+  var ReturnValue = [keys, values]
+  return ReturnValue;
 }
+
+
+
 
 
 
@@ -89,13 +112,6 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools()
   }
-
-  // calls tagindex on start
-  // we might have to work on this function a little bit so that it does not
-  //take too long to index all of this stuff
-
-  tagindex()
-
 
   if (process.platform === 'darwin') {
     template = [{
@@ -318,58 +334,10 @@ app.on('ready', () => {
     }
   })
 
-  function addCardToLoki(db, cardName, cardTags, cardContent){
-    var cards = db.getCollection("cards");
-    cards.insert({
-      name:cardName,
-      tags:cardTags,
-      content:cardContent
-    });
-
-    db.saveDatabase();
-  }
-
-  function tagindex () {
-    /* tagindexing */
-    var cards = db.getCollection("cards");
-    var tagArray = {};
-    var tag;
-    var tags;
-    var tempTagList;
-    var card;
-    var names = [];
-    for(tags in cards.data){
-        tempTagList = cards.data[tags].tags;
-        for(tag in tempTagList){
-          var names = [];
-          for(card in cards.data){
-            if (cards.data[card].tags.indexOf(tempTagList[tag]) != -1){
-              names.push(cards.data[card].name)
-            }
-          }
-          tagArray[tempTagList[tag]] = names;
-        }
-    }
-    var keys = Object.keys(tagArray)
-
-    var values = []
-
-    for (var i = 0; i < keys.length; i++) {
-      values.push(TagArray[keys[i]])
-    }
-
-    var ReturnValue = [keys, values]
-
-  }
-
-//I dont think we need this anymore
   ipcMain.on('FileManager', function (event, arg) {
-    var unparseddataJSON = fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
-    var dataJSON = JSON.parse(unparseddataJSON)
+    var dataJSON = tagindex(db)
     event.returnValue = dataJSON
   })
-
-
 
   /* card saving */
   ipcMain.on('FileSave', function (event, arg) {
@@ -380,21 +348,6 @@ app.on('ready', () => {
     var ContentString = arg[2]
 
     addCardToLoki(db, TitleString, TagString, ContentString);
-    tagindex()
-    /*var FilePath = path.join(__dirname, 'documents', TitleString)
-
-    var stream = fs.createWriteStream(FilePath)
-
-    if (FilePath.existsSync === true) {
-      fs.unlinkSync(FilePath)
-    }
-
-    stream.once('open', function (fd) {
-      stream.write('<!--' + TagString + '-->\n')
-      stream.write(ContentString)
-      stream.end()
-
-      tagindex()
-    })*/
+    tagindex(db)
   })
 })
