@@ -64,10 +64,10 @@ function tagindex (db) {
 
 
 
-
 var path = require('path')
 var fs = require('fs')
 
+const Regex = require("regex");
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -311,6 +311,22 @@ app.on('ready', () => {
     }]
     menu = Menu.buildFromTemplate(template)
     mainWindow.setMenu(menu)
+  }
+
+  function searchSimple(db, searchTerm){
+    var returnSearch;
+    var tagList = tagindex(db)
+    var tag;
+    var card;
+    var returnListCards = [];
+    for(tag in tagList[0]){
+      if(tagList[0][tag].match(searchTerm) != null){
+        for(card in tagList[1][tag]){
+            returnListCards.push(tagList[1][tag][card])
+        }
+      }
+    }
+    return(returnListCards)
   }
 
   ipcMain.on('FileOpen', function (event, arg) {
