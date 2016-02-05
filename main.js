@@ -1,10 +1,73 @@
-/* eslint strict: 0 */
 'use strict'
+
+const loki = require("lokijs")
+const db = new loki('newTestStuff',
+  {
+    autoload: true,
+    autoloadCallback : loadHandler,
+    autosave: true,
+    autosaveInterval: 10000,
+  });
+
+function loadHandler() {
+  var coll = db.getCollection('cards');
+  if (coll === null) {
+    coll = db.addCollection('cards');
+  }
+}
+
+function addCardToLoki(db, cardName, cardTags, cardContent){
+  var cards = db.getCollection("cards");
+  cards.insert({
+    name:cardName,
+    tags:cardTags,
+    content:cardContent
+  });
+
+  db.saveDatabase();
+}
+
+function tagindex (db) {
+  /* tagindexing */
+  var cards = db.getCollection("cards");
+  var tagArray = {};
+  var tag;
+  var tags;
+  var tempTagList;
+  var card;
+  var names = [];
+  for(tags in cards.data){
+      tempTagList = cards.data[tags].tags;
+      for(tag in tempTagList){
+        var names = [];
+        for(card in cards.data){
+          if (cards.data[card].tags.indexOf(tempTagList[tag]) != -1){
+            names.push(cards.data[card].name)
+          }
+        }
+        tagArray[tempTagList[tag]] = names;
+      }
+  }
+  var keys = Object.keys(tagArray)
+
+  var values = []
+
+  for (var i = 0; i < keys.length; i++) {
+    values.push(tagArray[keys[i]])
+  }
+
+  var ReturnValue = [keys, values]
+  return ReturnValue;
+}
+
+
+
+
+
 
 var path = require('path')
 var fs = require('fs')
 
-// var PythonShell = require('python-shell')
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
@@ -49,13 +112,6 @@ app.on('ready', () => {
   if (process.env.NODE_ENV === 'development') {
     mainWindow.openDevTools()
   }
-
-  // calls tagindex on start
-  // we might have to work on this function a little bit so that it does not
-  //take too long to index all of this stuff
-
-  tagindex()
-
 
   if (process.platform === 'darwin') {
     template = [{
@@ -258,88 +314,19 @@ app.on('ready', () => {
   }
 
   ipcMain.on('FileOpen', function (event, arg) {
-    var FileArray = fs.readFileSync(arg).toString().split('\n')
-    // console.log(FileArray)
+    var cards = db.getCollection("cards");
+    var FileArray = arg
+    var foundCard = cards.find({'name' : arg})
+    var Title = foundCard[0].name
+    var Tags = foundCard[0].tags
+    var Content = foundCard[0].content
+    var TheArray = [Title, Tags, Content]
+    event.returnValue = TheArray
 
-    if (FileArray[0].substring(0, 4) === '<!--') {
-      var Title = path.basename(arg)
-      // console.log(Title)
-
-      var Tags = FileArray[0].slice(4, FileArray[0].length - 3)
-      // console.log(Tags)
-
-      var Content = FileArray[1]
-      // console.log(Content)
-
-      var TheArray = [Title, Tags, Content]
-      // console.log(TheArray)
-
-      event.returnValue = TheArray
-    }
   })
 
-  function tagindex () {
-    /* tagindexing */
-    var tagFilePath = path.join(__dirname, 'documents')
-
-    var TagArray = {}
-
-    var DocumentArray = fs.readdirSync(tagFilePath)
-
-    for (var i = 0; i < DocumentArray.length; i++) {
-      if (DocumentArray[i] !== 'data.json') {
-        var Lines = fs.readFileSync(path.join(tagFilePath, DocumentArray[i])).toString().split('\n')
-
-        if (Lines[0].substring(0, 4) === '<!--') {
-          var TheTag = Lines[0].slice(4, Lines[0].length - 3)
-          // console.log('TAG: ' + TheTag)
-          var TagList = TheTag.split(', ')
-
-          for (var j = 0; j < TagList.length; j++) {
-            if (TagList[j] in TagArray) {
-              // console.log('THEPART: ' + TagList[j])
-              // console.log(TagArray[TagList[j]])
-              TagArray[TagList[j]].push(path.join(tagFilePath, DocumentArray[i]))
-            } else {
-              // console.log('TAGLIST:' + TagList[j])
-              TagArray[TagList[j]] = [path.join(tagFilePath, DocumentArray[i])]
-              // console.log('THETHING: ' + TagArray[TagList[j]])
-            }
-          }
-        }
-      }
-    }
-
-    console.log(TagArray)
-    var keys = Object.keys(TagArray)
-
-    var values = []
-
-    for (var i = 0; i < keys.length; i++) {
-      values.push(TagArray[keys[i]])
-    }
-
-    var ReturnValue = [keys, values]
-    console.log('BREAK BREAK BREAK')
-    console.log(ReturnValue)
-
-    if (fs.existsSync(path.join(tagFilePath, 'data.json')) === true) {
-      fs.unlinkSync(path.join(tagFilePath, 'data.json'))
-    }
-    var tagstream = fs.createWriteStream(path.join(tagFilePath, 'data.json'))
-    tagstream.once('open', function (fd) {
-      tagstream.write(JSON.stringify(ReturnValue))
-      tagstream.end()
-    })
-  }
-
   ipcMain.on('FileManager', function (event, arg) {
-    var unparseddataJSON = fs.readFileSync(path.join(__dirname, 'documents', 'data.json'))
-    var dataJSON = JSON.parse(unparseddataJSON)
-
-    // console.log(arg)
-    // console.log(dataJSON)
-
+    var dataJSON = tagindex(db)
     event.returnValue = dataJSON
   })
 
@@ -348,23 +335,10 @@ app.on('ready', () => {
     console.log(arg)
     // [TitleString, TagString, ContentString]
     var TitleString = arg[0]
-    var TagString = arg[1]
+    var TagString = arg[1].split(",")
     var ContentString = arg[2]
 
-    var FilePath = path.join(__dirname, 'documents', TitleString)
-
-    var stream = fs.createWriteStream(FilePath)
-
-    if (FilePath.existsSync === true) {
-      fs.unlinkSync(FilePath)
-    }
-
-    stream.once('open', function (fd) {
-      stream.write('<!--' + TagString + '-->\n')
-      stream.write(ContentString)
-      stream.end()
-
-      tagindex()
-    })
+    addCardToLoki(db, TitleString, TagString, ContentString);
+    tagindex(db)
   })
 })
