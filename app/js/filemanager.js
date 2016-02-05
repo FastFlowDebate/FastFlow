@@ -21,7 +21,7 @@ document.write("<style> .hidden{display:none;} .unhidden{display:block;} </style
 $(document).ready(function () {
   var dataJSON = ipcRenderer.sendSync('FileManager', 'ready')
 
-  var theUL = document.createElement("UL")
+  var theUL = document.createElement("DIV")
 
   for (i = 0; i < dataJSON[0].length; i++) {
     //Changed from UL here
@@ -32,7 +32,13 @@ $(document).ready(function () {
 
     var text = document.createTextNode(path.basename(dataJSON[0][i]))
 
-    element.appendChild(text)
+    var foldertext = document.createElement("DIV")
+
+    foldertext.appendChild(text)
+
+    foldertext.setAttribute('class', 'foldertext')
+
+    element.appendChild(foldertext)
 
     theUL.appendChild(element)
 
@@ -49,7 +55,15 @@ $(document).ready(function () {
 
       text1 = document.createTextNode(path.basename(dataJSON[1][i][j]))
 
-      link.appendChild(text1)
+      var filetext = document.createElement("DIV")
+
+      filetext.appendChild(text1)
+
+      filetext.setAttribute('class', 'filetext')
+
+      link.appendChild(filetext)
+
+      link.setAttribute('class', 'linktext')
 
       element1.appendChild(link)
 
