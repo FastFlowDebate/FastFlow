@@ -1,27 +1,27 @@
 #thefilemanager{
   margin-left: -30px;
   margin-right: -10px;
-  font-size: 16px;
+  font-size: 14px;
+  padding-top: 20px;
 }
 
 #thefilemanager: ul {
   margin-left: -20px;
   padding-left: 0px;
   padding-top: 0px;
-  padding-bottom: 7px;
-  padding-bottom: 7px;
+  padding-bottom: 5px;
   list-style: none;
 }
 
 li {
   list-style: none;
-  padding-bottom: 3px;
+  padding-bottom: 10px;
 }
 
 .foldertext {
-  font-size: 18px;
-  padding: 10px 10px 5px 25px;
-  margin: -10px -10px 5px -25px;
+  font-size: 14px;
+  padding: 10px 10px 10px 60px;
+  margin: -10px -10px 10px -36px;
 }
 
 .foldertext:hover {
@@ -39,7 +39,5 @@ a.linktext:hover {
 }
 
 .filetext {
-  margin-top: 5px;
-  padding: 5px;
   padding-left: 10px;
 }
