@@ -1,8 +1,3 @@
-#0.28 (2016.2.12)
-####SEARCH####
--- **searching implemented in sidebar.**
--- **still needs css changes, but looks decent**
-
 #0.27 (2016.1.8)
 ####SAVEBUTTON####
 -- **save button now only appears when you click on a part of the editor**

@@ -1,7 +1,7 @@
 'use strict'
 
 const loki = require("lokijs")
-const db = new loki('mainDatabase.fcdb',
+const db = new loki('newTestStuff',
   {
     autoload: true,
     autoloadCallback : loadHandler,
@@ -66,6 +66,7 @@ function tagindex (db) {
 
 var path = require('path')
 var fs = require('fs')
+
 const Regex = require("regex");
 const electron = require('electron')
 const app = electron.app
@@ -263,7 +264,7 @@ app.on('ready', () => {
         label: '&Reload',
         accelerator: 'Ctrl+R',
         click () {
-          mainWindow.reload()
+          mainWindow.restart()
         }
       }, {
         label: 'Toggle &Full Screen',
@@ -325,15 +326,8 @@ app.on('ready', () => {
         }
       }
     }
-    return returnListCards
+    return(returnListCards)
   }
-
-  ipcMain.on('Search', function (event, arg) {
-    console.log(arg)
-    console.log("-----------")
-    console.log(searchSimple(db, arg))
-    event.returnValue = searchSimple(db, arg)
-  })
 
   ipcMain.on('FileOpen', function (event, arg) {
     var cards = db.getCollection("cards");
@@ -356,19 +350,11 @@ app.on('ready', () => {
   ipcMain.on('FileSave', function (event, arg) {
     console.log(arg)
     // [TitleString, TagString, ContentString]
-    var cards = db.getCollection("cards");
-
     var TitleString = arg[0]
     var TagString = arg[1].split(",")
     var ContentString = arg[2]
-    var temp = cards.find({'name' : TitleString})
-    if (temp.length == 0){
-      addCardToLoki(db, TitleString, TagString, ContentString);
-      tagindex(db)
-    }else{
-        cards.removeWhere({'name' : TitleString})
-        addCardToLoki(db, TitleString, TagString, ContentString);
-        tagindex(db)
-    }
+
+    addCardToLoki(db, TitleString, TagString, ContentString);
+    tagindex(db)
   })
 })

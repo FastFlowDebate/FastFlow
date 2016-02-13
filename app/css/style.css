@@ -170,8 +170,3 @@ buttons {
 [contentEditable=true]:empty:not(:focus):before{
   content:attr(data-ph)
 }
-
-#searchResults {
-  padding: 20px;
-  height: 100%;
-}

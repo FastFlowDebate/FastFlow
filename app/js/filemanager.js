@@ -51,8 +51,6 @@ $(document).ready(function () {
       var element1 = document.createElement("LI");
       var link = document.createElement("A")
 
-      element1.setAttribute('class', 'theLI')
-
       link.href = "cardEditor.html?" + encodeURIComponent(dataJSON[1][i][j])
 
       text1 = document.createTextNode(path.basename(dataJSON[1][i][j]))
