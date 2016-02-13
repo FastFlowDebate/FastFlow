@@ -27,6 +27,22 @@ function addCardToLoki(db, cardName, cardTags, cardContent){
   db.saveDatabase();
 }
 
+function searchSimple(db, searchTerm){
+  var returnSearch;
+  var tagList = tagindex(db)
+  var tag;
+  var card;
+  var returnListCards = [];
+  for(tag in tagList[0]){
+    if(tagList[0][tag].match(searchTerm) != null){
+      for(card in tagList[1][tag]){
+          returnListCards.push(tagList[1][tag][card])
+      }
+    }
+  }
+  return returnListCards
+}
+
 function tagindex (db) {
   /* tagindexing */
   var cards = db.getCollection("cards");
@@ -59,10 +75,6 @@ function tagindex (db) {
   var ReturnValue = [keys, values]
   return ReturnValue;
 }
-
-
-
-
 
 var path = require('path')
 var fs = require('fs')
@@ -313,21 +325,12 @@ app.on('ready', () => {
     mainWindow.setMenu(menu)
   }
 
-  function searchSimple(db, searchTerm){
-    var returnSearch;
-    var tagList = tagindex(db)
-    var tag;
-    var card;
-    var returnListCards = [];
-    for(tag in tagList[0]){
-      if(tagList[0][tag].match(searchTerm) != null){
-        for(card in tagList[1][tag]){
-            returnListCards.push(tagList[1][tag][card])
-        }
-      }
-    }
-    return(returnListCards)
-  }
+  ipcMain.on('Search', function (event, arg) {
+    console.log(arg)
+    console.log("-----------")
+    console.log(searchSimple(db, arg))
+    event.returnValue = searchSimple(db, arg)
+  })
 
   ipcMain.on('FileOpen', function (event, arg) {
     var cards = db.getCollection("cards");

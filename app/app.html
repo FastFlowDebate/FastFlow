@@ -53,7 +53,11 @@
       <li>
 
         <div class="mui-textfield">
-          <input type="text" placeholder="Search" id="sidebarinput">
+          <input type="text" placeholder="Search" id="sidebarinput" onkeydown = "searchFunction()">
+          <div id = "searchResults"style="overflow-y:auto;"></div>
+
+          <script src = "js/search.js"></script>
+
         </div>
       </li>
     </ul>
@@ -72,7 +76,7 @@
   <div id="content-wrapper">
     <div class="mui--appbar-height"></div>
     <div class="mui-container-fluid">
-  
+
       <div id="thefilemanager"></div>
 
       <script src="js/filemanager.js"></script>
