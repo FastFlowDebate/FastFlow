@@ -1,7 +1,7 @@
 'use strict'
 
 const loki = require("lokijs")
-const db = new loki('newTestStuff',
+const db = new loki('mainDatabase.fcdb',
   {
     autoload: true,
     autoloadCallback : loadHandler,
@@ -25,22 +25,6 @@ function addCardToLoki(db, cardName, cardTags, cardContent){
   });
 
   db.saveDatabase();
-}
-
-function searchSimple(db, searchTerm){
-  var returnSearch;
-  var tagList = tagindex(db)
-  var tag;
-  var card;
-  var returnListCards = [];
-  for(tag in tagList[0]){
-    if(tagList[0][tag].match(searchTerm) != null){
-      for(card in tagList[1][tag]){
-          returnListCards.push(tagList[1][tag][card])
-      }
-    }
-  }
-  return returnListCards
 }
 
 function tagindex (db) {
@@ -76,9 +60,12 @@ function tagindex (db) {
   return ReturnValue;
 }
 
+
+
+
+
 var path = require('path')
 var fs = require('fs')
-
 const Regex = require("regex");
 const electron = require('electron')
 const app = electron.app
@@ -276,7 +263,7 @@ app.on('ready', () => {
         label: '&Reload',
         accelerator: 'Ctrl+R',
         click () {
-          mainWindow.restart()
+          mainWindow.reload()
         }
       }, {
         label: 'Toggle &Full Screen',
@@ -325,6 +312,22 @@ app.on('ready', () => {
     mainWindow.setMenu(menu)
   }
 
+  function searchSimple(db, searchTerm){
+    var returnSearch;
+    var tagList = tagindex(db)
+    var tag;
+    var card;
+    var returnListCards = [];
+    for(tag in tagList[0]){
+      if(tagList[0][tag].match(searchTerm) != null){
+        for(card in tagList[1][tag]){
+            returnListCards.push(tagList[1][tag][card])
+        }
+      }
+    }
+    return returnListCards
+  }
+
   ipcMain.on('Search', function (event, arg) {
     console.log(arg)
     console.log("-----------")
@@ -353,11 +356,19 @@ app.on('ready', () => {
   ipcMain.on('FileSave', function (event, arg) {
     console.log(arg)
     // [TitleString, TagString, ContentString]
+    var cards = db.getCollection("cards");
+
     var TitleString = arg[0]
     var TagString = arg[1].split(",")
     var ContentString = arg[2]
-
-    addCardToLoki(db, TitleString, TagString, ContentString);
-    tagindex(db)
+    var temp = cards.find({'name' : TitleString})
+    if (temp.length == 0){
+      addCardToLoki(db, TitleString, TagString, ContentString);
+      tagindex(db)
+    }else{
+        cards.removeWhere({'name' : TitleString})
+        addCardToLoki(db, TitleString, TagString, ContentString);
+        tagindex(db)
+    }
   })
 })
