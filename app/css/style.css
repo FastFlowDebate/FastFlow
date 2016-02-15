@@ -38,7 +38,7 @@ buttons {
   bottom: 0;
   width: 200px;
   left: -200px;
-  overflow: auto;
+  overflow: hidden;
   z-index: 2;
   color: #424242;
   background-color: #EEEEEE;
@@ -172,6 +172,7 @@ buttons {
 }
 
 #searchResults {
+  height: 500px;
+  overflow: auto;
   padding: 20px;
-  height: 100%;
 }
