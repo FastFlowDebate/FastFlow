@@ -1,68 +1,74 @@
 const ipcRenderer = require('electron').ipcRenderer
 
-$(document).ready(function () {
-  var theURI = window.location.search
+angular.module('ngFastFlow', []).controller('ngCardEditorController', ['$scope', '$sce', function ($scope, $sce) {
+  $scope.saveCard = saveCard
+  $scope.deleteCard = deleteCard
+  $scope.shareCard = shareCard
 
-  if (theURI.length > 0) {
-    var decodedURI = decodeURIComponent(theURI).substring(1).split('\\')
+  $scope.title = 'Untitled Card'
+  $scope.tags = 'tag1, tag2, tag3'
+  $scope.content = 'content is loading'
+  $scope.showSave = false
 
-    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI[decodedURI.length - 1])
+  $(document).ready(function () {
+    var theURI = window.location.search
 
-    document.getElementById('title').innerHTML = FileArray[0]
-    document.getElementById('tags').innerHTML = FileArray[1]
-    document.getElementById('content').innerHTML = FileArray[2]
-  }
-})
+    if (theURI.length > 0) {
+      var decodedURI = decodeURIComponent(theURI).substring(1).split('\\')
+      var FileArray = ipcRenderer.sendSync('FileOpen', decodedURI[decodedURI.length - 1])
 
-var Selections = [{
-        name: 'link',
-        buttons: ['linkEdit'],
-        test: AlloyEditor.SelectionTest.link
-    }, {
-        name: 'image',
-        buttons: ['imageLeft', 'imageRight'],
-        test: AlloyEditor.SelectionTest.image
-    }, {
-        name: 'text',
-        buttons: ['bold', 'italic', 'underline', 'link'],
-        test: AlloyEditor.SelectionTest.text
-    }, {
-        name: 'table',
-        buttons: ['tableRow', 'tableColumn', 'tableCell', 'tableRemove'],
-        getArrowBoxClasses: AlloyEditor.SelectionGetArrowBoxClasses.table,
-        setPosition: AlloyEditor.SelectionSetPosition.table,
-        test: AlloyEditor.SelectionTest.table
-}]
-
-$(document).ready(function () {
-  var editor = AlloyEditor.editable('content', {
-    toolbars: {
-      add: {
-        buttons: ['hline', 'table'],
-        tabIndex: 2
-      },
-      styles: {
-        selections: Selections,
-        tabIndex: 1
-      }
+      $scope.title = FileArray[0]
+      $scope.tags = FileArray[1]
+      $scope.content = $sce.trustAsHtml(FileArray[2])
+      $scope.$apply()
     }
   })
-  $('#saveButton').hide()
-})
 
-function saveFunction () {
-  var TitleString = $('#title').text()
-  var TagString = $('#tags').text()
-  var ContentString = $('#content').html()
-  ipcRenderer.send('FileSave', [TitleString, TagString, ContentString])
-  window.alert('Saved!')
-}
+  var Selections = [{
+          name: 'link',
+          buttons: ['linkEdit'],
+          test: AlloyEditor.SelectionTest.link
+      }, {
+          name: 'image',
+          buttons: ['imageLeft', 'imageRight'],
+          test: AlloyEditor.SelectionTest.image
+      }, {
+          name: 'text',
+          buttons: ['bold', 'italic', 'underline', 'link'],
+          test: AlloyEditor.SelectionTest.text
+      }, {
+          name: 'table',
+          buttons: ['tableRow', 'tableColumn', 'tableCell', 'tableRemove'],
+          getArrowBoxClasses: AlloyEditor.SelectionGetArrowBoxClasses.table,
+          setPosition: AlloyEditor.SelectionSetPosition.table,
+          test: AlloyEditor.SelectionTest.table
+  }]
 
-function deleteCard () {
-//deletion code
+  $(document).ready(function () {
+    var editor = AlloyEditor.editable('content', {
+      toolbars: {
+        add: {
+          buttons: ['hline', 'table'],
+          tabIndex: 2
+        },
+        styles: {
+          selections: Selections,
+          tabIndex: 1
+        }
+      }
+    })
+  })
 
-}
+  function saveCard () {
+    ipcRenderer.send('FileSave', [$scope.title, $scope.tags, $scope.content])
+    window.alert('Saved!')
+  }
 
-function saveShow () {
-  $('#saveButton').show()
-}
+  function deleteCard () {
+  // TODO: deletion code
+  }
+
+  function shareCard () {
+  // TODO: deletion code, redirects to filemanager
+  }
+}])

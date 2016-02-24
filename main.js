@@ -312,14 +312,14 @@ app.on('ready', () => {
     mainWindow.setMenu(menu)
   }
 
-  function searchSimple(db, searchTerm){
-    var returnSearch;
+  function searchSimple (db, searchTerm) {
+    var returnSearch
     var tagList = tagindex(db)
-    var tag;
-    var card;
-    var returnListCards = [];
-    for(tag in tagList[0]){
-      if(tagList[0][tag].match(searchTerm) != null){
+    var tag
+    var card
+    var returnListCards = []
+    for(tag in tagList[0]) {
+      if(tagList[0][tag].match(searchTerm) != null) {
         for(card in tagList[1][tag]){
             returnListCards.push(tagList[1][tag][card])
         }
@@ -336,7 +336,7 @@ app.on('ready', () => {
   })
 
   ipcMain.on('FileOpen', function (event, arg) {
-    var cards = db.getCollection("cards");
+    var cards = db.getCollection('cards')
     var FileArray = arg
     var foundCard = cards.find({'name' : arg})
     var Title = foundCard[0].name
@@ -344,7 +344,6 @@ app.on('ready', () => {
     var Content = foundCard[0].content
     var TheArray = [Title, Tags, Content]
     event.returnValue = TheArray
-
   })
 
   ipcMain.on('FileManager', function (event, arg) {
@@ -356,18 +355,18 @@ app.on('ready', () => {
   ipcMain.on('FileSave', function (event, arg) {
     console.log(arg)
     // [TitleString, TagString, ContentString]
-    var cards = db.getCollection("cards");
+    var cards = db.getCollection('cards')
 
     var TitleString = arg[0]
-    var TagString = arg[1].split(",")
+    var TagString = arg[1].split(',')
     var ContentString = arg[2]
     var temp = cards.find({'name' : TitleString})
-    if (temp.length == 0){
-      addCardToLoki(db, TitleString, TagString, ContentString);
+    if (temp.length === 0) {
+      addCardToLoki(db, TitleString, TagString, ContentString)
       tagindex(db)
-    }else{
+    } else {
         cards.removeWhere({'name' : TitleString})
-        addCardToLoki(db, TitleString, TagString, ContentString);
+        addCardToLoki(db, TitleString, TagString, ContentString)
         tagindex(db)
     }
   })
