@@ -1,7 +1,7 @@
 'use strict'
 
 const loki = require("lokijs")
-const db = new loki('mainDatabase.fcdb',
+const db = new loki('mainDatabase.ffdb',
   {
     autoload: true,
     autoloadCallback : loadHandler,
@@ -37,11 +37,11 @@ function tagindex (db) {
   var card;
   var names = [];
   for(tags in cards.data){
-      tempTagList = cards.data[tags].tags;
+      tempTagList = cards.data[tags].tags.split(",");
       for(tag in tempTagList){
         var names = [];
         for(card in cards.data){
-          if (cards.data[card].tags.indexOf(tempTagList[tag]) != -1){
+          if (cards.data[card].tags.split(",").indexOf(tempTagList[tag]) != -1){
             names.push(cards.data[card].name)
           }
         }
@@ -311,21 +311,38 @@ app.on('ready', () => {
     menu = Menu.buildFromTemplate(template)
     mainWindow.setMenu(menu)
   }
+  function uniq(a) {
+    var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
 
-  function searchSimple (db, searchTerm) {
-    var returnSearch
-    var tagList = tagindex(db)
-    var tag
-    var card
+    return a.filter(function(item) {
+        var type = typeof item;
+        if(type in prims)
+            return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
+        else
+            return objs.indexOf(item) >= 0 ? false : objs.push(item);
+    });
+  }
+
+  function searchSimple(db, searchTerm){
+    var cards = db.getCollection("cards");
     var returnListCards = []
-    for(tag in tagList[0]) {
-      if(tagList[0][tag].match(searchTerm) != null) {
-        for(card in tagList[1][tag]){
-            returnListCards.push(tagList[1][tag][card])
-        }
-      }
+    var cardTags = cards.find({'tags': {'$contains': searchTerm}})
+    var cardNames = cards.find({'name': {'$contains': searchTerm}})
+    var temp1 = 0;
+    var temp2 = 0;
+    if( cardTags != []){
+      console.log(cardTags)
+    for (temp1 in cardTags){
+      returnListCards.push(cardTags[temp1].name)
     }
-    return returnListCards
+  }
+  if( cardNames != []){
+    console.log(cardNames)
+    for (temp2 in cardNames){
+      returnListCards.push(cardNames[temp1].name)
+    }
+}
+    return uniq(returnListCards)
   }
 
   ipcMain.on('Search', function (event, arg) {
@@ -336,14 +353,15 @@ app.on('ready', () => {
   })
 
   ipcMain.on('FileOpen', function (event, arg) {
-    var cards = db.getCollection('cards')
+    var cards = db.getCollection("cards");
     var FileArray = arg
     var foundCard = cards.find({'name' : arg})
     var Title = foundCard[0].name
-    var Tags = foundCard[0].tags
+    var Tags = foundCard[0].tags.split(",")
     var Content = foundCard[0].content
     var TheArray = [Title, Tags, Content]
     event.returnValue = TheArray
+
   })
 
   ipcMain.on('FileManager', function (event, arg) {
@@ -355,18 +373,18 @@ app.on('ready', () => {
   ipcMain.on('FileSave', function (event, arg) {
     console.log(arg)
     // [TitleString, TagString, ContentString]
-    var cards = db.getCollection('cards')
+    var cards = db.getCollection("cards");
 
     var TitleString = arg[0]
-    var TagString = arg[1].split(',')
+    var TagString = arg[1]
     var ContentString = arg[2]
     var temp = cards.find({'name' : TitleString})
-    if (temp.length === 0) {
-      addCardToLoki(db, TitleString, TagString, ContentString)
+    if (temp.length == 0){
+      addCardToLoki(db, TitleString, TagString, ContentString);
       tagindex(db)
-    } else {
+    }else{
         cards.removeWhere({'name' : TitleString})
-        addCardToLoki(db, TitleString, TagString, ContentString)
+        addCardToLoki(db, TitleString, TagString, ContentString);
         tagindex(db)
     }
   })
