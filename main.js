@@ -37,11 +37,11 @@ function tagindex (db) {
   var card;
   var names = [];
   for(tags in cards.data){
-      tempTagList = cards.data[tags].tags.split(",");
+      tempTagList = cards.data[tags].tags.split(" ");
       for(tag in tempTagList){
         var names = [];
         for(card in cards.data){
-          if (cards.data[card].tags.split(",").indexOf(tempTagList[tag]) != -1){
+          if (cards.data[card].tags.split(" ").indexOf(tempTagList[tag]) != -1){
             names.push(cards.data[card].name)
           }
         }
@@ -311,6 +311,7 @@ app.on('ready', () => {
     menu = Menu.buildFromTemplate(template)
     mainWindow.setMenu(menu)
   }
+
   function uniq(a) {
     var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
 
@@ -330,20 +331,22 @@ app.on('ready', () => {
     var cardNames = cards.find({'name': {'$contains': searchTerm}})
     var temp1 = 0;
     var temp2 = 0;
-    if( cardTags != []){
-      console.log(cardTags)
-    for (temp1 in cardTags){
-      returnListCards.push(cardTags[temp1].name)
+
+    if(cardTags != []){
+      for (temp1 in cardTags){
+        returnListCards.push(cardTags[temp1].name)
+      }
     }
-  }
-  if( cardNames != []){
-    console.log(cardNames)
-    for (temp2 in cardNames){
-      returnListCards.push(cardNames[temp1].name)
+
+    if(cardNames != []){
+      for (temp2 in cardNames){
+        returnListCards.push(cardNames[temp2].name)
+      }
     }
-}
     return uniq(returnListCards)
   }
+
+
 
   ipcMain.on('Search', function (event, arg) {
     console.log(arg)
@@ -357,7 +360,7 @@ app.on('ready', () => {
     var FileArray = arg
     var foundCard = cards.find({'name' : arg})
     var Title = foundCard[0].name
-    var Tags = foundCard[0].tags.split(",")
+    var Tags = foundCard[0].tags.split(" ")
     var Content = foundCard[0].content
     var TheArray = [Title, Tags, Content]
     event.returnValue = TheArray
@@ -376,7 +379,7 @@ app.on('ready', () => {
     var cards = db.getCollection("cards");
 
     var TitleString = arg[0]
-    var TagString = arg[1]
+    var TagString = arg[1].replace(",", " ")
     var ContentString = arg[2]
     var temp = cards.find({'name' : TitleString})
     if (temp.length == 0){
