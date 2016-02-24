@@ -6,14 +6,14 @@
     window.$ = window.jQuery = require('jquery');
   </script>
 
-  <meta HTTP-EQUIV="pragma" CONTENT="no-cache">
+  <meta http-equiv="pragma" content="no-cache">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FastFlow</title>
   <link href="css/mui.min.css" rel="stylesheet" type="text/css" />
   <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <link href="css/filemanager.css" rel="stylesheet" type="text/css" />
+  <link href="fileManager/filemanager.css" rel="stylesheet" type="text/css" />
   <script src="js/mui.min.js"></script>
   <script src="js/sidebar.js"></script>
 
@@ -45,19 +45,17 @@
         <strong>Mode</strong>
         <ul>
           <li><a href="app.html">Files</a></li>
-          <li><a href="cardEditor.html">Create a Card</a></li>
+          <li><a href="cardCreator.html">Create a Card</a></li>
           <li><a href="blockEditor.html">Create a Block</a></li>
         </ul>
 
       </li>
       <li>
-
         <div class="mui-textfield">
           <input type="text" placeholder="Search" id="sidebarinput" onkeydown = "searchFunction()">
-          <div id = "searchResults"style="overflow-y:auto;"></div>
+          <div id = "searchResults" style="overflow-y:auto;"></div>
 
           <script src = "js/search.js"></script>
-
         </div>
       </li>
     </ul>
@@ -79,7 +77,7 @@
 
       <div id="thefilemanager"></div>
 
-      <script src="js/filemanager.js"></script>
+      <script src="fileManager/filemanager.js"></script>
 
     </div>
 

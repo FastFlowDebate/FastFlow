@@ -26,7 +26,7 @@ $(document).ready(function () {
   for (i = 0; i < dataJSON[0].length; i++) {
     //Changed from UL here
     var element = document.createElement("UL")
-    var my_string = "unhide(this, '" + i +"')";
+    var my_string = "unhide(this, '" + i +"')"
 
     element.setAttribute("onClick", my_string)
 

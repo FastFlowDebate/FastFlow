@@ -21,12 +21,18 @@
 
   <style>
     body {
-      margin-right: 100px;
+      margin-right: 50px;
       margin-left: 100px;
     }
 
-    #trash {
-      right: -20px;
+    #trash,
+    #share {
+      float: right;
+      margin: 15px;
+    }
+
+    .circleIcons {
+      vertical-align: middle;
     }
   </style>
 
@@ -42,7 +48,7 @@
         <strong>Mode</strong>
         <ul>
           <li><a href="app.html">Files</a></li>
-          <li><a href="cardEditor.html">Create a Card</a></li>
+          <li><a href="cardCreator.html">Create a Card</a></li>
           <li><a href="blockEditor.html">Create a Block</a></li>
         </ul>
       </li>
@@ -69,7 +75,9 @@
 
     <h1>
       <span contenteditable="true" data-ph="Untitled Card" id="title" onclick="saveShow()"></span>
-      <button class="mui-btn mui-btn--fab" id="trash"><i class="fa fa-2x fa-trash-o"></i></button>
+      <button class="mui-btn mui-btn--fab" id="trash"><i class="circleIcons fa fa-2x fa-trash-o"></i></button>
+      <button class="mui-btn mui-btn--fab" id="share"><i class="circleIcons fa-2x fa fa-share"></i></button>
+
 
     </h1>
 
@@ -80,7 +88,7 @@
 
     <button id="saveButton" class="mui-btn mui-btn--primary" onclick="saveFunction()">Save</button>
 
-    <script src="js/cardEditor.js"></script>
+    <script src="cardCreator/cardCreator.js"></script>
   </div>
 
   <script src="js/footer.js"></script>
