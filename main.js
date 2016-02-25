@@ -395,7 +395,7 @@ app.on('ready', () => {
     console.log(arg)
     // [TitleString, TagString, ContentString]
     var cards = db.getCollection("cards");
-
+4
     var TitleString = arg[0]
     var TagString = arg[1].replace(",", " ")
     var ContentString = arg[2]
