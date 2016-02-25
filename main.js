@@ -26,6 +26,17 @@ function addCardToLoki(db, cardName, cardTags, cardContent){
 
   db.saveDatabase();
 }
+/**/
+function removeCard(db, cardName, cardTags, cardContent){
+  var cards = db.getCollection("cards");
+  cards.remove({
+    name:cardName,
+    tags:cardTags,
+    content:cardContent
+  });
+
+  db.saveDatabase();
+}
 
 function tagindex (db) {
   /* tagindexing */
@@ -365,6 +376,13 @@ app.on('ready', () => {
     var TheArray = [Title, Tags, Content]
     event.returnValue = TheArray
 
+  })
+  ipcMain.on('FileRemove', function (event, arg) {
+    //removeCard(db, cardName, cardTags, cardContent)
+    console.log("removing:")
+    console.log(arg)
+    console.log("---------------")
+    removeCard(db, arg[0], arg[1], arg[2])
   })
 
   ipcMain.on('FileManager', function (event, arg) {

@@ -57,7 +57,10 @@
       </li>
       <li>
         <div class="mui-textfield">
-          <input type="text" placeholder="Search" id="sidebarinput">
+          <input type="text" placeholder="Search" id="sidebarinput" onkeydown = "searchFunction()">
+          <div id = "searchResults" style="overflow-y:auto;"></div>
+
+          <script src = "js/search.js"></script>
         </div>
       </li>
     </ul>
