@@ -71,7 +71,7 @@
       <div class="mui-container-fluid">
         <a class="sidedrawer-toggle mui--visible-xs-inline-block js-show-sidedrawer">☰</a>
         <a class="sidedrawer-toggle mui--hidden-xs js-hide-sidedrawer">☰</a>
-        <span class="mui--text-title mui--visible-xs-inline-block" style="color: white;">Card Editor</span>
+        <span class="mui--text-title mui--visible-xs-inline-block" style="color: white;">Card Editor Bueno</span>
       </div>
     </div>
   </header>
@@ -91,6 +91,7 @@
     <div id="content" style="font-size: 18px;" ng-click="showSave = true" ng-bind-html="content"></div>
 
     <button id="saveButton" class="mui-btn mui-btn--primary" ng-show="showSave" ng-click="saveCard()">Save</button>
+    <button id="deleteButton" class="mui-btn mui-btn--primary" ng-show="deleteShow" ng-click="deleteFunction()">Delete</button>
 
     <script src="cardEditor/cardEditor.js"></script>
   </div>

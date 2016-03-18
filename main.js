@@ -378,11 +378,12 @@ app.on('ready', () => {
 
   })
   ipcMain.on('FileRemove', function (event, arg) {
+
     //removeCard(db, cardName, cardTags, cardContent)
     console.log("removing:")
     console.log(arg)
     console.log("---------------")
-    removeCard(db, arg[0], arg[1], arg[2])
+    //removeCard(db, arg[0], arg[1], arg[2])
   })
 
   ipcMain.on('FileManager', function (event, arg) {

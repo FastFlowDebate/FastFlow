@@ -48,6 +48,7 @@ $(document).ready(function () {
     }
   })
   $('#saveButton').hide()
+  $("#deleteButton").hide()
 })
 
 function saveFunction () {
@@ -56,6 +57,11 @@ function saveFunction () {
   var ContentString = $('#content').html()
   ipcRenderer.send('FileSave', [TitleString, TagString, ContentString])
   window.alert('Saved!')
+}
+
+function deleteFunction () {
+  ipcRenderer.send('FileRemove', [TitleString, TagString, ContentString])
+  window.alert('Deleted!')
 }
 
 function saveShow () {
