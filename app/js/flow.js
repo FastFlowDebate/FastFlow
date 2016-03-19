@@ -1,29 +1,23 @@
 $(document).ready(function(){
   //<div class="mui-textfield"><textarea placeholder="Flow"></textarea></div>
-  newTextBox()
+  newContention()
 
 });
 
 var contentionnumber = 0;
 var speechnumber = 0
 
-function newTextBox() {
-  var flowDiv = document.createElement("DIV")
-  flowDiv.setAttribute("class", "mui-textfield")
-
-  var flowTextArea = document.createElement("TEXTAREA")
-  flowTextArea.setAttribute("class", "mui-textfield")
-
-  flowDiv.appendChild(flowTextArea)
-
-  //document.getElementById("flowspace").appendChild(flowDiv)
-  //contentionNumber = contentionNumber + 1
-
-  }
-
 function newContention() {
 
   var newRow = document.createElement("TR")
+
+  var numColumn = document.createElement("TD")
+
+  var contentionText = document.createTextNode(String(contentionnumber + 1))
+
+  numColumn.appendChild(contentionText)
+
+  newRow.appendChild(numColumn)
 
   for (i = 0; i <= speechnumber; i++) {
     var newColumn = document.createElement("TD")
@@ -40,6 +34,8 @@ function newContention() {
   }
 
   //newColumn.appendChild(flowDiv)
+
+  contentionnumber = contentionnumber + 1
 
   document.getElementById("flowspace").appendChild(newRow)
 

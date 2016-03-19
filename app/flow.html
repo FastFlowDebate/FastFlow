@@ -18,21 +18,9 @@
   <link href="alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet">
 <script src="alloy-editor/alloy-editor-all-min.js"></script>
 
-  <style>
-  #left{
-    display: block;
-    float: left;
-  }
-  #right{
-    display: block;
-    float: right;
-  }
-
-  </style>
-
 </head>
 
-<body>
+<body style = "overflow: auto;">
 
   <div id="sidedrawer" class="mui--no-user-select">
     <div id="sidedrawer-brand" class="mui--appbar-line-height mui--text-title" style="background-color: #673AB7; color: white;">FastFlow</div>
@@ -68,13 +56,11 @@
     <div class="mui--appbar-height"></div>
 
     <div class="mui-container-fluid">
-      <div id = "left">
+
       <table id="flowspace"></table>
-    </div>
-      <div id = "right">
-      <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newContention()">+</button>
-      <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newSpeech()">speech</button>
-    </div>
+
+      <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newContention()">C</button>
+      <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newSpeech()">S</button>
 
       <script src="js/flow.js"></script>
 
