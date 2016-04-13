@@ -1,9 +1,3 @@
-$(document).ready(function(){
-  //<div class="mui-textfield"><textarea placeholder="Flow"></textarea></div>
-  newContention()
-
-});
-
 var contentionnumber = 0;
 var speechnumber = 0
 
@@ -13,23 +7,19 @@ function newContention() {
 
   var numColumn = document.createElement("TD")
 
-  var contentionText = document.createTextNode(String(contentionnumber + 1))
-
-  numColumn.appendChild(contentionText)
-
   newRow.appendChild(numColumn)
 
   for (i = 0; i <= speechnumber; i++) {
     var newColumn = document.createElement("TD")
 
-    var flowDiv = document.createElement("DIV")
-    flowDiv.setAttribute("class", "mui-textfield")
+    //var flowDiv = document.createElement("DIV")
+    //flowDiv.setAttribute("class", "mui-textfield")
 
     var flowTextArea = document.createElement("TEXTAREA")
-    flowTextArea.setAttribute("class", "mui-textfield")
+    //flowTextArea.setAttribute("class", "mui-textfield")
 
-    flowDiv.appendChild(flowTextArea)
-    newColumn.appendChild(flowDiv)
+    //flowDiv.appendChild(flowTextArea)
+    newColumn.appendChild(flowTextArea)
     newRow.appendChild(newColumn)
   }
 
@@ -44,16 +34,16 @@ function newContention() {
 }
 
 function newSpeech() {
-  var flowDiv = document.createElement("DIV")
-  flowDiv.setAttribute("class", "mui-textfield")
+  //var flowDiv = document.createElement("DIV")
+  //flowDiv.setAttribute("class", "mui-textfield")
 
   var flowTextArea = document.createElement("TEXTAREA")
-  flowTextArea.setAttribute("class", "mui-textfield")
+  //flowTextArea.setAttribute("class", "mui-textfield")
 
-  flowDiv.appendChild(flowTextArea)
+  //flowDiv.appendChild(flowTextArea)
   var newColumn = document.createElement("TD")
 
-  newColumn.appendChild(flowDiv)
+  newColumn.appendChild(flowTextArea)
 
   speechnumber = speechnumber + 1
 
