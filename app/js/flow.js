@@ -16,10 +16,20 @@ function newContention() {
     //flowDiv.setAttribute("class", "mui-textfield")
 
     var flowTextArea = document.createElement("TEXTAREA")
+
+
+    var link = document.createElement('a');
+    var linktext = document.createTextNode("x")
+    link.onclick = function() {
+        document.getElementById("txtField").value = "";
+    }
+    link.appendChild(linktext)
+
     //flowTextArea.setAttribute("class", "mui-textfield")
 
     //flowDiv.appendChild(flowTextArea)
     newColumn.appendChild(flowTextArea)
+    newColumn.appendChild(link)
     newRow.appendChild(newColumn)
   }
 
@@ -40,10 +50,19 @@ function newSpeech() {
   var flowTextArea = document.createElement("TEXTAREA")
   //flowTextArea.setAttribute("class", "mui-textfield")
 
+
+  var link = document.createElement('a');
+  var linktext = document.createTextNode("x")
+  link.onclick = function() {
+      document.getElementById("txtField").value = "";
+  }
+  link.appendChild(linktext)
+
   //flowDiv.appendChild(flowTextArea)
   var newColumn = document.createElement("TD")
 
   newColumn.appendChild(flowTextArea)
+  newColumn.appendChild(link)
 
   speechnumber = speechnumber + 1
 
