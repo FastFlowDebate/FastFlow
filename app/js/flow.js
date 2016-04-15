@@ -4,6 +4,7 @@ var speechnumber = 0
 function newContention() {
 
   var newRow = document.createElement("TR")
+  newRow.className = "externalTD"
 
   var numColumn = document.createElement("TD")
 
@@ -12,28 +13,63 @@ function newContention() {
   for (i = 0; i <= speechnumber; i++) {
     var newColumn = document.createElement("TD")
 
-    //var flowDiv = document.createElement("DIV")
-    //flowDiv.setAttribute("class", "mui-textfield")
+
+    ////////////////////////////////////////////////////////////
 
     var flowTextArea = document.createElement("TEXTAREA")
-
-
-    var link = document.createElement('a');
-    var linktext = document.createTextNode("x")
-    link.onclick = function() {
-        document.getElementById("txtField").value = "";
+    var flowTextAreaTD = document.createElement('TD')
+    flowTextAreaTD.appendChild(flowTextArea)
+////
+    var linkTop = document.createElement('a');
+    var linktextTop = document.createTextNode("x")
+    linkTop.onclick = function() {
+        window.alert("top")
     }
-    link.appendChild(linktext)
+    var linkTopTD = document.createElement('TD')
+    linkTop.appendChild(linktextTop)
+    linkTopTD.appendChild(linkTop)
+/////
 
-    //flowTextArea.setAttribute("class", "mui-textfield")
+    var linkCorner = document.createElement('a');
+    var linktextCorner = document.createTextNode("x")
+    linkCorner.onclick = function() {
+        window.alert("corner")
+    }
+    var linkCornerTD = document.createElement('TD')
+    linkCorner.appendChild(linktextCorner)
+    linkCornerTD.appendChild(linkCorner)
+/////
+    var linkRight = document.createElement('a');
+    var linktextRight = document.createTextNode("x")
+    linkRight.onclick = function() {
+        window.alert("right")
+    }
+    var linkRightTD = document.createElement('TD')
+    linkRight.appendChild(linktextRight)
+    linkRightTD.appendChild(linkRight)
+/////
 
-    //flowDiv.appendChild(flowTextArea)
-    newColumn.appendChild(flowTextArea)
-    newColumn.appendChild(link)
+////
+    var topColumn = document.createElement('TR')
+    topColumn.appendChild(linkTopTD)
+    topColumn.appendChild(linkCornerTD)
+  ////
+    var bottomColumn = document.createElement('TR')
+    bottomColumn.appendChild(flowTextAreaTD)
+    bottomColumn.appendChild(linkRightTD)
+/////
+    var textModule = document.createElement('TABLE')
+    textModule.appendChild(topColumn)
+    textModule.appendChild(bottomColumn)
+
+
+
+////////////////////////////////////////////////////////
+
+    newColumn.appendChild(textModule)
     newRow.appendChild(newColumn)
   }
 
-  //newColumn.appendChild(flowDiv)
 
   contentionnumber = contentionnumber + 1
 
@@ -43,28 +79,72 @@ function newContention() {
 
 }
 
+
+
+
+//##########################################################################
+
 function newSpeech() {
-  //var flowDiv = document.createElement("DIV")
-  //flowDiv.setAttribute("class", "mui-textfield")
+
+  ////////////////////////////////////////////////////////////
 
   var flowTextArea = document.createElement("TEXTAREA")
-  //flowTextArea.setAttribute("class", "mui-textfield")
-
-
-  var link = document.createElement('a');
-  var linktext = document.createTextNode("x")
-  link.onclick = function() {
-      document.getElementById("txtField").value = "";
+  var flowTextAreaTD = document.createElement('TD')
+  flowTextAreaTD.appendChild(flowTextArea)
+////
+  var linkTop = document.createElement('a');
+  var linktextTop = document.createTextNode("x")
+  linkTop.onclick = function() {
+      window.alert("top")
   }
-  link.appendChild(linktext)
+  var linkTopTD = document.createElement('TD')
+  linkTop.appendChild(linktextTop)
+  linkTopTD.appendChild(linkTop)
+/////
 
-  //flowDiv.appendChild(flowTextArea)
+  var linkCorner = document.createElement('a');
+  var linktextCorner = document.createTextNode("x")
+  linkCorner.onclick = function() {
+      window.alert("corner")
+  }
+  var linkCornerTD = document.createElement('TD')
+  linkCorner.appendChild(linktextCorner)
+  linkCornerTD.appendChild(linkCorner)
+/////
+  var linkRight = document.createElement('a');
+  var linktextRight = document.createTextNode("x")
+  linkRight.onclick = function() {
+      window.alert("right")
+  }
+  var linkRightTD = document.createElement('TD')
+  linkRight.appendChild(linktextRight)
+  linkRightTD.appendChild(linkRight)
+/////
+
+////
+  var topColumn = document.createElement('TR')
+  topColumn.appendChild(linkTopTD)
+  topColumn.appendChild(linkCornerTD)
+////
+  var bottomColumn = document.createElement('TR')
+  bottomColumn.appendChild(flowTextAreaTD)
+  bottomColumn.appendChild(linkRightTD)
+/////
+  var textModule = document.createElement('TABLE')
+  textModule.appendChild(topColumn)
+  textModule.appendChild(bottomColumn)
+
+
+
+////////////////////////////////////////////////////////
+
+
+
   var newColumn = document.createElement("TD")
 
-  newColumn.appendChild(flowTextArea)
-  newColumn.appendChild(link)
+  newColumn.appendChild(textModule)
 
   speechnumber = speechnumber + 1
 
-  $("tr").append(newColumn);
+  $(".externalTD").append(newColumn);
 }
