@@ -60,7 +60,8 @@ function saveFunction () {
 }
 
 function deleteFunction () {
-  ipcRenderer.send('FileRemove', [TitleString, TagString, ContentString])
+  var TitleString = $('#title').text()
+  ipcRenderer.send('FileRemove', TitleString)
   window.alert('Deleted!')
 
 }

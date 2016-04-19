@@ -1,3 +1,9 @@
+#0.31 (2016.4.18)
+####a bit more progress####
+-- **deleting works**
+-- **** the stuff doesnt build because of some webpack thingy**
+-- **pls fix so this can build**
+
 #0.30 (2016.4.18)
 ####pls start working again guys, i want to finish this before college####
 -- **delete button that does nothing added**

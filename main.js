@@ -385,6 +385,7 @@ function deleteCard(db, cardName){
   ipcMain.on('FileRemove', function (event, arg) {
 
     //removeCard(db, cardName, cardTags, cardContent)
+    deleteCard(db, arg)
     console.log("removing:")
     console.log(arg)
     console.log("---------------")

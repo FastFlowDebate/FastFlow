@@ -148,3 +148,30 @@ function newSpeech() {
 
   $(".externalTD").append(newColumn);
 }
+
+/*--
+var contentionnumber = 0;
+var speechnumber = 0;
+
+function newSpeech() {
+  for (i = 0; i <= contentionnumber; i++) {
+    //var firstRow = document.getElementById("flowspace").rows[i];
+    var x = $("tr").insertCell(-1);
+    x.innerHTML = "hi"
+  }
+
+  speechnumber = speechnumber + 1
+
+}
+
+function newContention() {
+    var table = document.getElementById("flowspace");
+    var row = table.insertRow(-1);
+    for (i = 0; i <= speechnumber; i++) {
+      var cell = row.insertCell(-1);
+      cell.innerHTML = "hi"
+    }
+
+    contentionnumber = contentionnumber + 1
+
+}
