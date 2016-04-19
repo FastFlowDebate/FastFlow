@@ -1,3 +1,13 @@
+#0.30 (2016.4.18)
+####pls start working again guys, i want to finish this before college####
+-- **delete button that does nothing added**
+-- **removed changes from Adam's angular stuff**
+-- **do we still need server.js?*
+-- ** the stuff doesnt build because of some webpack thingy**
+-- **pls fix so this can build**
+-- **DELETE EVERYTHING AND RE-CLONE SO YOU DONT ADD OLD FILES BACK**
+
+
 #0.28 (2016.2.12)
 ####SEARCH####
 -- **searching implemented in sidebar.**
