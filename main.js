@@ -335,6 +335,11 @@ app.on('ready', () => {
     });
   }
 
+function deleteCard(db, cardName){
+  var cards = db.getCollection("cards");
+  cards.removeWhere({'name': {'$eq': cardName}})
+}
+
   function searchSimple(db, searchTerm){
     var cards = db.getCollection("cards");
     var returnListCards = []
