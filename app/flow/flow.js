@@ -14,16 +14,19 @@ function deleteColumn(cell){
  }
 
 }
+function clearText(x,y){
+  var theTextBox = document.getElementById(String(x)+"_"+String(y));
+  theTextBox.value = "";;
 
-function clearText() {
-  window.alert("corner")
 }
+
+
 function createCell(cell) {
 
     var content = document.createElement('DIV');
 
     var string = "<table><tr><td><a href = \"#\" onclick = deleteColumn(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex)>x</a></td>";
-    string += "<td><a href = \"#\" onclick = clearText()>x</a></td></tr>";
+    string += "<td><a href = \"#\" onclick = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[0].value=\"\">x</a></td></tr>";
     string += "<tr><td><textarea></textarea></td>";
     string += "<td><a href = \"#\" onclick = deleteRow(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex)>x</a></td></tr></table>";
     content.innerHTML = string;
