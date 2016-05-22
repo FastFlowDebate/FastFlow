@@ -1,177 +1,50 @@
-var contentionnumber = 0;
-var speechnumber = 0
+function deleteRow(row){
+  window.alert(row)
+  var tbl = document.getElementById('flowspace')
+      tbl.deleteRow(row)
+}
 
-function newContention() {
+function deleteColumn(cell){
+  window.alert(cell)
+   var tbl = document.getElementById('flowspace')
+   for (i = 0; i < tbl.rows.length; i++) {
+       tbl.rows[i].deleteCell(cell)
+   }
+}
 
-  var newRow = document.createElement("TR")
-  newRow.className = "externalTD"
+function clearText() {
+  window.alert("corner")
+}
+function createCell(cell) {
 
-  var numColumn = document.createElement("TD")
+    var content = document.createElement('DIV');
 
-  newRow.appendChild(numColumn)
-
-  for (i = 0; i <= speechnumber; i++) {
-    var newColumn = document.createElement("TD")
-
-
-    ////////////////////////////////////////////////////////////
-
-    var flowTextArea = document.createElement("TEXTAREA")
-    var flowTextAreaTD = document.createElement('TD')
-    flowTextAreaTD.appendChild(flowTextArea)
-////
-    var linkTop = document.createElement('a');
-    var linktextTop = document.createTextNode("x")
-    linkTop.onclick = function() {
-        window.alert("top")
-    }
-    var linkTopTD = document.createElement('TD')
-    linkTop.appendChild(linktextTop)
-    linkTopTD.appendChild(linkTop)
-/////
-
-    var linkCorner = document.createElement('a');
-    var linktextCorner = document.createTextNode("x")
-    linkCorner.onclick = function() {
-        window.alert("corner")
-    }
-    var linkCornerTD = document.createElement('TD')
-    linkCorner.appendChild(linktextCorner)
-    linkCornerTD.appendChild(linkCorner)
-/////
-    var linkRight = document.createElement('a');
-    var linktextRight = document.createTextNode("x")
-    linkRight.onclick = function() {
-        window.alert("right")
-    }
-    var linkRightTD = document.createElement('TD')
-    linkRight.appendChild(linktextRight)
-    linkRightTD.appendChild(linkRight)
-/////
-
-////
-    var topColumn = document.createElement('TR')
-    topColumn.appendChild(linkTopTD)
-    topColumn.appendChild(linkCornerTD)
-  ////
-    var bottomColumn = document.createElement('TR')
-    bottomColumn.appendChild(flowTextAreaTD)
-    bottomColumn.appendChild(linkRightTD)
-/////
-    var textModule = document.createElement('TABLE')
-    textModule.appendChild(topColumn)
-    textModule.appendChild(bottomColumn)
-
-
-
-////////////////////////////////////////////////////////
-
-    newColumn.appendChild(textModule)
-    newRow.appendChild(newColumn)
-  }
-
-
-  contentionnumber = contentionnumber + 1
-
-  document.getElementById("flowspace").appendChild(newRow)
-
-
+    var string = "<table><tr><td><a href = \"#\" onclick = deleteColumn(" + String(cell.cellIndex) + ")>x</a></td>";
+    string += "<td><a href = \"#\" onclick = clearText()>x</a></td></tr>";
+    string += "<tr><td><textarea></textarea></td>";
+    string += "<td><a href = \"#\" onclick = deleteRow(" + String(cell.parentNode.rowIndex) + ")>x</a></td></tr></table>";
+    content.innerHTML = string;
+    cell.appendChild(content);
 
 }
 
-
-
-
-//##########################################################################
-
 function newSpeech() {
-
-  ////////////////////////////////////////////////////////////
-
-  var flowTextArea = document.createElement("TEXTAREA")
-  var flowTextAreaTD = document.createElement('TD')
-  flowTextAreaTD.appendChild(flowTextArea)
-////
-  var linkTop = document.createElement('a');
-  var linktextTop = document.createTextNode("x")
-  linkTop.onclick = function() {
-      window.alert("top")
-  }
-  var linkTopTD = document.createElement('TD')
-  linkTop.appendChild(linktextTop)
-  linkTopTD.appendChild(linkTop)
-/////
-
-  var linkCorner = document.createElement('a');
-  var linktextCorner = document.createTextNode("x")
-  linkCorner.onclick = function() {
-      window.alert("corner")
-  }
-  var linkCornerTD = document.createElement('TD')
-  linkCorner.appendChild(linktextCorner)
-  linkCornerTD.appendChild(linkCorner)
-/////
-  var linkRight = document.createElement('a');
-  var linktextRight = document.createTextNode("x")
-  linkRight.onclick = function() {
-      window.alert("right")
-  }
-  var linkRightTD = document.createElement('TD')
-  linkRight.appendChild(linktextRight)
-  linkRightTD.appendChild(linkRight)
-/////
-
-////
-  var topColumn = document.createElement('TR')
-  topColumn.appendChild(linkTopTD)
-  topColumn.appendChild(linkCornerTD)
-////
-  var bottomColumn = document.createElement('TR')
-  bottomColumn.appendChild(flowTextAreaTD)
-  bottomColumn.appendChild(linkRightTD)
-/////
-  var textModule = document.createElement('TABLE')
-  textModule.appendChild(topColumn)
-  textModule.appendChild(bottomColumn)
-
-
-
-////////////////////////////////////////////////////////
-
-
-
-  var newColumn = document.createElement("TD")
-
-  newColumn.appendChild(textModule)
-
-  speechnumber = speechnumber + 1
-
-  $(".externalTD").append(newColumn);
-}
-
-/*--
-var contentionnumber = 0;
-var speechnumber = 0;
-
-function newSpeech() {
-  for (i = 0; i <= contentionnumber; i++) {
-    //var firstRow = document.getElementById("flowspace").rows[i];
-    var x = $("tr").insertCell(-1);
-    x.innerHTML = "hi"
-  }
-
-  speechnumber = speechnumber + 1
+  var tbl = document.getElementById('flowspace'), // table reference
+        i;
+    // open loop for each row and append cell
+    for (i = 0; i < tbl.rows.length; i++) {
+        createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length));
+    }
 
 }
 
 function newContention() {
-    var table = document.getElementById("flowspace");
-    var row = table.insertRow(-1);
-    for (i = 0; i <= speechnumber; i++) {
-      var cell = row.insertCell(-1);
-      cell.innerHTML = "hi"
-    }
-
-    contentionnumber = contentionnumber + 1
+  var tbl = document.getElementById('flowspace'), // table reference
+      row = tbl.insertRow(tbl.rows.length),      // append table row
+      i;
+  // insert table cells to the new row
+  for (i = 0; i < tbl.rows[0].cells.length; i++) {
+      createCell(row.insertCell(i));
+  }
 
 }

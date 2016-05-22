@@ -13,7 +13,6 @@
 -- **pls fix so this can build**
 -- **DELETE EVERYTHING AND RE-CLONE SO YOU DONT ADD OLD FILES BACK**
 
-
 #0.28 (2016.2.12)
 ####SEARCH####
 -- **searching implemented in sidebar.**

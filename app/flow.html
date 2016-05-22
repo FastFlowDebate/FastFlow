@@ -58,7 +58,33 @@
 
     <div class="mui-container-fluid">
 
-      <table id="flowspace"></table>
+      <table id="flowspace">
+        <tr>
+          <td>
+            <div>
+              <table>
+                <tr>
+                  <td>
+                    <a href = "#" onclick = deleteColumn(0)>x</a>
+                  </td>
+                  <td>
+                    <a href = "#" onclick = clearText(0)>x</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <textarea></textarea>
+                  </td>
+                  <td>
+                    <a href = "#" onclick = deleteRow(0)>x</a>
+                  </td>
+                </tr>
+             </table>
+         </div>
+         </td>
+       </tr>
+      </table>
+
 
       <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newContention()">C</button>
       <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newSpeech()">S</button>
