@@ -1,15 +1,18 @@
 function deleteRow(row){
-  window.alert(row)
   var tbl = document.getElementById('flowspace')
+  if (tbl.rows.length > 1) {
       tbl.deleteRow(row)
+    }
 }
 
 function deleteColumn(cell){
-  window.alert(cell)
    var tbl = document.getElementById('flowspace')
-   for (i = 0; i < tbl.rows.length; i++) {
-       tbl.rows[i].deleteCell(cell)
-   }
+   if (tbl.rows[0].cells.length > 1){
+     for (i = 0; i < tbl.rows.length; i++) {
+         tbl.rows[i].deleteCell(cell)
+     }
+ }
+
 }
 
 function clearText() {
@@ -19,10 +22,10 @@ function createCell(cell) {
 
     var content = document.createElement('DIV');
 
-    var string = "<table><tr><td><a href = \"#\" onclick = deleteColumn(" + String(cell.cellIndex) + ")>x</a></td>";
+    var string = "<table><tr><td><a href = \"#\" onclick = deleteColumn(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex)>x</a></td>";
     string += "<td><a href = \"#\" onclick = clearText()>x</a></td></tr>";
     string += "<tr><td><textarea></textarea></td>";
-    string += "<td><a href = \"#\" onclick = deleteRow(" + String(cell.parentNode.rowIndex) + ")>x</a></td></tr></table>";
+    string += "<td><a href = \"#\" onclick = deleteRow(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex)>x</a></td></tr></table>";
     content.innerHTML = string;
     cell.appendChild(content);
 
