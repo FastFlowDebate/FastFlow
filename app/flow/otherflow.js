@@ -2,10 +2,10 @@ function createCell(cell) {
 
     var content = document.createElement('DIV');
 
-    var string = "<table><tr><td><a href = \"#\" tabindex='500' onclick = deleteColumn(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex)>x</a></td>";
-    string += "<td><a href = \"#\" tabindex='500' onclick = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[0].value=\"\">x</a></td></tr>";
+    var string = "<table><tr><td><a href = \"#\" onclick = deleteColumn(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex)>x</a></td>";
+    string += "<td><a href = \"#\" onclick = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[0].value=\"\">x</a></td></tr>";
     string += "<tr><td><div contenteditable=\"true\" class=\"textbox\"></div></td>";
-    string += "<td><a href = \"#\" tabindex='500' onclick = deleteRow(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex)>x</a></td></tr></table>";
+    string += "<td><a href = \"#\" onclick = deleteRow(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex)>x</a></td></tr></table>";
     content.innerHTML = string;
     $(".content").addClass('textBoxDiv')
     cell.appendChild(content);
