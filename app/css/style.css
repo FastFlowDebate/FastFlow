@@ -176,3 +176,9 @@ buttons {
   overflow: auto;
   padding: 20px;
 }
+
+textarea {
+  outline: none;
+  border-width: 0;
+  background-color: aqua;
+}
