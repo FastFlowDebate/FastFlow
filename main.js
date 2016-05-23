@@ -1,6 +1,7 @@
 'use strict'
 
 const loki = require("lokijs")
+
 const db = new loki('mainDatabase.ffdb',
   {
     autoload: true,
@@ -9,6 +10,14 @@ const db = new loki('mainDatabase.ffdb',
     autosaveInterval: 10000,
   });
 
+  const db2 = new loki('flowDB.ffdb',
+    {
+      autoload: true,
+      autoloadCallback : loadHandler,
+      autosave: true,
+      autosaveInterval: 10000,
+    });
+
 function loadHandler() {
   var coll = db.getCollection('cards');
   if (coll === null) {
@@ -16,31 +25,31 @@ function loadHandler() {
   }
 }
 
-function addCardToLoki(db, cardName, cardTags, cardContent){
-  var cards = db.getCollection("cards");
+function addCardToLoki(datab, cardName, cardTags, cardContent){
+  var cards = datab.getCollection("cards");
   cards.insert({
     name:cardName,
     tags:cardTags,
     content:cardContent
   });
 
-  db.saveDatabase();
+  datab.saveDatabase();
 }
 /**/
-function removeCard(db, cardName, cardTags, cardContent){
-  var cards = db.getCollection("cards");
+function removeCard(datab, cardName, cardTags, cardContent){
+  var cards = datab.getCollection("cards");
   cards.remove({
     name:cardName,
     tags:cardTags,
     content:cardContent
   });
 
-  db.saveDatabase();
+  datab.saveDatabase();
 }
 
-function tagindex (db) {
+function tagindex (datab) {
   /* tagindexing */
-  var cards = db.getCollection("cards");
+  var cards = datab.getCollection("cards");
   var tagArray = {};
   var tag;
   var tags;
@@ -335,13 +344,20 @@ app.on('ready', () => {
     });
   }
 
-function deleteCard(db, cardName){
-  var cards = db.getCollection("cards");
+function deleteCard(datab, cardName){
+  var cards = datab.getCollection("cards");
   cards.removeWhere({'name': {'$eq': cardName}})
 }
 
-  function searchSimple(db, searchTerm){
-    var cards = db.getCollection("cards");
+function getCard(datab, searchTerm){
+  var cards = datab.getCollection("cards");
+  var cardNames = cards.find({'name': {'$contains': searchTerm}});
+  return cardNames;
+}
+
+
+  function searchSimple(datab, searchTerm){
+    var cards = datab.getCollection("cards");
     var returnListCards = []
     var cardTags = cards.find({'tags': {'$contains': searchTerm}})
     var cardNames = cards.find({'name': {'$contains': searchTerm}})
@@ -382,10 +398,33 @@ function deleteCard(db, cardName){
     event.returnValue = TheArray
 
   })
+
+  ipcMain.on('FlowOpen', function (event, arg) {
+    var cards = db2.getCollection("cards");
+    var FileArray = arg
+    var foundCard = cards.find({'name' : arg})
+    var Title = foundCard[0].name
+    var Tags = ""
+    var Content = foundCard[0].content
+    var TheArray = [Title, Tags, Content]
+    event.returnValue = TheArray
+
+  })
+
   ipcMain.on('FileRemove', function (event, arg) {
 
     //removeCard(db, cardName, cardTags, cardContent)
     deleteCard(db, arg)
+    console.log("removing:")
+    console.log(arg)
+    console.log("---------------")
+    //removeCard(db, arg[0], arg[1], arg[2])
+  })
+
+  ipcMain.on('FlowRemove', function (event, arg) {
+
+    //removeCard(db, cardName, cardTags, cardContent)
+    deleteCard(db2, arg)
     console.log("removing:")
     console.log(arg)
     console.log("---------------")
@@ -415,4 +454,20 @@ function deleteCard(db, cardName){
         tagindex(db)
     }
   })
+})
+
+ipcMain.on('FlowSave', function (event, arg) {
+  console.log(arg)
+  // [TitleString, TagString, ContentString]
+  var cards = db2.getCollection("cards");
+  var TitleString = arg[0]
+  var TagString = ""
+  var ContentString = arg[2]
+  var temp = cards.find({'name' : TitleString})
+  if (temp.length == 0){
+    addCardToLoki(db2, TitleString, TagString, ContentString);
+  }else{
+      cards.removeWhere({'name' : TitleString})
+      addCardToLoki(db2, TitleString, TagString, ContentString);
+  }
 })
