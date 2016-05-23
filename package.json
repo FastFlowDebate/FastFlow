@@ -5,10 +5,7 @@
   "description": "Debate application for keeping your files organized",
   "main": "main.js",
   "scripts": {
-    "test": "better-npm-run test",
-    "test-watch": "npm test -- --watch",
-    "test-e2e:crdv": "chromedriver",
-    "test-e2e": "better-npm-run test-e2e",
+    "test": "echo lol no",,
     "lint": "eslint app test *.js",
     "hot-server": "node server.js",
     "build": "better-npm-run build",
