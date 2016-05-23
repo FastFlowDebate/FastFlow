@@ -5,7 +5,7 @@
   "description": "Debate application for keeping your files organized",
   "main": "main.js",
   "scripts": {
-    "test": "echo lol no",,
+    "test": "echo lol no",
     "lint": "eslint app test *.js",
     "hot-server": "node server.js",
     "build": "better-npm-run build",
