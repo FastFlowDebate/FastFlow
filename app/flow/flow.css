@@ -1,0 +1,12 @@
+.textbox{
+  width: 200px;
+  min-height: 50px;
+  border-bottom-style: solid;
+  border-bottom-color: #757575;
+  border-bottom-width: 1px;
+}
+
+#flowspace td{
+  vertical-align:top;
+  padding: 2px;
+}

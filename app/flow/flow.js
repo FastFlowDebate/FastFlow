@@ -1,25 +1,37 @@
-function deleteRow(row){
-  var tbl = document.getElementById('flowspace')
-  if (tbl.rows.length > 1) {
-      tbl.deleteRow(row)
+var Selections = [{
+        name: 'link',
+        buttons: ['linkEdit'],
+        test: AlloyEditor.SelectionTest.link
+    }, {
+        name: 'image',
+        buttons: ['imageLeft', 'imageRight'],
+        test: AlloyEditor.SelectionTest.image
+    }, {
+        name: 'text',
+        buttons: ['bold', 'italic', 'underline', 'link'],
+        test: AlloyEditor.SelectionTest.text
+    }, {
+        name: 'table',
+        buttons: ['tableRow', 'tableColumn', 'tableCell', 'tableRemove'],
+        getArrowBoxClasses: AlloyEditor.SelectionGetArrowBoxClasses.table,
+        setPosition: AlloyEditor.SelectionSetPosition.table,
+        test: AlloyEditor.SelectionTest.table
+}]
+
+$(document).ready(function () {
+  var editor = AlloyEditor.editable('.textbox', {
+    toolbars: {
+      add: {
+        buttons: ['hline', 'table'],
+        tabIndex: 2
+      },
+      styles: {
+        selections: Selections,
+        tabIndex: 1
+      }
     }
-}
-
-function deleteColumn(cell){
-   var tbl = document.getElementById('flowspace')
-   if (tbl.rows[0].cells.length > 1){
-     for (i = 0; i < tbl.rows.length; i++) {
-         tbl.rows[i].deleteCell(cell)
-     }
- }
-
-}
-function clearText(x,y){
-  var theTextBox = document.getElementById(String(x)+"_"+String(y));
-  theTextBox.value = "";;
-
-}
-
+  })
+})
 
 function createCell(cell) {
 
@@ -30,6 +42,7 @@ function createCell(cell) {
     string += "<tr><td><textarea class='mui-panel mui--z3'></textarea></td>";
     string += "<td><a href = \"#\" tabindex='500' onclick = deleteRow(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex)>x</a></td></tr></table>";
     content.innerHTML = string;
+    $(".content").addClass('textBoxDiv')
     cell.appendChild(content);
 
 }
