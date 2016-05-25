@@ -182,7 +182,3 @@ textarea {
   border-width: 0;
   background-color: aqua;
 }
-
-#flowspace {
-  flex-direction: column;
-}
