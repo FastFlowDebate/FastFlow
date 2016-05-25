@@ -1,3 +1,5 @@
+const ipcRenderer = require('electron').ipcRenderer
+
 function createCell(cell) {
 
     var content = document.createElement('DIV');
@@ -31,4 +33,52 @@ function newContention() {
       createCell(row.insertCell(i));
   }
 
+}
+
+$(document).ready(function () {
+  $('#deleteButton').hide()
+  $('#saveButton').hide()
+})
+
+function buttonShow () {
+  $('#deleteButton').show()
+  $('#saveButton').show()
+}
+
+$(document).ready(function () {
+  var theURI = window.location.search
+
+  if (theURI.length > 0) {
+    var decodedURI = decodeURIComponent(theURI).substring(1).split("\\")
+
+    FileArray = ipcRenderer.sendSync('FlowOpen', decodedURI[decodedURI.length - 1])
+
+    document.getElementById('title').innerHTML = FileArray[0]
+    document.getElementById('tags').innerHTML = FileArray[1]
+    document.getElementById('flowspace').innerHTML = FileArray[2]
+  }
+})
+
+function saveFunction () {
+  var TitleString = $('#title').text()
+  var TagString = $('#tags').text()
+  var ContentString = $('#flowspace').html()
+  ipcRenderer.send('FlowSave', [TitleString, TagString, ContentString])
+  console.log(TitleString)
+  console.log(TagString)
+  console.log(ContentString)
+
+  window.alert('Saved!')
+}
+
+function deleteFunction () {
+  var TitleString = $('#title').text()
+  ipcRenderer.send('FlowRemove', TitleString)
+  window.alert('Deleted!')
+
+}
+
+function buttonShow () {
+  $('#deleteButton').show()
+  $('#saveButton').show()
 }

@@ -461,7 +461,7 @@ ipcMain.on('FlowSave', function (event, arg) {
   // [TitleString, TagString, ContentString]
   var cards = db2.getCollection("cards");
   var TitleString = arg[0]
-  var TagString = ""
+  var TagString = arg[1]
   var ContentString = arg[2]
   var temp = cards.find({'name' : TitleString})
   if (temp.length == 0){
