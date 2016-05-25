@@ -58,7 +58,7 @@
 
 			<table id="flowspace">
 				<div class="row" ng-repeat="r in flow track by $index">
-          {{$index}}
+          {{$index + 1}}
 					<span class="cell mui-panel" ng-repeat="cell in r track by $index">
             <div class="mui-textfield">
               <textarea ng-model="cell"></textarea>
