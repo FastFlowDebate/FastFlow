@@ -3,15 +3,17 @@
 
 <head>
 	<script>
-		window.$ = window.jQuery = require('jquery');
-	</script>
+    window.$ = window.jQuery = require('jquery');
+  </script>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>FastFlow</title>
 	<link href="css/mui.min.css" rel="stylesheet" type="text/css" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
-  <link href="css/flow.css" rel="stylesheet" type="text/css" />
+	<link href="css/flow.css" rel="stylesheet" type="text/css" />
+	<link href="../node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
+
 
 	<script src="../node_modules/angular/angular.js"></script>
 	<script src="../node_modules/jquery/dist/jquery.js"></script>
@@ -61,20 +63,31 @@
 
 			<table id="flowspace">
 				<div class="row" ng-repeat="r in flow track by $index">
-          {{$index + 1}}
+					{{$index + 1}}
 					<span class="cell mui-panel" ng-repeat="cell in r track by $index">
-            <div class="mui-textfield">
-              <textarea ng-model="cell"></textarea>
-            </div>
-          </span>
-          <button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="r.push('Extensions!')">+</button>
+						<div class="mui-textfield">
+							<textarea ng-model="cell.text"></textarea>
+						</div>
+
+						<button class="mui-btn mui-btn--fab mui-btn--primary cardButton" ng-click="r.cards.push('memes')">
+							<span class="fa fa-archive fa-fw" aria-hidden="true"></span>
+						</button>
+						<button class="mui-btn mui-btn--fab mui-btn--primary cardButton" ng-click="cell.cards.push({'tag':'memes', 'content':'swag'})">
+							<span class="fa fa-plus fa-fw" aria-hidden="true"></span>
+						</button>
+
+						<div class="card mui-panel" ng-repeat="card in cell.cards">
+								<input type="text" class="tagInput" ng-model="card.tag">
+								<textarea ng-model="card.content"></textarea>
+						</div>
+					</span>
+					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="r.push({'text': 'Racism is bad','cards': [{'tag': 'Yaomomoako', 'content': 'stuff like racism is bad'}]})">+</button>
 				</div>
 
-				<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="flow.push(['NewContention'])">C</button>
-				<button class="mui-btn mui-btn--fab mui-btn--primary" onclick="newSpeech()">S</button>
-        {{flow}}
+				<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="flow.push([{'text': 'Bad is unjust','cards': []}])">C</button>
+				<br>{{flow}}
 				<script src="flow/flow2.js"></script>
-      </table>
+			</table>
 		</div>
 	</div>
 </body>
