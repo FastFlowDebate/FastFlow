@@ -8,5 +8,24 @@
 
 #flowspace td{
   vertical-align:top;
-  padding: 2px;
+}
+
+#flowspace a{
+  color: #BDBDBD;
+  text-decoration: none;
+}
+
+#flowspace a:visited{
+  color: #BDBDBD;
+  text-decoration: none;
+}
+
+#flowspace a:hover{
+  color: #0277BD;
+  text-decoration: none;
+}
+
+#flowspace a:active{
+  color: #0277BD;
+  text-decoration: none;
 }

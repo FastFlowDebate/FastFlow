@@ -1,15 +1,48 @@
 const ipcRenderer = require('electron').ipcRenderer
 
+function clearAll() {
+
+    var content = document.getElementById('flowspace');
+
+    var string = "<tr><td><table><tr><td><a href = \"#\" tabindex='500' onclick = deleteColumn(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex)>x</a></td>";
+    string += "<td><a href = \"#\" tabindex='500' onclick = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[0].innerHTML=\"\">x</a></td></tr>";
+    string += "<tr><td><div contenteditable=\"true\" class=\"textbox\"></div></td>";
+    string += "<td><a href = \"#\" tabindex='500' onclick = deleteRow(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex)>x</a></td></tr></table></td></tr>";
+    content.innerHTML = string;
+
+}
+
+function deleteRow(row){
+  var tbl = document.getElementById('flowspace')
+  if (tbl.rows.length > 1) {
+      tbl.deleteRow(row)
+    }
+  else {
+    clearAll()
+  }
+}
+
+function deleteColumn(cell){
+   var tbl = document.getElementById('flowspace')
+   if (tbl.rows[0].cells.length > 1){
+     for (i = 0; i < tbl.rows.length; i++) {
+         tbl.rows[i].deleteCell(cell)
+     }
+ }
+ else {
+   clearAll()
+ }
+}
+
 function createCell(cell) {
 
     var content = document.createElement('DIV');
 
     var string = "<table><tr><td><a href = \"#\" tabindex='500' onclick = deleteColumn(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.cellIndex)>x</a></td>";
-    string += "<td><a href = \"#\" tabindex='500' onclick = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[0].value=\"\">x</a></td></tr>";
+    string += "<td><a href = \"#\" tabindex='500' onclick = this.parentNode.parentNode.parentNode.childNodes[1].childNodes[0].childNodes[0].innerHTML=\"\">x</a></td></tr>";
     string += "<tr><td><div contenteditable=\"true\" class=\"textbox\"></div></td>";
     string += "<td><a href = \"#\" tabindex='500' onclick = deleteRow(this.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.rowIndex)>x</a></td></tr></table>";
     content.innerHTML = string;
-    $(".content").addClass('textBoxDiv')
     cell.appendChild(content);
 
 }
