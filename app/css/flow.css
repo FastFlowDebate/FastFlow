@@ -1,5 +1,6 @@
 .cell {
   margin: 0.5em;
+  min-width: 12em;
   width: 20%;
   min-height: 50px;
 }
@@ -11,4 +12,9 @@
 
 textarea {
   resize: vertical;
+}
+
+#flowspace {
+  width: 100%;
+  height: 100%;
 }
