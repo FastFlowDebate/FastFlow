@@ -27,6 +27,7 @@ function loadHandler() {
 
 function addCardToLoki(datab, cardName, cardTags, cardContent){
   var cards = datab.getCollection("cards");
+  console.log(cardTags);
   cards.insert({
     name:cardName,
     tags:cardTags,
@@ -442,7 +443,10 @@ function getCard(datab, searchTerm){
     // [TitleString, TagString, ContentString]
     var cards = db.getCollection("cards");
     var TitleString = arg[0]
-    var TagString = arg[1].replace(",", " ")
+    var TagString = arg[1]
+    while(TagString.indexOf(",")  !=  -1){
+      TagString = TagString.replace(",", "")
+    }
     var ContentString = arg[2]
     var temp = cards.find({'name' : TitleString})
     if (temp.length == 0){
