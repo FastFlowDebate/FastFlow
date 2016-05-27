@@ -59,7 +59,14 @@
 
     <div class="mui-container-fluid">
 
-      <table id="flowspace">
+      <h1>
+        <div contenteditable="true" data-ph="Untitled Flow" id="title" onclick = "buttonShow()"></div>
+      </h1>
+
+      <div contenteditable="true" data-ph="Tag1, Tag2, Tag3" id="tags" onclick = "buttonShow()"></div>
+      <p></p>
+
+      <table id="flowspace" onclick = "buttonShow()">
         <tr>
           <td>
             <div>
@@ -89,6 +96,9 @@
 
       <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newContention()">C</button>
       <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newSpeech()">S</button>
+      <p></p>
+      <button id="deleteButton" class="mui-btn mui-btn--primary" onclick = "deleteFunction()">Delete</button>
+      <button id="saveButton" class="mui-btn mui-btn--primary" onclick = "saveFunction()">Save</button>
 
       <script src="flow/flow.js"></script>
 
