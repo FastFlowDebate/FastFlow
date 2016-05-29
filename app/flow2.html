@@ -15,7 +15,9 @@
 	<link href="../node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 
 
-	<script src="../node_modules/angular/angular.js"></script>
+	<script src="../node_modules/angular/angular.min.js"></script>
+	<script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+
 	<script src="../node_modules/jquery/dist/jquery.js"></script>
 	<script src="js/mui.min.js"></script>
 	<script src="js/sidebar.js"></script>
@@ -60,7 +62,7 @@
 		<div class="mui--appbar-height"></div>
 
 		<div class="mui-container-fluid" ng-app="flowing" ng-controller="flowController">
-
+			<ffcardref title="CardOne"></ffcardref>
 			<table id="flowspace">
 				<div class="row" ng-repeat="r in flow track by $index">
 					{{$index + 1}}
