@@ -47,18 +47,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zarkoix/fastflow.git"
+    "url": "git+https://github.com/FastFlowDebate/fastflow.git"
   },
   "author": "Adam Towers <adam.towers@icloud.com> (https://github.com/zarkoix)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zarkoix/FastFlow/issues"
+    "url": "https://github.com/FastFlowDebate/FastFlow/issues"
   },
   "keywords": [
     "electron",
     "debate"
   ],
-  "homepage": "https://github.com/Zarkoix/FastFlow#readme",
+  "homepage": "https://github.com/FastFlowDebate/FastFlow#readme",
   "devDependencies": {
     "better-npm-run": "0.0.5",
     "chromedriver": "^2.19.0",
