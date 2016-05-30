@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+
+<head>
+  <script>
+    window.$ = window.jQuery = require('jquery');
+  </script>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FastFlow</title>
+  <link href="css/mui.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <script src="js/mui.min.js"></script>
+
+  <link href="alloy-editor/assets/alloy-editor-ocean-min.css" rel="stylesheet">
+  <script src="alloy-editor/alloy-editor-all-min.js"></script>
+  <link href="flow/flow.css" rel="stylesheet" type="text/css" />
+  <script>
+    $(function() {
+      $("#common").load("common.html");
+    });
+  </script>
+</head>
+
+<body>
+  <div id="common"></div>
+  <div id="content-wrapper" style = "overflow: auto;">
+    <div class="mui--appbar-height"></div>
+
+    <div class="mui-container-fluid">
+
+      <h1>
+        <div contenteditable="true" data-ph="Untitled Flow" id="title" onclick = "buttonShow()"></div>
+      </h1>
+
+      <div contenteditable="true" data-ph="Tag1, Tag2, Tag3" id="tags" onclick = "buttonShow()"></div>
+      <p></p>
+
+      <table id="flowspace" onclick = "buttonShow()">
+        <tr>
+          <td>
+            <div>
+              <table>
+                <tr>
+                  <td>
+                    <a href = "#" tabindex="500" onclick = deleteColumn(0)>x</a>
+                  </td>
+                  <td>
+                    <a href = "#" tabindex="500" onclick = this.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[2].childNodes[1].childNodes[1].innerHTML="";>x</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div contenteditable="true" class="textbox"></div>
+                  </td>
+                  <td>
+                    <a href = "#" tabindex="500" onclick = deleteRow(0)>x</a>
+                  </td>
+                </tr>
+             </table>
+         </div>
+         </td>
+       </tr>
+      </table>
+
+
+      <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newContention()">C</button>
+      <button class = "mui-btn mui-btn--fab mui-btn--primary" onclick="newSpeech()">S</button>
+      <p></p>
+      <button id="deleteButton" class="mui-btn mui-btn--primary" onclick = "deleteFunction()">Delete</button>
+      <button id="saveButton" class="mui-btn mui-btn--primary" onclick = "saveFunction()">Save</button>
+
+      <script src="flow/flow.js"></script>
+
+    </div>
+
+    </div>
+
+  <script src="js/footer.js"></script>
+</body>
+
+</html>
