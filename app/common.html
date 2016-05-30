@@ -1,0 +1,52 @@
+<style>
+	body {
+		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+		font-weight: 300;
+	}
+
+	.container {
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-around;
+		justify-content: space-around;
+		width: 80%;
+		margin: auto;
+	}
+</style>
+
+<div id="sidedrawer" class="mui--no-user-select">
+	<div id="sidedrawer-brand" class="mui--appbar-line-height mui--text-title" style="background-color: #673AB7; color: white;">FastFlow</div>
+	<div class="mui-divider"></div>
+	<ul>
+		<li>
+			<strong>Mode</strong>
+			<ul>
+				<li><a href="app.html">Files</a></li>
+				<li><a href="cardEditor.html">Create a Card</a></li>
+				<li><a href="blockEditor.html">Create a Block</a></li>
+				<li><a href="flow.html">flow</a></li>
+				<li><a href="flow2.html">flow2</a></li>
+			</ul>
+
+		</li>
+		<li>
+			<div class="mui-textfield">
+				<input type="text" placeholder="Search" id="sidebarinput" onkeydown="searchFunction()">
+				<div id="searchResults" style="overflow-y:auto;"></div>
+
+				<script src="js/search.js"></script>
+			</div>
+		</li>
+	</ul>
+</div>
+<header id="header">
+	<div class="mui-appbar mui--appbar-line-height">
+		<div class="mui-container-fluid">
+			<a class="sidedrawer-toggle mui--visible-xs-inline-block js-show-sidedrawer">☰</a>
+			<a class="sidedrawer-toggle mui--hidden-xs js-hide-sidedrawer">☰</a>
+
+			<span class="mui--text-title mui--visible-xs-inline-block" style="color: white;">Files</span>
+		</div>
+	</div>
+  <script src="js/sidebar.js"></script>
+</header>
