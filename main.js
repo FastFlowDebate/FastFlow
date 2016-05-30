@@ -119,11 +119,7 @@ app.on('ready', () => {
     height: 728
   })
 
-  if (process.env.HOT) {
-    mainWindow.loadURL(`file://${__dirname}/app/hot-dev-app.html`)
-  } else {
-    mainWindow.loadURL(`file://${__dirname}/app/app.html`)
-  }
+  mainWindow.loadURL(`file://${__dirname}/app/app.html`)
 
   mainWindow.on('closed', () => {
     mainWindow = null
