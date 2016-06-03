@@ -18,6 +18,14 @@ app.controller("flowController", function($scope) {
 			"cards": []
 		}]
 	]
+
+	$scope.newCard = function() {
+        $scope.flow.push([{'text': '','cards': []}]);
+    };
+	$scope.newSpeech = function(r) {
+				r.push({'text': '','cards': []});
+	};
+
 })
 
 //

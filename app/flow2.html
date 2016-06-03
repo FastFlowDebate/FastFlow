@@ -39,23 +39,23 @@
 					{{$index + 1}}
 					<span class="cell mui-panel" ng-repeat="cell in r track by $index">
 						<div contenteditable="true" ng-model="cell.text" class="textbox"></div>
-
+<!--
 						<button class="mui-btn mui-btn--fab mui-btn--primary cardButton" ng-click="r.cards.push('memes')">
 							<span class="fa fa-archive fa-fw" aria-hidden="true"></span>
 						</button>
 						<button class="mui-btn mui-btn--fab mui-btn--primary cardButton" ng-click="cell.cards.push({'tag':'memes', 'content':'swag'})">
 							<span class="fa fa-plus fa-fw" aria-hidden="true"></span>
 						</button>
-
+-->
 						<div class="card mui-panel" ng-repeat="card in cell.cards">
 							<input type="text" class="tagInput" ng-model="card.tag">
-							<textarea ng-model="card.content"></textarea>
+							<!--<textarea ng-model="card.content"></textarea>-->
 						</div>
 					</span>
-					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="r.push({'text': 'Racism is bad','cards': [{'tag': 'Yaomomoako', 'content': 'stuff like racism is bad'}]})">+</button>
+					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech(r)">+</button>
 				</div>
 
-				<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="flow.push([{'text': 'Bad is unjust','cards': []}])">C</button>
+				<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newCard()">C</button>
 			</table>
 		</div>
 	</div>
