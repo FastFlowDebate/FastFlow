@@ -1,5 +1,6 @@
 var app = angular.module("flowing", ['ngSanitize']);
 app.controller("flowController", function($scope) {
+
 	$scope.flow = [
 		[{
 			"text": "Racism is bad",
@@ -32,6 +33,11 @@ app.controller("flowController", function($scope) {
 		};
 
 			//	r.push({'text': '','cards': []});
+	};
+	$scope.clearBox = function(x, y) {
+			console.log(String(x) + " " + String(y))
+			console.log($scope.flow[y][x])
+			$scope.flow[x][y] = {'text': '','cards': []}
 	};
 
 })
