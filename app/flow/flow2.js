@@ -19,11 +19,19 @@ app.controller("flowController", function($scope) {
 		}]
 	]
 
-	$scope.newCard = function() {
-        $scope.flow.push([{'text': '','cards': []}]);
+	$scope.newContention = function() {
+			var arrayContent = []
+			for (i = 0; i < $scope.flow[0].length; i++) {
+					arrayContent.push({'text': '','cards': []});
+			};
+			$scope.flow.push(arrayContent);
     };
-	$scope.newSpeech = function(r) {
-				r.push({'text': '','cards': []});
+	$scope.newSpeech = function() {
+		for (i = 0; i < $scope.flow.length; i++) {
+				$scope.flow[i].push({'text': '','cards': []});
+		};
+
+			//	r.push({'text': '','cards': []});
 	};
 
 })

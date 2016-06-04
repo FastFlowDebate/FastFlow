@@ -33,6 +33,9 @@
 		<div class="mui--appbar-height"></div>
 
 		<div class="mui-container-fluid" ng-app="flowing" ng-controller="flowController">
+			{{flow.length}}
+			{{flow[0].length}}
+			{{flow}}
 			<ffcardref title="Extent of American Troop Presence in Okinawa"></ffcardref>
 			<table id="flowspace">
 				<div class="row" ng-repeat="r in flow track by $index">
@@ -52,10 +55,11 @@
 							<!--<textarea ng-model="card.content"></textarea>-->
 						</div>
 					</span>
-					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech(r)">+</button>
+					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech()">+</button>
 				</div>
 
-				<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newCard()">C</button>
+				<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newContention()">C</button>
+
 			</table>
 		</div>
 	</div>
