@@ -1,31 +1,53 @@
+.cell {
+  margin: 0.5em;
+  min-width: 12em;
+  width: 20%;
+  min-height: 50px;
+}
+
+.row {
+  display: flex;
+  flex-flow: row;
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+}
+
+#flowspace {
+  width: 100%;
+  height: 100%;
+}
+
+.card {
+  font-size: 0.8em;
+  margin: 0.2em;
+  margin-bottom: 0.4em;
+  min-height: 2em;
+}
+
+.cardButton {
+  width: 30px;
+  height: 30px;
+  line-height: 25px;
+}
+
+.tagInput {
+  outline: none;
+  border-width: 0;
+  width: 100%;
+}
+
+.fa {
+  width: 20px;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
 .textbox{
-  width: 200px;
   min-height: 50px;
   border-bottom-style: solid;
   border-bottom-color: #673AB7;
   border-bottom-width: 2px;
-}
-
-#flowspace td{
-  vertical-align:top;
-}
-
-#flowspace a{
-  color: #BDBDBD;
-  text-decoration: none;
-}
-
-#flowspace a:visited{
-  color: #BDBDBD;
-  text-decoration: none;
-}
-
-#flowspace a:hover{
-  color: #0277BD;
-  text-decoration: none;
-}
-
-#flowspace a:active{
-  color: #0277BD;
-  text-decoration: none;
 }
