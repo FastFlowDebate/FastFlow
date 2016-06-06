@@ -32,11 +32,11 @@
 	<div id="content-wrapper" style="overflow: auto;">
 		<div class="mui--appbar-height"></div>
 
-		<div class="mui-container-fluid" ng-app="flowing" ng-controller="flowController">
-			{{flow.length}}
+		<div class="mui-container-fluid" ng-app="flowing" ng-controller="flowController" style = "padding-top: 5px;">
+			<!--{{flow.length}}
 			{{flow[0].length}}
 			{{flow}}
-			<ffcardref title="Extent of American Troop Presence in Okinawa"></ffcardref>
+			<ffcardref title="Extent of American Troop Presence in Okinawa"></ffcardref>-->
 			<table id="flowspace">
 				<div class="row" ng-repeat="r in flow track by $index">
 					{{$index + 1}}
