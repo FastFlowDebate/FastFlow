@@ -12,6 +12,14 @@
 		width: 80%;
 		margin: auto;
 	}
+	.icon{
+		padding-right: 5px;
+		height: 15px;
+		width: 20px;
+	}
+	.textSpan{
+		vertical-align: middle;
+	}
 </style>
 
 <div id="sidedrawer" class="mui--no-user-select">
@@ -19,14 +27,43 @@
 	<div class="mui-divider"></div>
 	<ul>
 		<li>
-			<strong>Mode</strong>
+			<strong>
+				<span>
+					<img src="cardEditor/cardEditorIcon.png" class = "icon">
+				</span>
+				<span class = "textSpan">
+					Cards
+				</span>
+			</strong>
 			<ul>
-				<li><a href="app.html">Files</a></li>
-				<li><a href="cardEditor.html">Create a Card</a></li>
-				<li><a href="blockEditor.html">Create a Block</a></li>
-				<li><a href="flow.html">Flowing</a></li>
+				<li><a href="app.html">Card Manager</a></li>
+				<li><a href="cardEditor.html">Card Editor</a></li>
+				<li><a href="blockEditor.html">Block Editor</a></li>
 			</ul>
 
+			<strong>
+				<span>
+					<img src="flow/flowIcon.png" class = "icon">
+				</span>
+				<span class = "textSpan">
+					Flows
+				</span>
+			</strong>
+			<ul>
+				<li><a href="#">Flow Manager</a></li>
+				<li><a href="flow.html">Flow Editor</a></li>
+			</ul>
+
+			<strong>
+				<span><img src="cardEditor/cardEditorIcon.png" class = "icon"></span>
+				<span class = "textSpan">
+				Speeches
+				</span>
+			</strong>
+			<ul>
+				<li><a href="#">Speech Manager</a></li>
+				<li><a href="#">Speech Editor</a></li>
+			</ul>
 		</li>
 		<li>
 			<div class="mui-textfield">
