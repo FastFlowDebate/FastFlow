@@ -41,9 +41,7 @@
 				<div class="row" ng-repeat="r in flow track by $index">
 					{{$index + 1}}
 					<span class="cell mui-panel" ng-repeat="cell in r track by $index">
-						<button class="mui-btn mui-btn--fab mui-btn--primary cardButton" ng-click="clearBox($index, $parent.$index)">
-							x
-						</button>
+						<button class="cardButton" ng-click="clearBox($index, $parent.$index)">x</button>
 						<textarea ng-model="cell.text" class="textbox"></textarea>
 <!--
 						<button class="mui-btn mui-btn--fab mui-btn--primary cardButton" ng-click="r.cards.push('memes')">

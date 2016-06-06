@@ -25,12 +25,18 @@ textarea {
   margin: 0.2em;
   margin-bottom: 0.4em;
   min-height: 2em;
+  padding: 0;
 }
 
 .cardButton {
-  width: 30px;
   height: 30px;
   line-height: 25px;
+  background: none;
+  border: none;
+  float: right;
+  outline: none;
+  margin-right: -15px;
+  margin-top: -15px;
 }
 
 .tagInput {
