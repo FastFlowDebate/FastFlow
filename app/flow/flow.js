@@ -37,7 +37,7 @@ app.controller("flowController", function($scope) {
 	$scope.clearBox = function(x, y) {
 			console.log(String(x) + " " + String(y))
 			console.log($scope.flow[y][x])
-			$scope.flow[x][y] = {'text': '','cards': []}
+			$scope.flow[y][x] = {'text': '','cards': []}
 	};
 
 })
