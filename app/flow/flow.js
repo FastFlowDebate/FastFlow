@@ -45,6 +45,7 @@ app.controller("flowController", function($scope) {
 		var TitleString = $scope.title
 	  ipcRenderer.send('FlowRemove', TitleString)
 	  window.alert('Deleted!')
+		window.location.replace('flowManager.html');
 	}
 	$scope.unHide = function() {
 		$scope.hide = false

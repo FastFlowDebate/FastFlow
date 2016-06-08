@@ -63,7 +63,7 @@ function deleteFunction () {
   var TitleString = $('#title').text()
   ipcRenderer.send('FileRemove', TitleString)
   window.alert('Deleted!')
-
+  window.location.replace('app.html');
 }
 
 function buttonShow () {
