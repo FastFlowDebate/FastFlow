@@ -1,6 +1,10 @@
 var app = angular.module("flowing", ['ngSanitize']);
 app.controller("flowController", function($scope) {
 
+	$scope.title
+
+	$scope.hide = true
+
 	$scope.flow = [
 		[{
 			"text": "",
@@ -27,6 +31,24 @@ app.controller("flowController", function($scope) {
 			console.log($scope.flow[y][x])
 			$scope.flow[y][x] = {'text': '','cards': []}
 	};
+	$scope.saveFunction = function() {
+	  var TitleString = $scope.title
+	  var TagString = "default"
+	  var ContentString = $scope.flow
+	  ipcRenderer.send('FlowSave', [TitleString, TagString, ContentString])
+	  console.log(TitleString)
+	  console.log(TagString)
+	  console.log(ContentString)
+	  window.alert('Saved!')
+	}
+	$scope.deleteFunction = function() {
+		var TitleString = $scope.title
+	  ipcRenderer.send('FlowRemove', TitleString)
+	  window.alert('Deleted!')
+	}
+	$scope.unHide = function() {
+		$scope.hide = false
+	}
 
 })
 

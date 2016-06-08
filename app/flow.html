@@ -33,35 +33,29 @@
 		<div class="mui--appbar-height"></div>
 
 		<div class="mui-container-fluid" ng-app="flowing" ng-controller="flowController" style = "padding-top: 5px;">
-			<!--{{flow.length}}
-			{{flow[0].length}}
-			{{flow}}
-			<ffcardref title="Extent of American Troop Presence in Okinawa"></ffcardref>-->
+			<h1>
+        <div contenteditable="true" data-ph="Untitled Flow" id="title" ng-bind = "title" ng-click = "unHide()"></div>
+      </h1>
+      <p></p>
 			<table id="flowspace">
 				<div class="row" ng-repeat="r in flow track by $index">
 					{{$index + 1}}
 					<span class="cell mui-panel" ng-repeat="cell in r track by $index">
 						<button class="cardButton" ng-click="clearBox($index, $parent.$index)">x</button>
-						<textarea ng-model="cell.text" class="textbox"></textarea>
-<!--
-						<button class="mui-btn mui-btn--fab mui-btn--primary cardButton" ng-click="r.cards.push('memes')">
-							<span class="fa fa-archive fa-fw" aria-hidden="true"></span>
-						</button>
-						<button class="mui-btn mui-btn--fab mui-btn--primary cardButton" ng-click="cell.cards.push({'tag':'memes', 'content':'swag'})">
-							<span class="fa fa-plus fa-fw" aria-hidden="true"></span>
-						</button>
--->
+						<textarea ng-model="cell.text" class="textbox" ng-click = "unHide()"></textarea>
+
 						<div class="card mui-panel" ng-repeat="card in cell.cards">
 							<input type="text" class="tagInput" ng-model="card.tag">
-							<!--<textarea ng-model="card.content"></textarea>-->
 						</div>
 					</span>
 					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech()">+</button>
-				</div>
 
+				</div>
 				<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newContention()">C</button>
 
 			</table>
+			<button id="deleteButton" class="mui-btn mui-btn--primary" ng-click = "deleteFunction()" ng-hide = "hide">Delete</button>
+			<button id="saveButton" class="mui-btn mui-btn--primary" ng-click = "saveFunction()" ng-hide = "hide">Save</button>
 		</div>
 	</div>
 	<script src="flow/flow.js"></script>
