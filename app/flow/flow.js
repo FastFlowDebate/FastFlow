@@ -54,9 +54,13 @@ ngApp.controller('flowController', function($scope) {
 	}
 
 	$scope.unHide = function() {
+		/*
 		$scope.hideSave = false
 		if (!newDoc) {
 			$scope.hideDelete = false
 		}
+		*/
+		$scope.hide = false
+
 	}
 })
