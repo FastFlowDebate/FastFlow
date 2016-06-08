@@ -1,7 +1,9 @@
-var app = angular.module("flowing", ['ngSanitize']);
-app.controller("flowController", function($scope) {
+var ngApp = angular.module('flowing', ['ngSanitize']);
+ngApp.controller('flowController', function($scope) {
 
 	$scope.title
+
+	$scope.newDoc = true
 
 	$scope.hide = true
 
@@ -15,22 +17,24 @@ app.controller("flowController", function($scope) {
 	$scope.newContention = function() {
 			var arrayContent = []
 			for (i = 0; i < $scope.flow[0].length; i++) {
-					arrayContent.push({'text': '','cards': []});
-			};
+					arrayContent.push({'text': '','cards': []})
+			}
 			$scope.flow.push(arrayContent);
-    };
+    }
+
 	$scope.newSpeech = function() {
 		for (i = 0; i < $scope.flow.length; i++) {
-				$scope.flow[i].push({'text': '','cards': []});
-		};
-
+				$scope.flow[i].push({'text': '','cards': []})
+		}
 			//	r.push({'text': '','cards': []});
-	};
+	}
+
 	$scope.clearBox = function(x, y) {
 			console.log(String(x) + " " + String(y))
 			console.log($scope.flow[y][x])
 			$scope.flow[y][x] = {'text': '','cards': []}
-	};
+	}
+
 	$scope.saveFunction = function() {
 	  var TitleString = $scope.title
 	  var TagString = "default"
@@ -41,33 +45,17 @@ app.controller("flowController", function($scope) {
 	  console.log(ContentString)
 	  window.alert('Saved!')
 	}
+
 	$scope.deleteFunction = function() {
 		var TitleString = $scope.title
 	  ipcRenderer.send('FlowRemove', TitleString)
 	  window.alert('Deleted!')
 	}
+
 	$scope.unHide = function() {
-		$scope.hide = false
-	}
-
-})
-
-//
-const ipcRenderer = require('electron').ipcRenderer
-
-app.directive('ffcardref', function() {
-	return {
-		restrict: 'E',
-		scope: {
-			title: '@title'
-		},
-		templateUrl: 'flow/cardRef.html',
-		controller: function($scope, $element, $attrs) {
-    	$scope.title = $attrs.title
-    	$scope.content = 'content'
-        var FileArray = ipcRenderer.sendSync('FileOpen', $scope.title)
-        $scope.title = FileArray[0]
-        $scope.content = FileArray[2]
-    }
+		$scope.hideSave = false
+		if (!newDoc) {
+			$scope.hideDelete = false
+		}
 	}
 })

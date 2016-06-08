@@ -1,9 +1,10 @@
 const ipcRenderer = require('electron').ipcRenderer
-
+var newDoc = true;
 $(document).ready(function () {
   var theURI = window.location.search
 
   if (theURI.length > 0) {
+    newDoc = false
     var decodedURI = decodeURIComponent(theURI).substring(1).split("\\")
 
     FileArray = ipcRenderer.sendSync('FileOpen', decodedURI[decodedURI.length - 1])
@@ -67,6 +68,8 @@ function deleteFunction () {
 }
 
 function buttonShow () {
-  $('#deleteButton').show()
+  if (!newDoc){
+    $('#deleteButton').show()
+  }
   $('#saveButton').show()
 }
