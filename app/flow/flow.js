@@ -1,18 +1,30 @@
+
 var ngApp = angular.module('flowing', ['ngSanitize']);
 ngApp.controller('flowController', function($scope) {
 
-	$scope.title
 
-	$scope.newDoc = true
+		var theURI = window.location.search
 
-	$scope.hide = true
+		if (theURI.length > 0) {
+			$scope.newDoc = false
+			var decodedURI = decodeURIComponent(theURI).substring(1).split("\\")
+			FileArray = ipcRenderer.sendSync('FileOpen', decodedURI[decodedURI.length - 1])
+			$scope.title = FileArray[0]
+			$scope.flow = FileArray[2]
+		}
+		else {
+			$scope.title
+			$scope.newDoc = true
+			$scope.flow = [
+				[{
+					"text": "",
+					"cards": []
+				}]
+			]
+		}
 
-	$scope.flow = [
-		[{
-			"text": "",
-			"cards": []
-		}]
-	]
+	$scope.hideDelete = true
+	$scope.hideSave = true
 
 	$scope.newContention = function() {
 			var arrayContent = []
@@ -54,13 +66,26 @@ ngApp.controller('flowController', function($scope) {
 	}
 
 	$scope.unHide = function() {
-		/*
+
 		$scope.hideSave = false
-		if (!newDoc) {
+		if ($scope.newDoc = false) {
 			$scope.hideDelete = false
 		}
-		*/
-		$scope.hide = false
 
 	}
+})
+
+$(document).ready(function () {
+  var theURI = window.location.search
+
+  if (theURI.length > 0) {
+    newDoc = false
+    var decodedURI = decodeURIComponent(theURI).substring(1).split("\\")
+
+    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI[decodedURI.length - 1])
+
+    document.getElementById('title').innerHTML = FileArray[0]
+    document.getElementById('tags').innerHTML = FileArray[1]
+    document.getElementById('content').innerHTML = FileArray[2]
+  }
 })
