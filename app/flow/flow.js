@@ -1,5 +1,5 @@
 
-var ngApp = angular.module('flowing', ['ngSanitize']);
+var ngApp = angular.module('flowing', ['ngSanitize', 'MassAutoComplete']);
 ngApp.controller('flowController', function($scope) {
 
 
@@ -71,8 +71,42 @@ ngApp.controller('flowController', function($scope) {
 		if ($scope.newDoc = false) {
 			$scope.hideDelete = false
 		}
-
 	}
+
+	function suggest_state(term) {
+    var q = term.toLowerCase().trim();
+    var results = [];
+
+    // Find first 10 states that start with `term`.
+    for (var i = 0; i < states.length && results.length < 10; i++) {
+      var state = states[i];
+      if (state.toLowerCase().indexOf(q) === 0)
+        results.push({ label: state, value: state });
+    }
+
+    return results;
+  }
+
+	$scope.dirty = {};
+
+  var states = ['Alabama', 'Alaska', 'California'];
+
+	function suggest_state_delimited(term) {
+	  var ix = term.lastIndexOf(' '),
+	      lhs = term.substring(0, ix + 1),
+	      rhs = term.substring(ix + 1),
+	      suggestions = suggest_state(rhs);
+
+	  suggestions.forEach(function (s) {
+	    s.value = lhs + s.value;
+	  })
+
+  	return suggestions;
+	};
+
+  $scope.autocomplete_options = {
+    suggest: suggest_state_delimited
+  }
 })
 
 $(document).ready(function () {

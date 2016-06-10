@@ -13,18 +13,20 @@
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<link href="flow/flow.css" rel="stylesheet" type="text/css" />
 	<link href="../node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-
+	<link href="../node_modules/angular-mass-autocomplete/massautocomplete.theme.css" rel="stylesheet" type="text/css">
 
 	<script src="../node_modules/angular/angular.min.js"></script>
 	<script src="../node_modules/angular-sanitize/angular-sanitize.min.js"></script>
 	<script src="../node_modules/jquery/dist/jquery.js"></script>
+	<script src="../node_modules/angular-mass-autocomplete/massautocomplete.js"></script>
+	<script src="../node_modules/fuse.js/src/fuse.js"></script>
+
 	<script src="js/mui.min.js"></script>
 
 	<script>
 		$(function() {
 			$("#common").load("common.html");
 		});
-
 	</script>
 	<script src="flow/flow.js"></script>
 
@@ -35,30 +37,32 @@
 	<div id="content-wrapper" style="overflow: auto;">
 		<div class="mui--appbar-height"></div>
 
-		<div class="mui-container-fluid" ng-app="flowing" ng-controller="flowController" style = "padding-top: 5px;">
+		<div class="mui-container-fluid" ng-app="flowing" ng-controller="flowController" style="padding-top: 5px;">
 			<h1>
-        <div contenteditable="true" data-ph="Untitled Flow" id="title" ng-bind = "title" ng-click = "unHide()"></div>
-      </h1>
-      <p></p>
+				<div contenteditable="true" data-ph="Untitled Flow" id="title" ng-bind="title" ng-click="unHide()"></div>
+			</h1>
+			<p></p>
 			<table id="flowspace">
-				<div class="row" ng-repeat="r in flow track by $index">
-					{{$index + 1}}
-					<span class="cell mui-panel" ng-repeat="cell in r track by $index">
-						<button class="cardButton" ng-click="clearBox($index, $parent.$index)">x</button>
-						<textarea ng-model="cell.text" class="textbox" ng-click = "unHide()"></textarea>
+				<div mass-autocomplete>
+					<div class="row" ng-repeat="r in flow track by $index">
+						{{$index + 1}}
+						<span class="cell mui-panel" ng-repeat="cell in r track by $index">
+							<button class="cardButton" ng-click="clearBox($index, $parent.$index)">x</button>
+							<input ng-model="dirty.value" mass-autocomplete-item="autocomplete_options">
+							<textarea ng-model="cell.text" class="textbox" ng-click="unHide()"></textarea>
 
-						<div class="card mui-panel" ng-repeat="card in cell.cards">
-							<input type="text" class="tagInput" ng-model="card.tag">
-						</div>
-					</span>
-					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech()">+</button>
+							<div class="card mui-panel" ng-repeat="card in cell.cards">
+								<input type="text" class="tagInput" ng-model="card.tag">
+							</div>
+						</span>
+						<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech()">+</button>
 
+					</div>
+					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newContention()">C</button>
 				</div>
-				<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newContention()">C</button>
-
 			</table>
-			<button id="deleteButton" class="mui-btn mui-btn--primary" ng-click = "deleteFunction()" ng-hide = "hideDelete">Delete</button>
-			<button id="saveButton" class="mui-btn mui-btn--primary" ng-click = "saveFunction()" ng-hide = "hideSave">Save</button>
+			<button id="deleteButton" class="mui-btn mui-btn--primary" ng-click="deleteFunction()" ng-hide="hideDelete">Delete</button>
+			<button id="saveButton" class="mui-btn mui-btn--primary" ng-click="saveFunction()" ng-hide="hideSave">Save</button>
 		</div>
 	</div>
 
