@@ -25,7 +25,11 @@ ngApp.controller('flowController', function($scope) {
 
 	$scope.hideDelete = true
 	$scope.hideSave = true
+	$scope.selectedCell;
 
+	$scope.select = function(cell){
+		$scope.selectedCell = cell
+	}
 	$scope.newContention = function() {
 			var arrayContent = []
 			for (i = 0; i < $scope.flow[0].length; i++) {
@@ -87,7 +91,10 @@ ngApp.controller('flowController', function($scope) {
     return results;
   }
 
-  var states = ['Alabama', 'Alaska', 'California'];
+  var states = ['US has over 24,000 troops in Okinawa',
+								'Definition: Military Presence',
+								'Extent of American Troop Presence in Okinawa',
+								'Will Stay Irelevent of Opposition of Locals'];
 
 	function suggest_state_delimited(term) {
 	  var ix = term.lastIndexOf(' '),
@@ -109,6 +116,9 @@ ngApp.controller('flowController', function($scope) {
 
 	function switch_to_card(selected) {
 		console.log(selected.value)
+		//$scope.selectedCell.cards.push(selected.value)
+		$scope.selectedCell.cards.push('Will Stay Irelevent of Opposition of Locals')
+
 	}
 })
 
