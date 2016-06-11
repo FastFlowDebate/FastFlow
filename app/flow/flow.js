@@ -87,8 +87,6 @@ ngApp.controller('flowController', function($scope) {
     return results;
   }
 
-	$scope.dirty = {};
-
   var states = ['Alabama', 'Alaska', 'California'];
 
 	function suggest_state_delimited(term) {
@@ -102,11 +100,16 @@ ngApp.controller('flowController', function($scope) {
 	  })
 
   	return suggestions;
-	};
+	}
 
   $scope.autocomplete_options = {
-    suggest: suggest_state_delimited
+    suggest: suggest_state_delimited,
+		on_select: switch_to_card
   }
+
+	function switch_to_card(selected) {
+		console.log(selected.value)
+	}
 })
 
 $(document).ready(function () {

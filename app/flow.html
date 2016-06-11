@@ -48,12 +48,8 @@
 						{{$index + 1}}
 						<span class="cell mui-panel" ng-repeat="cell in r track by $index">
 							<button class="cardButton" ng-click="clearBox($index, $parent.$index)">x</button>
-							<input ng-model="dirty.value" mass-autocomplete-item="autocomplete_options">
-							<textarea ng-model="cell.text" class="textbox" ng-click="unHide()"></textarea>
-
-							<div class="card mui-panel" ng-repeat="card in cell.cards">
-								<input type="text" class="tagInput" ng-model="card.tag">
-							</div>
+							<textarea ng-model="cell.text" class="textbox" mass-autocomplete-item="autocomplete_options" ng-click="unHide()"></textarea>
+							<ffcardref title="card.tag" class="card mui-panel" ng-repeat="card in cell.cards"/>
 						</span>
 						<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech()">+</button>
 
