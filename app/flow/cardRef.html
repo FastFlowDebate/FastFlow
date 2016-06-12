@@ -1,8 +1,6 @@
 <!doctype html>
-<script>
-
-</script>
-<div class="mui-panel">
+<div class="mui-panel" ng-mouseenter="showDel = true" ng-mouseleave="showDel = false">
   <b><input type="text" class="tagInput" ng-model="title"></b>
+  <span ng-show="showDel"><button class="deleteCard" ng-click="deleteFunc">x</button></span>
   <div ng-bind-html="content"></div>
 </div>

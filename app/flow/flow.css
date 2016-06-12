@@ -1,5 +1,5 @@
 .cell {
-  margin: 0.5em;
+  margin: 0.2em;
   min-width: 12em;
   width: 30%;
   min-height: 50px;
@@ -22,8 +22,7 @@ textarea {
 
 .card {
   font-size: 0.8em;
-  margin: 0.2em;
-  margin-bottom: 0.4em;
+  margin: 0.05em;
   min-height: 2em;
   padding: 0;
   word-wrap: break-word;
@@ -40,10 +39,23 @@ textarea {
   margin-top: -15px;
 }
 
+.deleteCard {
+  height: 30px;
+  line-height: 25px;
+  background: none;
+  border: none;
+  float: right;
+  outline: none;
+  margin-right: -1em;
+  margin-top: -1.5em;
+  transition: all linear 0.5s;
+}
+
 .tagInput {
   outline: none;
   border-width: 0;
-  width: 100%;
+  width: 95%;
+  float: left;
 }
 
 .fa {

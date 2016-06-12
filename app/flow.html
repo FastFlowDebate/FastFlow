@@ -49,7 +49,7 @@
 							<button class="cardButton" ng-click="clearBox($index, $parent.$index)">x</button>
 							<textarea ng-model="cell.text" class="textbox" mass-autocomplete-item="autocomplete_options" ng-click="select(cell)"></textarea>
 							<div ng-repeat="card in cell.cards track by $index" ng-if="card">
-								<ffcardref title="card" class="card mui-panel"></ffcardref>
+								<ffcardref title="card" delete-func="console.log('memes')" class="card mui-panel"></ffcardref>
 							</div>
 						</span>
 						<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech()">+</button>
