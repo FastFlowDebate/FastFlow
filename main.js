@@ -454,8 +454,11 @@ function getCard(datab, searchTerm){
     var cards = db.getCollection("cards");
     var TitleString = arg[0]
     var TagString = arg[1]
+    while(TagString.indexOf(", ")  !=  -1){
+      TagString = TagString.replace(", ", " ")
+    }
     while(TagString.indexOf(",")  !=  -1){
-      TagString = TagString.replace(",", "")
+      TagString = TagString.replace(",", " ")
     }
     var ContentString = arg[2]
     var temp = cards.find({'name' : TitleString})
