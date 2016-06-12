@@ -99,11 +99,13 @@ ngApp.controller('flowController', function($scope) {
 	function suggest_state_delimited(term) {
 	  var ix = term.lastIndexOf(' '),
 	      lhs = term.substring(0, ix + 1),
-	      rhs = term.substring(ix + 1),
-	      suggestions = suggest_state(rhs);
+	      rhs = term.substring(ix + 1)
+		console.log(rhs);
+	  suggestions = suggest_state(rhs);
 
 	  suggestions.forEach(function (s) {
 	    s.value = lhs + s.value;
+			console.log('lhs: ' + s.value)
 	  })
 
   	return suggestions;
