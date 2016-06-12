@@ -12,7 +12,11 @@ ngApp.directive('ffcardref', function() {
     	$scope.title = $attrs.title
     	$scope.content = 'content'
         var FileArray = ipcRenderer.sendSync('FileOpen', $scope.title)
-        $scope.content = FileArray[2]
+				if(FileArray){
+					$scope.content = FileArray[2]
+				} else {
+					$scope.content = '<em>Error 404 card not found</em>'
+				}
     }
 	}
 })

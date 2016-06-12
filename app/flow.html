@@ -42,7 +42,6 @@
 			</h1>
 			<p></p>
 			<table id="flowspace">
-				<ffcardref title="Will Stay Irelevent of Opposition of Locals" class="card mui-panel"></ffcardref>
 				<div mass-autocomplete>
 					<div class="row" ng-repeat="r in flow track by $index">
 						{{$index + 1}}
@@ -50,7 +49,7 @@
 							<button class="cardButton" ng-click="clearBox($index, $parent.$index)">x</button>
 							<textarea ng-model="cell.text" class="textbox" mass-autocomplete-item="autocomplete_options" ng-click="select(cell)"></textarea>
 							<div ng-repeat="card in cell.cards track by $index">
-								<ffcardref title="{{card}}" class="card mui-panel"></ffcardref>
+								<ffcardref title="card" class="card mui-panel"></ffcardref>
 							</div>
 						</span>
 						<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech()">+</button>

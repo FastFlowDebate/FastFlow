@@ -388,12 +388,15 @@ function getCard(datab, searchTerm){
     var cards = db.getCollection("cards");
     var FileArray = arg
     var foundCard = cards.find({'name' : arg})
-    var Title = foundCard[0].name
-    var Tags = foundCard[0].tags.split(" ")
-    var Content = foundCard[0].content
-    var TheArray = [Title, Tags, Content]
-    event.returnValue = TheArray
-
+    if(foundCard[0]){
+      var Title = foundCard[0].name
+      var Tags = foundCard[0].tags.split(" ")
+      var Content = foundCard[0].content
+      var TheArray = [Title, Tags, Content]
+      event.returnValue = TheArray
+    } else {
+      event.returnValue = false
+    }
   })
 
   ipcMain.on('FlowOpen', function (event, arg) {
