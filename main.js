@@ -81,8 +81,18 @@ function tagindex (datab) {
   return ReturnValue;
 }
 
-
-
+function flowindex (datab) {
+  /* flowindexing */
+  var cards = datab.getCollection("cards");
+  var flowArray = [];
+  var flows;
+  var card;
+  for(flows in cards.data){
+    flowArray.push([flows["name"], flows["content"]])
+  }
+  console.log(flowArray)
+  return flowArray;
+}
 
 
 var path = require('path')
@@ -433,6 +443,7 @@ function getCard(datab, searchTerm){
 
   ipcMain.on('FileManager', function (event, arg) {
     var dataJSON = tagindex(db)
+    var stuff = flowindex(db2)
     event.returnValue = dataJSON
   })
 
@@ -464,12 +475,13 @@ ipcMain.on('FlowSave', function (event, arg) {
   // [TitleString, TagString, ContentString]
   var cards = db2.getCollection("cards");
   var TitleString = arg[0]
-  var TagString = arg[1]
+  var TagString = "";
   var ContentString = arg[2]
   var temp = cards.find({'name' : TitleString})
   if (temp.length == 0){
     addCardToLoki(db2, TitleString, TagString, ContentString);
   }else{
+    console.log("hello")
       cards.removeWhere({'name' : TitleString})
       addCardToLoki(db2, TitleString, TagString, ContentString);
   }
