@@ -116,8 +116,7 @@ ngApp.controller('flowController', function($scope) {
 
 	function switch_to_card(selected) {
 		console.log(selected.value)
-		//$scope.selectedCell.cards.push(selected.value)
-		$scope.selectedCell.cards.push('Will Stay Irelevent of Opposition of Locals')
+		$scope.selectedCell.cards.push(selected.value)
 	}
 })
 
