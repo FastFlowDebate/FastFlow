@@ -1,6 +1,7 @@
 {
   "name": "FastFlow",
   "productName": "FastFlow",
+  "companyName": "FastFlow",
   "version": "0.2.5",
   "description": "Debate application for keeping your files organized",
   "main": "main.js",

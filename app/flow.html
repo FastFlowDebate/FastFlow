@@ -36,23 +36,24 @@
 	<div id="common"></div>
 	<div id="content-wrapper" style="overflow: auto;">
 		<div class="mui--appbar-height"></div>
-
 		<div class="mui-container-fluid" ng-app="flowing" ng-controller="flowController" style="padding-top: 5px;">
 			<h1>
 				<div contenteditable="true" data-ph="Untitled Flow" id="title" ng-bind="title" ng-click="unHide()"></div>
 			</h1>
 			<p></p>
 			<table id="flowspace">
+				<ffcardref title="Will Stay Irelevent of Opposition of Locals" class="card mui-panel"></ffcardref>
 				<div mass-autocomplete>
 					<div class="row" ng-repeat="r in flow track by $index">
 						{{$index + 1}}
 						<span class="cell mui-panel" ng-repeat="cell in r track by $index">
 							<button class="cardButton" ng-click="clearBox($index, $parent.$index)">x</button>
 							<textarea ng-model="cell.text" class="textbox" mass-autocomplete-item="autocomplete_options" ng-click="select(cell)"></textarea>
-							<ffcardref title="card.tag" class="card mui-panel" ng-repeat="card in cell.cards"/>
+							<div ng-repeat="card in cell.cards track by $index">
+								<ffcardref title="{{card}}" class="card mui-panel"></ffcardref>
+							</div>
 						</span>
 						<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newSpeech()">+</button>
-
 					</div>
 					<button class="mui-btn mui-btn--fab mui-btn--primary" ng-click="newContention()">C</button>
 				</div>

@@ -1,7 +1,7 @@
 
-var ngApp = angular.module('flowing', ['ngSanitize', 'MassAutoComplete']);
-ngApp.controller('flowController', function($scope) {
+var ngApp = angular.module('flowing', ['ngSanitize', 'MassAutoComplete'])
 
+ngApp.controller('flowController', function($scope) {
 
 		var theURI = window.location.search
 
@@ -30,6 +30,7 @@ ngApp.controller('flowController', function($scope) {
 	$scope.select = function(cell){
 		$scope.selectedCell = cell
 	}
+
 	$scope.newContention = function() {
 			var arrayContent = []
 			for (i = 0; i < $scope.flow[0].length; i++) {
@@ -70,7 +71,6 @@ ngApp.controller('flowController', function($scope) {
 	}
 
 	$scope.unHide = function() {
-
 		$scope.hideSave = false
 		if ($scope.newDoc = false) {
 			$scope.hideDelete = false
@@ -118,7 +118,6 @@ ngApp.controller('flowController', function($scope) {
 		console.log(selected.value)
 		//$scope.selectedCell.cards.push(selected.value)
 		$scope.selectedCell.cards.push('Will Stay Irelevent of Opposition of Locals')
-
 	}
 })
 
