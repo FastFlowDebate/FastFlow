@@ -74,3 +74,10 @@ textarea {
 input {
   width: 100%;
 }
+
+.modal {
+  width: 400px;
+  height: 300px;
+  margin: 100px auto;
+  background-color: #fff;
+}

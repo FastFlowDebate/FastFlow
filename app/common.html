@@ -2,6 +2,13 @@
 	body {
 		font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 		font-weight: 300;
+		height: 100%;
+		overflow: auto;
+	}
+
+	html {
+		overflow: hidden;
+		height: 100%;
 	}
 
 	.container {
@@ -12,12 +19,14 @@
 		width: 80%;
 		margin: auto;
 	}
-	.icon{
+
+	.icon {
 		padding-right: 5px;
 		height: 20px;
 		width: 25px;
 	}
-	.textSpan{
+
+	.textSpan {
 		vertical-align: middle;
 	}
 </style>
@@ -25,7 +34,7 @@
 <div id="sidedrawer" class="mui--no-user-select">
 	<div id="sidedrawer-brand" class="mui--appbar-line-height mui--text-title" style="background-color: #673AB7; color: white;">
 
-			FastFlow
+		FastFlow
 
 	</div>
 	<div class="mui-divider"></div>
@@ -33,9 +42,9 @@
 		<li>
 			<strong>
 				<span>
-					<img src="cardEditor/cardEditorIcon.png" class = "icon">
+					<img src="cardEditor/cardEditorIcon.png" class="icon">
 				</span>
-				<span class = "textSpan">
+				<span class="textSpan">
 					Cards
 				</span>
 			</strong>
@@ -46,9 +55,9 @@
 
 			<strong>
 				<span>
-					<img src="flow/flowIcon.png" class = "icon">
+					<img src="flow/flowIcon.png" class="icon">
 				</span>
-				<span class = "textSpan">
+				<span class="textSpan">
 					Flows
 				</span>
 			</strong>
@@ -58,9 +67,11 @@
 			</ul>
 
 			<strong>
-				<span><img src="cardEditor/cardEditorIcon.png" class = "icon"></span>
-				<span class = "textSpan">
-				Speeches
+				<span>
+					<img src="cardEditor/cardEditorIcon.png" class="icon">
+				</span>
+				<span class="textSpan">
+					Speeches
 				</span>
 			</strong>
 			<ul>
@@ -69,9 +80,11 @@
 			</ul>
 
 			<strong>
-				<span><img src="blockEditor/blockEditorIcon.png" class = "icon"></span>
-				<span class = "textSpan">
-				Blocks
+				<span>
+					<img src="blockEditor/blockEditorIcon.png" class="icon">
+				</span>
+				<span class="textSpan">
+					Blocks
 				</span>
 			</strong>
 			<ul>
@@ -93,9 +106,8 @@
 		<div class="mui-container-fluid">
 			<a class="sidedrawer-toggle mui--visible-xs-inline-block js-show-sidedrawer">☰</a>
 			<a class="sidedrawer-toggle mui--hidden-xs js-hide-sidedrawer">☰</a>
-
 			<span class="mui--text-title mui--visible-xs-inline-block" style="color: white;">Files</span>
 		</div>
 	</div>
-  <script src="js/sidebar.js"></script>
+	<script src="js/sidebar.js"></script>
 </header>
