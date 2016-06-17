@@ -1,43 +1,92 @@
 <!doctype html>
+
 <html>
-
 <head>
-	<script>
-		window.$ = window.jQuery = require('jquery');
-	</script>
-
-	<meta http-equiv="pragma" content="no-cache">
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>FastFlow</title>
-	<link href="css/mui.min.css" rel="stylesheet" type="text/css" />
-	<link href="css/style.css" rel="stylesheet" type="text/css" />
-	<link href="fileManager/filemanager.css" rel="stylesheet" type="text/css" />
-	<script src="js/mui.min.js"></script>
-
-
-	<script>
-		$(function() {
-			$("#common").load("common.html");
-		});
-	</script>
-
+  <title>Fast Flow</title>
+  <link href="css/mui.min.css" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <script src="js/mui.min.js"></script>
 </head>
 
-<body>
-  <div id="common"></div>
-	<div id="content-wrapper">
-		<div class="mui--appbar-height"></div>
-		<div class="mui-container-fluid">
+  <div id="sidedrawer" class="mui--no-user-select">
+  	<div id="sidedrawer-brand" class="mui--appbar-line-height mui--text-title" style="background-color: #673AB7; color: white;">
+  		FastFlow
+  	</div>
+  	<div class="mui-divider"></div>
+  	<ul>
+  		<li>
+  			<strong>
+  				<span>
+  					<img src="card/cardEditorIcon.png" class="icon">
+  				</span>
+  				<span class="textSpan">
+  					Cards
+  				</span>
+  			</strong>
+  			<ul>
+  				<li><a href="#cardManager">Card Manager</a></li>
+  				<li><a href="#card">Card Creator</a></li>
+  			</ul>
 
-			<div id="thefilemanager"></div>
+  			<strong>
+  				<span>
+  					<img src="flow/flowIcon.png" class="icon">
+  				</span>
+  				<span class="textSpan">
+  					Flows
+  				</span>
+  			</strong>
+  			<ul>
+  				<li><a href="#flowManager">Flow Manager</a></li>
+  				<li><a href="#flow">Flow Creator</a></li>
+  			</ul>
 
-			<script src="fileManager/filemanager.js"></script>
+  			<strong>
+  				<span>
+  					<img src="card/cardEditorIcon.png" class="icon">
+  				</span>
+  				<span class="textSpan">
+  					Speeches
+  				</span>
+  			</strong>
+  			<ul>
+  				<li><a href="#speechManager">Speech Manager</a></li>
+  				<li><a href="#speech">Speech Creator</a></li>
+  			</ul>
 
-		</div>
-
-	</div>
-</body>
-
+  			<strong>
+  				<span>
+  					<img src="blockEditor/blockEditorIcon.png" class="icon">
+  				</span>
+  				<span class="textSpan">
+  					Blocks
+  				</span>
+  			</strong>
+  			<ul>
+  				<li><a href="#blockManager">Block Manager</a></li>
+  				<li><a href="#block">Block Creator</a></li>
+  			</ul>
+  		</li>
+  		<li>
+  			<div class="mui-textfield">
+  				<input type="text" placeholder="Search" id="sidebarinput" onkeydown="searchFunction()">
+  				<div id="searchResults" style="overflow-y:auto;"></div>
+  				<script src="js/search.js"></script>
+  			</div>
+  		</li>
+  	</ul>
+  </div>
+  <header id="header">
+  	<div class="mui-appbar mui--appbar-line-height">
+  		<div class="mui-container-fluid">
+  			<a class="sidedrawer-toggle mui--visible-xs-inline-block js-show-sidedrawer">&#9776;</a>
+  			<a class="sidedrawer-toggle mui--hidden-xs js-hide-sidedrawer">&#9776;</a>
+  		</div>
+  	</div>
+  	<script src="js/sidebar.js"></script>
+  </header>
+  <body>
+    <div id="content-wrapper" ng-view></div>
+    <script src="app.js"></script>
+  </body>
 </html>

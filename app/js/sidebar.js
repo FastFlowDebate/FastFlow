@@ -1,3 +1,5 @@
+window.$ = window.jQuery = require('jquery');
+
 jQuery(function ($) {
   var $bodyEl = $('body')
   var $sidedrawerEl = $('#sidedrawer')

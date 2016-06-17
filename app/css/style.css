@@ -2,6 +2,38 @@
  * Body CSS
  */
 
+ body {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+   font-weight: 300;
+   overflow: auto;
+   position: relative;
+   margin-top: 3em;
+   padding: 2em;
+ }
+
+ html {
+   overflow: hidden;
+ }
+
+ .container {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-justify-content: space-around;
+   justify-content: space-around;
+   width: 80%;
+   margin: auto;
+ }
+
+ .icon {
+   padding-right: 5px;
+   height: 20px;
+   width: 25px;
+ }
+
+ .textSpan {
+   vertical-align: middle;
+ }
+
 html,
 body {
   height: 100%;
@@ -12,7 +44,7 @@ html,
 body,
 input,
 textarea,
-buttons {
+button {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);

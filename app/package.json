@@ -19,6 +19,7 @@
     "angular": "^1.5.0",
     "angular-animate": "^1.5.6",
     "angular-mass-autocomplete": "^0.2.3",
+    "angular-route": "^1.5.7",
     "angular-sanitize": "^1.5.6",
     "electron-debug": "^0.5.1",
     "font-awesome": "^4.4.0",
