@@ -3,7 +3,10 @@ var angular = require('angular')
 var angularRoute = require('angular-route')
 require('./index/index')
 require('./flow/flow')
-require('mass-auto-complete')
+require('angular-mass-autocomplete')
+require('angular-sanitize')
+const ipcRenderer = require('electron').ipcRenderer
+
 
 angular.module('fastflowApp', [
 	'ngRoute',
@@ -24,7 +27,7 @@ angular.module('fastflowApp', [
 			deleteFunc: '&',
 			style: '='
 		},
-		templateUrl: 'flow/cardRef.html',
+		templateUrl: 'cardRef.html',
 		controller: function($scope, $element, $attrs) {
 			$scope.overlay = function() {
 				var modalEl = document.createElement('div')

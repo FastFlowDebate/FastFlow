@@ -7,8 +7,6 @@
    font-weight: 300;
    overflow: auto;
    position: relative;
-   margin-top: 3em;
-   padding: 2em;
  }
 
  html {
@@ -16,12 +14,7 @@
  }
 
  .container {
-   display: -webkit-flex;
-   display: flex;
-   -webkit-justify-content: space-around;
-   justify-content: space-around;
-   width: 80%;
-   margin: auto;
+
  }
 
  .icon {
@@ -89,6 +82,12 @@ button {
   /* sticky bottom */
   margin-bottom: -160px;
   padding-bottom: 160px;
+  width: 80%;
+  margin: auto;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
 }
 
 @media (min-width: 768px) {
@@ -101,7 +100,7 @@ button {
   }
 
   #content-wrapper {
-    margin-left: 200px;
+    margin-left: 100px;
   }
 
   #footer {
@@ -117,7 +116,7 @@ button {
   }
 
   body.hide-sidedrawer #content-wrapper {
-    margin-left: 0;
+    margin-left: -100px;
   }
 
   body.hide-sidedrawer #footer {
