@@ -6,8 +6,8 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		})
 	}])
 	.controller('cardCtrl', ['$scope', function($scope) {
-		$scope.showSave = true
-		$scope.showDelete = true
+		$scope.showSave = false
+		$scope.showDelete = false
     $scope.newDoc = true
 		$scope.title
 		$scope.tags

@@ -74,6 +74,7 @@ button {
 }
 
 #content-wrapper {
+  padding-left: 1em;
   display: block;
   min-height: 100%;
   overflow-x: hidden;

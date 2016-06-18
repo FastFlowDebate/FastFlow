@@ -1,26 +1,47 @@
 .textDiv, #buttons{
+  margin-top: 1.5em;
   margin-bottom: 0.5em;
-  float: left;
-  margin-left: 3em;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 #card-wrapper {
   display: flex;
   flex-direction: column;
-  align-content: flex-start;
 }
 
 .textDiv {
   max-width: 85%;
+  width: 85%;
+}
+
+.mui-btn {
+  float: left;
 }
 
 textarea {
   resize: vertical;
   width: 100%;
+  height: 100%;
   outline: none;
   border-width: 0;
 }
 
+#content {
+  min-height: 15em;
+}
+
+#title label {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+#title input {
+  font-size: 1.4em;
+  height: 1.4em;
+}
+
 input {
   border: none;
+  width: 100%;
 }

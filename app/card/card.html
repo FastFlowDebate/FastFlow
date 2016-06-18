@@ -1,15 +1,27 @@
 <!doctype html>
 <link href="bower_components/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
+<link href="bower_components/medium-editor/dist/css/themes/flat.css" rel="stylesheet">
+
 <link href="card/card.css" rel="stylesheet">
 
 <div id="card-wrapper">
-  <div id="title" class="textDiv">
-  	<h1><input medium-editor ng-model="title" ng-click="buttonShow()" value="Untitled Card"></h1>
+  <div id="title" class="textDiv mui-panel">
+  	<h1>
+      <div ng-model="title" class="mui-textfield mui-textfield--float-label" ng-click="buttonShow()">
+        <input type="text">
+        <label>Title</label>
+      </div>
+    </h1>
   </div>
-  <div id="tags" class="textDiv">
-    <h2><input medium-editor ng-model="tags" ng-click="buttonShow()" value="Tag1, Tag2, Tag3..."></h2>
+  <div id="tags" class="textDiv mui-panel">
+    <h2>
+      <div ng-model="tags" class="mui-textfield mui-textfield--float-label" ng-click="buttonShow()">
+        <input type="text" value="Tag1, Tag2, Tag3...">
+        <label>Tags</label>
+      </div>
+    </h2>
   </div>
-  <div id="content" class="textDiv">
+  <div id="content" class="textDiv mui-panel">
     <textarea medium-editor ng-model="content" style="font-size: 18px;" data-placeholder="Type here ..." ng-click="buttonShow()"></textarea>
   </div>
   <div id="buttons">
