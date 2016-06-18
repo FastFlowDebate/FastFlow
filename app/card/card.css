@@ -1,13 +1,12 @@
 .textDiv, #buttons{
   margin-top: 1.5em;
   margin-bottom: 0.5em;
-  margin-left: auto;
-  margin-right: auto;
+
 }
 
 #card-wrapper {
-  display: flex;
-  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .textDiv {

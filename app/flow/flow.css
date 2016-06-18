@@ -12,7 +12,7 @@
 
 #content-wrapper {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
 }
 
 textarea {

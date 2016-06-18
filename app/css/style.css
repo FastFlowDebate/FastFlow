@@ -13,10 +13,6 @@
    overflow: hidden;
  }
 
- .container {
-
- }
-
  .icon {
    padding-right: 5px;
    height: 20px;
@@ -86,6 +82,8 @@ button {
   padding-bottom: 160px;
   width: 80%;
   margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 768px) {

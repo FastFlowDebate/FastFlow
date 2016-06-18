@@ -14,18 +14,14 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		$scope.content
 
     $scope.saveFunction = function () {
-      var TitleString = $('#title').text()
-      var TagString = $('#tags').text()
-      var ContentString = $('#content').html()
-      ipcRenderer.send('FileSave', [TitleString, TagString, ContentString])
+      ipcRenderer.send('FileSave', [$scope.title, $scope.tags, $scope.content])
       window.alert('Saved!')
     }
 
     $scope.deleteFunction = function () {
-      var TitleString = $('#title').text()
-      ipcRenderer.send('FileRemove', TitleString)
+      ipcRenderer.send('FileRemove', $scope.title)
       window.alert('Deleted!')
-      window.location.replace('app.html')
+      window.location.replace('#index')
     }
 
     $scope.buttonShow = function () {
