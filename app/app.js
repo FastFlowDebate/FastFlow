@@ -1,17 +1,24 @@
 'use strict'
 var angular = require('angular')
 var angularRoute = require('angular-route')
+
 require('./index/index')
 require('./flow/flow')
+require('./card/card')
+
 require('angular-mass-autocomplete')
 require('angular-sanitize')
+const MediumEditor = require('./bower_components/medium-editor/dist/js/medium-editor')
+require('./bower_components/angular-medium-editor/dist/angular-medium-editor')
+
 const ipcRenderer = require('electron').ipcRenderer
 
 
 angular.module('fastflowApp', [
 	'ngRoute',
 	'fastflowApp.index',
-	'fastflowApp.flow'
+	'fastflowApp.flow',
+	'fastflowApp.card'
 ]).config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({
 	   redirectTo: '/index'
@@ -24,7 +31,7 @@ angular.module('fastflowApp', [
 		restrict: 'E',
 		scope: {
 			title: '=',
-			deleteFunc: '&',
+			deleteFunc: '&', //TODO
 			style: '='
 		},
 		templateUrl: 'cardRef.html',

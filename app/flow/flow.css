@@ -10,9 +10,16 @@
   flex-flow: row;
 }
 
+#content-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
 textarea {
   resize: vertical;
   width: 100%;
+  outline: none;
+  border-width: 0;
 }
 
 #flowspace {

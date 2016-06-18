@@ -30,6 +30,12 @@
         "NODE_ENV": "development"
       }
     },
+    "setup": {
+      "command": "npm install && cd app && npm install && bower install",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    },
     "package": {
       "command": "node package.js",
       "env": {

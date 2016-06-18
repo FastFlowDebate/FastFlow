@@ -1,0 +1,26 @@
+.textDiv, #buttons{
+  margin-bottom: 0.5em;
+  float: left;
+  margin-left: 3em;
+}
+
+#card-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+.textDiv {
+  max-width: 85%;
+}
+
+textarea {
+  resize: vertical;
+  width: 100%;
+  outline: none;
+  border-width: 0;
+}
+
+input {
+  border: none;
+}

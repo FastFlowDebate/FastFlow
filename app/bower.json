@@ -1,0 +1,26 @@
+{
+  "name": "FastFlow",
+  "description": "Debate application for keeping your files organized",
+  "main": "main.js",
+  "authors": [
+    "Adam Towers <adam.towers@icloud.com> (https://github.com/zarkoix)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "electron",
+    "debate"
+  ],
+  "homepage": "https://github.com/FastFlowDebate/FastFlow",
+  "moduleType": [],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-medium-editor": "^1.1.1"
+  }
+}

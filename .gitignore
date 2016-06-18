@@ -3,6 +3,8 @@ release/*
 
 node_modules/*
 
+bower_modules/*
+
 .jshintrc
 
 .settings/.jsdtscope
