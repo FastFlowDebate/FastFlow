@@ -5,6 +5,8 @@ var angularRoute = require('angular-route')
 require('./index/index')
 require('./flow/flow')
 require('./card/card')
+require('./cardManager/cardManager')
+
 
 require('angular-mass-autocomplete')
 require('angular-sanitize')
@@ -18,7 +20,8 @@ angular.module('fastflowApp', [
 	'ngRoute',
 	'fastflowApp.index',
 	'fastflowApp.flow',
-	'fastflowApp.card'
+	'fastflowApp.card',
+	'fastflowApp.cardManager'
 ]).config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({
 	   redirectTo: '/index'

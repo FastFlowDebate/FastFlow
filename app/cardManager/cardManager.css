@@ -41,3 +41,11 @@ a.linktext:hover {
 .filetext {
   padding-left: 10px;
 }
+
+.hidden{
+  display:none;
+}
+
+.unhidden{
+  display:block;
+}
