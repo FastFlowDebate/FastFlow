@@ -1,9 +1,14 @@
-var app = angular.module("flowManager", ['ngSanitize']);
-const ipcRenderer = require('electron').ipcRenderer
-
-app.controller("flowController", function($scope) {
-
-		$scope.dataJSON = ipcRenderer.sendSync('FlowManager', 'ready')
+module.exports = angular.module('fastflowApp.flowManager', ['ngRoute', 'ngSanitize'])
+	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider.when('/flowManager', {
+			templateUrl: 'flowManager/flowManager.html',
+			controller: 'flowManagerCtrl'
+		})
+	}])
+	// We can load the controller only when needed from an external file
+	.controller('flowManagerCtrl', ['$scope', function($scope) {
+		$scope.dataJSON = "memes"
+		$scope.dataJSON = ipcRenderer.send('FlowManager', 'ready')
 
 /*
 	$scope.newContention = function() {
@@ -14,4 +19,4 @@ app.controller("flowController", function($scope) {
 			$scope.flow.push(arrayContent);
     };
 */
-})
+}])

@@ -4,6 +4,7 @@ var angularRoute = require('angular-route')
 
 require('./index/index')
 require('./flow/flow')
+require('./flowManager/flowManager')
 require('./card/card')
 require('./cardManager/cardManager')
 
@@ -20,6 +21,7 @@ angular.module('fastflowApp', [
 	'ngRoute',
 	'fastflowApp.index',
 	'fastflowApp.flow',
+	'fastflowApp.flowManager',
 	'fastflowApp.card',
 	'fastflowApp.cardManager'
 ]).config(['$routeProvider', function($routeProvider) {
