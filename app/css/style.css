@@ -201,3 +201,7 @@ button {
   overflow: auto;
   padding: 20px;
 }
+
+.ngdialog-content {
+  min-width: 65%;
+}

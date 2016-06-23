@@ -8,7 +8,7 @@ require('./flowManager/flowManager')
 require('./card/card')
 require('./cardManager/cardManager')
 
-
+require('ng-dialog')
 require('angular-mass-autocomplete')
 require('angular-sanitize')
 const MediumEditor = require('./bower_components/medium-editor/dist/js/medium-editor')
@@ -19,15 +19,28 @@ const ipcRenderer = require('electron').ipcRenderer
 
 angular.module('fastflowApp', [
 	'ngRoute',
+	'ngDialog',
 	'fastflowApp.index',
 	'fastflowApp.flow',
 	'fastflowApp.flowManager',
 	'fastflowApp.card',
 	'fastflowApp.cardManager'
-]).config(['$routeProvider', function($routeProvider) {
+]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
   $routeProvider.otherwise({
 	   redirectTo: '/index'
    })
+
+	ngDialogProvider.setDefaults({
+	 className: 'ngdialog-theme-default',
+	 plain: false,
+	 showClose: true,
+	 closeByDocument: true,
+	 closeByEscape: true,
+	 appendTo: false,
+	 preCloseCallback: function () {
+			 console.log('default pre-close callback');
+	 }
+	})
 }]).directive('ffcardref', function() {
 	//style explanation:
 	// 1 - version used in flow, short and has only the bolded text
@@ -40,15 +53,20 @@ angular.module('fastflowApp', [
 			style: '='
 		},
 		templateUrl: 'cardRef.html',
-		controller: function($scope, $element, $attrs) {
-			$scope.overlay = function() {
-				var modalEl = document.createElement('div')
-				modalEl.className += " modal"
-				modalEl.innerHtml = '<ffcardref style="2" title="$scope.title" class="modal card mui-panel"></ffcardref>'
-
-					// show modal
-				mui.overlay('on', modalEl)
-			}
+		controller: function($scope, $element, $attrs, ngDialog) {
+			$scope.overlay = function () {
+				var title = $scope.title
+				var content = FileArray[2]
+				ngDialog.open({
+						template: 'cardRefModal.html',
+						className: 'ngdialog-theme-default',
+						controller: ['$scope', function($scope) {
+        			// controller logic
+							$scope.title = title
+							$scope.content = content
+    				}]
+				});
+    	}
 
 			var FileArray = ipcRenderer.sendSync('FileOpen', $scope.title)
 			if (FileArray) {

@@ -24,7 +24,8 @@
     "electron-debug": "^0.5.1",
     "font-awesome": "^4.4.0",
     "fuse.js": "^2.2.0",
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "ng-dialog": "^0.6.2"
   },
   "author": "Adam Towers",
   "license": "ISC"
