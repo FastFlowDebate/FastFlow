@@ -1,9 +1,11 @@
 
 release/*
 
+app/node_modules/*
+
 node_modules/*
 
-bower_modules/*
+app/bower_components/*
 
 .jshintrc
 

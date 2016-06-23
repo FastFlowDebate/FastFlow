@@ -8,12 +8,13 @@ require('./flowManager/flowManager')
 require('./card/card')
 require('./cardManager/cardManager')
 
+var toaster = require('angularjs-toaster')
 require('ng-dialog')
 require('angular-mass-autocomplete')
 require('angular-sanitize')
+require('angular-animate')
 const MediumEditor = require('./bower_components/medium-editor/dist/js/medium-editor')
 require('./bower_components/angular-medium-editor/dist/angular-medium-editor')
-
 const ipcRenderer = require('electron').ipcRenderer
 
 
