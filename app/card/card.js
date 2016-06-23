@@ -9,12 +9,10 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		$scope.showSave = false
 		$scope.showDelete = false
     $scope.newDoc = true
-		$scope.title
-		$scope.tags
-		$scope.content
 
     $scope.saveFunction = function () {
-      ipcRenderer.send('FileSave', [$scope.title.html, $scope.tags.html, $scope.content.html])
+			console.log('stuff: ' + $scope.title + ' ' + $scope.tags + ' ' + $scope.content)
+      ipcRenderer.send('FileSave', [$scope.title, $scope.tags, $scope.content])
       window.alert('Saved!')
     }
 
