@@ -10,17 +10,20 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 
 			$scope.hideList = Array.apply(null, Array($scope.dataJSON[0].length)).map(function (x, i) { return true });
 
-			$scope.hideToggle = function(x) {
+			$scope.hideToggle = function(value) {
 				console.log($scope.hideList)
+				console.log(value)
+				$scope.hideList[value] = !$scope.hideList[value];
+/*
+				if ($scope.hideList[value] = false) {
 
-				if ($scope.hideList[x] = false) {
-					$scope.hideList[x] = true;
 					console.log("true now")
-				} else if ($scope.hideList[x] = true){
-					$scope.hideList[x] = false;
+				} else if ($scope.hideList[value] = true){
+					$scope.hideList[value] = false;
 					console.log("false now")
 				}
-			};
+				*/
+			}
   }])
 
 /*
