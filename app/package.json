@@ -29,5 +29,14 @@
     "ng-dialog": "^0.6.2"
   },
   "author": "Adam Towers",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FastFlowDebate/FastFlow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FastFlowDebate/FastFlow/issues"
+  },
+  "homepage": "https://github.com/FastFlowDebate/FastFlow#readme"
 }

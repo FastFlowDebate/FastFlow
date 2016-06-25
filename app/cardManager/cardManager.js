@@ -6,5 +6,13 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		})
 	}])
 	.controller('cardManagerCtrl', ['$scope', function($scope) {
-
+			$scope.dataJSON = ipcRenderer.sendSync('FileManager', 'ready')
   }])
+
+/*
+var app = angular.module('cardManager', []);
+app.controller('myCtrl', function($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+});
+*/
