@@ -11,7 +11,7 @@
     </div>
     <div ng-hide = "hideList[$index]">
     <li ng-repeat="y in dataJSON[1][$index] track by $index" class = "theLI">
-      <a href = "#" class = "linktext">
+      <a href = "{{URIGenerate(dataJSON[1][$parent.$index][$index])}}" class = "linktext">
       {{dataJSON[1][$parent.$index][$index]}}
       </a>
     </li>
