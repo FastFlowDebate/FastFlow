@@ -5,8 +5,8 @@
 
 <link href="card/card.css" rel="stylesheet">
 <toaster-container></toaster-container>
-<div id="card-wrapper">
-  <div id="title" class="textDiv mui-panel">
+<div id="card-wrapper" class="mui-panel">
+  <div id="title" class="textDiv">
   	<h1>
       <div class="mui-textfield mui-textfield--float-label" ng-click="buttonShow()">
         <input ng-model="title" type="text">
@@ -14,7 +14,7 @@
       </div>
     </h1>
   </div>
-  <div id="tags" class="textDiv mui-panel">
+  <div id="tags" class="textDiv">
     <h2>
       <div class="mui-textfield mui-textfield--float-label" ng-click="buttonShow()">
         <input ng-model="tags" type="text" value="Tag1, Tag2, Tag3...">
@@ -22,8 +22,8 @@
       </div>
     </h2>
   </div>
-  <div id="content" class="textDiv mui-panel">
-    <p medium-editor ng-model="content" style="font-size: 18px;" data-placeholder="Type here ..." ng-click="buttonShow()"></p>
+  <div id="content" class="textDiv">
+    <contenteditable medium-editor ng-model="content" style="font-size: 18px;" data-placeholder="Type here ..." ng-click="buttonShow()">Content:</contenteditable>
   </div>
   <div id="buttons">
     <button id="deleteButton" ng-show="showDelete" class="mui-btn mui-btn--primary" ng-click="deleteFunction()">Delete</button>
