@@ -6,14 +6,16 @@
 <div id = "thefilemanager" ng-controller="cardManagerCtrl">
   <ul ng-repeat="x in dataJSON[0] track by $index">
 
-    <div class = "foldertext">
+    <div class = "foldertext" ng-click = "hideToggle($index)">
       {{dataJSON[0][$index]}}
     </div>
+    <div ng-hide = "hideList[$index]">
     <li ng-repeat="y in dataJSON[1][$index] track by $index" class = "theLI">
       <a href = "#" class = "linktext">
       {{dataJSON[1][$parent.$index][$index]}}
-    </a>
+      </a>
     </li>
+  </div>
   </ul>
 </div>
 
