@@ -10,9 +10,8 @@
   flex-flow: row;
 }
 
-#content-wrapper {
-  display: flex;
-  justify-content: flex-start;
+#title {
+  outline: none;
 }
 
 textarea {

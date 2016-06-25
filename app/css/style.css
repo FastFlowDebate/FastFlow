@@ -7,6 +7,8 @@
    font-weight: 300;
    overflow: auto;
    position: relative;
+   background-image: url("../graphics/footer_lodyas.png");
+
  }
 
  html {
@@ -204,4 +206,13 @@ button {
 
 .ngdialog-content {
   min-width: 65%;
+}
+
+#titleContainer {
+  padding: 0 0.5em;
+  margin-top: 1em;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
 }

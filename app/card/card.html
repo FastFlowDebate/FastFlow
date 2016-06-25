@@ -22,8 +22,8 @@
       </div>
     </h2>
   </div>
-  <div id="content" class="textDiv">
-    <contenteditable medium-editor ng-model="content" style="font-size: 18px;" data-placeholder="Type here ..." ng-click="buttonShow()">Content:</contenteditable>
+  <div class="mui-textfield textDiv" id="content" ng-click="buttonShow()">
+    <textarea medium-editor placeholder="Content"></textarea>
   </div>
   <div id="buttons">
     <button id="deleteButton" ng-show="showDelete" class="mui-btn mui-btn--primary" ng-click="deleteFunction()">Delete</button>

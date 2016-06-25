@@ -3,10 +3,11 @@
 <link href="node_modules/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
 <link href="node_modules/angular-mass-autocomplete/massautocomplete.theme.css" rel="stylesheet" type="text/css">
 <script src="node_modules/fuse.js/src/fuse.js"></script>
-
-<h1>
-	<div contenteditable="true" data-ph="Untitled Flow" id="title" ng-bind="title" ng-click="unHide()"></div>
-</h1>
+<div id="titleContainer" class="mui--z4 mui-panel">
+	<h1>
+		<div contenteditable="true" data-ph="Untitled Flow" id="title" ng-bind="title" ng-click="unHide()"></div>
+	</h1>
+</div>
 <p></p>
 <table id="flowspace">
 	<div mass-autocomplete>
