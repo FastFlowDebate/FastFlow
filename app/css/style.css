@@ -1,218 +1,87 @@
-/**
- * Body CSS
- */
-
- body {
-   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-   font-weight: 300;
-   overflow: auto;
-   position: relative;
-   background-image: url("../graphics/footer_lodyas.png");
-
- }
-
- html {
-   overflow: hidden;
- }
-
- .icon {
-   padding-right: 5px;
-   height: 15px;
-   width: 20px;
- }
-
- .textSpan {
-   vertical-align: middle;
- }
-
-html,
-body {
+html, body {
+  width: 100%;
   height: 100%;
-  background-color: white;
+  padding: 0px;
+  margin: 0px;
 }
 
-html,
-body,
-input,
-textarea,
-button {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+body {
+  font-family: arial;
+  background-image: url("../graphics/landscape.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
+/*-----------------------------*/
 
-/**
- * Layout CSS
- */
-
-#header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 2;
-  transition: left 0.2s;
-}
-
-#sidedrawer {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 200px;
-  left: -200px;
-  overflow: hidden;
-  z-index: 2;
-  color: #424242;
-  background-color: #EEEEEE;
-  transition: transform 0.2s;
-}
-#sidedrawer a {
-  color: #424242;
-}
-
-#content-wrapper {
-  padding-left: 1em;
-  display: block;
-  min-height: 100%;
-  overflow-x: hidden;
-  margin-left: 0px;
-  transition: margin-left 0.2s;
-
-  /* sticky bottom */
-  margin-bottom: -160px;
-  padding-bottom: 160px;
-  width: 80%;
-  margin: auto;
+.wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
-
-@media (min-width: 768px) {
-  #header {
-    left: 200px;
-  }
-
-  #sidedrawer {
-    transform: translate(200px);
-  }
-
-  #content-wrapper {
-    margin-left: 200px;
-  }
-
-  #footer {
-    margin-left: 200px;
-  }
-
-  body.hide-sidedrawer #header {
-    left: 0;
-  }
-
-  body.hide-sidedrawer #sidedrawer {
-    transform: translate(0px);
-  }
-
-  body.hide-sidedrawer #content-wrapper {
-    margin-left: 0;
-  }
-
-  body.hide-sidedrawer #footer {
-    margin-left: 0;
-  }
-}
-
-/**
- * Toggle Sidedrawer
- */
-#sidedrawer.active {
-  transform: translate(200px);
-}
-
-/**
- * Header CSS
- */
-
-.sidedrawer-toggle {
+.left {
+  height: calc(100vh - 40px);
+  margin: 10px;
+  padding: 10px;
   color: white;
-  cursor: pointer;
   font-size: 20px;
-  line-height: 20px;
-  margin-right: 10px;
 }
-
-.sidedrawer-toggle:hover {
-  color: white;
-  text-decoration: none;
+.left ul {
+  padding: 0px;
+  margin: 0px;
 }
-
-
-/**
- * Sidedrawer CSS
- */
-
-#sidedrawer-brand {
-  padding-left: 20px;
-}
-
-#sidedrawer ul {
+.left li {
+  margin-bottom: 10px;
+  margin-left: -5px;
   list-style: none;
 }
 
-#sidedrawer > ul {
-  padding-left: 0px;
+.left .exit {
+  float: bottom;
 }
 
-#sidedrawer > ul > li:first-child {
-  padding-top: 15px;
-}
-
-#sidedrawer strong {
-  display: block;
-  padding: 15px 22px;
-  cursor: pointer;
-}
-
-#sidedrawer strong:hover {
+.left a {
+  padding: 5px;
+  text-decoration: none;
   color: white;
-  background-color: #7E57C2;
 }
 
-#sidedrawer strong + ul > li {
-  padding: 6px 0px;
-}
-
-.mui-appbar{
-  background-color: #673AB7;
+.left a:hover {
+  padding: 5px;
+  text-decoration: none;
   color: black;
+  background-color: white;
 }
 
-#sidebarinput{
-  background-color: #F5F5F5;
-  height: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
+/*-----------------------------*/
+
+.middle {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-grow: 100;
 }
 
-[contentEditable=true]:empty:not(:focus):before{
-  content:attr(data-ph)
+/*-----------------------------*/
+
+.right {
+  height: calc(100vh - 40px);
+  margin: 10px;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
 }
 
-#searchResults {
-  height: 500px;
-  overflow: auto;
-  padding: 20px;
+.top {
+  height: calc(100vh - 270px);
 }
-
-.ngdialog-content {
-  min-width: 65%;
+.bottom {
+  height: 250px;
 }
+/*-----------------------------*/
 
-#titleContainer {
-  padding: 0 0.5em;
-  margin-top: 1em;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  align-content: center;
+.container {
+  padding: 10px;
+  margin-top: 10px;
+  background-color: white;
 }
