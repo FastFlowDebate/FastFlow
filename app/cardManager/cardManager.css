@@ -1,51 +1,25 @@
-#thefilemanager{
-  margin-left: -60px;
+#thefilemanager ul{
+  padding: 0px;
+  margin: 0px;
+  font-size: 20px;
+}
+#thefilemanager li{
+  list-style-type: none;
+  padding-left: 15px;
+  margin: 10px;
+}
+#thefilemanager a{
+  color: black;
+  font-size: 20px;
+}
+
+.foldertext{
+  padding: 10px;
+  margin-left: -10px;
   margin-right: -10px;
-  font-size: 14px;
-  padding-top: 20px;
 }
 
-#thefilemanager: ul {
-  margin-left: -20px;
-  padding-left: 0px;
-  padding-bottom: 5px;
-  list-style: none;
-}
-
-.theLI {
-  list-style: none;
-  padding-left: 40px;
-  padding-bottom: 10px;
-}
-
-.foldertext {
-  font-size: 14px;
-  padding: 10px 10px 10px 60px;
-  margin: -10px -10px 10px -36px;
-}
-
-.foldertext:hover {
-  background-color: #7E57C2;
+.foldertext:hover{
+  background-color: purple;
   color: white;
-}
-a.linktext:link {
-  color: #272727;
-  text-decoration: none;
-}
-
-a.linktext:hover {
-  color: #272727;
-  text-decoration: underline;
-}
-
-.filetext {
-  padding-left: 10px;
-}
-
-.hidden{
-  display:none;
-}
-
-.unhidden{
-  display:block;
 }

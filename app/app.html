@@ -4,18 +4,16 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="node_modules/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css" />
     <link href="node_modules/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet" type="text/css" />
-    <style>
-    </style>
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
     <div class = "wrapper">
       <div class = "left">
         <ul>
-          <li><a href = "#blockManager">Blocks</a></li>
-          <li><a href = "#card">Card editor</a></li>
-          <li><a href = "#cardManager">Cards</a></li>
-          <li><a href = "#flowManager">Flow</a></li>
-          <li><a href = "#speechManager">Speeches</a></li>
+          <li><a href = "#blockManager"><i class="fa fa-shield" aria-hidden="true"></i> Blocks</a></li>
+          <li><a href = "#cardManager"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Cards</a></li>
+          <li><a href = "#flowManager"><i class="fa fa-pencil-square" aria-hidden="true"></i> Flow</a></li>
+          <li><a href = "#speechManager"><i class="fa fa-comment-o" aria-hidden="true"></i> Speeches</a></li>
         </ul>
         <div class = "exit">
           Exit
@@ -26,14 +24,6 @@
         <div class = "container" style = "height: calc(100vh - 60px);" ng-view>
         </div>
         <script src="app.js"></script>
-        <!--
-        <div class = "container" style = "font-size: 30px;">
-          Title
-        </div>
-        <div class = "container" style = "height: calc(100vh - 120px) ; font-size: 20px;">
-          Not Title
-        </div>
-      -->
 
       </div>
       <div class = "right">
