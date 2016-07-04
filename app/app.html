@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title> FastFlow </title>
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="node_modules/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css" />
     <link href="node_modules/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet" type="text/css" />
@@ -10,19 +11,33 @@
     <div class = "wrapper">
       <div class = "left">
         <ul>
-          <li><a href = "#blockManager"><i class="fa fa-shield" aria-hidden="true"></i> Blocks</a></li>
-          <li><a href = "#cardManager"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Cards</a></li>
-          <li><a href = "#flowManager"><i class="fa fa-pencil-square" aria-hidden="true"></i> Flow</a></li>
-          <li><a href = "#speechManager"><i class="fa fa-comment-o" aria-hidden="true"></i> Speeches</a></li>
+          <li class="tooltip menuIcon"><a href = "#blockManager">
+            <i class="fa fa-shield" aria-hidden="true"></i>
+            <span class="tooltiptext">Blocks</span>
+          </a></li>
+          <li class="tooltip menuIcon"><a href = "#cardManager">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+            <span class="tooltiptext">Cards</span>
+          </a></li>
+          <li class="tooltip menuIcon"><a href = "#flowManager">
+            <i class="fa fa-pencil-square" aria-hidden="true"></i>
+            <span class="tooltiptext">Flow</span>
+          </a></li>
+          <li class="tooltip menuIcon"><a href = "#speechManager">
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+            <span class="tooltiptext">Speeches</span>
+          </a></li>
         </ul>
         <div class = "exit">
-          Exit
+          <div class="tooltip menuIcon"><a href = "#close">
+            <i class="fa fa-power-off" aria-hidden="true"></i>
+            <span class="tooltiptext">Quit</span>
+          </a></div>
         </div>
       </div>
       <div class = "middle" >
 
-        <div class = "container" style = "height: calc(100vh - 60px);" ng-view>
-        </div>
+        <div class = "container" style = "height: calc(100vh - 60px);" ng-view></div>
         <script src="app.js"></script>
 
       </div>

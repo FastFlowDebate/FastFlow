@@ -28,6 +28,9 @@ body {
   font-size: 20px;
 }
 .left ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
   padding: 0px;
   margin: 0px;
 }
@@ -44,14 +47,26 @@ body {
 .left a {
   padding: 5px;
   text-decoration: none;
-  color: white;
+  color: black;
 }
 
 .left a:hover {
   padding: 5px;
-  text-decoration: none;
-  color: black;
-  background-color: white;
+}
+
+.menuIcon {
+  border-radius: 50%;
+  background-color: #D8D8D8;
+  height: 2em;
+  width: 2em;
+  text-align: center;
+  line-height: 2em;
+  font-size: 1.5em;
+  border: none;
+}
+
+.menuIcon:hover {
+  background-color: #424242;
 }
 
 /*-----------------------------*/
@@ -84,4 +99,35 @@ body {
   padding: 10px;
   margin-top: 10px;
   background-color: white;
+}
+
+/*-----------------------------*/
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    font-size: 0.8em;
+    visibility: hidden;
+    width: auto;
+    min-width: 120px;
+    background-color: #D8D8D8;
+    color: #424242;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 6px;
+
+    /* Position the tooltip text - see examples below! */
+    top: -5px;
+    left: 105%;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
