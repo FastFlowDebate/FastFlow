@@ -1,25 +1,33 @@
 <!doctype html>
 <html>
 <link href="cardManager/cardManager.css" rel="stylesheet" type="text/css" />
-<div  id="titleContainer">
-	<h1> Card Manager </h1>
+<div class="container">
+	Card Manager
 </div>
 
-<div id = "thefilemanager" ng-controller="cardManagerCtrl">
-  <ul ng-repeat="x in dataJSON[0] track by $index">
+<div id = "fileManager" ng-controller="cardManagerCtrl">
+	<div class = "wrapper">
+  	<div class = "leftPart container" >
 
-    <div class = "foldertext" ng-click = "hideToggle($index)">
-      {{dataJSON[0][$index]}}
-    </div>
-    <div ng-hide = "hideList[$index]">
-    <li ng-repeat="y in dataJSON[1][$index] track by $index" class = "theLI">
-      <a href = "{{URIGenerate(dataJSON[1][$parent.$index][$index])}}" class = "linktext">
-      {{dataJSON[1][$parent.$index][$index]}}
-      </a>
-    </li>
-  </div>
-  </ul>
-	<a href = "#card">Card editor</a>
+	    <div class = "foldertext" ng-click = "hideToggle($index)" ng-repeat="x in dataJSON[0] track by $index">
+	      {{dataJSON[0][$index]}}
+	    </div>
+			<!--
+	    <div ng-hide = "hideList[$index]">
+	    <li ng-repeat="y in dataJSON[1][$index] track by $index" class = "theLI">
+	      <a href = "{{URIGenerate(dataJSON[1][$parent.$index][$index])}}" class = "linktext">
+	      {{dataJSON[1][$parent.$index][$index]}}
+	      </a>
+	    </li>
+	  </div>
+	-->
+	  </div>
+		<div class = "rightPart container">
+			hi
+			<a href = "#card">Card editor</a>
+		</div>
+
+	</div>
 </div>
 
 <script src="cardManager/cardManager.js"></script>
