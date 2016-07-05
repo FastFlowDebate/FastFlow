@@ -1,14 +1,31 @@
 module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'toaster', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
+		$routeProvider.when('/card/:tag', {
+			templateUrl: 'card/card.html',
+			controller: 'cardCtrl'
+		})
+
 		$routeProvider.when('/card', {
 			templateUrl: 'card/card.html',
 			controller: 'cardCtrl'
 		})
 	}])
-	.controller('cardCtrl', ['$scope', 'toaster', function($scope, toaster) {
+	.controller('cardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
+		if($routeParams.tag){
+			console.log($routeParams.tag)
+	    var decodedURI = decodeURIComponent($routeParams.tag).substring(1).split("\\")
+
+	    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI[decodedURI.length - 1])
+
+	    $scope.title = FileArray[0]
+	    $scope.tags = FileArray[1]
+	    $scope.content = FileArray[2]
+		} else {
+			$scope.newDoc = true
+		}
 		$scope.showSave = false
 		$scope.showDelete = false
-    $scope.newDoc = true
+
 
     $scope.saveFunction = function () {
 			if($scope.title === "" || $scope.title === null || $scope.title === undefined) {

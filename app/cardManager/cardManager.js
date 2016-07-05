@@ -27,6 +27,6 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 			}
 
 			$scope.URIGenerate = function(name) {
-				return "card.html?" + encodeURIComponent(name)
+				return "card.html/tag" + encodeURIComponent(name)
 			}
   }])
