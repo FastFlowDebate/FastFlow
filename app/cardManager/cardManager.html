@@ -2,14 +2,14 @@
 <html>
 <link href="cardManager/cardManager.css" rel="stylesheet" type="text/css" />
 <div class="container">
-	Card Manager
+	Card Manager <a href = "#card">Card editor</a>
 </div>
 
-<div id = "fileManager" ng-controller="cardManagerCtrl">
+<div ng-controller="cardManagerCtrl">
 	<div class = "wrapper">
   	<div class = "leftPart container" >
 
-	    <div class = "foldertext" ng-click = "hideToggle($index)" ng-repeat="x in dataJSON[0] track by $index">
+	    <div class = "foldertext" ng-click = "showPanel($index)" ng-repeat="x in dataJSON[0] track by $index" style = {{highlightList[$index]}}>
 	      {{dataJSON[0][$index]}}
 	    </div>
 			<!--
@@ -22,9 +22,11 @@
 	  </div>
 	-->
 	  </div>
-		<div class = "rightPart container">
-			hi
-			<a href = "#card">Card editor</a>
+		<div class = "rightPart container" ng-click = "clearHighlightList()">
+			<div class = "linktext" ng-repeat="x in tagContent">
+				<a href = "#">{{x}}</a>
+			</div>
+
 		</div>
 
 	</div>

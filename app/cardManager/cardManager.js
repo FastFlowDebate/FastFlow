@@ -8,10 +8,22 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 	.controller('cardManagerCtrl', ['$scope', function($scope) {
 			$scope.dataJSON = ipcRenderer.sendSync('FileManager', 'ready')
 
-			$scope.hideList = Array.apply(null, Array($scope.dataJSON[0].length)).map(function (x, i) { return true });
+			$scope.tagContent = []
 
-			$scope.hideToggle = function(value) {
-				$scope.hideList[value] = !$scope.hideList[value];
+			$scope.highlightList = Array.apply(null, Array($scope.dataJSON[0].length)).map(function (x, i) { return " " });
+
+			$scope.showPanel = function(value) {
+				$scope.tagContent = $scope.dataJSON[1][value];
+				console.log($scope.dataJSON[1][value]);
+
+				$scope.clearHighlightList()
+				$scope.highlightList[value] = "background-color: purple; color: white;"
+				console.log($scope.highlightList)
+			}
+
+			$scope.clearHighlightList = function() {
+				$scope.highlightList = Array.apply(null, Array($scope.dataJSON[0].length)).map(function (x, i) { return " " });
+
 			}
 
 			$scope.URIGenerate = function(name) {

@@ -9,6 +9,10 @@
   color: white;
 }
 
+.highlight {
+  background-color: purple;
+}
+
 .leftPart {
   width: 20%;
   height: calc(100vh - 100px);
@@ -21,14 +25,16 @@
   width: 500px;
 }
 
-.top {
-
+.linktext{
+  margin-left: -10px;
+  margin-right: -10px;
+  padding: 10px;
 }
 
-#fileManager {
-
+.linktext a {
+  color: black;
 }
-#fileManager h1 {
-  padding: 0px;
-  margin: 0px;
+
+.linktext a:hover {
+  color: purple;
 }
