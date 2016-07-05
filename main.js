@@ -395,8 +395,8 @@ function getCard(datab, searchTerm){
   })
 
   ipcMain.on('FileOpen', function (event, arg) {
-    var cards = db.getCollection("cards");
-    var FileArray = arg
+    var cards = db.getCollection("cards")
+    console.log(cards)
     var foundCard = cards.find({'name' : arg})
     if(foundCard[0]){
       var Title = foundCard[0].name

@@ -14,11 +14,9 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 
 			$scope.showPanel = function(value) {
 				$scope.tagContent = $scope.dataJSON[1][value];
-				console.log($scope.dataJSON[1][value]);
 
 				$scope.clearHighlightList()
 				$scope.highlightList[value] = "background-color: purple; color: white;"
-				console.log($scope.highlightList)
 			}
 
 			$scope.clearHighlightList = function() {
@@ -27,6 +25,6 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 			}
 
 			$scope.URIGenerate = function(name) {
-				return "card.html/tag" + encodeURIComponent(name)
+				return encodeURIComponent(name)
 			}
   }])
