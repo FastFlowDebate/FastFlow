@@ -81,6 +81,7 @@ function tagindex (datab) {
   return ReturnValue;
 }
 
+
 function flowindex (datab) {
   /* flowindexing */
   var cards = datab.getCollection("cards");
@@ -442,9 +443,9 @@ function getCard(datab, searchTerm){
     //removeCard(db, arg[0], arg[1], arg[2])
   })
 
-  ipcMain.on('FileManager', function (event, arg) {
+  ipcMain.on('CardManager', function (event, arg) {
     var dataJSON = tagindex(db)
-    var stuff = flowindex(db2)
+    console.log(JSON.stringify(dataJSON))
     event.returnValue = dataJSON
   })
 
