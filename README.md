@@ -4,8 +4,6 @@
 
 Debate organization suite for empowering debaters to directly leverage their research in round
 
-requires [NodeJS](https://nodejs.org/en/)
-
 ## Planned Features:
 
 Cards:
@@ -23,17 +21,18 @@ Flowing:
 * [LONG TERM] Based on contention name allow you to one-click add your blocks to your flow
 
 ## Installation:
+Make sure you have NodeJS installed
 
-in /fastflow
+*in /fastflow*
 
     npm install
 
-then in /fastflow/app
+*then in /fastflow/app*
 
     npm install
     bower install
     
-Running
+## Running
 
     npm start
 
