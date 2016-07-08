@@ -396,8 +396,9 @@ function getCard(datab, searchTerm){
 
   ipcMain.on('FileOpen', function (event, arg) {
     var cards = db.getCollection("cards")
-    console.log(cards)
     var foundCard = cards.find({'name' : arg})
+    console.log('arg: ' + arg)
+    console.log(foundCard)
     if(foundCard[0]){
       var Title = foundCard[0].name
       var Tags = foundCard[0].tags.split(" ")

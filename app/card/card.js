@@ -15,7 +15,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			console.log($routeParams.tag)
 	    var decodedURI = decodeURIComponent($routeParams.tag)
 			console.log(decodedURI)
-	    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI[decodedURI.length - 1])
+	    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI)
 			console.log(FileArray)
 	    $scope.title = FileArray[0]
 	    $scope.tags = FileArray[1]
