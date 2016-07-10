@@ -56,18 +56,32 @@ function tagindex (datab) {
   var tags;
   var tempTagList;
   var card;
+  var a;
   var names = [];
   for(tags in cards.data){
-      tempTagList = cards.data[tags].tags.split(" ");
-      for(tag in tempTagList){
-        var names = [];
-        for(card in cards.data){
-          if (cards.data[card].tags.split(" ").indexOf(tempTagList[tag]) != -1){
-            names.push(cards.data[card].name)
+    if(typeof cards.data[tags].tags === "string") {
+      tempTagList = cards.data[tags].tags.split(" ")
+    } else {
+      console.log(JSON.stringify(cards.data[tags].tags))
+      tempTagList = cards.data[tags].tags[0].split(" ")
+    }
+    for(tag in tempTagList){
+      var names = [];
+      for(card in cards.data){
+        //handle arrays of tags
+        if(typeof cards.data[card].tags !== "string") {
+          console.log('   value: ' + cards.data[card].tags[0])
+          for(a in cards.data[card].tags) {
+            if (a.indexOf(tempTagList[tag]) != -1){
+              names.push(cards.data[card].name)
+            }
           }
+        } else if (cards.data[card].tags.split(" ").indexOf(tempTagList[tag]) != -1){
+          names.push(cards.data[card].name)
         }
-        tagArray[tempTagList[tag]] = names;
       }
+      tagArray[tempTagList[tag]] = names;
+    }
   }
   var keys = Object.keys(tagArray)
 
@@ -398,8 +412,6 @@ function getCard(datab, searchTerm){
   ipcMain.on('FileOpen', function (event, arg) {
     var cards = db.getCollection("cards")
     var foundCard = cards.find({'name' : arg})
-    console.log('arg: ' + arg)
-    console.log(foundCard)
     if(foundCard[0]){
       var Title = foundCard[0].name
       var Tags = foundCard[0].tags.split(" ")
@@ -445,7 +457,6 @@ function getCard(datab, searchTerm){
 
   ipcMain.on('CardManager', function (event, arg) {
     var dataJSON = tagindex(db)
-    console.log(JSON.stringify(dataJSON))
     event.returnValue = dataJSON
   })
 

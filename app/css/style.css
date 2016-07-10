@@ -14,43 +14,34 @@ body {
 }
 
 /*-----------------------------*/
-
-.wrapper {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
-.left {
+.uiLeft {
   height: calc(100vh - 40px);
-  margin: 10px;
-  padding: 10px;
   color: white;
   font-size: 15px;
 }
-.left ul {
+.uiLeft ul {
+  margin-top: 1em;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
   padding: 0px;
-  margin: 0px;
 }
-.left li {
+.uiLeft li {
   margin-bottom: 10px;
-  margin-left: -5px;
   list-style: none;
 }
 
-.left .exit {
+.uiLeft .exit {
   float: bottom;
 }
 
-.left a {
+.uiLeft a {
   padding: 5px;
   text-decoration: none;
   color: white;
 }
 
-.left a:hover {
+.uiLeft a:hover {
   padding: 5px;
 }
 
@@ -71,7 +62,7 @@ body {
 
 /*-----------------------------*/
 
-.middle {
+.uiMiddle {
   margin-top: 10px;
   margin-bottom: 10px;
   flex-grow: 100;
@@ -79,10 +70,7 @@ body {
 
 /*-----------------------------*/
 
-.right {
-  height: calc(100vh - 40px);
-  margin: 10px;
-  padding: 10px;
+.uiRight {
   color: white;
   font-size: 15px;
 }

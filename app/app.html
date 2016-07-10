@@ -2,14 +2,15 @@
 <html>
   <head>
     <title> FastFlow </title>
+    <link href="css/materialize.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="node_modules/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css" />
     <link href="node_modules/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
-    <div class = "wrapper">
-      <div class = "left">
+    <div class = "row">
+      <div class = "col s2 uiLeft">
         <ul>
           <li class="tooltip menuIcon"><a href = "#blockManager">
             <i class="fa fa-shield" aria-hidden="true"></i>
@@ -35,11 +36,10 @@
           </a></div>
         </div>
       </div>
-      <div class = "middle">
+      <div class = "col s8 uiMiddle">
         <div style = "height: calc(100vh - 60px);" ng-view></div>
-        <script src="app.js"></script>
       </div>
-      <div class = "right">
+      <div class = "col s2 uiRight">
         <div class = "top">
           Widgets
         </div>
@@ -48,5 +48,6 @@
         </div>
       </div>
     </div>
+    <script src="app.js"></script>
   </body>
 </html>
