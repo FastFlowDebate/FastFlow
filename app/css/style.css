@@ -15,6 +15,7 @@ body {
 
 /*-----------------------------*/
 .uiLeft {
+  width: 200px;
   height: calc(100vh - 40px);
   color: white;
   font-size: 15px;
@@ -36,7 +37,7 @@ body {
 }
 
 .uiLeft a {
-  padding: 5px;
+  padding: 0px;
   text-decoration: none;
   color: white;
 }
@@ -46,7 +47,7 @@ body {
 }
 
 .menuIcon {
-  border-radius: 50%;
+  /*border-radius: 50%;
   /*background-color: #D8D8D8;*/
   height: 2em;
   width: 2em;
@@ -55,10 +56,10 @@ body {
   font-size: 1.5em;
   border: none;
 }
-
+/*
 .menuIcon:hover {
   background-color: purple;
-}
+}*/
 
 /*-----------------------------*/
 
@@ -71,15 +72,24 @@ body {
 /*-----------------------------*/
 
 .uiRight {
+  padding-right: 20px;
   color: white;
-  font-size: 15px;
+  font-size: 20px;
+}
+
+.alignRight {
+  text-align: right;
 }
 
 .top {
+  padding-top: 25px;
+  padding-right: 20px;
   height: calc(100vh - 270px);
 }
 .bottom {
   height: 250px;
+  padding-right: 20px;
+  padding-bottom: 20px;
 }
 /*-----------------------------*/
 
@@ -102,15 +112,17 @@ body {
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-    font-size: 0.8em;
+    font-size: 20px;
     visibility: hidden;
     width: auto;
-    min-width: 120px;
-    background-color: #D8D8D8;
-    color: #424242;
+    /*min-width: 120px;
+    /*background-color: #D8D8D8;
+    color: #424242;*/
+    color: white;
+    /**/
     text-align: center;
-    padding: 5px 5px;
-    border-radius: 6px;
+    padding: 5px 0px;
+    /*border-radius: 6px;*/
 
     /* Position the tooltip text - see examples below! */
     top: -5px;
