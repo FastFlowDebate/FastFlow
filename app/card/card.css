@@ -4,19 +4,6 @@
 
 }
 
-#card-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 2em;
-}
-
-.textDiv {
-  max-width: 85%;
-  width: 85%;
-  height: 100%;
-  padding: 0 0.4em 0 0.4em;
-
-}
 
 .mui-btn {
   float: left;
@@ -41,21 +28,35 @@ textarea {
   min-height: 15em;
 }
 
-#title {
-  max-height: 8em;
-}
-
-#title label {
-  font-size: 24px;
-  line-height: 28px;
-}
-
 #title input {
-  font-size: 1.4em;
-  height: 1.4em;
+  border: none;
+  font-size: 24px;
+  font-weight: 500px;
+  padding-bottom: 0;
 }
 
 input {
   border: none;
   width: 100%;
+}
+
+#card-content {
+  padding: 1.5em;
+}
+
+#left-content {
+  padding-top: 5em;
+}
+
+.addenum {
+  background-color: #D8D8D8;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  padding: 0.3em;
+  font-size: 18px;
+}
+
+strong, b {
+  font-weight: 700;
 }
