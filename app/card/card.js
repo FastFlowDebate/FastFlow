@@ -10,7 +10,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			controller: 'cardCtrl'
 		})
 	}])
-	.controller('cardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {		
+	.controller('cardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
 		if($routeParams.tag){
 	    var decodedURI = decodeURIComponent($routeParams.tag)
 	    FileArray = ipcRenderer.sendSync('FileOpen', decodedURI)
@@ -19,6 +19,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 	    $scope.content = FileArray[2]
 		} else {
 			$scope.newDoc = true
+			$scope.content = "Content:"
 		}
 		$scope.showSave = false
 		$scope.showDelete = false
