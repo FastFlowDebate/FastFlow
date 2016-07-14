@@ -9,45 +9,51 @@
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
   </head>
   <body>
-    <div class = "row">
-      <div class = "col s2 uiLeft">
-        <ul>
-          <li class="tooltip menuIcon"><a href = "#blockManager">
-            <i class="fa fa-shield" aria-hidden="true"></i>
-            <span class="tooltiptext">Blocks</span>
-          </a></li>
-          <li class="tooltip menuIcon"><a href = "#cardManager">
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-            <span class="tooltiptext">Cards</span>
-          </a></li>
-          <li class="tooltip menuIcon"><a href = "#flowManager">
-            <i class="fa fa-pencil-square" aria-hidden="true"></i>
-            <span class="tooltiptext">Flow</span>
-          </a></li>
-          <li class="tooltip menuIcon"><a href = "#speechManager">
-            <i class="fa fa-comment-o" aria-hidden="true"></i>
-            <span class="tooltiptext">Speeches</span>
-          </a></li>
-        </ul>
-        <div class = "exit">
-          <div class="tooltip menuIcon"><a href = "#close">
-            <i class="fa fa-power-off" aria-hidden="true"></i>
-            <span class="tooltiptext">Quit</span>
-          </a></div>
-        </div>
+<!--
+    <ul id="slide-out" class="side-nav fixed">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>-->
+
+
+       <!--
+       <div class = "sidebarBottom">
+         <span><i class="fa fa-search" aria-hidden="true"></i></span>
+         <span><i class="fa fa-cog" aria-hidden="true"></i></span>
+         <span><i class="fa fa-times" aria-hidden="true"></i></span>
       </div>
-      <div class = "col s8 uiMiddle">
-        <div style = "height: calc(100vh - 60px);" ng-view></div>
+-->
+      <ul id="nav-mobile" class="side-nav fixed no-padding" style = "transform: translateX(0%);">
+      <li class = "sidebarTitle">
+        FastFlow
+      </li>
+
+      <li>
+        <a href = "#blockManager">
+
+          <span class="tooltiptext">Blocks</span>
+        </a>
+      </li>
+      <li><a href = "#cardManager">
+
+        <span class="tooltiptext">Cards</span>
+      </a></li>
+      <li><a href = "#flowManager">
+
+        <span class="tooltiptext">Flow</span>
+      </a></li>
+      <li><a href = "#speechManager">
+
+        <span class="tooltiptext">Speeches</span>
+      </a></li>
+      </ul>
+
+     <div class="grey lighten-3 contentWrapper">
+      <div class = "container theContent" ng-view>
       </div>
-      <div class = "col s2 uiRight">
-        <div class = "top">
-          <div class = "alignRight">Widgets</div>
-        </div>
-        <div class = "bottom">
-          <div class = "alignRight">Notifications</div>
-        </div>
-      </div>
-    </div>
+     </div>
+
     <script src="app.js"></script>
   </body>
 </html>

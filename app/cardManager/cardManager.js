@@ -16,7 +16,7 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 				$scope.tagContent = $scope.dataJSON[1][value];
 
 				$scope.clearHighlightList()
-				$scope.highlightList[value] = "background-color: purple; color: white;"
+				$scope.highlightList[value] = "active"
 			}
 
 			$scope.clearHighlightList = function() {
