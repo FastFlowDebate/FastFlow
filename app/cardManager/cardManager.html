@@ -1,31 +1,31 @@
 <!doctype html>
 <html>
+
+<script>
+$(document).ready(function(){
+	$('.collapsible').collapsible({
+		accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+	});
+});
+</script>
+
 <link href="cardManager/cardManager.css" rel="stylesheet" type="text/css" />
-<div class="row" style = "margin: 0px; padding: 0px;">
-	<div class="col s11 white-text">
-		<span class = "titleText">Card Manager</span>
-	</div>
-	<div class="col s1">
-		<a class="btn-floating waves-effect waves-light purple darken-2" href = "#card"><i class="fa fa-plus" aria-hidden="true"></i></a>
-	</div>
-</div>
 
 <div ng-controller="cardManagerCtrl">
-	<div class="row">
-		<div class="col s4 white leftPanel collection">
-			<a ng-click="showPanel($index)" ng-repeat="x in dataJSON[0] track by $index" class = "collection-item {{highlightList[$index]}}">
-				{{dataJSON[0][$index]}}
-			</a>
 
+	<ul class="collapsible bodyCentered" data-collapsible="accordion">
+	<li ng-repeat="x in dataJSON[0] track by $index">
+		<div class="collapsible-header"> {{dataJSON[0][$index]}} </div>
+		<div class="collapsible-body">
+			<div class="collection">
+        <a href="#card/{{URIGenerate(x)}}" class="collection-item" ng-repeat="y in dataJSON[1][$index]">{{y}}</a>
+      </div>
 		</div>
+	</li>
+</ul>
 
-		<div class="col s8 white rightPanel collection">
+<a class="btn-floating btn-large waves-effect waves-light red addButton" href = "#card"><i class="material-icons" >add</i></a>
 
-				<a class="collection-item" href="#card/{{URIGenerate(x)}}" ng-repeat="x in tagContent">{{x}}</a>
-
-		</div>
-
-	</div>
 </div>
 
 </html>

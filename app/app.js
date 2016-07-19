@@ -17,7 +17,6 @@ var MediumEditor = require('./bower_components/medium-editor/dist/js/medium-edit
 require('./bower_components/angular-medium-editor/dist/angular-medium-editor')
 const ipcRenderer = require('electron').ipcRenderer
 
-
 angular.module('fastflowApp', [
 	'ngRoute',
 	'ngDialog',

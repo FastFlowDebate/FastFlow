@@ -1,3 +1,9 @@
+$(document).ready(function(){
+	$('.collapsible').collapsible({
+		accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+	});
+});
+
 module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/cardManager', {
@@ -7,22 +13,8 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 	}])
 	.controller('cardManagerCtrl', ['$scope', function($scope) {
 			$scope.dataJSON = ipcRenderer.sendSync('CardManager', 'ready')
-
+			console.log($scope.dataJSON[1])
 			$scope.tagContent = []
-
-			$scope.highlightList = Array.apply(null, Array($scope.dataJSON[0].length)).map(function (x, i) { return " " });
-
-			$scope.showPanel = function(value) {
-				$scope.tagContent = $scope.dataJSON[1][value];
-
-				$scope.clearHighlightList()
-				$scope.highlightList[value] = "active"
-			}
-
-			$scope.clearHighlightList = function() {
-				$scope.highlightList = Array.apply(null, Array($scope.dataJSON[0].length)).map(function (x, i) { return " " });
-
-			}
 
 			$scope.URIGenerate = function(name) {
 				return encodeURIComponent(name)

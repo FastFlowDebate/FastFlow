@@ -1,101 +1,121 @@
-html, body {
-  width: 100%;
-  height: 100%;
-  padding: 0px;
-  margin: 0px;
-}
-
 body {
-  font-family: arial;
-  /*
-  background-image: url("../graphics/landscape.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  */
+  background-color: #eeeeee;
+  /*grey lighten-3*/
+  font-family: Roboto;
 }
 
-/*-----------------------*/
-/*
-.sidebar {
-  display: block;
-  width: 150px;
+.bodyCentered {
+    max-width: 800px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bodyPad {
+  padding-bottom: 120px;
+  height: 100vh;
+  overflow: auto;
+}
+
+#postEditor {
+  font-family: Roboto;
+}
+
+.leftLabel {
+  margin-left: -12px !important;
+}
+
+.navBarPad {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.navBarFontSize {
+  font-size: 20px !important;
+}
+
+
+
+@media (min-width:1200px) {
+
+.theBackground {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background-color: #00897b;
+  /*teal darken-1*/
+}
+.addButton {
+  font-size: 20px;
+  position: fixed;
+  top: calc(30% - 30px);
+  right: calc((100% - 900px)/4);
+}
+.backButton {
+  font-size: 20px;
+  position: fixed;
+  top: calc(30% - 30px);
+  left: calc((100% - 900px)/4);
   font-size: 15px;
-  color: white;
-  height: 100vh;
-  position: relative;
 }
-
-.sidebar ul {
-  padding: 0px;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  margin-right: -12px;
-  margin-left: -12px;
 }
+@media (max-width: 1199px) {
 
-.sidebarTitle {
-  display: inline-block;
-  width: 150px;
-  padding-top: 20px;
-  padding-bottom: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
-  color: white;
-}
-
-.sidebar a {
-  display: inline-block;
+.theBackground {
   width: 100%;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
-  color: white;
-}
-
-.sidebar a:hover {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 20px;
-  padding-left: 20px;
-  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: white;
-  color: purple;
+  height: 30%;
+  background-color: #00897b;
+  /*teal darken-1*/
+}
+.addButton {
+  font-size: 20px;
+  position: fixed;
+  top: calc(30% - 30px);
+  right: calc((100% - 855px)/2);
+}
+.backButton {
+  font-size: 20px;
+  position: fixed;
+  top: calc(30% - 30px);
+  left: calc((100% - 855px)/2);
+  font-size: 15px;
+}
 }
 
-.sidebarBottom {
-  font-size: 13px;
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  width: calc(100% - 44px);
-}
-*/
-/*-----------------------*/
+@media (max-width: 860px) {
 
-.sidebarTitle {
-  padding-left: 30px !important;
+.card {
+  border-radius: 0px;
 }
 
-.contentWrapper {
-  margin-left: 240px;
-  width: calc(100% - 240px);
-  background-image: url("../graphics/landscape.jpg");
-  background-size: 100% 30vh;
-  background-repeat: no-repeat;
-  background-position: top right;
-  display: block;
-  height: 100vh;
+.theBackground {
+  width: 100%;
+  background-color: #eeeeee;
+  /*teal darken-1*/
 }
-
-.theContent {
-
+.addButton {
+  font-size: 20px;
+  position: fixed;
+  top: calc(100vh - 65px);
+  right: 10px;
 }
-
-.titleText {
-  font-size: 30px;
+.backButton {
+  font-size: 20px;
+  position: fixed;
+  top: calc(100vh - 65px);
+  left: 10px;
+  font-size: 15px;
+}
 }

@@ -2,58 +2,55 @@
 <html>
   <head>
     <title> FastFlow </title>
+
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <!--
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>-->
+
     <link href="css/materialize.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <link href="node_modules/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css" />
     <link href="node_modules/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/hammerjs/hammer.min.js"></script>
+
+    <script src="js/materialize.js"></script>
+
   </head>
-  <body>
-<!--
-    <ul id="slide-out" class="side-nav fixed">
-      <li><a href="#!">First Sidebar Link</a></li>
-      <li><a href="#!">Second Sidebar Link</a></li>
-    </ul>
-    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>-->
 
 
-       <!--
-       <div class = "sidebarBottom">
-         <span><i class="fa fa-search" aria-hidden="true"></i></span>
-         <span><i class="fa fa-cog" aria-hidden="true"></i></span>
-         <span><i class="fa fa-times" aria-hidden="true"></i></span>
-      </div>
--->
-      <ul id="nav-mobile" class="side-nav fixed no-padding" style = "transform: translateX(0%);">
-      <li class = "sidebarTitle">
-        FastFlow
-      </li>
+<body>
 
-      <li>
-        <a href = "#blockManager">
+   <div class = "theBackground">
 
-          <span class="tooltiptext">Blocks</span>
-        </a>
-      </li>
-      <li><a href = "#cardManager">
+     <nav class = "z-depth-0 teal darken-1 navBarPad">
+    <div class="nav-wrapper">
 
-        <span class="tooltiptext">Cards</span>
-      </a></li>
-      <li><a href = "#flowManager">
-
-        <span class="tooltiptext">Flow</span>
-      </a></li>
-      <li><a href = "#speechManager">
-
-        <span class="tooltiptext">Speeches</span>
-      </a></li>
+      <ul id="nav-mobile" class="left">
+        <li>
+      <a class='dropdown-button z-depth-0' data-beloworigin="true" href='#' data-activates='dropdown1' data-constrainWidth='false' ><i class="fa fa-bars navBarFontSize" aria-hidden="true"></i></a></li>
       </ul>
+        <ul id='dropdown1' class='dropdown-content'>
+          <li><a href="#blockManager">Blocks</a></li>
+          <li><a href="#cardManager">Cards</a></li>
+          <li><a href="#flowManager">Flow</a></li>
+          <li><a href="#speechManager">Speeches</a></li>
+        </ul>
 
-     <div class="grey lighten-3 contentWrapper">
-      <div class = "container theContent" ng-view>
-      </div>
-     </div>
+      <ul id="nav-mobile" class="right">
+        <li><a href="#.html"><i class="fa fa-cog navBarFontSize" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+  </nav>
 
-    <script src="app.js"></script>
-  </body>
-</html>
+     <div class = "bodyPad">
+       <div ng-view>
+         </div>
+
+   </div>
+   <script src = "app.js"></script>
+</body>
