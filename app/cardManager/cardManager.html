@@ -8,10 +8,34 @@ $(document).ready(function(){
 	});
 });
 </script>
+<script>
+$(document).ready(function(){
+		// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+		$('.modal-trigger').leanModal();
+	});
+
+</script>
 
 <link href="cardManager/cardManager.css" rel="stylesheet" type="text/css" />
 
 <div ng-controller="cardManagerCtrl">
+
+
+
+	       <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
+	         <!-- Modal Structure -->
+	         <div id="modal1" class="modal">
+	           <div class="modal-content">
+	             <h4>Modal Header</h4>
+	             <p>A bunch of text</p>
+	           </div>
+	           <div class="modal-footer">
+	             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+	           </div>
+	         </div>
+
+
 
 	<ul class="collapsible bodyCentered" data-collapsible="accordion">
 	<li ng-repeat="x in dataJSON[0] track by $index">
