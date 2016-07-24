@@ -20,19 +20,41 @@ $(document).ready(function(){
 
 <div ng-controller="cardManagerCtrl">
 
-
-
-	       <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
 	         <!-- Modal Structure -->
-	         <div id="modal1" class="modal">
+	         <div id="card" class="modal">
+						 <div id="card-content" class="row">
+					       <div id="title" class="textDiv">
+					         <div ng-click="buttonShow()">
+					           <input ng-model="title" placeholder="Card Title" type="text">
+					         </div>
+					       </div>
+					       <div class="textDiv" id="content" ng-click="buttonShow()">
+					         <p medium-editor ng-model="content" placeholder="Content"></p>
+					       </div>
+					       <div id="buttons">
+					         <button id="deleteButton" ng-show="showDelete" class="waves-effect waves-light btn" ng-click="deleteFunction()">Delete</button>
+					         <button id="saveButton" ng-show="showSave" class="waves-effect waves-light btn" ng-click="saveFunction()">Save</button>
+					       </div>
+								 <div class="modal-footer">
+							       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+							    </div>
+
+					       <div class="addenum" id="sTags">
+					         <i>Searchable Tags:</i><br>
+					         <input ng-model="tags" placeholder="sTag1, sTag2, sTag3" id="tags" type="text">
+					       </div>
+
+					   </div>
+
+<!--
+
 	           <div class="modal-content">
 	             <h4>Modal Header</h4>
 	             <p>A bunch of text</p>
 	           </div>
 	           <div class="modal-footer">
 	             <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-	           </div>
+	           </div>-->
 	         </div>
 
 
@@ -42,13 +64,13 @@ $(document).ready(function(){
 		<div class="collapsible-header"> {{dataJSON[0][$index]}} </div>
 		<div class="collapsible-body">
 			<div class="collection">
-        <a href="#card/{{URIGenerate(x)}}" class="collection-item" ng-repeat="y in dataJSON[1][$index]">{{y}}</a>
+        <a ng-click=openEditor(y) class="collection-item" ng-repeat="y in dataJSON[1][$index]">{{y}}</a>
       </div>
 		</div>
 	</li>
 </ul>
 
-<a class="btn-floating btn-large waves-effect waves-light red addButton" href = "#card"><i class="material-icons" >add</i></a>
+<a class="btn-floating btn-large waves-effect waves-light red addButton modal-trigger" ng-click="openEditor(null)"><i class="material-icons" >add</i></a>
 
 </div>
 

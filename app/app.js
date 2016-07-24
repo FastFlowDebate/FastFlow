@@ -23,7 +23,7 @@ angular.module('fastflowApp', [
 	'fastflowApp.index',
 	'fastflowApp.flow',
 	'fastflowApp.flowManager',
-	'fastflowApp.card',
+	//'fastflowApp.card',
 	'fastflowApp.cardManager',
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
   $routeProvider.otherwise({
