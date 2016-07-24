@@ -62,7 +62,6 @@ function tagindex (datab) {
     if(typeof cards.data[tags].tags === "string") {
       tempTagList = cards.data[tags].tags.split(" ")
     } else {
-      console.log(JSON.stringify(cards.data[tags].tags))
       tempTagList = cards.data[tags].tags[0].split(" ")
     }
     for(tag in tempTagList){
@@ -70,7 +69,6 @@ function tagindex (datab) {
       for(card in cards.data){
         //handle arrays of tags
         if(typeof cards.data[card].tags !== "string") {
-          console.log('   value: ' + cards.data[card].tags[0])
           for(a in cards.data[card].tags) {
             if (a.indexOf(tempTagList[tag]) != -1){
               names.push(cards.data[card].name)
@@ -431,6 +429,7 @@ function getCard(datab, searchTerm){
     var Tags = ""
     var Content = foundCard[0].content
     var TheArray = [Title, Tags, Content]
+    console.log('array: ' + TheArray)
     event.returnValue = TheArray
 
   })

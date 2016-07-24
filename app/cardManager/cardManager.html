@@ -42,7 +42,7 @@ $(document).ready(function(){
 		<div class="collapsible-header"> {{dataJSON[0][$index]}} </div>
 		<div class="collapsible-body">
 			<div class="collection">
-        <a href="#card/{{URIGenerate(x)}}" class="collection-item" ng-repeat="y in dataJSON[1][$index]">{{y}}</a>
+        <a ng-href="#card/{{URIGenerate(y)}}" class="collection-item" ng-repeat="y in dataJSON[1][$index]">{{y}}</a>
       </div>
 		</div>
 	</li>
