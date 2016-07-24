@@ -64,7 +64,11 @@ $(document).ready(function(){
 		<div class="collapsible-header"> {{dataJSON[0][$index]}} </div>
 		<div class="collapsible-body">
 			<div class="collection">
+<<<<<<< HEAD
         <a ng-click=openEditor(y) class="collection-item" ng-repeat="y in dataJSON[1][$index]">{{y}}</a>
+=======
+        <a ng-href="#card/{{URIGenerate(y)}}" class="collection-item" ng-repeat="y in dataJSON[1][$index]">{{y}}</a>
+>>>>>>> 16cbf5d765ae95489378acea3f862d9831ebf6ab
       </div>
 		</div>
 	</li>

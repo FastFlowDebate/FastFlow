@@ -1,64 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title> FastFlow </title>
 
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
-    <!--
+<head>
+	<title> FastFlow </title>
+
+	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+	<!--
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>-->
 
-    <link href="css/materialize.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link href="node_modules/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css" />
-    <link href="node_modules/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+	<link href="css/materialize.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link href="node_modules/ng-dialog/css/ngDialog.css" rel="stylesheet" type="text/css" />
+	<link href="node_modules/ng-dialog/css/ngDialog-theme-default.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 
-    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="../node_modules/hammerjs/hammer.min.js"></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/hammerjs/hammer.min.js"></script>
 
-    <script src="js/materialize.js"></script>
+	<script src="js/materialize.js"></script>
 
 
 
-  </head>
+</head>
 
 
 <body>
 
 
 
-   <div class = "theBackground">
+	<div class="theBackground">
 
 
 
 
-     <nav class = "z-depth-0 teal darken-1 navBarPad">
-    <div class="nav-wrapper">
+		<nav class="z-depth-0 teal darken-1 navBarPad">
+			<div class="nav-wrapper">
 
-      <ul id="nav-mobile" class="left">
-        <li>
-      <a class='dropdown-button z-depth-0' data-beloworigin="true" href='#' data-activates='dropdown1' data-constrainWidth='false' ><i class="fa fa-bars navBarFontSize" aria-hidden="true"></i></a></li>
-      </ul>
-        <ul id='dropdown1' class='dropdown-content'>
-          <li><a href="#blockManager">Blocks</a></li>
-          <li><a href="#cardManager">Cards</a></li>
-          <li><a href="#flowManager">Flow</a></li>
-          <li><a href="#speechManager">Speeches</a></li>
-        </ul>
+				<ul id="nav-mobile" class="left">
+					<li>
+						<a class="dropdown-button z-depth-0" data-beloworigin="true" href="#" data-activates="dropdown1" data-constrainwidth="false"><i class="fa fa-bars navBarFontSize" aria-hidden="true"></i></a></li>
+				</ul>
+				<ul id="dropdown1" class="dropdown-content">
+					<li><a href="#blockManager">Blocks</a></li>
+					<li><a href="#cardManager">Cards</a></li>
+					<li><a href="#flowManager">Flow</a></li>
+					<li><a href="#speechManager">Speeches</a></li>
+				</ul>
 
-      <ul id="nav-mobile" class="right">
-        <li><a href="#.html"><i class="fa fa-cog navBarFontSize" aria-hidden="true"></i></a></li>
-      </ul>
-    </div>
-  </nav>
+				<ul id="nav-mobile" class="right">
+					<li><a href="#.html"><i class="fa fa-cog navBarFontSize" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+		</nav>
 
 
-     <div class = "bodyPad">
-       <div ng-view id = "viewDiv">
-         </div>
+		<div class="bodyPad">
+			<div ng-view id="viewDiv">
+			</div>
 
-   </div>
-   <script src = "app.js"></script>
+		</div>
+		<script src="app.js"></script>
+	</div>
 </body>
+
+</html>
