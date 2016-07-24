@@ -24,7 +24,7 @@ angular.module('fastflowApp', [
 	'fastflowApp.flow',
 	'fastflowApp.flowManager',
 	'fastflowApp.card',
-	'fastflowApp.cardManager'
+	'fastflowApp.cardManager',
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
   $routeProvider.otherwise({
 	   redirectTo: '/index'
