@@ -2230,7 +2230,7 @@ $(document).ready(function(){
             var velocityX = e.gesture.velocityX;
 
             // Disable Scrolling
-            var $body = $('#viewNav');
+            var $body = $('#viewNav');//changed
             var oldWidth = $body.innerWidth();
             $body.css('overflow', 'hidden');
             $body.width(oldWidth);
@@ -2241,7 +2241,7 @@ $(document).ready(function(){
               overlay.css('opacity', 0).click( function(){
                 removeMenu();
               });
-              $('#viewNav').append(overlay);
+              $('#viewNav').append(overlay);//changed
             }
 
             // Keep within boundaries
