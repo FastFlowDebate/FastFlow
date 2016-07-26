@@ -1,0 +1,57 @@
+.textDiv, #buttons{
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+
+}
+
+p {
+  resize: vertical;
+  width: 100%;
+  height: auto;
+  outline: none;
+  padding: 0 0.2 0 0.2;
+}
+
+textarea {
+  width: 100%;
+  outline: none;
+  border-width: 0;
+  padding: 0 0.2 0 0.2;
+}
+
+#content {
+  min-height: 15em;
+}
+
+#title input {
+  border: none;
+  font-size: 24px;
+  font-weight: 500px;
+  padding-bottom: 0;
+}
+
+input {
+  border: none;
+  width: 100%;
+}
+
+#card-content {
+  padding: 1.5em;
+}
+
+#left-content {
+  padding-top: 5em;
+}
+
+.addenum {
+  background-color: #D8D8D8;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  padding: 0.3em;
+  font-size: 18px;
+}
+
+strong, b {
+  font-weight: 700;
+}

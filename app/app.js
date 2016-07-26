@@ -6,6 +6,7 @@ require('./index/index')
 require('./flow/flow')
 require('./flowManager/flowManager')
 require('./card/card')
+require('./newCard/newCard')
 require('./cardManager/cardManager')
 
 var toaster = require('angularjs-toaster')
@@ -24,6 +25,7 @@ angular.module('fastflowApp', [
 	'fastflowApp.flow',
 	'fastflowApp.flowManager',
 	'fastflowApp.card',
+	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
   $routeProvider.otherwise({
