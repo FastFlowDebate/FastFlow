@@ -1,4 +1,5 @@
-module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'angular-dragdrop', 'toaster', 'ngAnimate'])
+module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'toaster', 'ngAnimate'])
+//'angular-dragdrop',
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/speech/:tag', {
 			templateUrl: 'speech/speech.html',

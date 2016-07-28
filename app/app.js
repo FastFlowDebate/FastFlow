@@ -18,8 +18,8 @@ require('angular-sanitize')
 require('angular-animate')
 var MediumEditor = require('./bower_components/medium-editor/dist/js/medium-editor').MediumEditor
 require('./bower_components/angular-medium-editor/dist/angular-medium-editor')
-var AngularDropdown = require('./bower_components/angular-dragdrop/src/angular-dragdrop').AngularDropdown
-require('./bower_components/angular-dragdrop/src/angular-dragdrop')
+
+//require('./bower_components/angular-dragdrop/src/angular-dragdrop')
 const ipcRenderer = require('electron').ipcRenderer
 
 angular.module('fastflowApp', [
