@@ -1,0 +1,42 @@
+<!doctype html>
+<link href="bower_components/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
+<link href="bower_components/medium-editor/dist/css/themes/flat.css" rel="stylesheet">
+<link href="css/materialize.css" rel="stylesheet">
+<link href="node_modules/angularjs-toaster/toaster.css" rel="stylesheet">
+<link href="speech/speech.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+
+
+<!--<toaster-container></toaster-container>-->
+<div id="card-wrapper" class="card bodyCentered">
+
+
+
+  <div id="card-content" class="row">
+    <div id="main-content" class="col s9">
+      <div id="title" class="textDiv">
+        SPEECH
+
+      </div>
+
+
+    </div>
+    <!-- The dnd-list directive allows to drop elements into it.
+         The dropped data will be added to the referenced list -->
+    <ul dnd-list="list">
+        <!-- The dnd-draggable directive makes an element draggable and will
+             transfer the object that was assigned to it. If an element was
+             dragged away, you have to remove it from the original list
+             yourself using the dnd-moved attribute -->
+        <li ng-repeat="item in list"
+            dnd-draggable="item"
+            dnd-moved="list.splice($index, 1)"
+            dnd-effect-allowed="move"
+            dnd-selected="models.selected = item"
+            ng-class="{'selected': models.selected === item}"
+            >
+            {{item.label}}
+        </li>
+    </ul>
+  </div>
+</div>

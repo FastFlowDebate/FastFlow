@@ -8,6 +8,8 @@ require('./flowManager/flowManager')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
+require('./speech/speech')
+
 
 var toaster = require('angularjs-toaster')
 require('ng-dialog')
@@ -16,6 +18,8 @@ require('angular-sanitize')
 require('angular-animate')
 var MediumEditor = require('./bower_components/medium-editor/dist/js/medium-editor').MediumEditor
 require('./bower_components/angular-medium-editor/dist/angular-medium-editor')
+var AngularDropdown = require('./bower_components/angular-dragdrop/src/angular-dragdrop').AngularDropdown
+require('./bower_components/angular-dragdrop/src/angular-dragdrop')
 const ipcRenderer = require('electron').ipcRenderer
 
 angular.module('fastflowApp', [
@@ -27,6 +31,7 @@ angular.module('fastflowApp', [
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
+	'fastflowApp.speech'
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
   $routeProvider.otherwise({
 	   redirectTo: '/index'
