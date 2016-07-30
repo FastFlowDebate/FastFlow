@@ -7,33 +7,44 @@
 <link href="css/style.css" rel="stylesheet">
 
 
-<!--<toaster-container></toaster-container>-->
+<toaster-container></toaster-container>
 <div id="card-wrapper" class="card bodyCentered">
-
-
-
-  <div id="card-content" class="row">
-    <div id="main-content" class="col s9">
-      <div id="title" class="textDiv">
-        NUEVO!!!!!
-        <div ng-click="buttonShow()">
-          <input ng-model="title" placeholder="Card Title" type="text">
+	<div id="card-content">
+		<div id="main-content">
+      <h1 style="font-weight: 100;">Card Creator</h1>
+			<div id="title" class="card textDiv">
+        <div class="card-content black-text">
+              <span class="card-title">Card Title</span>
+              <input ng-model="title" placeholder="The Card that says the thing" type="text">
         </div>
-      </div>
-      <div class="textDiv" id="content" ng-click="buttonShow()">
-        <p medium-editor ng-model="content" placeholder="Content"></p>
-      </div>
-      <div id="buttons">
-        <button id="deleteButton" ng-show="showDelete" class="waves-effect waves-light btn" ng-click="deleteFunction()">Delete</button>
-        <button id="saveButton" ng-show="showSave" class="waves-effect waves-light btn" ng-click="saveFunction()">Save</button>
-      </div>
-    </div>
-    <div id="left-content" class="col s3">
-      <div class="addenum" id="sTags">
-        <i>Searchable Tags:</i><br>
-        <input ng-model="tags" placeholder="sTag1, sTag2, sTag3" id="tags" type="text">
-        <div class="chips chips-initial chips-placeholder"></div>
-      </div>
-    </div>
-  </div>
+			</div>
+      <div class="card" id="cite">
+        <div class="card-content black-text">
+              <span class="card-title">Citation</span>
+              <input ng-model="cite" placeholder="Brown, J. D. 'Librarians as Business People: A Review of the Literature.' Journal of For-Profit Librarianship 28 (2006): 421-436. Academic Search Premier. Web. 15 May 2007." type="text">
+        </div>
+			</div>
+      <div class="card" id="sTags">
+        <div class="card-content black-text">
+              <span class="card-title">Searchable Tags</span>
+              <div class="chips chips-initial chips-placeholder"></div>
+        </div>
+			</div>
+			<div class="card textDiv" id="content">
+        <div class="card-content black-text">
+              <span class="card-title">Content</span>
+              <p medium-editor ng-model="content" data-placeholder="Card Text goes here, not your own stuff!"></p>
+        </div>
+			</div>
+      <div id="notes" class="card textDiv">
+        <div class="card-content black-text">
+              <span class="card-title">Notes</span>
+              <p medium-editor ng-model="notes" data-placeholder="Notes/Analysis"></p>
+        </div>
+			</div>
+			<div id="buttons">
+				<button id="saveButton" class="waves-effect waves-light btn" ng-click="saveFunction()">Save</button>
+			</div>
+		</div>
+	</div>
 </div>

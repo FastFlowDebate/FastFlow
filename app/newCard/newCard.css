@@ -9,14 +9,6 @@ p {
   width: 100%;
   height: auto;
   outline: none;
-  padding: 0 0.2 0 0.2;
-}
-
-textarea {
-  width: 100%;
-  outline: none;
-  border-width: 0;
-  padding: 0 0.2 0 0.2;
 }
 
 #content {
@@ -37,10 +29,6 @@ input {
 
 #card-content {
   padding: 1.5em;
-}
-
-#left-content {
-  padding-top: 5em;
 }
 
 .addenum {

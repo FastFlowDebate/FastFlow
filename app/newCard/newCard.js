@@ -11,36 +11,24 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 		})
 	}])
 	.controller('newCardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
-		jQuery('.chips').material_chip()
-		jQuery('.chips-initial').material_chip({
+
+		jQuery('.chips').material_chip({
 			data: [{
-				tag: 'Apple',
+				tag: 'Aff',
 			}, {
-				tag: 'Microsoft',
+				tag: 'Neg',
 			}, {
-				tag: 'Google',
+				tag: 'Pro',
+			}, {
+				tag: 'Con',
 			}],
-		})
-		jQuery('.chips-placeholder').material_chip({
 			placeholder: 'Enter a tag',
 			secondaryPlaceholder: '+Tag',
 		})
 
-		if ($routeParams.tag) {
-			var decodedURI = decodeURIComponent($routeParams.tag)
-			console.log('opening card: ' + decodedURI)
-			FileArray = ipcRenderer.sendSync('FileOpen', decodedURI)
-			if (FileArray == []) console.log('error, card not found')
-			$scope.title = FileArray[0]
-			$scope.tags = FileArray[1]
-			$scope.content = FileArray[2]
-		} else {
-			console.log('new card creator')
-			$scope.newDoc = true
-			$scope.content = "Content:"
-		}
-		$scope.showSave = false
-		$scope.showDelete = false
+		console.log('new card creator')
+		$scope.content = "<i>card content from the article or pdf goes here</i>"
+		$scope.notes = "<i>optional notes or analysis goes here</i>"
 
 
 		$scope.saveFunction = function() {
@@ -54,18 +42,5 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 				ipcRenderer.send('FileSave', [$scope.title, $scope.tags, $scope.content])
 				toaster.pop('success', "Card Saved", "");
 			}
-		}
-
-		$scope.deleteFunction = function() {
-			ipcRenderer.send('FileRemove', $scope.title)
-			toaster.pop('note', "Card Deleted", "");
-			window.location.replace('#index')
-		}
-
-		$scope.buttonShow = function() {
-			if (!$scope.newDoc) {
-				$scope.showDelete = true
-			}
-			$scope.showSave = true
 		}
 	}])
