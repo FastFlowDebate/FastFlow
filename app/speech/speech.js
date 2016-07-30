@@ -1,5 +1,4 @@
-module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'toaster', 'ngAnimate'])
-//'angular-dragdrop',
+module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete', 'ngDragDrop', 'ngSanitize', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/speech/:tag', {
 			templateUrl: 'speech/speech.html',
@@ -11,7 +10,7 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			controller: 'speechCtrl'
 		})
 	}])
-	.controller('speechCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
+	.controller('speechCtrl', ['$scope', '$routeParams', function($scope, toaster, $routeParams) {
 		$scope.models = {
 			selected: null,
 			lists: {"A": [], "B": []}

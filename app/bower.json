@@ -1,5 +1,5 @@
 {
-  "name": "FastFlow",
+  "name": "fastflow",
   "description": "Debate application for keeping your files organized",
   "main": "main.js",
   "authors": [
@@ -21,6 +21,7 @@
     "tests"
   ],
   "dependencies": {
-    "angular-medium-editor": "^1.1.1"
+    "angular-medium-editor": "^1.1.1",
+    "angular-dragdrop": "^1.0.13"
   }
 }
