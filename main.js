@@ -51,7 +51,7 @@ function removeCard(datab, cardTagline, cardTags, cardCitation, cardContent, Car
 }
 
 function tagindex (datab) {
-  /* tagindexing */
+  /*
   var cards = datab.getCollection("cards");
   var tagArray = {};
   var tag;
@@ -93,6 +93,8 @@ function tagindex (datab) {
 
   var ReturnValue = [keys, values]
   return ReturnValue;
+  */
+  return 0
 }
 
 
