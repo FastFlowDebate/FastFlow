@@ -3,7 +3,10 @@ node_js:
   - "4.1"
 env:
   - CXX=g++-4.8
-before_script:
+install:
+  - npm install
+  - cd app && npm install && bower install
+script:
   - node package.js
 addons:
   apt:
