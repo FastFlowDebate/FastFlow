@@ -12,30 +12,19 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 	}])
 	.controller('cardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
 		jQuery('.chips').material_chip()
-		jQuery('.chips-initial').material_chip({
-			data: [{
-				tag: 'Apple',
-			}, {
-				tag: 'Microsoft',
-			}, {
-				tag: 'Google',
-			}],
-		})
-		jQuery('.chips-placeholder').material_chip({
-			placeholder: 'Enter a tag',
-			secondaryPlaceholder: '+Tag',
-		})
-		
+
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)
 			console.log('opening card: ' + decodedURI)
-			FileArray = ipcRenderer.sendSync('FileOpen', decodedURI)
-			if (FileArray == []) console.log('error, card not found')
-			$scope.title = FileArray[0]
-			$scope.tags = FileArray[1]
-			$scope.content = FileArray[2]
+			card = ipcRenderer.sendSync('FileOpen', decodedURI)
+			if (card == []) console.log('error, card not found')
+			$scope.title = card.tagLine
+			$scope.tags = card.sTags
+			$scope.content = card.content
+			$scope.cite = card.citation
+			$scope.notes = card.notes
 		} else {
-			console.log('new card creator')
+			console.log('no param, this is an error, go back to safety!')
 			$scope.newDoc = true
 			$scope.content = "Content:"
 		}

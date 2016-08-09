@@ -25,27 +25,29 @@ function loadHandler() {
   }
 }
 
-function addCardToLoki(datab, cardName, cardTags, cardContent){
-  var cards = datab.getCollection("cards");
-  console.log(cardTags);
-  cards.insert({
-    name:cardName,
-    tags:cardTags,
-    content:cardContent
-  });
-
-  datab.saveDatabase();
+function addCardToLoki(datab, cardTagline, cardTags, cardCitation, cardContent, cardNotes) {
+	var cards = datab.getCollection("cards")
+	console.log(cardTags)
+	cards.insert({
+		tagLine: cardTagline,
+		sTags: cardTags,
+		citation: cardCitation,
+		content: cardContent,
+		notes: cardNotes
+	})
+	datab.saveDatabase()
 }
 /**/
-function removeCard(datab, cardName, cardTags, cardContent){
-  var cards = datab.getCollection("cards");
-  cards.remove({
-    name:cardName,
-    tags:cardTags,
-    content:cardContent
-  });
-
-  datab.saveDatabase();
+function removeCard(datab, cardTagline, cardTags, cardCitation, cardContent, CardNotes) {
+	var cards = datab.getCollection("cards")
+	cards.remove({
+		tagLine: cardTagline,
+		sTags: cardTags,
+		citation: cardCitation,
+		content: cardContent,
+		notes: cardNotes
+	})
+	datab.saveDatabase()
 }
 
 function tagindex (datab) {
@@ -366,12 +368,12 @@ app.on('ready', () => {
 
 function deleteCard(datab, cardName){
   var cards = datab.getCollection("cards");
-  cards.removeWhere({'name': {'$eq': cardName}})
+  cards.removeWhere({'tagLine': {'$eq': cardName}})
 }
 
 function getCard(datab, searchTerm){
   var cards = datab.getCollection("cards");
-  var cardNames = cards.find({'name': {'$contains': searchTerm}});
+  var cardNames = cards.find({'tagLine': {'$contains': searchTerm}});
   return cardNames;
 }
 
@@ -409,13 +411,10 @@ function getCard(datab, searchTerm){
 
   ipcMain.on('FileOpen', function (event, arg) {
     var cards = db.getCollection("cards")
-    var foundCard = cards.find({'name' : arg})
+    var foundCard = cards.find({'tagLine' : arg})
     if(foundCard[0]){
-      var Title = foundCard[0].name
-      var Tags = foundCard[0].tags.split(" ")
-      var Content = foundCard[0].content
-      var TheArray = [Title, Tags, Content]
-      event.returnValue = TheArray
+      console.log('opening: ' + foundCard[0])
+      event.returnValue = foundCard[0]
     } else {
       event.returnValue = false
     }
@@ -464,24 +463,17 @@ function getCard(datab, searchTerm){
     console.log(arg)
     // [TitleString, TagString, ContentString]
     var cards = db.getCollection("cards");
-    var TitleString = arg[0]
-    var TagString = arg[1]
-    while(TagString.indexOf(", ")  !=  -1){
-      TagString = TagString.replace(", ", " ")
+    var tagLine = arg.tagLine
+    var sTags = arg.sTags
+    var content = arg.content
+    var notes = arg.notes
+    var cite = arg.citation
+    var temp = cards.find({'tagLine' : tagLine})
+    if (temp.length !== 0){
+      cards.removeWhere({'tagLine' : TitleString})
     }
-    while(TagString.indexOf(",")  !=  -1){
-      TagString = TagString.replace(",", " ")
-    }
-    var ContentString = arg[2]
-    var temp = cards.find({'name' : TitleString})
-    if (temp.length == 0){
-      addCardToLoki(db, TitleString, TagString, ContentString);
-      tagindex(db)
-    }else{
-        cards.removeWhere({'name' : TitleString})
-        addCardToLoki(db, TitleString, TagString, ContentString);
-        tagindex(db)
-    }
+    addCardToLoki(db, tagLine, sTags, cite, content, notes);
+    tagindex(db)
   })
 })
 

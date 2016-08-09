@@ -7,5 +7,5 @@ module.exports = angular.module('fastflowApp.index', ['ngRoute'])
 	}])
 	// We can load the controller only when needed from an external file
 	.controller('indexCtrl', ['$scope', function($scope) {
-
+		$scope.route = "#"
 	}])

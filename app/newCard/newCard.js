@@ -32,14 +32,23 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 
 
 		$scope.saveFunction = function() {
-			if ($scope.title === "" || $scope.title === null || $scope.title === undefined) {
+			var sTags = $('.chips').material_chip('data')
+			for(t in sTags) sTags[t] = sTags[t].tag //I'm sorry -Zarkoix
+			var card = {tagLine:$scope.title,
+									sTags:JSON.stringify(sTags),
+									citation:$scope.cite,
+									content:$scope.content,
+									notes:$scope.notes
+								}
+			console.log(card)
+			if (card.tagLine === "" || card.tagLine === null || card.tagLine === undefined) {
 				toaster.error("Card Title is Empty", "A Card has no name...")
-			} else if ($scope.tags === "" || $scope.tags === null || $scope.tags === undefined) {
+			} else if (card.sTags === "" || card.sTags === null || card.sTags === undefined) {
 				toaster.pop('error', "Card Tags are Empty", "Tell FastFlow where to find your card!")
-			} else if ($scope.content === "" || $scope.content === null || $scope.title === undefined) {
+			} else if (card.content === "" || card.content === null || card.content === undefined) {
 				toaster.pop('error', "Card has no content", "Tell FastFlow what information to remember!")
 			} else {
-				ipcRenderer.send('FileSave', [$scope.title, $scope.tags, $scope.content])
+				ipcRenderer.send('FileSave', card)
 				toaster.pop('success', "Card Saved", "");
 			}
 		}
