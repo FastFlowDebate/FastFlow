@@ -8,36 +8,24 @@
 
 
 <!--<toaster-container></toaster-container>-->
-<div id="card-wrapper" class="card bodyCentered">
 
+<div ng-repeat = "i in points track by $index">
 
+ <div class="card bodyCentered">
+   <div class = "parent">
+     <div class = "card-title narrow">{{$index + 1}}</div>
+     <div class="card-content wide">
+       <input class="card-title" ng-model = "points[$index].tagline" placeholder='Tagline' style = "margin-bottom: 0px;"></input>
+       <textarea class = "materialize-textarea" contenteditable="true" ng-model = "points[$index].content" placeholder = "Content"></textarea>
+     </div>
+ </div>
+   <div class="card-action">
+     <a href="#">Delete</a>
+     <a href="#">Save</a>
+   </div>
+ </div>
 
-  <div id="card-content" class="row">
-    <div id="main-content" class="col s9">
-      <div id="title" class="textDiv">
-        SPEECH
-
-      </div>
-
-      <div data-drag="true" jqyoui-draggable>So you think you can drag</div>
-
-    </div>
-    <!-- The dnd-list directive allows to drop elements into it.
-         The dropped data will be added to the referenced list -->
-    <ul dnd-list="list">
-        <!-- The dnd-draggable directive makes an element draggable and will
-             transfer the object that was assigned to it. If an element was
-             dragged away, you have to remove it from the original list
-             yourself using the dnd-moved attribute -->
-        <li ng-repeat="item in list"
-            dnd-draggable="item"
-            dnd-moved="list.splice($index, 1)"
-            dnd-effect-allowed="move"
-            dnd-selected="models.selected = item"
-            ng-class="{'selected': models.selected === item}"
-            >
-            {{item.label}}
-        </li>
-    </ul>
-  </div>
 </div>
+</div>
+
+<a class="btn-floating btn-large waves-effect waves-light red addButton" ng-click = "newPoint()"><i class="material-icons" >add</i></a>

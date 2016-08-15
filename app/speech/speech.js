@@ -10,20 +10,24 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			controller: 'speechCtrl'
 		})
 	}])
-	.controller('speechCtrl', ['$scope', '$routeParams', function($scope, toaster, $routeParams) {
-		$scope.models = {
-			selected: null,
-			lists: {"A": [], "B": []}
-	};
+	.controller('speechCtrl', ['$scope', '$routeParams', function($scope, toaster, ngDragDrop, $routeParams) {
 
-	// Generate initial model
-	for (var i = 1; i <= 3; ++i) {
-			$scope.models.lists.A.push({label: "Item A" + i});
-			$scope.models.lists.B.push({label: "Item B" + i});
-	}
+		/*$scope.list1 = {title: 'AngularJS - Drag Me'};
+  	$scope.list2 = {};*/
 
-	// Model to JSON for demo purpose
-	$scope.$watch('models', function(model) {
-			$scope.modelAsJson = angular.toJson(model, true);
-	}, true);
+		$scope.points = [
+			{
+				tagline: "",
+				content: ""
+			}
+		]
+
+		$scope.newPoint = function() {
+			window.alert("hi")
+			$scope.points.push({
+				tagline: "",
+				content: ""
+			})
+		}
+
 	}])
