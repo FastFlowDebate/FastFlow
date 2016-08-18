@@ -10,6 +10,7 @@ install:
   - cd app
   - npm install
   - bower install
+  - cd ../
 script:
   - node package.js
 addons:
