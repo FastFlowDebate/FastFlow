@@ -43,43 +43,42 @@ body {
 
 
 @media (min-width:1200px) {
-
-.theBackground {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 30%;
-  background-color: #00897b;
-  /*z-index: 0 !important;*/
-  /*teal darken-1*/
-}
-.addButton {
-  font-size: 20px;
-  position: fixed;
-  top: calc(30% - 30px);
-  right: calc((100% - 900px)/4);
-}
+  .theBackground {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: #9C27B0;
+    /*z-index: 0 !important;*/
+    /*teal darken-1*/
+  }
+  
+  .addButton {
+    font-size: 20px;
+    position: fixed;
+    top: calc(30% - 30px);
+    right: calc((100% - 900px)/4);
+  }
 }
 @media (max-width: 1199px) {
-
-.theBackground {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 30%;
-  background-color: #00897b;
-  /*teal darken-1*/
-}
-.addButton {
-  font-size: 20px;
-  position: fixed;
-  top: calc(30% - 30px);
-  right: calc((100% - 855px)/2);
-}
+  .theBackground {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: #9C27B0;
+    /*teal darken-1*/
+  }
+  .addButton {
+    font-size: 20px;
+    position: fixed;
+    top: calc(30% - 30px);
+    right: calc((100% - 855px)/2);
+  }
 }
 
 @media (max-width: 860px) {
@@ -89,7 +88,7 @@ body {
 
   .theBackground {
     width: 100%;
-    background-color: #eeeeee;
+    background-color: #9C27B0;
     /*teal darken-1*/
   }
   .addButton {
