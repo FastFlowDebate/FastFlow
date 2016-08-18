@@ -51,50 +51,32 @@ function removeCard(datab, cardTagline, cardTags, cardCitation, cardContent, Car
 }
 
 function tagindex (datab) {
-  /*
-  var cards = datab.getCollection("cards");
-  var tagArray = {};
-  var tag;
-  var tags;
-  var tempTagList;
-  var card;
-  var a;
-  var names = [];
-  for(tags in cards.data){
-    if(typeof cards.data[tags].tags === "string") {
-      tempTagList = cards.data[tags].tags.split(" ")
-    } else {
-      tempTagList = cards.data[tags].tags[0].split(" ")
-    }
-    for(tag in tempTagList){
-      var names = [];
-      for(card in cards.data){
-        //handle arrays of tags
-        if(typeof cards.data[card].tags !== "string") {
-          for(a in cards.data[card].tags) {
-            if (a.indexOf(tempTagList[tag]) != -1){
-              names.push(cards.data[card].name)
-            }
-          }
-        } else if (cards.data[card].tags.split(" ").indexOf(tempTagList[tag]) != -1){
-          names.push(cards.data[card].name)
-        }
-      }
-      tagArray[tempTagList[tag]] = names;
-    }
+  //tab index will return JSON in the form of a map of sTag:[CardTitles]
+  /* example JSON
+  {
+    Aff: [card1, card2, card3],
+    Pro: [card1, card22, card4]
   }
-  var keys = Object.keys(tagArray)
-
-  var values = []
-
-  for (var i = 0; i < keys.length; i++) {
-    values.push(tagArray[keys[i]])
-  }
-
-  var ReturnValue = [keys, values]
-  return ReturnValue;
   */
-  return 0
+  var dict = {}
+  var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
+  var cards = datab.getCollection("cards").data;
+  var card, s, sTags
+  for (card in cards) {                           //  go through each card
+    sTags = JSON.parse(cards[card].sTags)         // turn sTags String into an array for transversal
+    for (s in sTags) {                            // go through each sTag
+      if(dict.hasOwnProperty(sTags[s]) && !dict[sTags[s].includes(cards[card].tagLine)]) {       // if the node already exists and tag is not already in node then
+        console.log('Adding card ' + cards[card].tagLine +' to tag ' + sTags[s])
+        dict[sTags[s]].push(cards[card].tagLine)                                                 // add the tag to the node
+      } else {
+        console.log('Adding card ' + cards[card].tagLine +' to newly created tag ' + sTags[s])
+        dict[sTags[s]] = [cards[card].tagLine]                                                   // if the node does not already exist then create it and add tag
+      }
+    }
+  }
+  console.log(dict)
+
+  return dict;
 }
 
 

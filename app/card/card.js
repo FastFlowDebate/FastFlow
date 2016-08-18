@@ -30,10 +30,8 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		 })
 		} else {
 			console.log('no param, this is an error, go back to safety!')
-			$scope.newDoc = true
 			$scope.content = "ERROR"
 			$scope.title = "ERROR"
-
 		}
 		$scope.showSave = false
 		$scope.showDelete = false
@@ -59,9 +57,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		}
 
 		$scope.buttonShow = function() {
-			if (!$scope.newDoc) {
-				$scope.showDelete = true
-			}
+			$scope.showDelete = true
 			$scope.showSave = true
 		}
 	}])

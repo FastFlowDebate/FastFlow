@@ -13,8 +13,10 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 	}])
 	.controller('cardManagerCtrl', ['$scope', function($scope) {
 			$scope.dataJSON = ipcRenderer.sendSync('CardManager', 'ready')
-			console.log($scope.dataJSON[1])
-			$scope.tagContent = []
+			$scope.sTags = Object.keys($scope.dataJSON)
+			console.log($scope.dataJSON)
+			console.log($scope.sTags)
+
 
 			$scope.URIGenerate = function(name) {
 				console.log('encode: ' + encodeURIComponent(name))

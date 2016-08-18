@@ -38,11 +38,11 @@ $(document).ready(function(){
 
 
 	<ul class="collapsible bodyCentered" data-collapsible="accordion">
-	<li ng-repeat="x in dataJSON[0] track by $index">
-		<div class="collapsible-header"> {{dataJSON[0][$index]}} </div>
+	<li ng-repeat="x in sTags track by $index">
+		<div class="collapsible-header"> {{x}} </div>
 		<div class="collapsible-body">
 			<div class="collection">
-        <a ng-href="#card/{{URIGenerate(y)}}" class="collection-item" ng-repeat="y in dataJSON[1][$index]">{{y}}</a>
+        <a ng-href="#card/{{URIGenerate(y)}}" class="collection-item" ng-repeat="y in dataJSON[x]">{{y}}</a>
       </div>
 		</div>
 	</li>

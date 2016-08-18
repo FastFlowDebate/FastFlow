@@ -83,20 +83,19 @@ body {
 }
 
 @media (max-width: 860px) {
+  .card {
+    border-radius: 0px;
+  }
 
-.card {
-  border-radius: 0px;
-}
-
-.theBackground {
-  width: 100%;
-  background-color: #eeeeee;
-  /*teal darken-1*/
-}
-.addButton {
-  font-size: 20px;
-  position: fixed;
-  top: calc(100vh - 65px);
-  right: 10px;
-}
+  .theBackground {
+    width: 100%;
+    background-color: #eeeeee;
+    /*teal darken-1*/
+  }
+  .addButton {
+    font-size: 20px;
+    position: fixed;
+    top: calc(100vh - 65px);
+    right: 10px;
+  }
 }
