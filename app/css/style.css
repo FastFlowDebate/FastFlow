@@ -26,11 +26,6 @@ body {
   margin-left: -12px !important;
 }
 
-.navBarPad {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
 ::-webkit-scrollbar {
     display: none;
 }
