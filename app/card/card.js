@@ -33,9 +33,6 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			$scope.content = "ERROR"
 			$scope.title = "ERROR"
 		}
-		$scope.showSave = false
-		$scope.showDelete = false
-
 
 		$scope.saveFunction = function() {
 			if ($scope.title === "" || $scope.title === null || $scope.title === undefined) {
@@ -54,10 +51,5 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			ipcRenderer.send('FileRemove', $scope.title)
 			toaster.pop('note', "Card Deleted", "");
 			window.location.replace('#index')
-		}
-
-		$scope.buttonShow = function() {
-			$scope.showDelete = true
-			$scope.showSave = true
 		}
 	}])

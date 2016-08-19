@@ -4,6 +4,11 @@
 
 }
 
+#main-content {
+  overflow-y: scroll;
+  height: 100%;
+}
+
 p {
   resize: vertical;
   width: 100%;
@@ -55,4 +60,10 @@ input {
 
 strong, b {
   font-weight: 700;
+}
+
+.fixed-action-btn {
+  position: absolute;
+  top: 85vh;
+  right: 20vw;
 }
