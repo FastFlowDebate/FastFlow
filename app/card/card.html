@@ -12,34 +12,44 @@
 
 
 
-  <div id="card-content" class="row">
-    <div id="main-content" class="col s9">
-      <div id="title" class="textDiv">
-        <div ng-click="buttonShow()">
-          <input ng-model="title" placeholder="Card Title" type="text">
-        </div>
-      </div>
-      <div class="textDiv" id="content" ng-click="buttonShow()">
-        <p medium-editor ng-model="content" placeholder="Content"></p>
-      </div>
-      <div id="buttons">
-        <button id="deleteButton" ng-show="showDelete" class="waves-effect waves-light btn" ng-click="deleteFunction()">Delete</button>
-        <button id="saveButton" ng-show="showSave" class="waves-effect waves-light btn" ng-click="saveFunction()">Save</button>
-      </div>
-    </div>
-    <div id="left-content" class="col s3">
-      <div class="addenum" id="sTags">
-        <i>Searchable Tags:</i><br>
-        <div class="chips"></div>
-      </div>
-      <div class="addenum" id="citation">
-        <i>Citation:</i><br>
-        <input ng-model="cite" id="cite" type="text">
-      </div>
-      <div class="addenum" id="notes">
-        <i>Notes:</i><br>
-        <p medium-editor ng-model="notes"></p>
-      </div>
-    </div>
-  </div>
+	<div id="card-content" class="row">
+		<div id="main-content" class="col s9">
+			<div id="title" class="textDiv">
+				<div ng-click="buttonShow()">
+					<input ng-model="title" placeholder="Card Title" type="text">
+				</div>
+			</div>
+			<div class="textDiv" id="content" ng-click="buttonShow()">
+				<p medium-editor ng-model="content" placeholder="Content"></p>
+			</div>
+		</div>
+		<div id="left-content" class="col s3">
+			<div class="addenum" id="sTags">
+				<i>Searchable Tags:</i>
+				<br>
+				<div class="chips"></div>
+			</div>
+			<div class="addenum" id="citation">
+				<i>Citation:</i>
+				<br>
+				<input ng-model="cite" id="cite" type="text">
+			</div>
+			<div class="addenum" id="notes">
+				<i>Notes:</i>
+				<br>
+				<p medium-editor ng-model="notes"></p>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large blue">
+    <i class="large material-icons">track_changes</i>
+  </a>
+  <ul>
+    <li><a class="btn-floating blue"><i class="material-icons">save</i></a></li>
+    <li><a class="btn-floating blue" ng-click="deleteFunction()"><i class="material-icons">delete</i></a></li>
+    <li><a class="btn-floating blue" ng-click="saveFunction()"><i class="material-icons">publish</i></a></li>
+    <li><a class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
+  </ul>
 </div>
