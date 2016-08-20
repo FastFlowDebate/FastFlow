@@ -14,21 +14,21 @@
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../node_modules/hammerjs/hammer.min.js"></script>
 
-	<script src="js/materialize.js"></script>
 
 </head>
 
-<body>
+<body ng-app="fastflowApp" ng-controller="navbar">
 
 	<div class="theBackground">
 
 		<nav class="z-depth-0 purple darken-1">
 			<div class="nav-wrapper">
 
-				<ul id="nav-mobile" class="left">
+				<ul class="left">
 					<li>
-						<a class="dropdown-button z-depth-0" data-beloworigin="true" href="#" data-activates="dropdown1" data-constrainwidth="false"><i class="material-icons">menu</i></a></li>
+						<a ng-repeat="btn in nav.left" dyn-attr="btn.attrs" ng-click="btn.action()"><i class="material-icons">{{btn.icon}}</i></a></li>
 				</ul>
+
 				<ul id="dropdown1" class="dropdown-content">
 					<li><a href="#blockManager">Blocks</a></li>
 					<li><a href="#cardManager">Cards</a></li>
@@ -37,18 +37,20 @@
 				</ul>
 
 
-				<ul id="nav-mobile" class="right">
-					<li><a href="#.html"><i class="fa fa-cog navBarFontSize" aria-hidden="true"></i></a></li>
+				<ul class="right">
+					<a ng-repeat="btn in nav.right" dyn-attr="btn.attrs" ng-click="btn.action()"><i class="material-icons">{{btn.icon}}</i></a>
 				</ul>
 			</div>
 		</nav>
 
 
 		<div class="bodyPad">
+
 			<div ng-view>
 			</div>
 
 		</div>
+		<script src="js/materialize.js"></script>
 		<script src="app.js"></script>
 	</div>
 </body>

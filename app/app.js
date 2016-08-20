@@ -22,7 +22,7 @@ require('./bower_components/angular-medium-editor/dist/angular-medium-editor')
 var ngDragDrop = require('./bower_components/angular-dragdrop/src/angular-dragdrop.js')
 const ipcRenderer = require('electron').ipcRenderer
 
-angular.module('fastflowApp', [
+var app = angular.module('fastflowApp', [
 	'ngRoute',
 	'ngDialog',
 	'fastflowApp.index',
@@ -48,7 +48,9 @@ angular.module('fastflowApp', [
 			 console.log('default pre-close callback');
 	 }
 	})
-}]).directive('ffcardref', function() {
+}])
+
+app.directive('ffcardref', function() {
 	//style explanation:
 	// 1 - version used in flow, short and has only the bolded text
 	// 2 - version for modal, all text maintaining original formatting
@@ -89,10 +91,22 @@ angular.module('fastflowApp', [
 	}
 })
 
-angular.element().ready(function() {
-	// bootstrap the app manually
-	angular.bootstrap(document, ['fastflowApp']);
-});
+app.controller('navbar', ['$scope', '$routeParams', function($scope, $routeParams) {
+	console.log('navbarController')
+
+}])
+
+app.directive('dynAttr', function() {
+    return {
+        scope: { list: '=dynAttr' },
+        link: function(scope, elem, attrs){
+					var attr
+          for(attr in scope.list){
+              elem.attr(scope.list[attr].attr, scope.list[attr].value)
+          }
+        }
+    }
+})
 
 
 
