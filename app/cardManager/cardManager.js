@@ -11,22 +11,34 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 			controller: 'cardManagerCtrl'
 		})
 	}])
-	.controller('cardManagerCtrl', ['$scope', function($scope) {
-		$scope.$parent.nav = {
+	.controller('cardManagerCtrl', ['$scope', function($scope, defaultNav) {
+		$scope.$parent.setNav({
 			left: [{
-				icon: 'menu',
+				icon: 'block',
 				attrs: [
-					{ attr: 'href', value: '#' },
+					{ attr: 'href', value: '#/blockEditor' }
+				]
+			}, {
+				icon: 'insert_drive_file',
+				attrs: [
+					{ attr: 'href', value: '#/cardManager' }
+				]
+			}, {
+				icon: 'chat_bubble',
+				attrs: [
+					{ attr: 'href', value: '#/speech' }
+				]
+			}, {
+				icon: 'view_column',
+				attrs: [
+					{ attr: 'href', value: '#/flowManager' }
 				]
 			}],
 			right: [{
-				icon: 'settings',
-				attrs: [
-					{ attr: 'href', value: '#' },
-				]
-			}]
-		}
-
+				icon: 'settings'
+			}],
+			externalHTML: ["adam"]
+		})
 		$scope.dataJSON = ipcRenderer.sendSync('CardManager', 'ready')
 		$scope.sTags = Object.keys($scope.dataJSON)
 		console.log($scope.dataJSON)

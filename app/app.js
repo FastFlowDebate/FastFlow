@@ -92,8 +92,10 @@ app.directive('ffcardref', function() {
 })
 
 app.controller('navbar', ['$scope', '$routeParams', function($scope, $routeParams) {
-	console.log('navbarController')
-
+	$scope.setNav = function (newNav) {
+		$scope.nav = {}
+		$scope.nav = newNav
+	}
 }])
 
 app.directive('dynAttr', function() {
@@ -107,9 +109,6 @@ app.directive('dynAttr', function() {
         }
     }
 })
-
-
-
 
 function getCardBold(content, bold) {
 	var i = content.indexOf('<strong>'),

@@ -11,7 +11,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		})
 	}])
 	.controller('cardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
-		$scope.$parent.nav = {
+		$scope.$parent.setNav({
 			left: [{
 				icon: 'arrow_back',
 				attrs: [
@@ -25,7 +25,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 				icon: 'save',
 				action: function () {$scope.saveFunction()}
 			}]
-		}
+		})
 
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)
