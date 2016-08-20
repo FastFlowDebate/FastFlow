@@ -9,21 +9,18 @@
 
 
 <!--<toaster-container></toaster-container>-->
-<div id="card-wrapper" class="card bodyCentered" >
-	<div class="card-content" style = "padding-top: 0px !important; padding-bottom: 0px !important;">
-
-		<!--<div contenteditable ng-model="title" class="card-title"></div>-->
-		<input class="card-title inputStyle" ng-model = "title"></input>
-
-		<!--<div contenteditable ng-model="cite" class = "card-content"></div>-->
-		<input class="input-field inputStyle" ng-model = "cite" style = "margin-bottom: 0px; margin-top: 0px;"></input>
-
-
+<div id="card-wrapper" class="card bodyCentered">
+	<div id="card-content">
+		<div id="title" class="textDiv">
+			<div contenteditable ng-model="title"></div>
+		</div>
+		<div id="cite" class="textDiv">
+			<div contenteditable ng-model="cite"></div>
+		</div>
     <div class="chips"></div>
-
-
-			<div>
-				<div class="">
+		<div class="row">
+			<div id="right-content" class="col s9">
+				<div class="textDiv" id="content">
 					<p medium-editor ng-model="content" placeholder="Content"></p>
 				</div>
 			</div>
@@ -34,7 +31,7 @@
 					<p medium-editor ng-model="notes"></p>
 				</div>
 			</div>
-
+		</div>
 	</div>
 </div>
 
