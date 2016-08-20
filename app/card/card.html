@@ -17,20 +17,14 @@
 		<div id="cite" class="textDiv">
 			<div contenteditable ng-model="cite"></div>
 		</div>
-    <div class="chips"></div>
-		<div class="row">
-			<div id="right-content" class="col s9">
-				<div class="textDiv" id="content">
-					<p medium-editor ng-model="content" placeholder="Content"></p>
-				</div>
+		<div class="chips"></div>
+		<div id="right-content" class="col s9">
+			<div class="textDiv" id="content">
+				<p medium-editor ng-model="content" placeholder="Content"></p>
 			</div>
-			<div id="left-content" class="col s3">
-				<div class="addenum" id="notes">
-					<i>Notes:</i>
-					<br>
-					<p medium-editor ng-model="notes"></p>
-				</div>
-			</div>
+		</div>
+		<div class="textDiv" id="notes">
+			<p medium-editor ng-model="notes"></p>
 		</div>
 	</div>
 </div>
