@@ -1,8 +1,10 @@
+
+
 #right-content {
   overflow-y: scroll;
   height: 100%;
 }
-
+/*
 p {
   resize: vertical;
   width: 100%;
@@ -82,7 +84,23 @@ strong, b {
   top: 85vh;
   right: 20vw;
 }
-
+*/
 .chip {
   margin-right: 0.2em;
+}
+.divider {
+  margin-right: -20px;
+  padding-right: 20px;
+  margin-left: -20px;
+  padding-left: 20px;
+}
+
+.inputStyle {
+  margin-bottom: 0px !important;
+  margin-top: 0px !important;
+  margin-right: -20px !important;
+  padding-right: 20px !important;
+  margin-left: -20px !important;
+  padding-left: 20px !important;
+
 }
