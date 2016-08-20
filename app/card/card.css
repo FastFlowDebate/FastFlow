@@ -38,7 +38,7 @@ textarea {
   padding-top: 0;
   border: none;
   font-size: 14px;
-  font-weight: 100;
+  font-weight: 200;
   padding-bottom: 0;
 }
 
@@ -74,7 +74,10 @@ strong, b {
 }
 
 #notes p {
-  font-size: 12px;
+  padding-top: 1em;
+  border-top: 1px solid #e0e0e0;
+  font-size: 1.5em;
+  font-weight: 100;
 }
 
 .fixed-action-btn {
