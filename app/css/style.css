@@ -12,6 +12,10 @@ body {
     transform: translateX(-50%);
 }
 
+input {
+  border-color: #2196f3;
+}
+
 .bodyPad {
   padding-bottom: 120px;
   height: 100vh;

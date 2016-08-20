@@ -1,10 +1,4 @@
-.textDiv, #buttons{
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
-
-}
-
-#main-content {
+#right-content {
   overflow-y: scroll;
   height: 100%;
 }
@@ -28,24 +22,41 @@ textarea {
   min-height: 15em;
 }
 
-#title input {
+#title div {
+  margin-top: 1em;
   border: none;
   font-size: 24px;
   font-weight: 500px;
   padding-bottom: 0;
+  padding-top: 0;
 }
 
-input {
+#cite div {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  overflow: visible;
+  padding-top: 0;
+  border: none;
+  font-size: 14px;
+  font-weight: 100;
+  padding-bottom: 0;
+}
+
+textarea {
   border: none;
   width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  overflow-y: visible;
 }
+
 
 #card-content {
   padding: 1.5em;
 }
 
 #left-content {
-  padding-top: 5em;
+  padding-top: 2vh;
 }
 
 .addenum {
@@ -62,8 +73,16 @@ strong, b {
   font-weight: 700;
 }
 
+#notes p {
+  font-size: 12px;
+}
+
 .fixed-action-btn {
   position: absolute;
   top: 85vh;
   right: 20vw;
+}
+
+.chip {
+  margin-right: 0.2em;
 }
