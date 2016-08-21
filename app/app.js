@@ -91,10 +91,10 @@ app.directive('ffcardref', function() {
 	}
 })
 
-app.controller('navbar', ['$scope', '$routeParams', function($scope, $routeParams) {
+app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout) {
 	$scope.setNav = function (newNav) {
-		$scope.nav = {}
-		$scope.nav = newNav
+			$scope.nav = {}
+			$scope.nav = newNav
 	}
 }])
 

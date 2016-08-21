@@ -35,7 +35,10 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 				]
 			}],
 			right: [{
-				icon: 'settings'
+				icon: 'settings',
+				attrs: [
+					{ attr: 'href', value: '#' }
+				]
 			}],
 			externalHTML: ["adam"]
 		})
