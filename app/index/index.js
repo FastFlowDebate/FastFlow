@@ -35,7 +35,6 @@ module.exports = angular.module('fastflowApp.index', ['ngRoute'])
 				attrs: [
 					{ attr: 'href', value: '#' }
 	    	]
-			}],
-			externalHTML: ["adam"]
+			}]
 		})
 	}])
