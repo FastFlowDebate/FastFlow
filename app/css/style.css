@@ -36,9 +36,19 @@ input {
 
 
 .navBarFontSize {
-  font-size: 20px !important;
+  font-size: 18px !important;
 }
 
+.navIcons {
+  height: auto;
+}
+
+nav li {
+  margin: none;
+  line-height: 0;
+  height: auto;
+  padding: none;
+}
 
 
 @media (min-width:1200px) {

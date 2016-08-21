@@ -17,19 +17,21 @@
 
 </head>
 
-<body ng-app="fastflowApp" ng-controller="navbar">
+<body ng-app="fastflowApp" ng-controller="navbar" ng-cloak>
 
 	<div class="theBackground">
 
 		<nav class="z-depth-0 purple darken-1">
 			<div class="nav-wrapper">
-
-				<ul class="left" ng-cloak>
+				<ul class="left navIcons">
 					<li>
-						<a ng-repeat="btn in nav.left" dyn-attr="btn.attrs" ng-click="btn.action()"><i class="material-icons">{{btn.icon}}</i></a></li>
+						<a ng-repeat="btn in nav.left" dyn-attr="btn.attrs" ng-click="btn.action()">
+							<i class="material-icons">{{btn.icon}}</i>
+						</a>
+					</li>
 				</ul>
 
-				<ul class="right" ng-cloak>
+				<ul class="right navIcons">
 					<li><a ng-repeat="btn in nav.right" dyn-attr="btn.attrs" ng-click="btn.action()"><i class="material-icons">{{btn.icon}}</i></a></li>
 				</ul>
 
@@ -40,10 +42,8 @@
 
 
 		<div class="bodyPad">
-
 			<div ng-view>
 			</div>
-
 		</div>
 		<script src="js/materialize.js"></script>
 		<script src="app.js"></script>
