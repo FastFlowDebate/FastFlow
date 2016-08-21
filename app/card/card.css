@@ -22,6 +22,10 @@ textarea {
   min-height: 15em;
 }
 
+[contenteditable]:focus {
+  outline: none;
+}
+
 #title div {
   margin-top: 1em;
   border: none;
@@ -88,4 +92,10 @@ strong, b {
 
 .chip {
   margin-right: 0.2em;
+}
+
+.modal {
+  position: absolute;
+  width: 40vw;
+  height: 40vh;
 }
