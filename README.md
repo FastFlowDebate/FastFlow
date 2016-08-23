@@ -6,6 +6,8 @@ Debate organization suite for empowering debaters to directly leverage their res
 
 ## Current Features:
 
+Cards: 
+
 * Searchable by author and sTags (searchable tags, not to be confused with a cards tag line)
 * Organized by sTag in the card manager
 * Add notes to cards
@@ -13,7 +15,7 @@ Debate organization suite for empowering debaters to directly leverage their res
 
 ## Planned Features:
 
-Speech:
+Speeches:
 
 * Speech documents help you present by using telling you how long it would take to present, know exactly how much you can have in your rebuttal
 * Every file you refer to is only one quick away, show your opponents evidence they request at lightspeed
