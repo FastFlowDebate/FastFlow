@@ -4,14 +4,25 @@
 
 Debate organization suite for empowering debaters to directly leverage their research in round
 
-## Planned Features:
-
-Cards:
+## Current Features:
 
 * Searchable by author and sTags (searchable tags, not to be confused with a cards tag line)
 * Organized by sTag in the card manager
 * Add notes to cards
 * Show what other files reference the card (For example do you use it in blocks or speeches)
+
+## Planned Features:
+
+Speech:
+
+* Speech documents help you present by using telling you how long it would take to present, know exactly how much you can have in your rebuttal
+* Every file you refer to is only one quick away, show your opponents evidence they request at lightspeed
+
+
+Blocks:
+
+* Quickly select which responses you want to read in rebuttal and move them to a speech document or flow
+* Mark responses as turns, delinks, mitigation, or indicts
 
 Flowing:
 
@@ -40,7 +51,7 @@ Make sure you have NodeJS installed
 
 * Use the [Javascript Standard code style](https://github.com/feross/standard) for any and all JS development
 
-* Try to keep package.json as clean as possible, use devDependencies over dependencies whenever possible.
+* A branch will have to pass the build check (Travis-CI) before being considered for merge
 
 * Update this README with any installation/building changes.
 
