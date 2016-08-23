@@ -6,35 +6,8 @@ module.exports = angular.module('fastflowApp.index', ['ngRoute'])
 		})
 	}])
 	// We can load the controller only when needed from an external file
-	.controller('indexCtrl', ['$scope', '$location', function($scope, $location) {
+	// class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='dropdown1'
+	.controller('indexCtrl', ['$scope', '$location', 'defaultNav', function($scope, $location, defaultNav) {
 		$scope.route = "#"
-		$scope.$parent.setNav({
-			left: [{
-				icon: 'block',
-				attrs: [
-					{ attr: 'href', value: '#/blockEditor' }
-	    	]
-			}, {
-				icon: 'insert_drive_file',
-				attrs: [
-					{ attr: 'href', value: '#/cardManager' }
-	    	]
-			}, {
-				icon: 'chat_bubble',
-				attrs: [
-					{ attr: 'href', value: '#/speech' }
-	    	]
-			}, {
-				icon: 'view_column',
-				attrs: [
-					{ attr: 'href', value: '#/flowManager' }
-	    	]
-			}],
-			right: [{
-				icon: 'settings',
-				attrs: [
-					{ attr: 'href', value: '#' }
-	    	]
-			}]
-		})
+		$scope.$parent.setNav(defaultNav)
 	}])

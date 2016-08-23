@@ -92,6 +92,19 @@ app.directive('ffcardref', function() {
 })
 
 app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout) {
+	$scope.$on('leftNavLoaded', function(ngRepeatFinishedEvent) {
+		console.log('leftNav')
+		if($scope.nav.leftOnLoad)$scope.nav.leftOnLoad()
+    //you also get the actual event object
+    //do stuff, execute functions -- whatever...
+	})
+	$scope.$on('rightNavLoaded', function(ngRepeatFinishedEvent) {
+		console.log('rightNav')
+		if($scope.nav.rightOnLoad)$scope.nav.rightOnLoad()
+
+    //you also get the actual event object
+    //do stuff, execute functions -- whatever...
+	})
 	$scope.setNav = function (newNav) {
 			$scope.nav = {}
 			$scope.nav = newNav
@@ -110,6 +123,60 @@ app.directive('dynAttr', function() {
     }
 })
 
+app.directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit(attr.onFinishRender);
+                });
+            }
+        }
+    }
+})
+
+app.factory('navDropdown', function navDropdownFactory() {
+  return {
+		icon: {
+			icon: 'menu',
+			attrs: [
+				{ attr: 'href', value: '' },
+				{ attr: 'id', value: 'navDropdownBtn' },
+				{ attr: 'class', value: 'dropdown-button' },
+				{ attr: 'data-activates', value: 'navDropdown' }
+			]
+		},
+		init: function () {
+			console.log('initDropDown')
+			jQuery('#navDropdownBtn').dropdown({
+				inDuration: 300,
+				outDuration: 225,
+				constrain_width: false, // Does not change width of dropdown to that of the activator
+				hover: false, // Activate on hover
+				gutter: 0, // Spacing from edge
+				belowOrigin: true, // Displays dropdown below the button
+				alignment: 'left' // Displays dropdown with edge aligned to the left of button
+			})
+		}
+	}
+})
+
+app.factory('defaultNav', ['navDropdown', function (navDropdown){
+	return {
+		left: [navDropdown.icon],
+		leftOnLoad: function () {
+			navDropdown.init()
+		},
+		right: [{
+			icon: 'settings',
+			attrs: [
+				{ attr: 'href', value: '#' }
+			]
+		}]
+	}
+}])
+
 function getCardBold(content, bold) {
 	var i = content.indexOf('<strong>'),
 		j = content.indexOf('</strong>')
@@ -120,4 +187,17 @@ function getCardBold(content, bold) {
 	} else {
 		return bold
 	}
+}
+
+function initDropdown () {
+	console.log('initializing dropdown')
+	jQuery('#navDropdownBtn').dropdown({
+		inDuration: 300,
+		outDuration: 225,
+		constrain_width: false, // Does not change width of dropdown to that of the activator
+		hover: false, // Activate on hover
+		gutter: 0, // Spacing from edge
+		belowOrigin: true, // Displays dropdown below the button
+		alignment: 'left' // Displays dropdown with edge aligned to the left of button
+	})
 }
