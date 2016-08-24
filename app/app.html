@@ -25,24 +25,18 @@
 			<div class="nav-wrapper">
 				<ul class="left navIcons">
 					<li>
-						<a class="navBtn" ng-repeat="btn in nav.left track by $index" dyn-attr="btn.attrs" ng-click="btn.action()" on-finish-render="leftNavLoaded">
+						<a class="navBtn" ng-repeat="btn in nav.left track by $index" dyn-attr="btn.attrs" ng-click="btn.action()" on-load="leftNavLoaded" on-destroy="leftNavDestroy">
 							<i class="material-icons">{{btn.icon}}</i>
 						</a>
 					</li>
 				</ul>
 				<ul class="right navIcons">
-						<a class="navBtn" ng-repeat="btn in nav.right track by $index" dyn-attr="btn.attrs" ng-click="btn.action()" on-finish-render="rightNavLoaded">
+						<a class="navBtn" ng-repeat="btn in nav.right track by $index" dyn-attr="btn.attrs" ng-click="btn.action()" on-load="rightNavLoaded" on-destroy="rightNavDestroy">
 							<i class="material-icons">{{btn.icon}}</i>
 						</a>
 				</ul>
 			</div>
-			<ul id="navDropdown" class="dropdown-content">
-				<li><a href="#cardManager">Cards</a></li>
-				<li class="divider" label="WIP"></li>
-				<li><a href="#blockManager">Blocks</a></li>
-				<li><a href="#speech">Speech</a></li>
-				<li><a href="#flowManager">Flow</a></li>
-			</ul>
+
 		</nav>
 
 		<div class="bodyPad">

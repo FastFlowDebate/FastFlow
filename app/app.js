@@ -93,18 +93,18 @@ app.directive('ffcardref', function() {
 
 app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout) {
 	$scope.$on('leftNavLoaded', function(ngRepeatFinishedEvent) {
-		console.log('leftNav')
 		if($scope.nav.leftOnLoad)$scope.nav.leftOnLoad()
-    //you also get the actual event object
-    //do stuff, execute functions -- whatever...
 	})
 	$scope.$on('rightNavLoaded', function(ngRepeatFinishedEvent) {
-		console.log('rightNav')
 		if($scope.nav.rightOnLoad)$scope.nav.rightOnLoad()
-
-    //you also get the actual event object
-    //do stuff, execute functions -- whatever...
 	})
+	$scope.$on('leftNavDestroy', function(ngRepeatFinishedEvent) {
+		if($scope.nav.leftOnDestroy)$scope.nav.leftOnDestroy()
+	})
+	$scope.$on('rightNavDestroy', function(ngRepeatFinishedEvent) {
+		if($scope.nav.rightOnDestroy)$scope.nav.rightOnDestroy()
+	})
+
 	$scope.setNav = function (newNav) {
 			console.log('settingNav')
 			$scope.nav = newNav
@@ -126,12 +126,13 @@ app.directive('dynAttr', function() {
 							console.log('removing: ' + scope.oldList[attr].attr)
 	            elem.removeAttr(scope.oldList[attr].attr)
 	          }
+						scope.$emit(oldList.attrs.onDestroy)
 						scope.oldList = scope.list
 	          for(attr in scope.list){
 							console.log('adding: ' + scope.list[attr].attr)
 	            elem.attr(scope.list[attr].attr, scope.list[attr].value)
 	          }
-						scope.$emit(attrs.onFinishRender)
+						scope.$emit(attrs.onLoad)
 					}, true)
         }
     }
@@ -165,6 +166,7 @@ app.factory('navDropdown', function navDropdownFactory() {
 		},
 		init: function () {
 			console.log('initDropDown')
+			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#cardManager'>Cards</a></li><li class='divider' label='WIP'></li><li><a href='#blockManager'>Blocks</a></li><li><a href='#speech'>Speech</a></li><li><a href='#flowManager'>Flow</a></li></ul>")
 			jQuery('#navDropdownBtn').dropdown({
 				inDuration: 300,
 				outDuration: 225,
@@ -174,6 +176,9 @@ app.factory('navDropdown', function navDropdownFactory() {
 				belowOrigin: true, // Displays dropdown below the button
 				alignment: 'left' // Displays dropdown with edge aligned to the left of button
 			})
+		}, destroy: function () {
+			console.log('destroying nav')
+			jQuery('#navDropdown').remove()
 		}
 	}
 })
@@ -183,6 +188,9 @@ app.factory('defaultNav', ['navDropdown', function (navDropdown){
 		left: [navDropdown.icon],
 		leftOnLoad: function () {
 			navDropdown.init()
+		},
+		leftOnDestroy: function () {
+			navDropdown.destroy()
 		},
 		right: [{
 			icon: 'settings',
