@@ -15,12 +15,8 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		$scope.$parent.setNav(defaultNav)
 		$scope.dataJSON = ipcRenderer.sendSync('CardManager', 'ready')
 		$scope.sTags = Object.keys($scope.dataJSON)
-		console.log($scope.dataJSON)
-		console.log($scope.sTags)
-
 
 		$scope.URIGenerate = function(name) {
-			console.log('encode: ' + encodeURIComponent(name))
 			return encodeURIComponent(name)
 		}
   }])

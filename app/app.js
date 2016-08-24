@@ -106,7 +106,7 @@ app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope,
     //do stuff, execute functions -- whatever...
 	})
 	$scope.setNav = function (newNav) {
-			$scope.nav = {}
+			console.log('settingNav')
 			$scope.nav = newNav
 	}
 }])
@@ -115,10 +115,24 @@ app.directive('dynAttr', function() {
     return {
         scope: { list: '=dynAttr' },
         link: function(scope, elem, attrs){
-					var attr
-          for(attr in scope.list){
-              elem.attr(scope.list[attr].attr, scope.list[attr].value)
-          }
+					console.log(attrs)
+					scope.oldList = {}
+					scope.$watch(function () {
+						return scope.$parent.nav
+					}, function (val) {
+						console.log('checking dynAttr: ' + JSON.stringify(scope.list))
+						var attr
+						for(attr in scope.oldList){
+							console.log('removing: ' + scope.oldList[attr].attr)
+	            elem.removeAttr(scope.oldList[attr].attr)
+	          }
+						scope.oldList = scope.list
+	          for(attr in scope.list){
+							console.log('adding: ' + scope.list[attr].attr)
+	            elem.attr(scope.list[attr].attr, scope.list[attr].value)
+	          }
+						scope.$emit(attrs.onFinishRender)
+					}, true)
         }
     }
 })
@@ -127,11 +141,13 @@ app.directive('onFinishRender', function ($timeout) {
     return {
         restrict: 'A',
         link: function (scope, element, attr) {
+					/*scope.$watch(element, function (val) {
             if (scope.$last === true) {
                 $timeout(function () {
-                    scope.$emit(attr.onFinishRender);
-                });
+                    scope.$emit(attr.onFinishRender)
+                })
             }
+					})*/
         }
     }
 })
@@ -187,17 +203,4 @@ function getCardBold(content, bold) {
 	} else {
 		return bold
 	}
-}
-
-function initDropdown () {
-	console.log('initializing dropdown')
-	jQuery('#navDropdownBtn').dropdown({
-		inDuration: 300,
-		outDuration: 225,
-		constrain_width: false, // Does not change width of dropdown to that of the activator
-		hover: false, // Activate on hover
-		gutter: 0, // Spacing from edge
-		belowOrigin: true, // Displays dropdown below the button
-		alignment: 'left' // Displays dropdown with edge aligned to the left of button
-	})
 }
