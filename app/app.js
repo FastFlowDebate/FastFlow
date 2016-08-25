@@ -93,20 +93,15 @@ app.directive('ffcardref', function() {
 
 app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout) {
 	$scope.$on('leftNavLoaded', function(ngRepeatFinishedEvent) {
+		console.log('left nav loaded')
 		if($scope.nav.leftOnLoad)$scope.nav.leftOnLoad()
 	})
 	$scope.$on('rightNavLoaded', function(ngRepeatFinishedEvent) {
+		console.log('right nav loaded')
 		if($scope.nav.rightOnLoad)$scope.nav.rightOnLoad()
-	})
-	$scope.$on('leftNavDestroy', function(ngRepeatFinishedEvent) {
-		if($scope.nav.leftOnDestroy)$scope.nav.leftOnDestroy()
-	})
-	$scope.$on('rightNavDestroy', function(ngRepeatFinishedEvent) {
-		if($scope.nav.rightOnDestroy)$scope.nav.rightOnDestroy()
 	})
 
 	$scope.setNav = function (newNav) {
-			console.log('settingNav')
 			$scope.nav = newNav
 	}
 }])
@@ -115,40 +110,25 @@ app.directive('dynAttr', function() {
     return {
         scope: { list: '=dynAttr' },
         link: function(scope, elem, attrs){
-					console.log(attrs)
-					scope.oldList = {}
+					var oldList
+					var oldDestroyFunction
 					scope.$watch(function () {
 						return scope.$parent.nav
 					}, function (val) {
-						console.log('checking dynAttr: ' + JSON.stringify(scope.list))
 						var attr
-						for(attr in scope.oldList){
-							console.log('removing: ' + scope.oldList[attr].attr)
-	            elem.removeAttr(scope.oldList[attr].attr)
-	          }
-						scope.$emit(oldList.attrs.onDestroy)
-						scope.oldList = scope.list
+						if(oldList){
+							if(oldDestroyFunction)oldDestroyFunction()
+							for(attr in oldList){
+								elem.removeAttr(oldList[attr].attr)
+							}
+						}
+						oldList = scope.list
+						oldDestroyFunction = scope.$parent.nav[attrs.side + 'OnDestroy']
 	          for(attr in scope.list){
-							console.log('adding: ' + scope.list[attr].attr)
 	            elem.attr(scope.list[attr].attr, scope.list[attr].value)
 	          }
-						scope.$emit(attrs.onLoad)
+						scope.$emit(attrs.side + 'NavLoaded')
 					}, true)
-        }
-    }
-})
-
-app.directive('onFinishRender', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attr) {
-					/*scope.$watch(element, function (val) {
-            if (scope.$last === true) {
-                $timeout(function () {
-                    scope.$emit(attr.onFinishRender)
-                })
-            }
-					})*/
         }
     }
 })
@@ -179,6 +159,8 @@ app.factory('navDropdown', function navDropdownFactory() {
 		}, destroy: function () {
 			console.log('destroying nav')
 			jQuery('#navDropdown').remove()
+			var btn = $('.dropdown-button')
+			btn.unbind('click.' + btn.attr('#navDropdownBtn'))
 		}
 	}
 })
