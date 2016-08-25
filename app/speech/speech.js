@@ -10,36 +10,9 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			controller: 'speechCtrl'
 		})
 	}])
-	.controller('speechCtrl', ['$scope', '$routeParams', function($scope, toaster, ngDragDrop, $routeParams) {
-		$scope.$parent.setNav({
-			left: [{
-				icon: 'block',
-				attrs: [
-					{ attr: 'href', value: '#/blockEditor' }
-	    	]
-			}, {
-				icon: 'insert_drive_file',
-				attrs: [
-					{ attr: 'href', value: '#/cardManager' }
-	    	]
-			}, {
-				icon: 'chat_bubble',
-				attrs: [
-					{ attr: 'href', value: '#/speech' }
-	    	]
-			}, {
-				icon: 'view_column',
-				attrs: [
-					{ attr: 'href', value: '#/flowManager' }
-	    	]
-			}],
-			right: [{
-				icon: 'settings',
-				attrs: [
-					{ attr: 'href', value: '#' }
-	    	]
-			}]
-		})
+	.controller('speechCtrl', ['$scope', '$routeParams', 'defaultNav', function($scope, $routeParams, defaultNav) {
+		$scope.$parent.setNav(defaultNav)
+
 		/*$scope.list1 = {title: 'AngularJS - Drag Me'};
   	$scope.list2 = {};*/
 
