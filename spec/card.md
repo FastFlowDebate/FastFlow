@@ -14,6 +14,3 @@ Functionality:
    * Delete - delete the card from CardManager
    * Reference - refer to card's content (specifically bolded) from flows, blocks, or speeches
    * View References - lists places and files which reference the card
-
-
-
