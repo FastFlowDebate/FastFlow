@@ -9,5 +9,5 @@ module.exports = angular.module('fastflowApp.index', ['ngRoute'])
 	// class='dropdown-button btn' data-beloworigin="true" href='#' data-activates='dropdown1'
 	.controller('indexCtrl', ['$scope', '$location', 'defaultNav', function($scope, $location, defaultNav) {
 		$scope.route = "#"
-		$scope.$parent.setNav(defaultNav)
+		$scope.$parent.setNav(defaultNav, 'Fast Flow')
 	}])

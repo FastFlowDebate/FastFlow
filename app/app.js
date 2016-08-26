@@ -101,8 +101,12 @@ app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope,
 		if($scope.nav.rightOnLoad)$scope.nav.rightOnLoad()
 	})
 
-	$scope.setNav = function (newNav) {
+	$scope.setNav = function (newNav, title) {
 			$scope.nav = newNav
+			$scope.navTitle = title
+	}
+	$scope.setTitle = function (title) {
+			$scope.navTitle = title
 	}
 }])
 

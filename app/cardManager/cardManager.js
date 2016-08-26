@@ -12,7 +12,7 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		})
 	}])
 	.controller('cardManagerCtrl', ['$scope', 'defaultNav', function($scope, defaultNav) {
-		$scope.$parent.setNav(defaultNav)
+		$scope.$parent.setNav(defaultNav, 'Cards')
 		$scope.dataJSON = ipcRenderer.sendSync('CardManager', 'ready')
 		$scope.sTags = Object.keys($scope.dataJSON)
 
