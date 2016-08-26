@@ -1,4 +1,4 @@
-module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete', 'ngDragDrop', 'ngSanitize', 'ngAnimate'])
+module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete', 'ngDragDrop',  'ngSanitize', 'angular-medium-editor',  'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/speech/:tag', {
 			templateUrl: 'speech/speech.html',
@@ -24,7 +24,6 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 		]
 
 		$scope.newPoint = function() {
-			window.alert("hi")
 			$scope.points.push({
 				tagline: "",
 				content: ""
