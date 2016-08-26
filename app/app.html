@@ -19,9 +19,7 @@
 
 <body ng-app="fastflowApp" ng-controller="navbar" ng-cloak>
 
-	<div class="theBackground">
-
-		<nav class="z-depth-0 purple darken-1">
+		<nav class="purple darken-1 navbar-fixed" style = "position: fixed; top:0px;">
 			<div class="nav-wrapper">
 				<ul class="left navIcons">
 					<li>
@@ -39,7 +37,7 @@
 
 		</nav>
 
-		<div class="bodyPad">
+		<div class="container viewPort">
 			<div ng-view>
 			</div>
 		</div>
