@@ -11,7 +11,7 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 		})
 	}])
 	.controller('speechCtrl', ['$scope', '$routeParams', 'defaultNav', function($scope, $routeParams, defaultNav) {
-		$scope.$parent.setNav(defaultNav)
+		$scope.$parent.setNav(defaultNav, 'Speech Editor')
 
 		/*$scope.list1 = {title: 'AngularJS - Drag Me'};
   	$scope.list2 = {};*/

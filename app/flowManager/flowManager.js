@@ -7,7 +7,7 @@ module.exports = angular.module('fastflowApp.flowManager', ['ngRoute', 'ngSaniti
 	}])
 	// We can load the controller only when needed from an external file
 	.controller('flowManagerCtrl', ['$scope', 'defaultNav', function($scope, defaultNav) {
-		$scope.$parent.setNav(defaultNav)
+		$scope.$parent.setNav(defaultNav, 'Flow')
 		$scope.dataJSON = ipcRenderer.send('FlowManager', 'ready')
 /*
 	$scope.newContention = function() {

@@ -25,7 +25,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 				icon: 'save',
 				action: function () {$scope.saveFunction()}
 			}]
-		})
+		}, 'Card Editor')
 
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)
