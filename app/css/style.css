@@ -4,6 +4,13 @@ body {
   font-family: Roboto;
 }
 
+#navTitle {
+  font-family: Roboto;
+  font-weight: 100;
+  font-size: 3em;
+  width: auto;
+}
+
 
 .bodyCentered {
     max-width: 800px;
@@ -41,6 +48,10 @@ input {
 
 .navIcons {
   height: auto;
+}
+
+nav {
+  text-align: center;
 }
 
 nav li {
