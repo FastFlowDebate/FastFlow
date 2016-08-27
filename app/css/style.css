@@ -4,6 +4,13 @@ body {
   font-family: Roboto;
 }
 
+[contenteditable]:focus {
+  outline: none;
+}
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(placeholder)
+}
+
 
 .bodyCentered {
     max-width: 800px;

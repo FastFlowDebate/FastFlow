@@ -15,8 +15,8 @@
 		<div class="parent">
 			<div class="card-title narrow">{{$index + 1}}</div>
 			<div class="card-content wide">
-				<input class="card-title" ng-model="points[$index].tagline" placeholder="Tagline" style="margin-bottom: 0px;">
-				<textarea class="materialize-textarea" medium-editor ng-model="points[$index].content" placeholder="Content"></textarea>
+				<div contenteditable="true" class="card-title" ng-model="points[$index].tagline" placeholder="Tagline" style="margin-bottom: 0px;"></div>
+				<div contenteditable="true" style = "background-color:pink;"ng-model="points[$index].content" placeholder="Content" medium-editor></div>
 			</div>
 		</div>
 		<!--
