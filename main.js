@@ -1,8 +1,21 @@
 'use strict'
+var path = require('path')
+var fs = require('fs')
+const Regex = require("regex");
+const electron = require('electron')
+const app = electron.app
+const BrowserWindow = electron.BrowserWindow
+const Menu = electron.Menu
+const crashReporter = electron.crashReporter
+const shell = electron.shell
+const ipcMain = require('electron').ipcMain
+let menu
+let template
+let mainWindow = null
 
 const loki = require("lokijs")
 
-const cardDb = new loki('mainDatabase.ffdb',
+const cardDb = new loki(app.getPath('userData') + '/mainDatabase.ffdb',
   {
     autoload: true,
     autoloadCallback : loadHandler,
@@ -45,20 +58,6 @@ function tagindex (datab) {
 
   return dict;
 }
-
-var path = require('path')
-var fs = require('fs')
-const Regex = require("regex");
-const electron = require('electron')
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
-const Menu = electron.Menu
-const crashReporter = electron.crashReporter
-const shell = electron.shell
-const ipcMain = require('electron').ipcMain
-let menu
-let template
-let mainWindow = null
 
 crashReporter.start()
 
