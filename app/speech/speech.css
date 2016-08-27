@@ -19,3 +19,7 @@
   /* Grow to rest of container */
   /* Just so it's visible */
 }
+
+.medium-editor-placeholder:after {
+  color: black !important;
+}
