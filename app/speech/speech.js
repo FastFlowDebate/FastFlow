@@ -14,6 +14,12 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 
 		$scope.$parent.setNav(defaultNav)
 
+		$scope.titleContent = {
+			title: "",
+			author: ""
+		}
+		$scope.framework = "<p>Definitions: </p><p>Framework: </p>"
+
 		/*$scope.list1 = {title: 'AngularJS - Drag Me'};
   	$scope.list2 = {};*/
 
@@ -29,6 +35,11 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 				tagline: "",
 				content: ""
 			})
+		}
+		$scope.deletePoint = function(i) {
+			console.log("deleting")
+			console.log(i)
+			$scope.points.splice(i, 1);
 		}
 
 	}])
