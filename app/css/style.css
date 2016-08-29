@@ -4,6 +4,10 @@ body {
   font-family: Roboto;
 }
 
+.cardPad {
+  padding-bottom: 10px;
+}
+
 [contenteditable]:focus {
   outline: none;
 }

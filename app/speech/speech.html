@@ -6,27 +6,46 @@
 <link href="speech/speech.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 
+<div class="card bodyCentered cardPad">
+	<div class="card-content">
+		<div contenteditable="true" class="card-title" ng-model="" placeholder="Title" style="margin-bottom: 0px;"></div>
+		<div contenteditable="true" ng-model="" placeholder="Author" style="margin-bottom: 0px;"></div>
+	</div>
+</div>
 
 <!--<toaster-container></toaster-container>-->
+<div class="card bodyCentered" ng-repeat="i in points track by $index">
 
-<div ng-repeat="i in points track by $index">
+		<div class="card-content">
+			<span class="card-title">
+				<div class = "inline">{{$index + 1}}</div>
+				<div contenteditable="true" class="inline" ng-model="points[$index].tagline" placeholder="Tagline" style="padding-left: 5px;"></div>
+				<i class="material-icons right inline">close</i>
+			</span>
 
-	<div class="card bodyCentered">
+			<div contenteditable="true" ng-model="points[$index].content" data-placeholder="Content" style = "padding-left: 25px;" medium-editor></div>
+		</div>
+
+	<!--
 		<div class="parent">
 			<div class="card-title narrow">{{$index + 1}}</div>
 			<div class="card-content wide">
-				<div contenteditable="true" class="card-title" ng-model="points[$index].tagline" placeholder="Tagline" style="margin-bottom: 0px;"></div>
-				<div contenteditable="true" style = "" ng-model="points[$index].content" data-placeholder="Content" medium-editor></div>
+				<span class="card-title">
+					<div contenteditable="true" class="card-title" ng-model="points[$index].tagline" placeholder="Tagline" style="margin-bottom: 0px;"></div>
+					<i class="material-icons right">close</i>
+				</span>
+
+				<div contenteditable="true" ng-model="points[$index].content" data-placeholder="Content" medium-editor></div>
 			</div>
-		</div>
+		</div>-->
 		<!--
    <div class="card-action">
      <a href="#">Delete</a>
      <a href="#">Save</a>
    </div>-->
-	</div>
-
 </div>
+ {{points}}
+
 <div class="fixed-action-btn savedeleteButton">
 	<a class="btn-floating btn-large blue">
 		<i class="large material-icons">done</i>
