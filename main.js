@@ -403,7 +403,7 @@ function searchSimple(datab, searchTerm){
     var cite = arg.citation
     var temp = cards.find({'tagLine' : tagLine})
     if (temp.length !== 0){
-      cards.removeWhere({'tagLine' : TitleString})
+      cards.removeWhere({'tagLine' : tagLine})
     }
     addCardToLoki(cardDb, tagLine, sTags, cite, content, notes);
     tagindex(cardDb)
