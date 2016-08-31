@@ -1,4 +1,4 @@
-module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'toaster', 'ngAnimate'])
+module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/card/:tag', {
 			templateUrl: 'card/card.html',
@@ -10,7 +10,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			controller: 'cardCtrl'
 		})
 	}])
-	.controller('cardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
+	.controller('cardCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
 		$scope.$parent.setNav({
 			left: [{
 				icon: 'arrow_back',
@@ -48,9 +48,12 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			$scope.content = "ERROR"
 			$scope.title = "ERROR"
 		}
-
+		$scope.saving = false
 		$scope.saveFunction = function() {
+			if($scope.saving) return //don't let function run twice at same time
+			$scope.saving = true
 			var sTags = $('.chips').material_chip('data')
+			console.log('sTags: ' + JSON.stringify(sTags))
 			for(t in sTags) sTags[t] = sTags[t].tag //I'm sorry -Zarkoix
 			var card = {tagLine:$scope.title,
 									sTags:JSON.stringify(sTags),
@@ -59,24 +62,27 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 									notes:$scope.notes
 								}
 			if (card.tagLine === "" || card.tagLine === null || card.tagLine === undefined) {
-				toaster.error("Card Title is Empty", "A Card has no name...")
-			} else if (card.sTags === "" || card.sTags === null || card.sTags === undefined) {
-				toaster.pop('error', "Card Tags are Empty", "Tell FastFlow where to find your card!")
+				alert("Card Title is Empty", "A Card has no name...")
+			} else if (card.sTags === "" || card.sTags === null || card.sTags === undefined || card.sTags === []) {
+				alert('error', "Card Tags are Empty", "Tell FastFlow where to find your card!")
 			} else if (card.content === "" || card.content === null || card.content === undefined) {
-				toaster.pop('error', "Card has no content", "Tell FastFlow what information to remember!")
+				alert('error', "Card has no content", "Tell FastFlow what information to remember!")
 			} else {
 				ipcRenderer.send('FileSave', card)
-				toaster.pop('success', "Card Saved", "");
+				window.location.replace('#cardManager')
+				Materialize.toast('Card Saved!', 3000) // 4000 is the duration of the toast
 			}
+			$scope.saving = false
 		}
 
 		$scope.deleteFunction = function() {
 			$('#deleteConfirmation').openModal();
-			/*
+		}
+
+		$scope.delete = function(){
 			ipcRenderer.send('FileRemove', $scope.title)
-			toaster.pop('note', "Card Deleted", "");
+			Materialize.toast('Card Deleted', 2500)
 			window.location.replace('#index')
-			*/
 		}
 	}]).directive("contenteditable", function() {
   return {
