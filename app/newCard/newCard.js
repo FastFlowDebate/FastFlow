@@ -11,6 +11,14 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 		})
 	}])
 	.controller('newCardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
+		$scope.$parent.setNav({
+			left: [{
+				icon: 'arrow_back',
+				attrs: [
+					{ attr: 'href', value: '#/cardManager' },
+				]
+			}]
+		}, 'Card Creator')
 
 		jQuery('.chips').material_chip({
 			data: [{
@@ -42,14 +50,15 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 								}
 			console.log(card)
 			if (card.tagLine === "" || card.tagLine === null || card.tagLine === undefined) {
-				toaster.error("Card Title is Empty", "A Card has no name...")
-			} else if (card.sTags === "" || card.sTags === null || card.sTags === undefined) {
-				toaster.pop('error', "Card Tags are Empty", "Tell FastFlow where to find your card!")
+				Materialize.toast("Card Title is Empty", "A Card has no name...", 2500)
+			} else if (card.sTags === "" || card.sTags === null || card.sTags === undefined || card.sTags === []) {
+				Materialize.toast("Card Tags are Empty", "Tell FastFlow where to find your card!", 2500)
 			} else if (card.content === "" || card.content === null || card.content === undefined) {
-				toaster.pop('error', "Card has no content", "Tell FastFlow what information to remember!")
+				Materialize.toast("Card has no content", "Tell FastFlow what information to remember!", 2500)
 			} else {
 				ipcRenderer.send('FileSave', card)
-				toaster.pop('success', "Card Saved", "");
+				window.location.replace('#cardManager')
+				Materialize.toast('Card Created!', 3000) // 4000 is the duration of the toast
 			}
 		}
 	}])
