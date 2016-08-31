@@ -6,7 +6,6 @@
 <link href="node_modules/angularjs-toaster/toaster.css" rel="stylesheet">
 <link href="card/card.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-
 <div id="card-wrapper" class="card bodyCentered">
 	<div id="card-content">
 		<div id="title" class="textDiv">
@@ -26,7 +25,7 @@
 		</div>
 	</div>
 </div>
-
+<!---
 <div class="fixed-action-btn addButton">
 	<a class="btn-floating btn-large blue">
 		<i class="large material-icons">menu</i>
@@ -37,14 +36,16 @@
 		<li><a class="btn-floating blue tooltipped" data-delay="50" data-tooltip="Share"><i class="material-icons">publish</i></a></li>
 	</ul>
 </div>
-
+--->
 <div id="deleteConfirmation" class="modal modal-fixed-footer">
 	<div class="modal-content">
-		<h4 class="truncate">Delete Card: {{title}}</h4>
-		<p>Are you sure?</p>
+		<h4 class="truncate">Delete Card</h4>
+		<p>Are you sure you want to delete <i>{{title}}</i></p>
+		<p>This action is final, this evidence will be gone forever.</p>
+
 	</div>
 	<div class="modal-footer">
-		<a class=" modal-action modal-close waves-effect waves-red btn-flat">Delete Card</a>
+		<a class=" modal-action modal-close waves-effect waves-red btn-flat" ng-click="delete()">Delete Card</a>
 		<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Cancel</a>
 	</div>
 </div>

@@ -31,6 +31,8 @@ function loadHandler() {
 }
 
 function tagindex (datab) {
+  console.log('\n')
+  console.log('starting indexing: ')
   //tab index will return JSON in the form of a map of sTag:[CardTitles]
   /* example JSON
   {
@@ -45,7 +47,7 @@ function tagindex (datab) {
   for (card in cards) {                           //  go through each card
     sTags = JSON.parse(cards[card].sTags)         // turn sTags String into an array for transversal
     for (s in sTags) {                            // go through each sTag
-      if(dict.hasOwnProperty(sTags[s]) && !dict[sTags[s].includes(cards[card].tagLine)]) {       // if the node already exists and tag is not already in node then
+      if(dict.hasOwnProperty(sTags[s]) && !dict[sTags[s]].includes(cards[card].tagLine)) {       // if the node already exists and tag is not already in node then
         console.log('Adding card ' + cards[card].tagLine +' to tag ' + sTags[s])
         dict[sTags[s]].push(cards[card].tagLine)                                                 // add the tag to the node
       } else {
@@ -55,7 +57,7 @@ function tagindex (datab) {
     }
   }
   console.log(dict)
-
+  console.log('\n')
   return dict;
 }
 
@@ -358,9 +360,6 @@ function searchSimple(datab, searchTerm){
 /* The rest of this is IPC stuff */
 
   ipcMain.on('Search', function (event, arg) {
-    console.log(arg)
-    console.log("-----------")
-    console.log(searchSimple(cardDb, arg))
     event.returnValue = searchSimple(cardDb, arg)
   })
 
@@ -368,7 +367,7 @@ function searchSimple(datab, searchTerm){
   ipcMain.on('FileOpen', function (event, arg) {
     var foundCard = getCard(cardDb, arg)
     if(foundCard[0]){
-      console.log('opening: ' + foundCard[0])
+      console.log('opening: ' + foundCard[0].tagLine)
       event.returnValue = foundCard[0]
     } else {
       event.returnValue = false
@@ -376,13 +375,10 @@ function searchSimple(datab, searchTerm){
   })
 
   ipcMain.on('FileRemove', function (event, arg) {
-
-    //removeCard(db, cardName, cardTags, cardContent)
     deleteCard(cardDb, arg)
     console.log("removing:")
     console.log(arg)
-    console.log("---------------")
-    //removeCard(cardDb, arg[0], arg[1], arg[2])
+    console.log('\n')
   })
 
   ipcMain.on('CardManager', function (event, arg) {
@@ -400,11 +396,9 @@ function searchSimple(datab, searchTerm){
     var content = arg.content
     var notes = arg.notes
     var cite = arg.citation
-    var temp = cards.find({'tagLine' : tagLine})
-    if (temp.length !== 0){
-      cards.removeWhere({'tagLine' : TitleString})
+    if (cards.find({'tagLine' : tagLine}).length !== 0){
+      cards.removeWhere({'tagLine' : tagLine})
     }
-    addCardToLoki(cardDb, tagLine, sTags, cite, content, notes);
-    tagindex(cardDb)
+    addCardToLoki(cardDb, tagLine, sTags, cite, content, notes)
   })
 })
