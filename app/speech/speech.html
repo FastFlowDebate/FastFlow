@@ -6,16 +6,30 @@
 <link href="speech/speech.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 
+
 <div class="card bodyCentered cardPad">
 	<div class="card-content">
+
 		<div contenteditable="true" class="card-title" ng-model="titleContent.title" placeholder="Title" style="margin-bottom: 0px;"></div>
+		<div style = "margin-left: -5px; padding-bottom: 10px;">
+      <input name="group1" class = "noLabelPad" type="radio" id="test1"\/>
+      <label class = "radioPad" for="test1"  >none</label>
+
+      <input name="group1" class = "noLabelPad" type="radio" id="test2" />
+      <label class = "radioPad" for="test2">aff</label>
+
+			<input name="group1" class = "noLabelPad" type="radio" id="test3" />
+      <label class = "radioPad" for="test3">neg</label>
+    </div>
 		<div contenteditable="true" ng-model="titleContent.author" placeholder="Author" style="margin-bottom: 0px;"></div>
 	</div>
 </div>
 
-<div class="card bodyCentered cardPad">
+
+
+<div class="card bodyCentered">
 	<div class="card-content">
-		<div contenteditable="true" ng-model="framework" medium-editor></div>
+		<div contenteditable="true" ng-model="framework" medium-editor data-placeholder = " "></div>
 	</div>
 </div>
 
@@ -26,7 +40,7 @@
 		<div class="card-content">
 			<span class="card-title">
 				<div class = "inline">{{$index + 1}}</div>
-				<div contenteditable="true" class="inline" ng-model="points[$index].tagline" placeholder="Tagline" style="padding-left: 5px;"></div>
+				<div contenteditable="true" class="inline pointCard" ng-model="points[$index].tagline" placeholder="Tagline"></div>
 				<i class="material-icons right inline" ng-click = "deletePoint($index)">close</i>
 			</span>
 
@@ -51,7 +65,7 @@
      <a href="#">Save</a>
    </div>-->
 </div>
-<p>{{title}}</p>
+<p>{{titleContent}}</p>
 <p>{{framework}}</p>
  <p>{{points}}</p>
 <!--

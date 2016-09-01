@@ -1,6 +1,6 @@
-.card {
-  padding-top: -15px !important;
-  padding-bottom: -15px !important;
+.pointCard {
+  padding-left: 5px;
+  width: calc(100% - 60px);
 }
 
 .medium-editor-placeholder:after {
@@ -9,4 +9,18 @@
 
 .inline {
   display: inline-block;
+}
+
+.spaceOut {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.noLabelPad {
+  padding-right: -10px !important;
+}
+
+
+.radioPad {
+  padding-right: 10px;
 }
