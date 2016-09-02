@@ -81,7 +81,7 @@ app.on('ready', () => {
     height: 728
   })
 
-  mainWindow.loadURL(`file://${__dirname}/app/app.html`)
+  mainWindow.loadURL(`file://${__dirname}/app.html`)
 
   mainWindow.on('closed', () => {
     mainWindow = null

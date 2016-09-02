@@ -1,8 +1,8 @@
 {
-  "name": "fastflowfrontend",
+  "name": "FastFlow",
   "version": "1.0.0",
-  "description": "The front end dependencies for FF",
-  "main": "common.html",
+  "description": "Debate: Modernized",
+  "main": "main.js",
   "scripts": {
     "test": "echo lol no",
     "start": "cd ../ && npm start"
@@ -26,7 +26,12 @@
     "font-awesome": "^4.4.0",
     "fuse.js": "^2.2.0",
     "jquery": "^2.1.4",
-    "ng-dialog": "^0.6.2"
+    "ng-dialog": "^0.6.2",
+    "hammer": "0.0.5",
+    "hammerjs": "^2.0.8",
+    "lokijs": "^1.3.11",
+    "path": "^0.12.7",
+    "regex": "^0.1.1"
   },
   "author": "Adam Towers",
   "license": "ISC",

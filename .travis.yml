@@ -12,7 +12,7 @@ install:
   - bower install
   - cd ../
 script:
-  - node package.js
+  - npm run dist
 addons:
   apt:
     sources:

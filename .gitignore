@@ -3,6 +3,8 @@ release/*
 
 app/node_modules/*
 
+dist/*
+
 node_modules/*
 
 app/bower_components/*
