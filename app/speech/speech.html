@@ -1,4 +1,3 @@
-
 <!doctype html>
 <link href="bower_components/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
 <link href="bower_components/medium-editor/dist/css/themes/flat.css" rel="stylesheet">
@@ -8,39 +7,81 @@
 <link href="css/style.css" rel="stylesheet">
 
 
+<div class="card bodyCentered cardPad">
+	<div class="card-content">
+
+		<div contenteditable="true" class="card-title" ng-model="titleContent.title" placeholder="Title" style="margin-bottom: 0px;"></div>
+		<div style = "margin-left: -5px; padding-bottom: 10px;">
+      <input name="group1" class = "noLabelPad" type="radio" id="test1"\/>
+      <label class = "radioPad" for="test1"  >none</label>
+
+      <input name="group1" class = "noLabelPad" type="radio" id="test2" />
+      <label class = "radioPad" for="test2">aff</label>
+
+			<input name="group1" class = "noLabelPad" type="radio" id="test3" />
+      <label class = "radioPad" for="test3">neg</label>
+    </div>
+		<div contenteditable="true" ng-model="titleContent.author" placeholder="Author" style="margin-bottom: 0px;"></div>
+	</div>
+</div>
+
+
+
+<div class="card bodyCentered">
+	<div class="card-content">
+		<div contenteditable="true" ng-model="framework" medium-editor data-placeholder = " "></div>
+	</div>
+</div>
+
+
 <!--<toaster-container></toaster-container>-->
+<div class="card bodyCentered" ng-repeat="i in points track by $index">
 
-<div ng-repeat = "i in points track by $index">
+		<div class="card-content">
+			<span class="card-title">
+				<div class = "inline">{{$index + 1}}</div>
+				<div contenteditable="true" class="inline pointCard" ng-model="points[$index].tagline" placeholder="Tagline"></div>
+				<i class="material-icons right inline" ng-click = "deletePoint($index)">close</i>
+			</span>
 
- <div class="card bodyCentered">
-   <div class = "parent">
-     <div class = "card-title narrow">{{$index + 1}}</div>
-     <div class="card-content wide">
-       <input class="card-title" ng-model = "points[$index].tagline" placeholder='Tagline' style = "margin-bottom: 0px;"></input>
-       <textarea class = "materialize-textarea" contenteditable="true" ng-model = "points[$index].content" placeholder = "Content"></textarea>
-     </div>
- </div>
- <!--
+			<div contenteditable="true" ng-model="points[$index].content" data-placeholder="Content" style = "padding-left: 25px;" medium-editor></div>
+		</div>
+
+	<!--
+		<div class="parent">
+			<div class="card-title narrow">{{$index + 1}}</div>
+			<div class="card-content wide">
+				<span class="card-title">
+					<div contenteditable="true" class="card-title" ng-model="points[$index].tagline" placeholder="Tagline" style="margin-bottom: 0px;"></div>
+					<i class="material-icons right">close</i>
+				</span>
+
+				<div contenteditable="true" ng-model="points[$index].content" data-placeholder="Content" medium-editor></div>
+			</div>
+		</div>-->
+		<!--
    <div class="card-action">
      <a href="#">Delete</a>
      <a href="#">Save</a>
    </div>-->
- </div>
-
 </div>
-</div>
+<p>{{titleContent}}</p>
+<p>{{framework}}</p>
+ <p>{{points}}</p>
+<!--
 <div class="fixed-action-btn savedeleteButton">
-    <a class="btn-floating btn-large blue">
-      <i class="large material-icons">done</i>
-    </a>
-    <ul>
-      <li><a class="btn-floating blue"><i class="material-icons">save</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">delete</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">publish</i></a></li>
-      <li><a class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
-    </ul>
-  </div>
 
-  <div class="fixed-action-btn addButton">
-    <a class="addbutton btn-floating btn-large waves-effect waves-light blue" ng-click = "newPoint()"><i class="material-icons" >add</i></a>
-  </div>
+	<a class="btn-floating btn-large blue">
+		<i class="large material-icons">done</i>
+	</a>
+	<ul>
+		<li><a class="btn-floating blue"><i class="material-icons">save</i></a></li>
+		<li><a class="btn-floating blue"><i class="material-icons">delete</i></a></li>
+		<li><a class="btn-floating blue"><i class="material-icons">publish</i></a></li>
+		<li><a class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
+	</ul>
+</div>-->
+
+<div class="fixed-action-btn addButton">
+	<a class="addbutton btn-floating btn-large waves-effect waves-light blue" ng-click="newPoint()"><i class="material-icons" >add</i></a>
+</div>

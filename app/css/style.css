@@ -4,11 +4,22 @@ body {
   font-family: Roboto;
 }
 
+.cardPad {
+  padding-bottom: 10px;
+}
+
+[contenteditable]:focus {
+  outline: none;
+}
+[contentEditable=true]:empty:not(:focus):before{
+    content:attr(placeholder)
+}
 #navTitle {
   font-family: Roboto;
-  font-weight: 100;
-  font-size: 3em;
+  font-weight: bold;
+  font-size: 2em;
   width: auto;
+
 }
 
 
