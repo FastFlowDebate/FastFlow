@@ -8,6 +8,7 @@
   "scripts": {
     "pack": "build --dir",
     "dist": "build",
+    "dist-all": "build -mwl",
     "start": "cd app && electron ./"
   },
   "build": {
