@@ -28,6 +28,7 @@
 						</a>
 					</li>
 				</ul>
+				<span class="" id="navTitle" ng-bind="navTitle"></span>
 				<ul class="right navIcons">
 						<a class="navBtn" ng-repeat="btn in nav.right track by $index" dyn-attr="btn.attrs" ng-click="btn.action()" side="right">
 							<i class="material-icons">{{btn.icon}}</i>

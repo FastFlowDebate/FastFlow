@@ -14,6 +14,13 @@ body {
 [contentEditable=true]:empty:not(:focus):before{
     content:attr(placeholder)
 }
+#navTitle {
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 2em;
+  width: auto;
+
+}
 
 
 .bodyCentered {
@@ -37,6 +44,10 @@ input {
 
 .navIcons {
   height: auto;
+}
+
+nav {
+  text-align: center;
 }
 
 nav li {
