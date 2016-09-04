@@ -1,0 +1,6 @@
+<!doctype html>
+<div class="mui-panel" ng-click="overlay()" ng-mouseenter="showDel = true" ng-mouseleave="showDel = false">
+  <b><span type="text" class="tagInput" ng-bind="title"/></b>
+  <span ng-show="showDel"><button class="deleteCard" ng-click="deleteFunc">x</button></span>
+  <div ng-bind-html="content"></div>
+</div>

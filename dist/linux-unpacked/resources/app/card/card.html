@@ -1,0 +1,50 @@
+<!doctype html>
+<link href="bower_components/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
+<link href="bower_components/medium-editor/dist/css/themes/flat.css" rel="stylesheet">
+<link href="css/materialize.css" rel="stylesheet">
+<script href="js/materialize.js"></script>
+<link href="card/card.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<div id="card-wrapper" class="card bodyCentered">
+	<div id="card-content">
+		<div id="title" class="textDiv">
+			<div contenteditable ng-model="title"></div>
+		</div>
+		<div id="cite" class="textDiv">
+			<div contenteditable ng-model="cite"></div>
+		</div>
+		<div class="chips"></div>
+		<div id="right-content" class="col s9">
+			<div class="textDiv" id="content">
+				<p medium-editor ng-model="content" placeholder="Content"></p>
+			</div>
+		</div>
+		<div class="textDiv" id="notes">
+			<p medium-editor ng-model="notes"></p>
+		</div>
+	</div>
+</div>
+<!---
+<div class="fixed-action-btn addButton">
+	<a class="btn-floating btn-large blue">
+		<i class="large material-icons">menu</i>
+	</a>
+	<ul>
+		<li><a class="btn-floating blue tooltipped" data-delay="50" data-tooltip="Save"><i class="material-icons">save</i></a></li>
+		<li><a class="btn-floating blue tooltipped" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a></li>
+		<li><a class="btn-floating blue tooltipped" data-delay="50" data-tooltip="Share"><i class="material-icons">publish</i></a></li>
+	</ul>
+</div>
+--->
+<div id="deleteConfirmation" class="modal modal-fixed-footer">
+	<div class="modal-content">
+		<h4 class="truncate">Delete Card</h4>
+		<p>Are you sure you want to delete <i>{{title}}</i></p>
+		<p>This action is final, this evidence will be gone forever.</p>
+
+	</div>
+	<div class="modal-footer">
+		<a class=" modal-action modal-close waves-effect waves-red btn-flat" ng-click="delete()">Delete Card</a>
+		<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Cancel</a>
+	</div>
+</div>
