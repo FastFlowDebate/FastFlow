@@ -9,7 +9,8 @@
     "pack": "build --dir",
     "dist": "build",
     "dist-all": "build -mwl",
-    "start": "cd app && electron ./"
+    "start": "cd app && electron ./",
+    "setup": "npm install && cd app && npm install && bower install"
   },
   "build": {
     "appId": "fastflowdebate",
