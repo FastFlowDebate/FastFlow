@@ -4,9 +4,9 @@ node_js:
 env:
   - CXX=g++-4.8
 before_install:
+  - sudo apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils
   - npm install -g bower
 install:
-  - apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils
   - npm install
   - cd app
   - npm install
