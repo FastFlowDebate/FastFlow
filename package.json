@@ -8,7 +8,7 @@
   "scripts": {
     "pack": "build --dir",
     "dist": "build",
-    "dist-cli": "build -mw",
+    "dist-cli": "build -m",
     "dist-all": "build -mwl",
     "start": "cd app && electron ./",
     "setup": "npm install && cd app && npm install && bower install"
