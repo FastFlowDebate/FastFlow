@@ -13,7 +13,7 @@ install:
   - bower install
   - cd ../
 script:
-  - npm run dist
+  - npm run dist-cli
 addons:
   apt:
     sources:
