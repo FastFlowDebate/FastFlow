@@ -6,6 +6,7 @@ env:
 before_install:
   - npm install -g bower
 install:
+  - apt-get install --no-install-recommends -y icnsutils graphicsmagick xz-utils
   - npm install
   - cd app
   - npm install
