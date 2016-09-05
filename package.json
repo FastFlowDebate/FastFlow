@@ -19,7 +19,7 @@
     "category": "public.app-category.productivity",
     "asar": false,
     "win": {
-      "iconUrl": "(windows-only) https link to icon"
+      "iconUrl": "https://raw.githubusercontent.com/FastFlowDebate/assets/master/FastFlowIcon.png"
     }
   },
   "postinstall": "install-app-deps",
