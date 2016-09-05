@@ -1,5 +1,6 @@
 # FastFlow
 [![Build Status](https://travis-ci.org/FastFlowDebate/FastFlow.svg?branch=master)](https://travis-ci.org/FastFlowDebate/FastFlow)
+[![Build status](https://ci.appveyor.com/api/projects/status/cg72fv9in3fe9gvk/branch/master?svg=true)](https://ci.appveyor.com/project/Zarkoix/fastflow/branch/master)
 [![Dependancy Status](https://david-dm.org/FastFlowDebate/FastFlow.svg)](https://david-dm.org)
 
 Debate organization suite for empowering debaters to directly leverage their research in round
