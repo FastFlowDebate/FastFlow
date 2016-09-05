@@ -6,7 +6,7 @@ Debate organization suite for empowering debaters to directly leverage their res
 
 ## Current Features:
 
-Cards: 
+Cards:
 
 * Searchable by author and sTags (searchable tags, not to be confused with a cards tag line)
 * Organized by sTag in the card manager
@@ -44,10 +44,10 @@ Make sure you have NodeJS installed
 
     npm install
     bower install
-    
+
 ## Running
 
-    npm start
+    npm run start
 
 ## Contribution
 
@@ -56,5 +56,3 @@ Make sure you have NodeJS installed
 * A branch will have to pass the build check (Travis-CI) before being considered for merge
 
 * Update this README with any installation/building changes.
-
-

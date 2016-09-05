@@ -2,53 +2,27 @@
   "name": "FastFlow",
   "productName": "FastFlow",
   "companyName": "FastFlow",
-  "version": "0.2.5",
+  "version": "0.8.0",
   "description": "Debate application for keeping your files organized",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
-    "test": "echo lol no",
-    "lint": "eslint app test *.js",
-    "hot-server": "node server.js",
-    "build": "better-npm-run build",
-    "start": "better-npm-run start",
-    "start-hot": "better-npm-run start-hot",
-    "package": "better-npm-run package",
-    "package-all": "npm run package -- --all",
-    "postinstall": "node node_modules/fbjs-scripts/node/check-dev-engines.js package.json"
+    "postinstall": "install-app-deps",
+    "start": "npm install && npm run compile && electron ./app",
+    "compile": "echo compile",
+    "pack": "npm run compile && build --dir",
+    "dist": "npm run compile && build",
+    "release": "npm run compile && build",
+    "setup": "npm install && cd app && npm install && bower install"
   },
-  "betterScripts": {
-    "start": {
-      "command": "electron ./",
-      "env": {
-        "NODE_ENV": "development"
-      }
-    },
-    "start-hot": {
-      "command": "electron ./",
-      "env": {
-        "HOT": 1,
-        "NODE_ENV": "development"
-      }
-    },
-    "setup": {
-      "command": "npm install && cd app && npm install && bower install",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "package": {
-      "command": "node package.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
-    },
-    "build": {
-      "command": "webpack --config webpack.config.production.js --progress --profile --colors",
-      "env": {
-        "NODE_ENV": "production"
-      }
+  "build": {
+    "appId": "fastflowdebate",
+    "category": "public.app-category.productivity",
+    "asar": false,
+    "win": {
+      "iconUrl": "https://raw.githubusercontent.com/FastFlowDebate/assets/master/FastFlowIcon.png"
     }
   },
+  "postinstall": "install-app-deps",
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
@@ -67,10 +41,10 @@
   ],
   "homepage": "https://github.com/FastFlowDebate/FastFlow#readme",
   "devDependencies": {
-    "better-npm-run": "0.0.5",
     "chromedriver": "^2.19.0",
     "del": "^2.2.0",
-    "electron-packager": "^5.1.1",
+    "electron-builder": "^6.3.1",
+    "electron-packager": "^5.2.1",
     "electron-prebuilt": "^0.36.0",
     "electron-rebuild": "^1.0.0",
     "eslint": "^1.3.1",
@@ -80,16 +54,11 @@
     "minimist": "^1.2.0",
     "node-gyp": "^3.2.1",
     "webpack": "^1.12.1",
-    "webpack-target-electron-renderer": "^0.3.0"
+    "webpack-target-electron-renderer": "^0.3.0",
+    "rimraf": "^2.5.4"
   },
   "dependencies": {
-    "electron-debug": "^1.0.1",
-    "hammer": "0.0.5",
-    "hammerjs": "^2.0.8",
-    "jquery": "^3.1.0",
-    "lokijs": "^1.3.11",
-    "path": "^0.12.7",
-    "regex": "^0.1.1"
+    "electron-debug": "^1.0.1"
   },
   "devEngines": {
     "node": "4.x || 5.x",
