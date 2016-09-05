@@ -2,7 +2,7 @@
   "name": "FastFlow",
   "productName": "FastFlow",
   "companyName": "FastFlow",
-  "version": "0.2.5",
+  "version": "0.8.0",
   "description": "Debate application for keeping your files organized",
   "main": "app/main.js",
   "scripts": {
