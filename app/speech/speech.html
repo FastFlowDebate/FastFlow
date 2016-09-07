@@ -34,7 +34,6 @@
 </div>
 
 
-<!--<toaster-container></toaster-container>-->
 <div class="card bodyCentered" ng-repeat="i in points track by $index">
 
 		<div class="card-content">
@@ -47,41 +46,13 @@
 			<div contenteditable="true" ng-model="points[$index].content" data-placeholder="Content" style = "padding-left: 25px;" medium-editor></div>
 		</div>
 
-	<!--
-		<div class="parent">
-			<div class="card-title narrow">{{$index + 1}}</div>
-			<div class="card-content wide">
-				<span class="card-title">
-					<div contenteditable="true" class="card-title" ng-model="points[$index].tagline" placeholder="Tagline" style="margin-bottom: 0px;"></div>
-					<i class="material-icons right">close</i>
-				</span>
-
-				<div contenteditable="true" ng-model="points[$index].content" data-placeholder="Content" medium-editor></div>
-			</div>
-		</div>-->
-		<!--
-   <div class="card-action">
-     <a href="#">Delete</a>
-     <a href="#">Save</a>
-   </div>-->
 </div>
+<!--
 <p>{{titleContent}}</p>
 <p>{{framework}}</p>
- <p>{{points}}</p>
-<!--
-<div class="fixed-action-btn savedeleteButton">
+ <p>{{points}}</p>-->
 
-	<a class="btn-floating btn-large blue">
-		<i class="large material-icons">done</i>
-	</a>
-	<ul>
-		<li><a class="btn-floating blue"><i class="material-icons">save</i></a></li>
-		<li><a class="btn-floating blue"><i class="material-icons">delete</i></a></li>
-		<li><a class="btn-floating blue"><i class="material-icons">publish</i></a></li>
-		<li><a class="btn-floating blue"><i class="material-icons">format_quote</i></a></li>
-	</ul>
-</div>-->
 
 <div class="fixed-action-btn addButton">
-	<a class="addbutton btn-floating btn-large waves-effect waves-light blue" ng-click="newPoint()"><i class="material-icons" >add</i></a>
+	<a class="addbutton btn-floating btn-large waves-effect waves-light purple lighten-1" ng-click="newPoint()"><i class="material-icons" >add</i></a>
 </div>
