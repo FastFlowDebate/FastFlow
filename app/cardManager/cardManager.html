@@ -21,13 +21,13 @@ $(document).ready(function(){
 		<div class="collapsible-header"> {{x}} </div>
 		<div class="collapsible-body">
 			<div class="collection">
-        <a ng-href="#card/{{URIGenerate(y)}}" class="collection-item" ng-repeat="y in dataJSON[x]">{{y}}</a>
+        <a ng-href="#card/{{URIGenerate(y)}}" class="collection-item purple-text" ng-repeat="y in dataJSON[x]">{{y}}</a>
       </div>
 		</div>
 	</li>
 </ul>
 <div class = "addButton">
-<a class="btn-floating btn-large waves-effect waves-light blue" href = "#newCard"><i class="material-icons">add</i></a>
+<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href = "#newCard"><i class="material-icons">add</i></a>
 </div>
 </div>
 
