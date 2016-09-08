@@ -160,3 +160,13 @@ textarea.materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #9e9e9e;
   box-shadow: 0 1px 0 0 #9e9e9e;
 }
+
+/*style badges*/
+.notif {
+    margin-left: 0.2em;
+    padding: 0.1em;
+    line-height: 1em;
+    border-radius: 3px;
+    font-size: 0.6em;
+    font-weight: 400;
+}
