@@ -150,7 +150,7 @@ app.factory('navDropdown', function navDropdownFactory() {
 		},
 		init: function () {
 			console.log('initDropDown')
-			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#blockManager' class = 'purple-text'>Blocks</a></li><li><a href='#speech' class = 'purple-text'>Speech</a></li><li><a href='#flowManager' class = 'purple-text'>Flow</a></li></ul>")
+			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#speech' class = 'purple-text'>Speech<span class='notif green black-text'>WIP</span></a></li><li><a class = 'grey-text'>Flow<span class='notif green black-text'>WIP</span></a></li></ul>")
 			jQuery('#navDropdownBtn').dropdown({
 				belowOrigin: true,
 				inDuration: 300,
