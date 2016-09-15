@@ -50,9 +50,10 @@ function tagindex (datab) {
   var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
   var cards = datab.getCollection("cards").data;
   var card, s, sTags
-  for (card in cards) {                           //  go through each card
-    sTags = JSON.parse(cards[card].sTags)         // turn sTags String into an array for transversal
-    for (s in sTags) {                            // go through each sTag
+  for (card in cards) {
+    console.log("hello")                         //  go through each card
+    sTags = JSON.parse(cards[card].sTags)        // turn sTags String into an array for transversal
+    for (s in sTags){                            // go through each sTag
       if(dict.hasOwnProperty(sTags[s]) && !dict[sTags[s]].includes(cards[card].tagLine)) {       // if the node already exists and tag is not already in node then
         console.log('Adding card ' + cards[card].tagLine +' to tag ' + sTags[s])
         dict[sTags[s]].push(cards[card].tagLine)                                                 // add the tag to the node
@@ -65,6 +66,34 @@ function tagindex (datab) {
   console.log(dict)
   console.log('\n')
   return dict;
+}
+
+function speechindex (datab) {
+  console.log('\n')
+  console.log('starting indexing: ')
+  //tab index will return JSON in the form of a map of sTag:[CardTitles]
+  /* example JSON
+  {
+    Aff: [card1, card2, card3],
+    Pro: [card1, card22, card4]
+  }
+  */
+  var dict = {}
+  var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
+  var cards = datab.getCollection("speech").data;
+  var card, s, sTags, content, tagline
+  console.log(cards)
+  for (card in cards) {                           //  go through each card
+    sTags = cards[card].sTags
+    content = cards[card].content
+    tagline = cards[card].tagline
+    
+  }
+
+  console.log(dict)
+  console.log('\n')
+  return dict;
+
 }
 
 crashReporter.start()
@@ -326,7 +355,7 @@ app.on('ready', () => {
     	datab.saveDatabase()
     }
 
-  function addCardToSpeech(datab, cardTagline, cardTags, cardCitation, cardContent, cardNotes) {
+  function addCardToSpeech(datab, cardTagline, cardTags, cardContent) {
      //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
      //get a different profession. It legit says "addCardToSpeech" cuz thats what it does
       var cards = datab.getCollection("speech")
@@ -334,9 +363,7 @@ app.on('ready', () => {
     	cards.insert({
     		tagLine: cardTagline,
     		sTags: cardTags,
-    		citation: cardCitation,
-    		content: cardContent,
-    		notes: cardNotes
+    		content: cardContent
     	})
     	datab.saveDatabase()
     }
@@ -435,6 +462,12 @@ app.on('ready', () => {
 
     ipcMain.on('CardManager', function (event, arg) {
       var dataJSON = tagindex(cardDb)
+      console.log(dataJSON)
+      event.returnValue = dataJSON
+    })
+
+    ipcMain.on('SpeechManager', function (event, arg) {
+      var dataJSON = speechindex(cardDb)
       event.returnValue = dataJSON
     })
 
@@ -464,13 +497,12 @@ app.on('ready', () => {
       var tagLine = arg.tagLine
       var sTags = arg.sTags
       var content = arg.content
-      var notes = arg.notes
-      var cite = arg.citation
       var temp = cards.find({'tagLine' : tagLine})
       if (temp.length !== 0){
         cards.removeWhere({'tagLine' : TitleString})
       }
-      addCardToSpeech(cardDb, tagLine, sTags, cite, content, notes);
+      addCardToSpeech(cardDb, tagLine, sTags, content);
+      speechindex(cardDb);
     })
 
   })
