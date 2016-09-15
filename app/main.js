@@ -36,37 +36,36 @@ const cardDb = new loki(app.getPath('userData') + '/mainDatabase.ffdb',
     }
   }
 
-function tagindex (datab) {
-  console.log('\n')
-  console.log('starting indexing: ')
-  //tab index will return JSON in the form of a map of sTag:[CardTitles]
-  /* example JSON
-  {
-    Aff: [card1, card2, card3],
-    Pro: [card1, card22, card4]
-  }
-  */
-  var dict = {}
-  var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
-  var cards = datab.getCollection("cards").data;
-  var card, s, sTags
-  for (card in cards) {
-    console.log("hello")                         //  go through each card
-    sTags = JSON.parse(cards[card].sTags)        // turn sTags String into an array for transversal
-    for (s in sTags){                            // go through each sTag
-      if(dict.hasOwnProperty(sTags[s]) && !dict[sTags[s]].includes(cards[card].tagLine)) {       // if the node already exists and tag is not already in node then
-        console.log('Adding card ' + cards[card].tagLine +' to tag ' + sTags[s])
-        dict[sTags[s]].push(cards[card].tagLine)                                                 // add the tag to the node
-      } else {
-        console.log('Adding card ' + cards[card].tagLine +' to newly created tag ' + sTags[s])
-        dict[sTags[s]] = [cards[card].tagLine]                                                   // if the node does not already exist then create it and add tag
+  function tagindex (datab) {
+    console.log('\n')
+    console.log('starting indexing: ')
+    //tab index will return JSON in the form of a map of sTag:[CardTitles]
+    /* example JSON
+    {
+      Aff: [card1, card2, card3],
+      Pro: [card1, card22, card4]
+    }
+    */
+    var dict = {}
+    var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
+    var cards = datab.getCollection("cards").data;
+    var card, s, sTags
+    for (card in cards) {                           //  go through each card
+      sTags = JSON.parse(cards[card].sTags)      // turn sTags String into an array for transversal
+      for (s in sTags) {                            // go through each sTag
+        if(dict.hasOwnProperty(sTags[s]) && !dict[sTags[s]].includes(cards[card].tagLine)) {       // if the node already exists and tag is not already in node then
+          console.log('Adding card ' + cards[card].tagLine +' to tag ' + sTags[s])
+          dict[sTags[s]].push(cards[card].tagLine)                                                 // add the tag to the node
+        } else {
+          console.log('Adding card ' + cards[card].tagLine +' to newly created tag ' + sTags[s])
+          dict[sTags[s]] = [cards[card].tagLine]                                                   // if the node does not already exist then create it and add tag
+        }
       }
     }
+    console.log(dict)
+    console.log('\n')
+    return dict;
   }
-  console.log(dict)
-  console.log('\n')
-  return dict;
-}
 
 function speechindex (datab) {
   console.log('\n')
@@ -87,7 +86,7 @@ function speechindex (datab) {
     sTags = cards[card].sTags
     content = cards[card].content
     tagline = cards[card].tagline
-    
+
   }
 
   console.log(dict)
@@ -477,6 +476,7 @@ app.on('ready', () => {
       // [TitleString, TagString, ContentString]
       var cards = cardDb.getCollection("cards");
       var tagLine = arg.tagLine
+      console.log(arg.sTags)
       var sTags = arg.sTags
       var content = arg.content
       var notes = arg.notes
@@ -485,7 +485,7 @@ app.on('ready', () => {
       if (temp.length !== 0){
         cards.removeWhere({'tagLine' : TitleString})
       }
-      addCardToLoki(cardDb, "cards", tagLine, sTags, cite, content, notes);
+      addCardToLoki(cardDb, tagLine, sTags, cite, content, notes);
       tagindex(cardDb)
     })
 
