@@ -356,6 +356,7 @@ app.on('ready', () => {
   function addCardToSpeech(datab, cardTagline, cardTags, cardContent) {
      //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
      //get a different profession. It legit says "addCardToSpeech" cuz thats what it does
+     console.log("------------------------------")
       var cards = datab.getCollection("speech")
     	console.log(cardTags)
     	cards.insert({
@@ -502,10 +503,14 @@ app.on('ready', () => {
       var tagLine = arg.tagLine
       var sTags = arg.sTags
       var content = arg.content
-      var temp = cards.find({'tagLine' : tagLine})
+      var temp = cards.where(function(obj) {
+          return (obj.tagLine == tagLine);
+      });
+
       if (temp.length !== 0){
-        cards.removeWhere({'tagLine' : tagLine})
-      }
+        cards.removeWhere(function(obj) {
+            return (obj.tagLine == tagLine);
+        });      }
       addCardToSpeech(cardDb, tagLine, sTags, content);
       speechindex(cardDb);
     })
