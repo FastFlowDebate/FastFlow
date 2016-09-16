@@ -14,8 +14,8 @@ module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
 	.controller('speechManagerCtrl', ['$scope', 'defaultNav', function($scope, defaultNav) {
 		$scope.$parent.setNav(defaultNav, 'Speech')
 		$scope.dataJSON = ipcRenderer.sendSync('SpeechManager', 'ready')
-		$scope.sTags = Object.keys($scope.dataJSON)
-		console.log($scope.sTags)
+		$scope.sTags = $scope.dataJSON
+		//console.log($scope.sTags)
 		$scope.URIGenerate = function(name) {
 			return encodeURIComponent(name)
 		}

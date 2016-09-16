@@ -69,7 +69,7 @@ const cardDb = new loki(app.getPath('userData') + '/mainDatabase.ffdb',
 
 function speechindex (datab) {
   console.log('\n')
-  console.log('starting indexing: ')
+  //console.log('starting indexing: ')
   //tab index will return JSON in the form of a map of sTag:[CardTitles]
   /* example JSON
   {
@@ -80,18 +80,17 @@ function speechindex (datab) {
   var dict = {}
   var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
   var cards = datab.getCollection("speech").data;
-  var card, s, sTags, content, tagline
-  console.log(cards)
+  var card, s, sTags, content, tagline, author
   for (card in cards) {                           //  go through each card
     sTags = cards[card].sTags
     content = cards[card].content
-    tagline = cards[card].tagline
-
+    tagline = cards[card].tagLine
+    PFST.push(tagline.title)
   }
 
-  console.log(dict)
+  //console.log(dict)
   console.log('\n')
-  return dict;
+  return PFST;
 
 }
 
@@ -376,7 +375,13 @@ app.on('ready', () => {
   function getCard(datab, collection, searchTerm){
     //ok, so this should be used to get cards from anything, but as you can see, its not, so maybe we'll integrate that to make it better
       var cards = datab.getCollection(collection);
-      var cardNames = cards.find({'tagLine': {'$contains': searchTerm}});
+      if(collection != "speech"){
+        var cardNames = cards.find({'tagLine': {'$contains': searchTerm}});
+      }else{
+        var cardNames = cards.where(function(obj) {
+            return (obj.tagLine["title"] == searchTerm);
+        });
+      }
       return cardNames;
     }
 
@@ -434,8 +439,8 @@ app.on('ready', () => {
     ipcMain.on('SpeechOpen', function (event, arg) {
       var foundCard = getCard(cardDb, "speech", arg)
       if(foundCard[0]){
-        console.log('opening: ' + foundCard[0])
-        event.returnValue = foundCard[0]
+        //console.log('opening: ' + foundCard)
+        event.returnValue = JSON.stringify(foundCard[0])
       } else {
         event.returnValue = false
       }
@@ -467,6 +472,7 @@ app.on('ready', () => {
 
     ipcMain.on('SpeechManager', function (event, arg) {
       var dataJSON = speechindex(cardDb)
+      //console.log(dataJSON)
       event.returnValue = dataJSON
     })
 
@@ -476,14 +482,13 @@ app.on('ready', () => {
       // [TitleString, TagString, ContentString]
       var cards = cardDb.getCollection("cards");
       var tagLine = arg.tagLine
-      console.log(arg.sTags)
       var sTags = arg.sTags
       var content = arg.content
       var notes = arg.notes
       var cite = arg.citation
       var temp = cards.find({'tagLine' : tagLine})
       if (temp.length !== 0){
-        cards.removeWhere({'tagLine' : TitleString})
+        cards.removeWhere({'tagLine' : tagLine})
       }
       addCardToLoki(cardDb, tagLine, sTags, cite, content, notes);
       tagindex(cardDb)
@@ -499,7 +504,7 @@ app.on('ready', () => {
       var content = arg.content
       var temp = cards.find({'tagLine' : tagLine})
       if (temp.length !== 0){
-        cards.removeWhere({'tagLine' : TitleString})
+        cards.removeWhere({'tagLine' : tagLine})
       }
       addCardToSpeech(cardDb, tagLine, sTags, content);
       speechindex(cardDb);

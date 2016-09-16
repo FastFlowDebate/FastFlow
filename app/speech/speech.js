@@ -27,29 +27,45 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			}]
 		}, 'Speech Editor')
 
+
+				$scope.titleContent = {
+					title: "",
+					author: ""
+				}
+				$scope.framework = "<p>Definitions: </p><p>Framework: </p><p>Outline: </p>"
+
+				/*$scope.list1 = {title: 'AngularJS - Drag Me'};
+		  	$scope.list2 = {};*/
+
+				$scope.points = [
+					{
+						tagline: "",
+						content: ""
+					}
+				]
+
 		if ($routeParams.tag) {
+			console.log($routeParams)
 			var decodedURI = decodeURIComponent($routeParams.tag)
 			console.log('opening card: ' + decodedURI)
 			card = ipcRenderer.sendSync('SpeechOpen', decodedURI)
 			if (card == []) console.log('error, speech not found')
-			$scope.titleContent = JSON.parse(card.tagLine)
-			$scope.points = JSON.parse(card.content)
-			$scope.framework = JSON.parse(card.sTags)
-		} else {
-			console.log('no param, this is an error, go back to safety!')
-			$scope.content = "ERROR"
-			$scope.title = "ERROR"
+			mCard = JSON.parse(card)
+			console.log(mCard.tagLine)
+			$scope.titleContent = mCard.tagLine
+			$scope.points = mCard.content
+			$scope.framework = mCard.sTags
 		}
 
 		$scope.saveFunction = function() {
 			if($scope.saving) return //don't let function run twice at same time
 			$scope.saving = true
 			var card = {
-				         tagLine:JSON.stringify($scope.titleContent),
-								 sTags:JSON.stringify($scope.framework),
-							   content:JSON.stringify($scope.points)
+				         tagLine:$scope.titleContent,
+								 sTags:$scope.framework,
+							   content:$scope.points
 								}
-
+		  console.log(card)
 			ipcRenderer.send('SpeechSave', card)
 			Materialize.toast('Speech Saved!', 3000) // 4000 is the duration of the toast
 			window.location.replace('#speechManager')
@@ -66,23 +82,6 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			Materialize.toast('Card Deleted', 2500)
 			window.location.replace('#index')
 		}
-
-
-		$scope.titleContent = {
-			title: "",
-			author: ""
-		}
-		$scope.framework = "<p>Definitions: </p><p>Framework: </p><p>Outline: </p>"
-
-		/*$scope.list1 = {title: 'AngularJS - Drag Me'};
-  	$scope.list2 = {};*/
-
-		$scope.points = [
-			{
-				tagline: "",
-				content: ""
-			}
-		]
 
 		$scope.newPoint = function() {
 			$scope.points.push({
