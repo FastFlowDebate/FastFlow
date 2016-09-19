@@ -85,6 +85,8 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			ipcRenderer.send('FileRemove', $scope.title)
 			Materialize.toast('Card Deleted', 2500)
 			window.location.replace('#index')
+			$('#deleteConfirmation').closeModal();
+
 		}
 	}]).directive("contenteditable", function() {
   return {

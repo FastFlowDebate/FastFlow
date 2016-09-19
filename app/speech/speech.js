@@ -55,6 +55,7 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			$scope.titleContent = mCard.tagLine
 			$scope.points = mCard.content
 			$scope.framework = mCard.sTags
+			$scope.id = mCard.$loki
 		}
 
 		$scope.saveFunction = function() {
@@ -63,7 +64,8 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			var card = {
 				         tagLine:$scope.titleContent,
 								 sTags:$scope.framework,
-							   content:$scope.points
+							   content:$scope.points,
+								 id:$scope.id
 								}
 		  console.log(card)
 			ipcRenderer.send('SpeechSave', card)
@@ -78,9 +80,10 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 		}
 
 		$scope.delete = function(){
-			ipcRenderer.send('FileRemove', $scope.title)
-			Materialize.toast('Card Deleted', 2500)
-			window.location.replace('#index')
+			ipcRenderer.send('SpeechRemove', $scope.id)
+			window.location.replace('#speechManager')
+			$('#deleteConfirmation').closeModal();
+
 		}
 
 		$scope.newPoint = function() {

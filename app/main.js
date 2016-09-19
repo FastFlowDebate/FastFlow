@@ -81,9 +81,8 @@ function speechindex (datab) {
   var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
   var cards = datab.getCollection("speech").data;
   var card, s, sTags, content, tagline, author
-  for (card in cards) {                           //  go through each card
-    sTags = cards[card].sTags
-    content = cards[card].content
+  for (card in cards) {
+    console.log(cards[card].$loki)
     tagline = cards[card].tagLine
     PFST.push(tagline.title)
   }
@@ -457,12 +456,19 @@ app.on('ready', () => {
     })
 
     ipcMain.on('SpeechRemove', function (event, arg) {
-      //removeCard(db, cardName, cardTags, cardContent)
-      deleteCard(cardDb, "speech", arg)
-      console.log("removing:")
-      console.log(arg)
+      var cards = cardDb.getCollection("speech");
+      var temp = cards.where(function(obj) {
+          return (obj.$loki == arg);
+      });
+
+      if (temp.length !== 0){
+        cards.removeWhere(function(obj) {
+            return (obj.$loki == arg);
+        });
+      }
+      console.log("----------------------")
+      console.log("removing:" + arg)
       console.log("---------------")
-      //removeCard(cardDb, arg[0], arg[1], arg[2])
     })
 
     ipcMain.on('CardManager', function (event, arg) {
@@ -503,14 +509,17 @@ app.on('ready', () => {
       var tagLine = arg.tagLine
       var sTags = arg.sTags
       var content = arg.content
+      var id = arg.id
       var temp = cards.where(function(obj) {
-          return (obj.tagLine == tagLine);
+          return (obj.$loki == id);
       });
 
       if (temp.length !== 0){
+        console.log("hello")
         cards.removeWhere(function(obj) {
-            return (obj.tagLine == tagLine);
-        });      }
+            return (obj.$loki == id);
+        });
+      }
       addCardToSpeech(cardDb, tagLine, sTags, content);
       speechindex(cardDb);
     })
