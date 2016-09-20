@@ -33,9 +33,12 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			card = ipcRenderer.sendSync('FileOpen', decodedURI)
 			if (card == []) console.log('error, card not found')
 			$scope.title = card.tagLine
+			console.log(card.tagLine)
 			$scope.content = card.content
 			$scope.cite = card.citation
 			$scope.notes = card.notes
+			$scope.id = card.$loki
+			console.log(card.sTags)
 			var t = JSON.parse(card.sTags)
 			var tags = []
 			for(c in t) tags.push({tag:t[c]})
@@ -59,7 +62,8 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 									sTags:JSON.stringify(sTags),
 									citation:$scope.cite,
 									content:$scope.content,
-									notes:$scope.notes
+									notes:$scope.notes,
+									id:$scope.id
 								}
 			if (card.tagLine === "" || card.tagLine === null || card.tagLine === undefined) {
 				alert("Card Title is Empty", "A Card has no name...")
@@ -83,6 +87,8 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			ipcRenderer.send('FileRemove', $scope.title)
 			Materialize.toast('Card Deleted', 2500)
 			window.location.replace('#index')
+			$('#deleteConfirmation').closeModal();
+
 		}
 	}]).directive("contenteditable", function() {
   return {

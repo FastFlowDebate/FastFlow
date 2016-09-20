@@ -9,6 +9,8 @@ require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
 require('./speech/speech')
+require('./speechManager/speechManager')
+
 
 
 var toaster = require('angularjs-toaster')
@@ -31,7 +33,8 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
-	'fastflowApp.speech'
+	'fastflowApp.speech',
+	'fastflowApp.speechManager'
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
   $routeProvider.otherwise({
 	   redirectTo: '/index'
@@ -58,7 +61,7 @@ app.directive('ffcardref', function() {
 		restrict: 'E',
 		scope: {
 			title: '=',
-			deleteFunc: '&', //TODO
+			deleteFunc: '&', //todo
 			style: '='
 		},
 		templateUrl: 'cardRef.html',
@@ -150,7 +153,7 @@ app.factory('navDropdown', function navDropdownFactory() {
 		},
 		init: function () {
 			console.log('initDropDown')
-			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#speech' class = 'purple-text'>Speech<span class='notif green black-text'>WIP</span></a></li><li><a class = 'grey-text'>Flow<span class='notif green black-text'>WIP</span></a></li></ul>")
+			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a class = 'grey-text'>Flow<span class='notif green black-text'>WIP</span></a></li></ul>")
 			jQuery('#navDropdownBtn').dropdown({
 				belowOrigin: true,
 				inDuration: 300,

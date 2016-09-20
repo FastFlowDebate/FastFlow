@@ -24,3 +24,10 @@
 .radioPad {
   padding-right: 10px;
 }
+
+.newButton {
+  font-size: 20px;
+  position: fixed;
+  bottom: 45px;
+  right: 100px;
+}

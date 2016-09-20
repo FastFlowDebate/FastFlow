@@ -13,7 +13,11 @@ let menu
 let template
 let mainWindow = null
 
+
+
 const loki = require("lokijs")
+
+console.log(app.getPath('userData'))
 
 const cardDb = new loki(app.getPath('userData') + '/mainDatabase.ffdb',
   {
@@ -23,16 +27,51 @@ const cardDb = new loki(app.getPath('userData') + '/mainDatabase.ffdb',
     autosaveInterval: 1000,
   });
 
-function loadHandler() {
-  var coll = cardDb.getCollection('cards');
-  if (coll === null) {
-    coll = cardDb.addCollection('cards');
+  function loadHandler() {
+    var coll = cardDb.getCollection('cards');
+    if (coll === null) {
+      coll = cardDb.addCollection('cards');
+    }
+    var coll1 = cardDb.getCollection('speech');
+    if (coll1 === null) {
+      coll1 = cardDb.addCollection('speech');
+    }
   }
-}
 
-function tagindex (datab) {
+  function tagindex (datab) {
+    console.log('\n')
+    console.log('starting indexing: ')
+    //tab index will return JSON in the form of a map of sTag:[CardTitles]
+    /* example JSON
+    {
+      Aff: [card1, card2, card3],
+      Pro: [card1, card22, card4]
+    }
+    */
+    var dict = {}
+    var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
+    var cards = datab.getCollection("cards").data;
+    var card, s, sTags
+    for (card in cards) {                           //  go through each card
+      sTags = JSON.parse(cards[card].sTags)      // turn sTags String into an array for transversal
+      for (s in sTags) {                            // go through each sTag
+        if(dict.hasOwnProperty(sTags[s]) && !dict[sTags[s]].includes(cards[card].tagLine)) {       // if the node already exists and tag is not already in node then
+          console.log('Adding card ' + cards[card].tagLine +' to tag ' + sTags[s])
+          dict[sTags[s]].push(cards[card].tagLine)                                                 // add the tag to the node
+        } else {
+          console.log('Adding card ' + cards[card].tagLine +' to newly created tag ' + sTags[s])
+          dict[sTags[s]] = [cards[card].tagLine]                                                   // if the node does not already exist then create it and add tag
+        }
+      }
+    }
+    console.log(dict)
+    console.log('\n')
+    return dict;
+  }
+
+function speechindex (datab) {
   console.log('\n')
-  console.log('starting indexing: ')
+  //console.log('starting indexing: ')
   //tab index will return JSON in the form of a map of sTag:[CardTitles]
   /* example JSON
   {
@@ -42,23 +81,18 @@ function tagindex (datab) {
   */
   var dict = {}
   var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
-  var cards = datab.getCollection("cards").data;
-  var card, s, sTags
-  for (card in cards) {                           //  go through each card
-    sTags = JSON.parse(cards[card].sTags)         // turn sTags String into an array for transversal
-    for (s in sTags) {                            // go through each sTag
-      if(dict.hasOwnProperty(sTags[s]) && !dict[sTags[s]].includes(cards[card].tagLine)) {       // if the node already exists and tag is not already in node then
-        console.log('Adding card ' + cards[card].tagLine +' to tag ' + sTags[s])
-        dict[sTags[s]].push(cards[card].tagLine)                                                 // add the tag to the node
-      } else {
-        console.log('Adding card ' + cards[card].tagLine +' to newly created tag ' + sTags[s])
-        dict[sTags[s]] = [cards[card].tagLine]                                                   // if the node does not already exist then create it and add tag
-      }
-    }
+  var cards = datab.getCollection("speech").data;
+  var card, s, sTags, content, tagline, author
+  for (card in cards) {
+    console.log(cards[card].$loki)
+    tagline = cards[card].tagLine
+    PFST.push(tagline.title)
   }
-  console.log(dict)
+
+  //console.log(dict)
   console.log('\n')
-  return dict;
+  return PFST;
+
 }
 
 crashReporter.start()
@@ -291,114 +325,210 @@ app.on('ready', () => {
     mainWindow.setMenu(menu)
   }
 
-function uniq(a){
-  //Im not walking through this, cuz honestly, i dont know what this does anymore, but it works, so be happy
-    var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
 
-    return a.filter(function(item) {
-        var type = typeof item;
-        if(type in prims)
-            return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
-        else
-            return objs.indexOf(item) >= 0 ? false : objs.push(item);
-    });
-  }
+  function uniq(a){
+    //Im not walking through this, cuz honestly, i dont know what this does anymore, but it works, so be happy
+      var prims = {"boolean":{}, "number":{}, "string":{}}, objs = [];
 
-function addCardToLoki(datab, cardTagline, cardTags, cardCitation, cardContent, cardNotes) {
-   //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
-   //get a different profession. It legit says "addCardToLoki" cuz thats what it does
-    var cards = datab.getCollection("cards")
-  	console.log(cardTags)
-  	cards.insert({
-  		tagLine: cardTagline,
-  		sTags: cardTags,
-  		citation: cardCitation,
-  		content: cardContent,
-  		notes: cardNotes
-  	})
-  	datab.saveDatabase()
-  }
+      return a.filter(function(item) {
+          var type = typeof item;
+          if(type in prims)
+              return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
+          else
+              return objs.indexOf(item) >= 0 ? false : objs.push(item);
+      });
+    }
 
-function deleteCard(datab, cardName){
-  //Umm, its pretty obvious, it deletes a card, duh
-    var cards = datab.getCollection("cards");
-    cards.removeWhere({'tagLine': {'$eq': cardName}})
-  }
+  function addCardToLoki(datab, cardTagline, cardTags, cardCitation, cardContent, cardNotes) {
+     //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
+     //get a different profession. It legit says "addCardToLoki" cuz thats what it does
+      var cards = datab.getCollection("cards")
+    	console.log(cardTags)
+    	cards.insert({
+    		tagLine: cardTagline,
+    		sTags: cardTags,
+    		citation: cardCitation,
+    		content: cardContent,
+    		notes: cardNotes
+    	})
+    	datab.saveDatabase()
+    }
 
-function getCard(datab, searchTerm){
-  //ok, so this should be used to get cards from anything, but as you can see, its not, so maybe we'll integrate that to make it better
-    var cards = datab.getCollection("cards");
-    var cardNames = cards.find({'tagLine': {'$contains': searchTerm}});
-    return cardNames;
-  }
+  function addCardToSpeech(datab, cardTagline, cardTags, cardContent) {
+     //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
+     //get a different profession. It legit says "addCardToSpeech" cuz thats what it does
+     console.log("------------------------------")
+      var cards = datab.getCollection("speech")
+    	console.log(cardTags)
+    	cards.insert({
+    		tagLine: cardTagline,
+    		sTags: cardTags,
+    		content: cardContent
+    	})
+    	datab.saveDatabase()
+    }
 
+  function deleteCard(datab, collection, cardName){
+    //Umm, its pretty obvious, it deletes a card, duh
+      var cards = datab.getCollection(collection);
+      cards.removeWhere({'tagLine': {'$eq': cardName}})
+    }
 
-function searchSimple(datab, searchTerm){
-  /*Okie dokie kids, this should work, I'm fairly confident, but if it doesnt, Uncle Pranav
-   has a long day ahead of him or maybe a short day depending on what he wants to do with it idk*/
-    var cards = datab.getCollection("cards");
-    var returnListCards = []
-    var cardTags = cards.find({'sTags': {'$contains': searchTerm}})
-    var cardNames = cards.find({'tagLine': {'$contains': searchTerm}})
-    var temp1 = 0;
-    var temp2 = 0;
-
-    if(cardTags != []){
-      for (temp1 in cardTags){
-        returnListCards.push(cardTags[temp1].name)
+  function getCard(datab, collection, searchTerm){
+    //ok, so this should be used to get cards from anything, but as you can see, its not, so maybe we'll integrate that to make it better
+      var cards = datab.getCollection(collection);
+      if(collection != "speech"){
+        var cardNames = cards.find({'tagLine': {'$contains': searchTerm}});
+      }else{
+        var cardNames = cards.where(function(obj) {
+            return (obj.tagLine["title"] == searchTerm);
+        });
       }
+      return cardNames;
     }
 
-    if(cardNames != []){
-      for (temp2 in cardNames){
-        returnListCards.push(cardNames[temp2].name)
+
+  function searchSimple(datab, collection, searchTerm){
+    /*Okie dokie kids, this should work, I'm fairly confident, but if it doesnt, Uncle Pranav
+     has a long day ahead of him or maybe a short day depending on what he wants to do with it idk*/
+      var cards = datab.getCollection(collection);
+      var returnListCards = []
+      var cardTags = cards.find({'sTags': {'$contains': searchTerm}})
+      var cardNames = cards.find({'tagLine': {'$contains': searchTerm}})
+      var temp1 = 0;
+      var temp2 = 0;
+
+      if(cardTags != []){
+        for (temp1 in cardTags){
+          returnListCards.push(cardTags[temp1].name)
+        }
       }
+
+      if(cardNames != []){
+        for (temp2 in cardNames){
+          returnListCards.push(cardNames[temp2].name)
+        }
+      }
+      return uniq(returnListCards)
     }
-    return uniq(returnListCards)
-  }
 
-/* The rest of this is IPC stuff */
+  /* The rest of this is IPC stuff */
 
-  ipcMain.on('Search', function (event, arg) {
-    event.returnValue = searchSimple(cardDb, arg)
+    ipcMain.on('Search', function (event, arg) {
+      console.log(arg)
+      console.log("-----------")
+      console.log(searchSimple(cardDb, "cards", arg))
+      event.returnValue = searchSimple(cardDb, arg)
+    })
+
+    ipcMain.on('SearchSpeeches', function (event, arg) {
+      console.log(arg)
+      console.log("-----------")
+      console.log(searchSimple(cardDb, "speech", arg))
+      event.returnValue = searchSimple(cardDb,"speech", arg)
+    })
+
+    ipcMain.on('FileOpen', function (event, arg) {
+      var foundCard = getCard(cardDb, "cards", arg)
+      if(foundCard[0]){
+        console.log('opening: ' + foundCard[0])
+        event.returnValue = foundCard[0]
+      } else {
+        event.returnValue = false
+      }
+    })
+
+    ipcMain.on('SpeechOpen', function (event, arg) {
+      var foundCard = getCard(cardDb, "speech", arg)
+      if(foundCard[0]){
+        //console.log('opening: ' + foundCard)
+        event.returnValue = JSON.stringify(foundCard[0])
+      } else {
+        event.returnValue = false
+      }
+    })
+
+    ipcMain.on('FileRemove', function (event, arg) {
+      //removeCard(db, cardName, cardTags, cardContent)
+      deleteCard(cardDb, "cards", arg)
+      console.log("removing:")
+      console.log(arg)
+      console.log("---------------")
+      //removeCard(cardDb, arg[0], arg[1], arg[2])
+    })
+
+    ipcMain.on('SpeechRemove', function (event, arg) {
+      var cards = cardDb.getCollection("speech");
+      var temp = cards.where(function(obj) {
+          return (obj.$loki == arg);
+      });
+
+      if (temp.length !== 0){
+        cards.removeWhere(function(obj) {
+            return (obj.$loki == arg);
+        });
+      }
+      console.log("----------------------")
+      console.log("removing:" + arg)
+      console.log("---------------")
+    })
+
+    ipcMain.on('CardManager', function (event, arg) {
+      var dataJSON = tagindex(cardDb)
+      console.log(dataJSON)
+      event.returnValue = dataJSON
+    })
+
+    ipcMain.on('SpeechManager', function (event, arg) {
+      var dataJSON = speechindex(cardDb)
+      //console.log(dataJSON)
+      event.returnValue = dataJSON
+    })
+
+    /* card saving */
+    ipcMain.on('FileSave', function (event, arg) {
+      console.log(arg)
+      // [TitleString, TagString, ContentString]
+      var cards = cardDb.getCollection("cards");
+      var tagLine = arg.tagLine
+      var sTags = arg.sTags
+      var content = arg.content
+      var notes = arg.notes
+      var cite = arg.citation
+      var id = arg.id
+      var temp = cards.where(function(obj) {
+          return (obj.$loki == id);
+      });
+
+      if (temp.length !== 0){
+        cards.removeWhere(function(obj) {
+            return (obj.$loki == id);
+        });
+      }
+      addCardToLoki(cardDb, tagLine, sTags, cite, content, notes);
+      tagindex(cardDb)
+    })
+
+    /* speech saving */
+    ipcMain.on('SpeechSave', function (event, arg) {
+      console.log(arg)
+      // [TitleString, TagString, ContentString]
+      var cards = cardDb.getCollection("speech");
+      var tagLine = arg.tagLine
+      var sTags = arg.sTags
+      var content = arg.content
+      var id = arg.id
+      var temp = cards.where(function(obj) {
+          return (obj.$loki == id);
+      });
+
+      if (temp.length !== 0){
+        cards.removeWhere(function(obj) {
+            return (obj.$loki == id);
+        });
+      }
+      addCardToSpeech(cardDb, tagLine, sTags, content);
+      speechindex(cardDb);
+    })
+
   })
-
-
-  ipcMain.on('FileOpen', function (event, arg) {
-    var foundCard = getCard(cardDb, arg)
-    if(foundCard[0]){
-      console.log('opening: ' + foundCard[0].tagLine)
-      event.returnValue = foundCard[0]
-    } else {
-      event.returnValue = false
-    }
-  })
-
-  ipcMain.on('FileRemove', function (event, arg) {
-    deleteCard(cardDb, arg)
-    console.log("removing:")
-    console.log(arg)
-    console.log('\n')
-  })
-
-  ipcMain.on('CardManager', function (event, arg) {
-    var dataJSON = tagindex(cardDb)
-    event.returnValue = dataJSON
-  })
-
-  /* card saving */
-  ipcMain.on('FileSave', function (event, arg) {
-    console.log(arg)
-    // [TitleString, TagString, ContentString]
-    var cards = cardDb.getCollection("cards");
-    var tagLine = arg.tagLine
-    var sTags = arg.sTags
-    var content = arg.content
-    var notes = arg.notes
-    var cite = arg.citation
-    if (cards.find({'tagLine' : tagLine}).length !== 0){
-      cards.removeWhere({'tagLine' : tagLine})
-    }
-    addCardToLoki(cardDb, tagLine, sTags, cite, content, notes)
-  })
-})
