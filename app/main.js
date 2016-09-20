@@ -495,9 +495,15 @@ app.on('ready', () => {
       var content = arg.content
       var notes = arg.notes
       var cite = arg.citation
-      var temp = cards.find({'tagLine' : tagLine})
+      var id = arg.id
+      var temp = cards.where(function(obj) {
+          return (obj.$loki == id);
+      });
+
       if (temp.length !== 0){
-        cards.removeWhere({'tagLine' : tagLine})
+        cards.removeWhere(function(obj) {
+            return (obj.$loki == id);
+        });
       }
       addCardToLoki(cardDb, tagLine, sTags, cite, content, notes);
       tagindex(cardDb)
@@ -517,7 +523,6 @@ app.on('ready', () => {
       });
 
       if (temp.length !== 0){
-        console.log("hello")
         cards.removeWhere(function(obj) {
             return (obj.$loki == id);
         });

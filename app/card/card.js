@@ -37,6 +37,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			$scope.content = card.content
 			$scope.cite = card.citation
 			$scope.notes = card.notes
+			$scope.id = card.$loki
 			console.log(card.sTags)
 			var t = JSON.parse(card.sTags)
 			var tags = []
@@ -61,7 +62,8 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 									sTags:JSON.stringify(sTags),
 									citation:$scope.cite,
 									content:$scope.content,
-									notes:$scope.notes
+									notes:$scope.notes,
+									id:$scope.id
 								}
 			if (card.tagLine === "" || card.tagLine === null || card.tagLine === undefined) {
 				alert("Card Title is Empty", "A Card has no name...")
