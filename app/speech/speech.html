@@ -49,25 +49,27 @@
 </div>
 
 
-
+<!--
 <p>{{titleContent}}</p>
 <p>{{framework}}</p>
  <p>{{points}}</p>
-
+-->
 
 <div class="fixed-action-btn addButton">
 	<a class="addbutton btn-floating btn-large waves-effect waves-light purple lighten-1" ng-click="newPoint()"><i class="material-icons" >add</i></a>
+	<a class="addbutton btn-floating btn-large waves-effect waves-light purple lighten-1" ng-click="saveFunction()"><i class="material-icons" >save</i></a>
 </div>
+
 
 <div id="deleteConfirmation" class="modal modal-fixed-footer">
 	<div class="modal-content">
-		<h4 class="truncate">Delete Card</h4>
+		<h4 class="truncate">Delete Speech</h4>
 		<p>Are you sure you want to delete <i>{{title}}</i></p>
 		<p>This action is final, this evidence will be gone forever.</p>
 
 	</div>
 	<div class="modal-footer">
-		<a class=" modal-action modal-close waves-effect waves-red btn-flat" ng-click="delete()">Delete Card</a>
+		<a class=" modal-action modal-close waves-effect waves-red btn-flat" ng-click="delete()">Delete Speech</a>
 		<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Cancel</a>
 	</div>
 </div>

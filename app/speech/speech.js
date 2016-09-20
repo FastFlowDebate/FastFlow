@@ -21,9 +21,7 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			right: [{
 				icon: 'delete',
 				action: function () {$scope.deleteFunction()}
-			},{
-				icon: 'save',
-				action: function () {$scope.saveFunction()}
+
 			}]
 		}, 'Speech Editor')
 

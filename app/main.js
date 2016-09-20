@@ -13,9 +13,11 @@ let menu
 let template
 let mainWindow = null
 
-const loki = require("lokijs")
-console.log(app.getPath('userData'))
 
+
+const loki = require("lokijs")
+
+console.log(app.getPath('userData'))
 
 const cardDb = new loki(app.getPath('userData') + '/mainDatabase.ffdb',
   {
