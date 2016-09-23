@@ -28,14 +28,17 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 		}, 'Speech Editor')
 
 
+				$scope.none = "NONE"
+				$scope.aff = "AFF"
+				$scope.neg = "NEG"
+
+
 				$scope.titleContent = {
 					title: "",
-					author: ""
+					author: "",
+					side: "NONE"
 				}
-				$scope.framework = "<p>Definitions: </p><p>Framework: </p><p>Outline: </p>"
-
-				/*$scope.list1 = {title: 'AngularJS - Drag Me'};
-		  	$scope.list2 = {};*/
+				$scope.framework = "<p>Definitions:&nbsp</p><p>Framework:&nbsp</p><p>Outline:&nbsp</p>"
 
 				$scope.points = [
 					{

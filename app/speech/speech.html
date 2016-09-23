@@ -12,19 +12,18 @@
 
 		<div contenteditable="true" class="card-title" ng-model="titleContent.title" placeholder="Title" style="margin-bottom: 0px;"></div>
 		<div style = "margin-left: -5px; padding-bottom: 10px;">
-      <input name="group1" class = "noLabelPad" type="radio" id="test1"\/>
+      <input name="group1" class = "noLabelPad" type="radio" id="test1" ng-model = "titleContent.side" ng-value = "none">
       <label class = "radioPad" for="test1"  >none</label>
 
-      <input name="group1" class = "noLabelPad" type="radio" id="test2" />
+      <input name="group1" class = "noLabelPad" type="radio" id="test2" ng-model = "titleContent.side" ng-value = "aff">
       <label class = "radioPad" for="test2">aff</label>
 
-			<input name="group1" class = "noLabelPad" type="radio" id="test3" />
+			<input name="group1" class = "noLabelPad" type="radio" id="test3" ng-model = "titleContent.side" ng-value = "neg">
       <label class = "radioPad" for="test3">neg</label>
     </div>
 		<div contenteditable="true" ng-model="titleContent.author" placeholder="Author" style="margin-bottom: 0px;"></div>
 	</div>
 </div>
-
 
 
 <div class="card bodyCentered">
