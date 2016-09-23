@@ -19,7 +19,7 @@ $(document).ready(function(){
 	<ul ng-show="sTags.length >= 0" class="bodyCentered">
 
 		<div class="collection">
-      <a ng-href="#speech/{{URIGenerate(x)}}" class="collection-item black-text" ng-repeat="x in sTags track by $index">{{x[0]}}<span class="badge">{{x[1]}}</span></a>
+      <a ng-href="#speech/{{URIGenerate(x[0])}}" class="collection-item black-text" ng-repeat="x in sTags track by $index">{{x[0]}}<span class="badge">{{x[1]}}</span></a>
     </div>
 
 </ul>
