@@ -20,6 +20,7 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		$scope.URIGenerate = function(name) {
 			return encodeURIComponent(name)
 		}
+
 		$scope.openCard = function (cardID) {
 			card = ipcRenderer.sendSync('FileOpen', cardID)
 			if (card == []) console.log('error, card not found')
@@ -29,8 +30,13 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 
 			$('#cardModal').openModal()
 		}
+
 		$scope.fullscreen = function () {
 			$('#cardModal').closeModal()
 			window.location.replace('#card/' + $scope.URIGenerate($scope.modalCardTag))
+		}
+		$scope.detatch = function () {
+			$('#cardModal').closeModal()
+			window.open('#cardDetatch/' + $scope.URIGenerate($scope.modalCardTag))
 		}
   }])

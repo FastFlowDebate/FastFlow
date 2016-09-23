@@ -8,6 +8,7 @@ require('./flowManager/flowManager')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
+require('./cardDetatch/cardDetatch')
 require('./speech/speech')
 require('./speechManager/speechManager')
 
@@ -33,6 +34,7 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
+	'fastflowApp.cardDetatch',
 	'fastflowApp.speech',
 	'fastflowApp.speechManager'
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {

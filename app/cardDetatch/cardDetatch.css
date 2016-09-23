@@ -1,0 +1,28 @@
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
+}
+
+#cite div {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  overflow: visible;
+  padding-top: 0;
+  border: none;
+  font-size: 14px;
+  font-weight: 200;
+  padding-bottom: 0;
+}
+
+#card-content {
+  padding: 0.5em;
+}
+
+strong, b {
+  font-weight: 700;
+}
