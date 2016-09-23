@@ -14,12 +14,20 @@ Cards:
 * Add notes to cards
 * Show what other files reference the card (For example do you use it in blocks or speeches)
 
+
+Speeches:
+
+* Write speeches in a simple, organized manner
+* Mark speeches as aff or neg to make locating them easier
+
 ## Planned Features:
 
 Speeches:
 
 * Speech documents help you present by using telling you how long it would take to present, know exactly how much you can have in your rebuttal
 * Every file you refer to is only one quick away, show your opponents evidence they request at lightspeed
+* Spellcheck?
+* Tell FastFlow how your speech should be preflowed as you write it
 
 
 Blocks:
