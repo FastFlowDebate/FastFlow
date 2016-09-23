@@ -127,9 +127,9 @@ app.on('ready', () => {
 
   if (process.platform === 'darwin') {
     template = [{
-      label: 'Electron',
+      label: 'FastFlow',
       submenu: [{
-        label: 'About ElectronReact',
+        label: 'About FastFlow',
         selector: 'orderFrontStandardAboutPanel:'
       }, {
         type: 'separator'
@@ -139,7 +139,7 @@ app.on('ready', () => {
       }, {
         type: 'separator'
       }, {
-        label: 'Hide ElectronReact',
+        label: 'Hide FastFlow',
         accelerator: 'Command+H',
         selector: 'hide:'
       }, {
@@ -235,22 +235,22 @@ app.on('ready', () => {
       submenu: [{
         label: 'Learn More',
         click() {
-          shell.openExternal('http://electron.atom.io')
+          shell.openExternal('http://fastflowdebate.com')
         }
       }, {
         label: 'Documentation',
         click() {
-          shell.openExternal('https://github.com/atom/electron/tree/master/docs#readme')
+          shell.openExternal('https://github.com/FastFlowDebate/FastFlow/blob/master/README.md')
         }
       }, {
         label: 'Community Discussions',
         click() {
-          shell.openExternal('https://discuss.atom.io/c/electron')
+          shell.openExternal('https://github.com/FastFlowDebate/FastFlow/issues')
         }
       }, {
         label: 'Search Issues',
         click() {
-          shell.openExternal('https://github.com/atom/electron/issues')
+          shell.openExternal('https://github.com/FastFlowDebate/FastFlow/issues')
         }
       }]
     }]
@@ -302,7 +302,7 @@ app.on('ready', () => {
       submenu: [{
         label: 'Learn More',
         click () {
-          shell.openExternal('http://electron.atom.io')
+          shell.openExternal('http://fastflowdebate.com')
         }
       }, {
         label: 'Documentation',
@@ -312,12 +312,12 @@ app.on('ready', () => {
       }, {
         label: 'Community Discussions',
         click () {
-          shell.openExternal('https://discuss.atom.io/c/electron')
+          shell.openExternal('https://github.com/FastFlowDebate/FastFlow/issues')
         }
       }, {
         label: 'Search Issues',
         click () {
-          shell.openExternal('https://github.com/atom/electron/issues')
+          shell.openExternal('https://github.com/FastFlowDebate/FastFlow/issues')
         }
       }]
     }]
