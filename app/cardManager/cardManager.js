@@ -21,7 +21,12 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 			return encodeURIComponent(name)
 		}
 		$scope.openCard = function (cardID) {
+			card = ipcRenderer.sendSync('FileOpen', cardID)
+			if (card == []) console.log('error, card not found')
 			$scope.modalCardTag = cardID
+			$scope.modalCardContent = card.content
+			$scope.modalCardCite = card.citation
+
 			$('#cardModal').openModal()
 		}
 		$scope.fullscreen = function () {

@@ -30,13 +30,12 @@
 					<a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">flip_to_front</i></a>
 				</span>
 				<h4 class="truncate">{{modalCardTag}}</h4>
-				{{modalCardContent}}
+				<div id="modalText" ng-bind-html="modalCardContent"></div>
 			</div>
 			<div class="modal-footer">
 				<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
 			</div>
 		</div>
-
 		<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href="#newCard"><i class="material-icons">add</i></a>
 	</div>
 	<script href="js/materialize.js"></script>
