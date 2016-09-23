@@ -86,7 +86,7 @@ function speechindex (datab) {
   for (card in cards) {
     console.log(cards[card].$loki)
     tagline = cards[card].tagLine
-    PFST.push(tagline.title)
+    PFST.push([tagline.title, tagline.side])
   }
 
   //console.log(dict)
