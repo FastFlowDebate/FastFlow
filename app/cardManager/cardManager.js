@@ -13,10 +13,19 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 	}])
 	.controller('cardManagerCtrl', ['$scope', 'defaultNav', function($scope, defaultNav) {
 		$scope.$parent.setNav(defaultNav, 'Cards')
+		jQuery('.tooltipped').tooltip({delay: 50})
 		$scope.dataJSON = ipcRenderer.sendSync('CardManager', 'ready')
 		$scope.sTags = Object.keys($scope.dataJSON)
 		console.log($scope.sTags)
 		$scope.URIGenerate = function(name) {
 			return encodeURIComponent(name)
+		}
+		$scope.openCard = function (cardID) {
+			$scope.modalCardTag = cardID
+			$('#cardModal').openModal()
+		}
+		$scope.fullscreen = function () {
+			$('#cardModal').closeModal()
+			window.location.replace('#card/' + $scope.URIGenerate($scope.modalCardTag))
 		}
   }])

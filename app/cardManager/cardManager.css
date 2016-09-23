@@ -1,40 +1,4 @@
-/*
-.foldertext{
-  margin-left: -11px;
-  margin-right: -12px;
-  padding: 10px;
+#modalButtons a{
+  color: #424242;
+  cursor: pointer;
 }
-
-.foldertext:hover{
-  background-color: purple;
-  color: white;
-}
-
-.highlight {
-  background-color: purple;
-}
-
-.linktext{
-  padding: 10px;
-}
-
-.linktext a {
-  color: black;
-}
-
-.linktext a:hover {
-  color: purple;
-}
-*//*
-.rightPanel {
-  padding: 0px !important;
-  height: calc(100vh - 120px);
-  margin-right: -10px;
-  margin-left: 10px;
-}
-
-.leftPanel {
-  padding: 0px !important;
-  margin-right: 10px;
-  margin-left: -10px;
-}*/

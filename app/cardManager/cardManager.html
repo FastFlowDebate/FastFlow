@@ -1,34 +1,43 @@
 <!doctype html>
 <html>
+	<script>
+		$(document).ready(function() {
+			$('.collapsible').collapsible({
+				accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+			});
+		});
+	</script>
+	<link href="cardManager/cardManager.css" rel="stylesheet" type="text/css" />
+	<div ng-controller="cardManagerCtrl" id="viewNav">
 
-<script>
-$(document).ready(function(){
-	$('.collapsible').collapsible({
-		accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-	});
-});
-</script>
-
-<link href="cardManager/cardManager.css" rel="stylesheet" type="text/css" />
-
-<div ng-controller="cardManagerCtrl" id="viewNav">
-
-	<div ng-show="sTags.length == 0" class="card-panel">
-		<p> You haven't made any cards. Click the blue plus below to get started!</p>
-	</div>
-	<ul ng-show="sTags.length >= 0" class="collapsible bodyCentered" data-collapsible="accordion">
-	<li ng-repeat="x in sTags track by $index">
-		<div class="collapsible-header"> {{x}} </div>
-		<div class="collapsible-body">
-			<div class="collection">
-        <a ng-href="#card/{{URIGenerate(y)}}" class="collection-item purple-text" ng-repeat="y in dataJSON[x]">{{y}}</a>
-      </div>
+		<div ng-show="sTags.length == 0" class="card-panel">
+			<p> You haven't made any cards. Click the blue plus below to get started!</p>
 		</div>
-	</li>
-</ul>
-<div class = "addButton">
-<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href = "#newCard"><i class="material-icons">add</i></a>
-</div>
-</div>
+		<ul ng-show="sTags.length >= 0" class="collapsible bodyCentered" data-collapsible="accordion">
+			<li ng-repeat="x in sTags track by $index">
+				<div class="collapsible-header"> {{x}} </div>
+				<div class="collapsible-body">
+					<div class="collection">
+						<a ng-click="openCard(y)" class="collection-item purple-text" ng-repeat="y in dataJSON[x]">{{y}}</a>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div id="cardModal" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<span id="modalButtons" class="right">
+					<a class="tooltipped" ng-click="fullscreen()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">fullscreen</i></a>
+					<a class="tooltipped" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">flip_to_front</i></a>
+				</span>
+				<h4 class="truncate">{{modalCardTag}}</h4>
+				{{modalCardContent}}
+			</div>
+			<div class="modal-footer">
+				<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
+			</div>
+		</div>
 
+		<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href="#newCard"><i class="material-icons">add</i></a>
+	</div>
+	<script href="js/materialize.js"></script>
 </html>
