@@ -11,33 +11,16 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 		})
 	}])
 	.controller('speechCtrl', ['$scope', '$routeParams', 'defaultNav', function($scope, $routeParams, defaultNav) {
-		$scope.$parent.setNav({
-			left: [{
-				icon: 'arrow_back',
-				attrs: [
-					{ attr: 'href', value: '#/speechManager' },
-				]
-			}],
-			right: [{
-				icon: 'delete',
-				action: function () {$scope.deleteFunction()}
-			},{
-				icon: 'save',
-				action: function () {$scope.saveFunction()}
-			}]
-		}, 'Speech Editor')
-
-
 				$scope.none = "NONE"
 				$scope.aff = "AFF"
 				$scope.neg = "NEG"
-
 
 				$scope.titleContent = {
 					title: "",
 					author: "",
 					side: "NONE"
 				}
+
 				$scope.framework = "<p>Definitions:&nbsp</p><p>Framework:&nbsp</p><p>Outline:&nbsp</p>"
 
 				$scope.points = [
@@ -60,6 +43,22 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 			$scope.framework = mCard.sTags
 			$scope.id = mCard.$loki
 		}
+
+		$scope.$parent.setNav({
+			left: [{
+				icon: 'arrow_back',
+				attrs: [
+					{ attr: 'href', value: '#/speechManager' },
+				]
+			}],
+			right: [{
+				icon: 'delete',
+				action: function () {$scope.deleteFunction()}
+			},{
+				icon: 'save',
+				action: function () {$scope.saveFunction()}
+			}]
+		}, $scope.titleContent.title)
 
 		$scope.saveFunction = function() {
 			if($scope.saving) return //don't let function run twice at same time
