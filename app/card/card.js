@@ -11,21 +11,6 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		})
 	}])
 	.controller('cardCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
-		$scope.$parent.setNav({
-			left: [{
-				icon: 'arrow_back',
-				attrs: [
-					{ attr: 'href', value: '#/cardManager' },
-				]
-			}],
-			right: [{
-				icon: 'delete',
-				action: function () {$scope.deleteFunction()}
-			},{
-				icon: 'save',
-				action: function () {$scope.saveFunction()}
-			}]
-		}, 'Card Editor')
 
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)
@@ -51,6 +36,23 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			$scope.content = "ERROR"
 			$scope.title = "ERROR"
 		}
+		
+		$scope.$parent.setNav({
+			left: [{
+				icon: 'arrow_back',
+				attrs: [
+					{ attr: 'href', value: '#/cardManager' },
+				]
+			}],
+			right: [{
+				icon: 'delete',
+				action: function () {$scope.deleteFunction()}
+			},{
+				icon: 'save',
+				action: function () {$scope.saveFunction()}
+			}]
+		}, $scope.title)
+
 		$scope.saving = false
 		$scope.saveFunction = function() {
 			if($scope.saving) return //don't let function run twice at same time

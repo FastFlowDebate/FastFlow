@@ -1,41 +1,24 @@
 <!doctype html>
 <link href="bower_components/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
-<link href="bower_components/medium-editor/dist/css/themes/flat.css" rel="stylesheet">
+<link href = "css/mediumEditorTheme.css" rel="stylesheet">
 <link href="css/materialize.css" rel="stylesheet">
 <script href="js/materialize.js"></script>
 <link href="card/card.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <div id="card-wrapper" class="card bodyCentered">
-	<div id="card-content">
-		<div id="title" class="textDiv">
-			<div contenteditable ng-model="title"></div>
-		</div>
-		<div id="cite" class="textDiv">
-			<div contenteditable ng-model="cite"></div>
-		</div>
-		<div class="chips"></div>
-		<div id="right-content" class="col s9">
-			<div class="textDiv" id="content">
-				<p medium-editor ng-model="content" placeholder="Content"></p>
-			</div>
-		</div>
-		<div class="textDiv" id="notes">
-			<p medium-editor ng-model="notes"></p>
-		</div>
+	<div class = "card-content">
+		<div class="card-title" contenteditable ng-model="title"></div>
+
+		<div class = "grey-text darken-1" contenteditable ng-model="cite"></div>
+
+		<div class="chips" style = "padding-top: 10px;"></div>
+		<p medium-editor ng-model="content" placeholder="Content" style = "min-height: 300px;"></p>
+
+		<div class="divider grey-text darken-1"></div>
+		<p medium-editor class = "card-title grey-text darken-1" ng-model="notes"></p>
 	</div>
 </div>
-<!---
-<div class="fixed-action-btn addButton">
-	<a class="btn-floating btn-large blue">
-		<i class="large material-icons">menu</i>
-	</a>
-	<ul>
-		<li><a class="btn-floating blue tooltipped" data-delay="50" data-tooltip="Save"><i class="material-icons">save</i></a></li>
-		<li><a class="btn-floating blue tooltipped" data-delay="50" data-tooltip="Delete"><i class="material-icons">delete</i></a></li>
-		<li><a class="btn-floating blue tooltipped" data-delay="50" data-tooltip="Share"><i class="material-icons">publish</i></a></li>
-	</ul>
-</div>
---->
+
 <div id="deleteConfirmation" class="modal modal-fixed-footer">
 	<div class="modal-content">
 		<h4 class="truncate">Delete Card</h4>
