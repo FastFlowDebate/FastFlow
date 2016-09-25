@@ -70,9 +70,14 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 								 id:$scope.id
 								}
 		  console.log(card)
-			ipcRenderer.send('SpeechSave', card)
-			Materialize.toast('Speech Saved!', 3000) // 4000 is the duration of the toast
-			window.location.replace('#speechManager')
+			if($scope.titleContent.title.length > 0) {
+				ipcRenderer.send('SpeechSave', card)
+				Materialize.toast('Speech Saved!', 3000) // 3000 is the duration of the toast
+				window.location.replace('#speechManager')
+			}
+			else {
+				Materialize.toast('Speech title is empty', 3000)
+			}
 
 			$scope.saving = false
 		}
