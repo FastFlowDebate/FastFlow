@@ -9,8 +9,14 @@ module.exports = angular.module('fastflowApp.settings', ['ngRoute'])
 	.controller('settingsCtrl', ['$scope', 'defaultNav', function($scope, defaultNav) {
 		$scope.$parent.setNav(defaultNav, 'Settings')
 
+		$scope.file = ""
+
 		$scope.test = function (){
 			console.log("hello")
 		}
+
+		$scope.clickUpload = function(){
+    	angular.element('#upload').trigger('click');
+		};
 
   }])
