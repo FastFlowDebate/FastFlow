@@ -71,14 +71,6 @@ const cardDb = new loki(app.getPath('userData') + '/mainDatabase.ffdb',
 
 function speechindex (datab) {
   console.log('\n')
-  //console.log('starting indexing: ')
-  //tab index will return JSON in the form of a map of sTag:[CardTitles]
-  /* example JSON
-  {
-    Aff: [card1, card2, card3],
-    Pro: [card1, card22, card4]
-  }
-  */
   var dict = {}
   var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
   var cards = datab.getCollection("speech").data;
@@ -97,16 +89,12 @@ function speechindex (datab) {
 
 crashReporter.start()
 
-if (process.env.NODE_ENV === 'development') {
-  require('electron-debug')()
-}
-
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
 require('electron-debug')({
-  showDevTools: true
+  //showDevTools: true
 })
 
 app.on('ready', () => {
@@ -120,10 +108,6 @@ app.on('ready', () => {
   mainWindow.on('closed', () => {
     mainWindow = null
   })
-
-  if (process.env.NODE_ENV === 'development') {
-    mainWindow.openDevTools()
-  }
 
   if (process.platform === 'darwin') {
     template = [{
@@ -189,7 +173,7 @@ app.on('ready', () => {
       }]
     }, {
       label: 'View',
-      submenu: (process.env.NODE_ENV === 'development') ? [{
+      submenu: [{
         label: 'Reload',
         accelerator: 'Command+R',
         click() {
@@ -206,12 +190,6 @@ app.on('ready', () => {
         accelerator: 'Alt+Command+I',
         click() {
           mainWindow.toggleDevTools()
-        }
-      }] : [{
-        label: 'Toggle Full Screen',
-        accelerator: 'Ctrl+Command+F',
-        click() {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
         }
       }]
     }, {
@@ -272,7 +250,7 @@ app.on('ready', () => {
       }]
     }, {
       label: '&View',
-      submenu: (process.env.NODE_ENV === 'development') ? [{
+      submenu: [{
         label: '&Reload',
         accelerator: 'Ctrl+R',
         click () {
@@ -289,12 +267,6 @@ app.on('ready', () => {
         accelerator: 'Alt+Ctrl+I',
         click () {
           mainWindow.toggleDevTools()
-        }
-      }] : [{
-        label: 'Toggle &Full Screen',
-        accelerator: 'F11',
-        click () {
-          mainWindow.setFullScreen(!mainWindow.isFullScreen())
         }
       }]
     }, {
