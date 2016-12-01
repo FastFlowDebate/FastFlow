@@ -100,7 +100,8 @@ require('electron-debug')({
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 1024,
-    height: 728
+    height: 728,
+    titleBarStyle: 'hidden'
   })
 
   mainWindow.loadURL(`file://${__dirname}/app.html`)
