@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+
+	<link href="settings/settings.css" rel="stylesheet" type="text/css" />
+
+	<div ng-controller="settingsCtrl">
+
+		<div class="card-panel hoverable" ng-click="test()">Importing</div>
+			<!---This needs to import Word Documents and FFDB's--->
+
+		<div class="card-panel hoverable" ng-click="test()">Exporting</div>
+			<!---This needs to export Word Documents and FFDB's--->
+
+		<div class="card-panel hoverable" ng-click="test()">
+			<span>Colour Scheme</span>
+			<div class="switch">
+					<label>
+						Light
+					<input type="checkbox">
+					<span class="lever purple lighten-1"></span>
+						Dark
+					</label>
+				</div>
+		</div>
+
+	<div class="card-panel hoverable">
+		Location of Database
+		<a class="waves-effect waves-light btn right" ng-click="clickUpload()">Open</a>
+		<input id="upload" type="file" style="display: none" fileread="file" webkitdirectory />
+
+		{{file}}
+	</div>
+
+	<div class="hoverable video-container" ng-click="test()">
+		<iframe height="100" width="auto" class="materialboxed" src="https://www.youtube.com/embed/LKFuXETZUsI" frameborder="0" allowfullscreen></iframe>
+	</div>
+
+</html>
