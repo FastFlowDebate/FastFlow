@@ -23,18 +23,14 @@
 			<div class="nav-wrapper">
 				<ul class="left navIcons">
 					<li>
-
-						<a class="navBtn" ng-repeat="btn in nav.left track by $index" dyn-attr="btn.attrs" ng-click="btn.action()" side="left">
-							<i class="material-icons">{{btn.icon}}</i>
-						</a>
-
+						<navside data="nav" side="left"></navside>
 					</li>
 				</ul>
-				<span class="" id="navTitle" ng-bind="navTitle"></span>
+				<span id="navTitle" ng-bind="navTitle"></span>
 				<ul class="right navIcons">
-						<a class="navBtn" ng-repeat="btn in nav.right track by $index" dyn-attr="btn.attrs" ng-click="btn.action()" side="right">
-							<i class="material-icons">{{btn.icon}}</i>
-						</a>
+					<li>
+						<navside data="nav" side="right"></navside>
+					</li>
 				</ul>
 			</div>
 

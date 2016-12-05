@@ -36,12 +36,13 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			$scope.content = "ERROR"
 			$scope.title = "ERROR"
 		}
-		
+
 		$scope.$parent.setNav({
 			left: [{
 				icon: 'arrow_back',
 				attrs: [
 					{ attr: 'href', value: '#/cardManager' },
+					{ attr: 'class', value: 'active' }
 				]
 			}],
 			right: [{

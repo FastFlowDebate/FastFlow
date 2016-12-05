@@ -49,6 +49,7 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 				icon: 'arrow_back',
 				attrs: [
 					{ attr: 'href', value: '#/speechManager' },
+					{ attr: 'class', value: 'active' }
 				]
 			}],
 			right: [{
