@@ -6,8 +6,23 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
 			controller: 'flowCtrl'
 		})
 	}])
-	.controller('flowCtrl', ['$scope', 'defaultNav', function($scope, defaultNav) {
-		$scope.$parent.setNav(defaultNav, 'Flow3')
+	.controller('flowCtrl', ['$scope', 'navDropdown', function($scope, navDropdown) {
+    $scope.$parent.setNav({
+      left: [navDropdown.icon],
+  		leftOnLoad: function () {
+  			navDropdown.init()
+  		},
+  		leftOnDestroy: function () {
+  			navDropdown.destroy()
+  		},
+      right: [{
+        icon: 'view_module',
+        action: function () {$scope.lsManagerOpen()}
+      },{
+        icon: 'save',
+        action: function () {$scope.save()}
+      }]
+    }, 'Flow')
     $scope.dataL = []
     $scope.dataR = []
     $scope.title

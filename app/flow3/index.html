@@ -4,16 +4,7 @@
 	<link rel="stylesheet" href="flow3/style.css" type="text/css">
 
 <body>
-	<nav class="nav-wrapper blue-grey darken-1">
-		<a href="#" class="left"><img id="navImg" src="flow3/ico.png"></a>
-		<ul class="right .hide-on-small-only">
-			<li><a ng-click="save()"><i class="material-icons">save</i></a></li>
-      <li><a ng-click="download()"><i class="material-icons">get_app</i></a></li>
-      <li><a ng-click="lsManagerOpen()"><i class="material-icons">view_module</i></a></li>
-      <li><a ng-click="upload()"><i class="material-icons">publish</i></a></li>
-    </ul>
-	</nav>
-	<main class="row">
+	<main class="row card">
 		<div class="input-field col s12">
       <input placeholder="Flow Title: ToC Finals 2016" id="flowTitle" type="text" ng-model="title">
     </div>
@@ -24,14 +15,6 @@
 			<flow data="dataR"></flow>
 		</div>
 	</main>
-
-	<footer class="page-footer blue-grey darken-2">
-		<div class="footer-copyright blue-grey darken-1">
-			<div class="container">
-				v{{version}}<span class="right">Adam Towers</span>
-			</div>
-		</div>
-	</footer>
 
 	<div id="dlModal" class="modal">
 		<div class="modal-content">
@@ -90,7 +73,7 @@
 			</div>
 			<div class="modal-footer">
 				<a ng-click="completeDelete()" class="modal-action modal-close waves-effect waves-red btn-flat">Delete</a>
-				<a class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</a>
+				<button class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</button>
 			</div>
 		</div>
 	</div>
