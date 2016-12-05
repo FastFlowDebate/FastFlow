@@ -100,13 +100,10 @@ app.directive('ffcardref', function() {
 })
 
 app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout) {
-	$scope.$on('leftNavLoaded', function(ngRepeatFinishedEvent) {
-		console.log('left nav loaded')
-		if($scope.nav.leftOnLoad)$scope.nav.leftOnLoad()
-	})
-	$scope.$on('rightNavLoaded', function(ngRepeatFinishedEvent) {
-		console.log('right nav loaded')
-		if($scope.nav.rightOnLoad)$scope.nav.rightOnLoad()
+
+	$scope.$watch('nav', function() {
+		console.log('hey, nav has changed!')
+		console.log($scope.nav)
 	})
 
 	$scope.setNav = function (newNav, title) {
@@ -118,30 +115,87 @@ app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope,
 	}
 }])
 
-app.directive('dynAttr', function() {
+app.directive('navside', function() {
     return {
-        scope: { list: '=dynAttr' },
+        scope: { data: '=',
+								 side: '@'
+								},
         link: function(scope, elem, attrs){
+					if (scope.data) {
+						scope.buttons = scope.data[scope.side]
+					}	else {
+						//console.log('no nav data')
+					}
 					var oldList
 					var oldDestroyFunction
 					scope.$watch(function () {
-						return scope.$parent.nav
-					}, function (val) {
-						var attr
-						if(oldList){
-							if(oldDestroyFunction)oldDestroyFunction()
-							for(attr in oldList){
-								elem.removeAttr(oldList[attr].attr)
+						return scope.data
+					}, function (newVal, oldVal) {
+						if (oldVal) {
+							var destroyFunction = oldVal[scope.side + 'OnDestroy'] ? oldVal[scope.side + 'OnDestroy'] : undefined
+							if (typeof(destroyFunction) === 'function') {
+								//console.log('calling ' + scope.side + 'OnDestroy: ' + destroyFunction)
+								destroyFunction()
+							} else {
+								"No load function"
 							}
 						}
-						oldList = scope.list
-						oldDestroyFunction = scope.$parent.nav[attrs.side + 'OnDestroy']
-	          for(attr in scope.list){
-	            elem.attr(scope.list[attr].attr, scope.list[attr].value)
-	          }
-						scope.$emit(attrs.side + 'NavLoaded')
+						if(newVal) {
+							//console.log('changing buttons: ' + scope.side)
+							scope.buttons = scope.data[scope.side]
+							var loadFunction = newVal[scope.side + 'OnLoad'] ? newVal[scope.side + 'OnLoad'] : undefined
+							if (typeof(loadFunction) === 'function') {
+								//console.log('calling ' + scope.side + 'OnLoad: ' + loadFunction)
+								scope.$applyAsync(function() {loadFunction()})
+							} else {
+								"No load function"
+							}
+						}
 					}, true)
-        }
+				},
+				//templateUrl: "templates/navSide.html",
+				template: '<navbtn ng-repeat="btn in buttons track by $index" btn="btn" ng-click="btn.action()"></navbtn>'
+
+    }
+})
+
+app.directive('navbtn', function() {
+    return {
+        scope: { btn: '=' },
+        link: function(scope, elem, attrs, set){
+					var oldattrs
+					for (var a in scope.btn.attrs) {
+						elem.children('a').attr(scope.btn.attrs[a].attr, scope.btn.attrs[a].value)
+					}
+					oldattrs = scope.btn.attrs
+
+					scope.$watch(function () {
+						return scope.btn
+					}, function (newVal) {
+						if (oldattrs) {
+							console.log('removing ' + oldattrs.length + ' attrs:')
+							console.log(oldattrs)
+
+							for (var a in oldattrs) {
+								elem.children('a').removeAttr(oldattrs[a].attr)
+							}
+						}
+						if (scope.btn.attrs) {
+							console.log('adding ' + scope.btn.attrs.length + ' attrs:')
+							console.log(scope.btn.attrs)
+
+							for (var a in scope.btn.attrs) {
+								elem.children('a').attr(scope.btn.attrs[a].attr, scope.btn.attrs[a].value)
+							}
+							oldattrs = scope.btn.attrs
+						} else {
+							oldattrs = []
+						}
+
+					}, true)
+				},
+				//templateUrl: "templates/navBtn.html"
+				template: '<a class="navBtn"><i class="material-icons">{{btn.icon}}</i></a>'
     }
 })
 
@@ -149,31 +203,34 @@ app.factory('navDropdown', function navDropdownFactory() {
   return {
 		icon: {
 			icon: 'menu',
+			action: function () {
+				/*jQuery('#navDropdownBtn').dropdown({
+					belowOrigin: true,
+					inDuration: 300,
+					outDuration: 225,
+					constrain_width: false, // Does not change width of dropdown to that of the activator
+					hover: false, // Activate on hover
+					gutter: 0, // Spacing from edge
+					belowOrigin: true, // Displays dropdown below the button
+					alignment: 'left' // Displays dropdown with edge aligned to the left of button
+				})*/
+				$('.dropdown-button').dropdown('open');
+				console.log('dropdown triggered')
+			},
 			attrs: [
-				{ attr: 'href', value: '' },
 				{ attr: 'id', value: 'navDropdownBtn' },
 				{ attr: 'class', value: 'dropdown-button' },
 				{ attr: 'data-activates', value: 'navDropdown' }
 			]
 		},
 		init: function () {
-			console.log('initDropDown')
+			console.log('initDropown')
 			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#' class = 'purple-text'>Home</a></li><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a class = 'grey-text'>Flow<span class='notif green black-text'>WIP</span></a></li></ul>")
-			jQuery('#navDropdownBtn').dropdown({
-				belowOrigin: true,
-				inDuration: 300,
-				outDuration: 225,
-				constrain_width: false, // Does not change width of dropdown to that of the activator
-				hover: false, // Activate on hover
-				gutter: 0, // Spacing from edge
-				belowOrigin: true, // Displays dropdown below the button
-				alignment: 'left' // Displays dropdown with edge aligned to the left of button
-			})
+			$('.dropdown-button').dropdown()
 		}, destroy: function () {
-			console.log('destroying nav')
+			console.log('destroyDropdown')
+			$('.dropdown-button').dropdown('close');
 			jQuery('#navDropdown').remove()
-			var btn = $('.dropdown-button')
-			btn.unbind('click.' + btn.attr('#navDropdownBtn'))
 		}
 	}
 })
