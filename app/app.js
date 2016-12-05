@@ -3,7 +3,7 @@ var angular = require('angular')
 var angularRoute = require('angular-route')
 
 require('./index/index')
-require('./flow/flow')
+require('./flow3/flow3')
 require('./flowManager/flowManager')
 require('./card/card')
 require('./newCard/newCard')
@@ -225,7 +225,7 @@ app.factory('navDropdown', function navDropdownFactory() {
 		},
 		init: function () {
 			console.log('initDropown')
-			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#' class = 'purple-text'>Home</a></li><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a class = 'grey-text'>Flow<span class='notif green black-text'>WIP</span></a></li></ul>")
+			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#' class = 'purple-text'>Home</a></li><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#flow' class = 'grey-text'>Flow<span class='notif green black-text'>WIP</span></a></li></ul>")
 			$('.dropdown-button').dropdown()
 		}, destroy: function () {
 			console.log('destroyDropdown')
