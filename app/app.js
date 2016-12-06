@@ -29,6 +29,7 @@ const ipcRenderer = require('electron').ipcRenderer
 
 var app = angular.module('fastflowApp', [
 	'ngRoute',
+	'ngAnimate',
 	'ngDialog',
 	'fastflowApp.index',
 	'fastflowApp.flow',
