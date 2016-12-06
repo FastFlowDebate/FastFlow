@@ -171,42 +171,43 @@ textarea.materialize-textarea:focus:not([readonly]) {
     font-weight: 400;
 }
 
+.index.ng-enter                 { animation: slideInLeft 0.3s both ease-in; z-index: 9999; }
+.index.ng-leave                 { animation: slideOutLeft 0.3s both ease-in; z-index: 8888; }
+
 .ng-enter           { animation: slideInRight 0.3s both ease-in; z-index: 9999; }
-.ng-leave           { animation: slideOutLeft 0.3s both ease-in; z-index: 8888; }
+
+.ng-enter         { animation: slideInRight 0.3s both ease-in; z-index: 9999; }
+
+.exitLeft.ng-leave              { animation: slideOutLeft 0.3s both ease-in; z-index: 8888; }
+.exitRight.ng-leave             { animation: slideOutRight 0.3s both ease-in; z-index: 8888; }
+
 
 
 /* ANIMATIONS
 ============================================================================= */
 
 /* leaving animations ----------------------------------------- */
-/* rotate and fall */
-@keyframes rotateFall {
-    0%      { transform: rotateZ(0deg); }
-    20%     { transform: rotateZ(10deg); animation-timing-function: ease-out; }
-    40%     { transform: rotateZ(17deg); }
-    60%     { transform: rotateZ(16deg); }
-    100%    { transform: translateY(100%) rotateZ(17deg); }
-}
 
 /* slide in from the bottom */
 @keyframes slideOutLeft {
     to      { transform: translateX(-100%); }
 }
 
-/* rotate out newspaper */
-@keyframes rotateOutNewspaper {
-    to      { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
+@keyframes slideOutRight {
+    to      { transform: translateX(100%); }
 }
 
+
 /* entering animations --------------------------------------- */
-/* scale up */
-@keyframes scaleUp {
-    from    { opacity: 0.3; -webkit-transform: scale(0.8); }
-}
 
 /* slide in from the right */
 @keyframes slideInRight {
     from    { transform:translateX(100%); }
+    to      { transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+    from    { transform:translateX(-100%); }
     to      { transform: translateX(0); }
 }
 

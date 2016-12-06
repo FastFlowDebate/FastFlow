@@ -11,6 +11,17 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 		})
 	}])
 	.controller('speechCtrl', ['$scope', '$routeParams', 'defaultNav', function($scope, $routeParams, defaultNav) {
+		$scope.$on('$routeChangeStart', function(event, next, current) {
+			if (next.$$route) {
+				if (next.$$route.controller === "indexCtrl") {
+					$scope.transitionClass = 'exitRight'
+					console.log('exitLeft because indexCtrl')
+				} else {
+					$scope.transitionClass = 'exitLeft'
+				}
+			}
+ 		})
+		
 				$scope.none = "NONE"
 				$scope.aff = "AFF"
 				$scope.neg = "NEG"
