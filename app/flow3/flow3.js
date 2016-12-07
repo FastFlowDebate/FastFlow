@@ -172,7 +172,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
     '$compileProvider',
     function( $compileProvider )
     {
-        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|blob|mailto|chrome-extension):/);
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|file|blob|mailto|chrome-extension):/);
     }
   ])
   .directive('box', function() {

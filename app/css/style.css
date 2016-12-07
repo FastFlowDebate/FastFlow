@@ -174,9 +174,9 @@ textarea.materialize-textarea:focus:not([readonly]) {
 .index.ng-enter                 { animation: slideInLeft 0.3s both ease-in; z-index: 9999; }
 .index.ng-leave                 { animation: slideOutLeft 0.3s both ease-in; z-index: 8888; }
 
-.ng-enter           { animation: slideInRight 0.3s both ease-in; z-index: 9999; }
+.ng-enter                       { animation: slideInRight 0.3s both ease-in; z-index: 9999; }
 
-.ng-enter         { animation: slideInRight 0.3s both ease-in; z-index: 9999; }
+.ng-enter                       { animation: slideInRight 0.3s both ease-in; z-index: 9999; }
 
 .exitLeft.ng-leave              { animation: slideOutLeft 0.3s both ease-in; z-index: 8888; }
 .exitRight.ng-leave             { animation: slideOutRight 0.3s both ease-in; z-index: 8888; }

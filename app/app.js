@@ -42,6 +42,7 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.speechManager',
 	'fastflowApp.settings'
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
+	
   $routeProvider.otherwise({
 	   redirectTo: '/index'
    })
