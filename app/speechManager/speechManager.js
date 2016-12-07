@@ -11,7 +11,18 @@ module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
 			controller: 'speechManagerCtrl'
 		})
 	}])
-	.controller('speechManagerCtrl', ['$scope', 'defaultNav', function($scope, defaultNav) {
+	.controller('speechManagerCtrl', ['$scope', 'defaultNav', '$route', function($scope, defaultNav, $route) {
+		$scope.$on('$routeChangeStart', function(event, next, current) {
+			if (next.$$route) {
+				if (next.$$route.controller === "indexCtrl") {
+					$scope.transitionClass = 'exitRight'
+					console.log('exitLeft because indexCtrl')
+				} else {
+					$scope.transitionClass = 'exitLeft'
+				}
+			}
+ 		})
+		$scope.transitionClass = 'SpeechManager'
 		$scope.$parent.setNav(defaultNav, 'Speech')
 		$scope.dataJSON = ipcRenderer.sendSync('SpeechManager', 'ready')
 		$scope.sTags = $scope.dataJSON

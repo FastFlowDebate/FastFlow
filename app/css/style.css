@@ -170,3 +170,49 @@ textarea.materialize-textarea:focus:not([readonly]) {
     font-size: 0.6em;
     font-weight: 400;
 }
+
+.index.ng-enter                 { animation: slideInLeft 0.3s both ease-in; z-index: 9999; }
+.index.ng-leave                 { animation: slideOutLeft 0.3s both ease-in; z-index: 8888; }
+
+.ng-enter                       { animation: slideInRight 0.3s both ease-in; z-index: 9999; }
+
+.ng-enter                       { animation: slideInRight 0.3s both ease-in; z-index: 9999; }
+
+.exitLeft.ng-leave              { animation: slideOutLeft 0.3s both ease-in; z-index: 8888; }
+.exitRight.ng-leave             { animation: slideOutRight 0.3s both ease-in; z-index: 8888; }
+
+
+
+/* ANIMATIONS
+============================================================================= */
+
+/* leaving animations ----------------------------------------- */
+
+/* slide in from the bottom */
+@keyframes slideOutLeft {
+    to      { transform: translateX(-100%); }
+}
+
+@keyframes slideOutRight {
+    to      { transform: translateX(100%); }
+}
+
+
+/* entering animations --------------------------------------- */
+
+/* slide in from the right */
+@keyframes slideInRight {
+    from    { transform:translateX(100%); }
+    to      { transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+    from    { transform:translateX(-100%); }
+    to      { transform: translateX(0); }
+}
+
+/* slide in from the bottom */
+@keyframes slideInUp {
+    from    { transform:translateY(100%); }
+    to      { transform: translateY(0); }
+}

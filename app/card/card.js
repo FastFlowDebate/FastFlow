@@ -11,6 +11,16 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		})
 	}])
 	.controller('cardCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+		$scope.$on('$routeChangeStart', function(event, next, current) {
+			if (next.$$route) {
+				if (next.$$route.controller === "indexCtrl") {
+					$scope.transitionClass = 'exitRight'
+					console.log('exitLeft because indexCtrl')
+				} else {
+					$scope.transitionClass = 'exitLeft'
+				}
+			}
+ 		})
 
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)

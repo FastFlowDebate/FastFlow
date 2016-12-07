@@ -12,6 +12,17 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		})
 	}])
 	.controller('cardManagerCtrl', ['$scope', 'defaultNav', function($scope, defaultNav) {
+		$scope.$on('$routeChangeStart', function(event, next, current) {
+			if (next.$$route) {
+				if (next.$$route.controller === "indexCtrl") {
+					$scope.transitionClass = 'exitRight'
+					console.log('exitLeft because indexCtrl')
+				} else {
+					$scope.transitionClass = 'exitLeft'
+				}
+			}
+ 		})
+
 		$scope.$parent.setNav(defaultNav, 'Cards')
 		jQuery('.tooltipped').tooltip({delay: 50})
 		$scope.dataJSON = ipcRenderer.sendSync('CardManager', 'ready')
