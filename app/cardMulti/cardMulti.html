@@ -1,16 +1,10 @@
 <!doctype html>
 <html>
-	{{scope.multicard}}
 	<div ng-repeat="card in multicard">
-		{{card}}
-		<div class="card blue-grey darken-1">
-			<div class="card-content white-text">
-				<span class="card-title">{{card.title}}</span>
-				<p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
-			</div>
-			<div class="card-action">
-				<a href="#">This is a link</a>
-				<a href="#">This is a link</a>
+		<div class="card darken-1">
+			<div class="card-content">
+				<span ng-bind="card.tagLine" class="card-title"></span>
+				<p ng-bind-html="card.content"></p>
 			</div>
 		</div>
 	</div>

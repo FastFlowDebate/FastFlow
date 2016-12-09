@@ -10,7 +10,17 @@ module.exports = angular.module('fastflowApp.cardMulti', ['ngRoute'])
 		})
 	}])
 	.controller('cardMultiCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
-		$scope.x = 'y'
+		$scope.$parent.setNav({
+			left: [{
+				icon: 'arrow_back',
+				attrs: [
+					{ attr: 'href', value: '#/cardManager' },
+					{ attr: 'class', value: 'active' }
+				]
+			}],
+			right: []
+		}, $routeParams.tag)
+
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)
 			console.log('fetching cards with tag: ' + decodedURI)

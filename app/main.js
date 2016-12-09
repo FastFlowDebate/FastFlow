@@ -38,8 +38,6 @@ function loadHandler() {
 }
 
 function tagindex(datab) {
-    console.log('\n')
-    console.log('starting indexing: ')
         //tab index will return JSON in the form of a map of sTag:[CardTitles]
         /* example JSON
         {
@@ -55,16 +53,12 @@ function tagindex(datab) {
         sTags = JSON.parse(cards[card].sTags) // turn sTags String into an array for transversal
         for (s in sTags) { // go through each sTag
             if (dict.hasOwnProperty(sTags[s]) && !dict[sTags[s]].includes(cards[card].tagLine)) { // if the node already exists and tag is not already in node then
-                console.log('Adding card ' + cards[card].tagLine + ' to tag ' + sTags[s])
                 dict[sTags[s]].push(cards[card].tagLine) // add the tag to the node
             } else {
-                console.log('Adding card ' + cards[card].tagLine + ' to newly created tag ' + sTags[s])
                 dict[sTags[s]] = [cards[card].tagLine] // if the node does not already exist then create it and add tag
             }
         }
     }
-    console.log(dict)
-    console.log('\n')
     return dict;
 }
 
@@ -320,7 +314,6 @@ app.on('ready', () => {
         //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
         //get a different profession. It legit says "addCardToLoki" cuz thats what it does
         var cards = datab.getCollection("cards")
-        console.log(cardTags)
         cards.insert({
             tagLine: cardTagline,
             sTags: cardTags,
@@ -375,7 +368,7 @@ app.on('ready', () => {
     function getCardsWithTag(datab, collection, searchTerm) {
       //return name of all cards with tag
       return datab.getCollection(collection).find({
-          'sTag': {
+          'sTags': {
               '$contains': searchTerm
           }
       })
@@ -433,7 +426,6 @@ app.on('ready', () => {
     ipcMain.on('FileOpen', function(event, arg) {
         var foundCard = getCard(cardDb, "cards", arg)
         if (foundCard[0]) {
-            console.log('opening: ' + foundCard[0])
             event.returnValue = foundCard[0]
         } else {
             event.returnValue = false
@@ -443,7 +435,6 @@ app.on('ready', () => {
     ipcMain.on('OpenCards', function(event, arg) {
         var foundCards = getCardsWithTag(cardDb, "cards", arg)
         if (foundCards) {
-            console.log('opening: ' + foundCards)
             event.returnValue = foundCards
         } else {
             event.returnValue = false
@@ -463,10 +454,6 @@ app.on('ready', () => {
     ipcMain.on('FileRemove', function(event, arg) {
         //removeCard(db, cardName, cardTags, cardContent)
         deleteCard(cardDb, "cards", arg)
-        console.log("removing:")
-        console.log(arg)
-        console.log("---------------")
-            //removeCard(cardDb, arg[0], arg[1], arg[2])
     })
 
     ipcMain.on('SpeechRemove', function(event, arg) {
@@ -480,27 +467,22 @@ app.on('ready', () => {
                 return (obj.$loki == arg);
             });
         }
-        console.log("----------------------")
-        console.log("removing:" + arg)
-        console.log("---------------")
     })
 
     ipcMain.on('CardManager', function(event, arg) {
         var dataJSON = tagindex(cardDb)
-        console.log(dataJSON)
         event.returnValue = dataJSON
     })
 
     ipcMain.on('SpeechManager', function(event, arg) {
         var dataJSON = speechindex(cardDb)
-            //console.log(dataJSON)
+        //console.log(dataJSON)
         event.returnValue = dataJSON
     })
 
     /* card saving */
     ipcMain.on('FileSave', function(event, arg) {
-        console.log(arg)
-            // [TitleString, TagString, ContentString]
+        // [TitleString, TagString, ContentString]
         var cards = cardDb.getCollection("cards");
         var tagLine = arg.tagLine
         var sTags = arg.sTags
