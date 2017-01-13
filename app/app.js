@@ -8,6 +8,7 @@ require('./flowManager/flowManager')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
+require('./cardMulti/cardMulti')
 require('./cardDetatch/cardDetatch')
 require('./speech/speech')
 require('./speechManager/speechManager')
@@ -37,12 +38,13 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
+	'fastflowApp.cardMulti',
 	'fastflowApp.cardDetatch',
 	'fastflowApp.speech',
 	'fastflowApp.speechManager',
 	'fastflowApp.settings'
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
-	
+
   $routeProvider.otherwise({
 	   redirectTo: '/index'
    })

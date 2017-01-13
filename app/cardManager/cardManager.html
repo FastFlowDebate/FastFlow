@@ -15,7 +15,7 @@
 		</div>
 		<ul ng-show="sTags.length >= 0" class="collapsible bodyCentered" data-collapsible="accordion">
 			<li ng-repeat="x in sTags track by $index">
-				<div class="collapsible-header"> {{x}} </div>
+				<div class="collapsible-header"> {{x}} <a class="right multiBtn" ng-click="openMultiCard(x)"><i class="material-icons">send</i></a></div>
 				<div class="collapsible-body">
 					<div class="collection">
 						<a ng-click="openCard(y)" class="collection-item purple-text" ng-repeat="y in dataJSON[x]">{{y}}</a>
