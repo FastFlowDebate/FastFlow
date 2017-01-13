@@ -24,12 +24,14 @@
 			</li>
 		</ul>
 		<div id="cardModal" class="modal modal-fixed-footer">
-			<div class="modal-content">
+			<div class="modal-header">
 				<span id="modalButtons" class="right">
 					<a class="tooltipped" ng-click="fullscreen()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">fullscreen</i></a>
 					<a class="tooltipped" ng-click="detatch()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">flip_to_front</i></a>
 				</span>
 				<h4 class="truncate">{{modalCardTag}}</h4>
+			</div>
+			<div class="modal-content">
 				<div id="modalText" ng-bind-html="modalCardContent"></div>
 			</div>
 			<div class="modal-footer">
