@@ -1,11 +1,10 @@
 <!doctype html>
-<html>
-	<div ng-repeat="card in multicard">
-		<div class="card darken-1">
-			<div class="card-content">
-				<span ng-bind="card.tagLine" class="card-title"></span>
-				<p ng-bind-html="card.content"></p>
-			</div>
+<link href="cardMulti/cardMulti.css" rel="stylesheet" type="text/css" />
+<div ng-repeat="card in multicard">
+	<div class="card darken-1">
+		<div class="card-content">
+			<span ng-bind="card.tagLine" class="card-title"></span>
+			<p ng-bind-html="card.content"></p>
 		</div>
 	</div>
-</html>
+</div>

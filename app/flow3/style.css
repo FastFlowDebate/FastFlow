@@ -9,6 +9,7 @@ html {
 }
 
 body {
+  width: 100%;
   display: flex;
   min-height: 100%;
   flex-direction: column;
@@ -25,6 +26,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   position: absolute;
+}
+
+.viewPort {
+  margin: 0 2%;
 }
 
 main {
