@@ -252,7 +252,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       restrict: 'E',
       scope: {
         args: '=',
-        title: '='
+        name: '='
       },
       controller: function () {
         this.newArg = function () {
