@@ -225,7 +225,6 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
         boxes: '='
       },
       controller: function () {
-        $('.tooltipped').tooltip({delay: 50})
         this.extend = function() {
           this.boxes.push({"type": "extension", "text": ""})
         }
@@ -241,6 +240,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
         this.remove = function(index) {
           this.boxes.splice(index, 1)
         }
+				jQuery('.tooltipped').tooltip()
       },
       controllerAs: 'a',
       bindToController: true,

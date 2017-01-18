@@ -1,76 +1,76 @@
 <!DOCTYPE html>
-	<script href="js/materialize.js"></script>
-	<link rel="stylesheet" href="flow3/style.css" type="text/css">
-	<main class="row">
-		<div class="input-field col s12 card">
-      <input placeholder="Flow Title: ToC Finals 2016" id="flowTitle" type="text" ng-model="title">
-    </div>
-    <div class="flowL flow col card left" ng-cloak>
-			<flow data="dataL"></flow>
-    </div>
-		<div class="flowR flow col card right" ng-cloak>
-			<flow data="dataR"></flow>
-		</div>
-	</main>
+<script href="js/materialize.js"></script>
+<link rel="stylesheet" href="flow3/style.css" type="text/css">
+<main class="row">
+	<div class="input-field col s12 card">
+    <input placeholder="Flow Title: ToC Finals 2016" id="flowTitle" type="text" ng-model="title">
+  </div>
+  <div class="flowL flow col card left" ng-cloak>
+		<flow data="dataL"></flow>
+  </div>
+	<div class="flowR flow col card right" ng-cloak>
+		<flow data="dataR"></flow>
+	</div>
+</main>
 
-	<div id="dlModal" class="modal">
+<div id="dlModal" class="modal">
+	<div class="modal-content">
+    <h4>Download Flow</h4>
+    <p>When you hit save in the navbar the flow is saved to Chrome's local storage, you do <b>not</b> need to download to save. Downloading is for sharing the file between browsers and people.</p>
+		<a ng-href="{{dlLink}}" download="flow.json" class="waves-effect waves-light btn"><i class="material-icons left">get_app</i>download</a>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</a>
+  </div>
+</div>
+
+<div id="ulModal" class="modal" ng-controller="ulManager">
+	<div class="modal-content">
+    <h4>Upload Flow WIP</h4>
+		<p>Upload functionality coming soon!!</p>
+    <p>Flow should be a JSON document. Backwords compatability is generally supported, though not all fields may transfer</p>
+		<input class="disabled" ng-change="onChange()" ng-model="reader" type="file">
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</a>
+  </div>
+</div>
+<div ng-controller="lsManager">
+	<div id="lsManagerModal" class="modal">
 		<div class="modal-content">
-      <h4>Download Flow</h4>
-      <p>When you hit save in the navbar the flow is saved to Chrome's local storage, you do <b>not</b> need to download to save. Downloading is for sharing the file between browsers and people.</p>
-			<a ng-href="{{dlLink}}" download="flow.json" class="waves-effect waves-light btn"><i class="material-icons left">get_app</i>download</a>
+      <h4>Manage Saved Flows</h4>
+			{{message}}
+			<table class="highlight">
+        <thead>
+          <tr>
+              <th data-field="id">#</th>
+              <th data-field="name">Name</th>
+              <th data-field="version">Version</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="f in flows" ng-cloak>
+            <td>{{f.id}}</td>
+            <td>{{f.name}}</td>
+            <td>{{f.version}}</td>
+						<td><a ng-click="open(f.id)" class="waves-effect waves-green btn-flat"><i class="material-icons">send</i></a></td>
+						<td><a ng-click="beginDelete(f.id)" class="waves-effect waves-red btn-flat"><i class="material-icons">close</i></a></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</a>
     </div>
 	</div>
-
-	<div id="ulModal" class="modal" ng-controller="ulManager">
+	<div id="delConfirmation" class="modal">
 		<div class="modal-content">
-      <h4>Upload Flow WIP</h4>
-			<p>Upload functionality coming soon!!</p>
-      <p>Flow should be a JSON document. Backwords compatability is generally supported, though not all fields may transfer</p>
-			<input class="disabled" ng-change="onChange()" ng-model="reader" type="file">
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</a>
-    </div>
-	</div>
-	<div ng-controller="lsManager">
-		<div id="lsManagerModal" class="modal">
-			<div class="modal-content">
-	      <h4>Manage Saved Flows</h4>
-				{{message}}
-				<table class="highlight">
-	        <thead>
-	          <tr>
-	              <th data-field="id">#</th>
-	              <th data-field="name">Name</th>
-	              <th data-field="version">Version</th>
-	          </tr>
-	        </thead>
-	        <tbody>
-	          <tr ng-repeat="f in flows" ng-cloak>
-	            <td>{{f.id}}</td>
-	            <td>{{f.name}}</td>
-	            <td>{{f.version}}</td>
-							<td><a ng-click="open(f.id)" class="waves-effect waves-green btn-flat"><i class="material-icons">send</i></a></td>
-							<td><a ng-click="beginDelete(f.id)" class="waves-effect waves-red btn-flat"><i class="material-icons">close</i></a></td>
-	          </tr>
-	        </tbody>
-	      </table>
-	    </div>
-	    <div class="modal-footer">
-	      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</a>
-	    </div>
+			<h4>Delete Modal</h4>
+			<p>Are You sure you would like to delete this flow, this action is not reversible.</p>
 		</div>
-		<div id="delConfirmation" class="modal">
-			<div class="modal-content">
-				<h4>Delete Modal</h4>
-				<p>Are You sure you would like to delete this flow, this action is not reversible.</p>
-			</div>
-			<div class="modal-footer">
-				<a ng-click="completeDelete()" class="modal-action modal-close waves-effect waves-red btn-flat">Delete</a>
-				<button class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</button>
-			</div>
+		<div class="modal-footer">
+			<a ng-click="completeDelete()" class="modal-action modal-close waves-effect waves-red btn-flat">Delete</a>
+			<button class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</button>
 		</div>
 	</div>
+</div>
