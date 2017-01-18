@@ -26,7 +26,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
     $scope.dataL = []
     $scope.dataR = []
     $scope.title
-    $scope.version = '0.1.2'
+    $scope.version = '0.2.0'
     $scope.isSaved = false
 
     if(localStorage){
@@ -196,6 +196,21 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
         this.rm = function () {
           this.remove({index: this.index});
         }
+
+				this.critical = false
+
+				this.toggleCritical = function () {
+					this.critical = !this.critical
+				}
+
+				this.isCritical = function () {
+					if (this.critical) return 'boxCriticalBorder'
+					return ''
+				}
+
+				this.getStyle = function (type) {
+					return this.isCritical() + ' ' + this.color(type)
+				}
       },
       controllerAs: 'b',
       bindToController: true,

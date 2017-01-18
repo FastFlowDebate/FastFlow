@@ -38,6 +38,10 @@ main {
   min-height: 100%;
 }
 
+.flowTitle {
+  padding-bottom: 0.4em;
+}
+
 /*
 //==============================================================================
 //FLOW//
@@ -131,12 +135,45 @@ textarea {
   right: 0;
   top: 0;
   color: #D8D8D8;
-  opacity: 0.3;
+  opacity: 0.2;
 }
 
 .boxClose:hover {
   color: #424242;
   opacity: 1;
+}
+
+.boxCriticalBtn {
+  max-width: 1em;
+  margin-top: -6px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #D8D8D8;
+  opacity: 0.2;
+  width: 1em;
+}
+
+.boxCriticalBtn > i {
+  max-width: 1em;
+  display: inline;
+  line-height: 2.2rem;
+  font-size: 1.5rem;
+}
+
+.boxCriticalBtn:hover {
+  color: #424242;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.boxCriticalBorder {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.boxCriticalBorder > .boxCriticalBtn {
+  color: #424242;
+  opacity: 0.8;
 }
 
 /*
