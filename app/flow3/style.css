@@ -118,9 +118,7 @@ textarea {
 
 .boxBtn {
   opacity: 0.5;
-  margin-top: 0.5em;
-  width: 2rem;
-  height: 2rem;
+
 }
 
 .boxBtn:hover {
@@ -128,10 +126,7 @@ textarea {
 }
 
 .boxBtn > i {
-  margin-top: -6px;
-  display: inline;
-  line-height: 2.2rem;
-  font-size: 1.5rem;
+
 }
 
 .boxClose {
