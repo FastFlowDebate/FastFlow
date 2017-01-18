@@ -38,8 +38,8 @@ main {
   min-height: 100%;
 }
 
-.flowTitle {
-  padding-bottom: 0.4em;
+main > .input-field:hover {
+  margin-bottom: 0.5em;
 }
 
 /*
@@ -83,6 +83,10 @@ contention {
   display: block;
   width: 100%;
   overflow: auto;
+}
+
+contention > table {
+  margin-top: 0.5em;
 }
 
 flow {
