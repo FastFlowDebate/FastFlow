@@ -24,7 +24,9 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       }]
     }, 'Flow')
     $scope.dataL = []
+		$scope.leftTeam
     $scope.dataR = []
+		$scope.rightTeam
     $scope.title
     $scope.version = '0.2.0'
     $scope.isSaved = false
@@ -49,15 +51,13 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       console.log('flow3 requires a browser with localstorage')
     }
 
-    $scope.upload = function () {
-      $('#ulModal').openModal()
-    }
-
     $scope.openFromLS = function (n) {
       var f = JSON.parse(localStorage[n]).flow3
       console.log(f)
       $scope.dataL = f.left
+			$scope.leftTeam = f.leftTeam
       $scope.dataR = f.right
+			$scope.rightTeam = f.rightTeam
       $scope.title = f.name
       $scope.isSaved = n
       $('#lsManagerModal').closeModal()
@@ -65,6 +65,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
 
     $scope.save = function () {
       if(localStorage) {
+				console.log($scope.document())
         if($scope.isSaved) {
           localStorage[$scope.isSaved] = JSON.stringify($scope.document())
         } else {
@@ -79,13 +80,8 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       }
     }
 
-    $scope.download = function () {
-      $scope.dlLink = makeTextFile(JSON.stringify($scope.document()))
-      $('#dlModal').openModal()
-    }
-
     $scope.document = function () {
-      return {flow3: {version: $scope.version, name: $scope.title, left: $scope.dataL, right: $scope.dataR}}
+      return {flow3: {version: $scope.version, name: $scope.title, left: $scope.dataL, leftTeam: $scope.leftTeam, right: $scope.dataR, rightTeam: $scope.rightTeam}}
     }
 
     $scope.lsManagerOpen = function () {
@@ -246,7 +242,8 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       restrict: 'E',
       scope: {
         data: '=',
-				id: '@'
+				id: '@',
+				team: '='
       },
       controller: function () {
 				this.expand = false
