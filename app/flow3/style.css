@@ -13,6 +13,7 @@ body {
   display: flex;
   min-height: 100%;
   flex-direction: column;
+  margin: 0;
 }
 
 #navImg {
@@ -42,29 +43,84 @@ main > .input-field:hover {
   margin-bottom: 0.5em;
 }
 
+#flowTitle {
+  padding: 0.1em;
+}
+
 /*
 //==============================================================================
 //FLOW//
 //==============================================================================
 */
+flow {
+  height: auto;
+  width: auto;
+}
+
+#flowContainer {
+  margin: 1em 0;
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  height: auto;
+}
 
 .flow {
-  width: 47%;
-  min-height: 100%;
+  vertical-align: top;
+  display: inline-block;
+  width: 48%;
+  margin: 0.6em 0.5%;
+  height: auto;
+  transition-duration: 0.6s;
 }
 
-.flowL {
-  margin-top: 1%;
-  margin-left: 1%;
-  margin-bottom: 1%;
+.flow > .input-field {
+  padding-left: 1em;
 }
 
-.flowR {
-  margin: 1%;
+.flow > .input-field > input {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+.flowExpanded {
+  width: 99%;
+}
+
+.flowExpandBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #424242;
+  opacity: 0.3;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.flowExpandBtn:hover {
+  opacity: 1;
+}
+
+/*
+//==============================================================================
+//CONTENTION//
+//==============================================================================
+*/
+contention {
+  display: block;
+  overflow: scroll;
+  width: auto;
 }
 
 contention table {
   padding-top: 0.5em;
+  width: auto;
+}
+
+contention > .card {
+  margin-bottom: none;
+  margin-top: none;
   width: auto;
 }
 
@@ -79,23 +135,23 @@ contention tr {
 
 }
 
-contention {
-  display: block;
-  width: 100%;
-  overflow: auto;
-}
-
 contention > table {
   margin-top: 0.5em;
 }
 
-flow {
-
-}
+/*
+//==============================================================================
+//ARGUEMENT//
+//==============================================================================
+*/
 
 #addArg {
   display: block;
   margin-bottom: 2em;
+}
+
+arguement {
+  width: auto;
 }
 
 #boxAction {
@@ -129,6 +185,12 @@ textarea {
 .boxBtn > i {
 
 }
+
+/*
+//==============================================================================
+//BOX//
+//==============================================================================
+*/
 
 .boxClose {
   position: absolute;
@@ -174,21 +236,6 @@ textarea {
 .boxCriticalBorder > .boxCriticalBtn {
   color: #424242;
   opacity: 0.8;
-}
-
-/*
-//==============================================================================
-//DOWNLOAD//
-//==============================================================================
-*/
-
-.centerAlign {
-  margin-left: auto;
-}
-
-#dlModal > .modal-content {
-  height: 100%;
-  width: 100%;
 }
 
 /*

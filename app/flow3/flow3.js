@@ -145,29 +145,6 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       loadFlows()
     }
   })
-  .controller('ulManager', function ulManager($scope) {
-    $scope.onChange = function () {
-      var input = event.target
-
-      $scope.reader = new FileReader()
-      $scope.reader.openFile = function(){
-        console.log('ok 3then')
-      }
-
-      function openFile () {
-        console.log('ok 2then')
-
-      }
-
-      $scope.reader.onload = function(){
-        console.log('ok then')
-        var dataURL = $scope.reader.result
-        var output = document.getElementById('output')
-        output.src = dataURL
-      }
-      $scope.reader.readAsDataURL(input.files[0])
-    }
-  })
   .config([
     '$compileProvider',
     function( $compileProvider )
@@ -268,10 +245,20 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
     return {
       restrict: 'E',
       scope: {
-        data: '='
+        data: '=',
+				id: '@'
       },
       controller: function () {
-        this.newContention = function() {
+				this.expand = false
+				this.toggleExpand = function () {
+					this.expand = !this.expand
+				}
+				this.isExpanded = function () {
+					if (this.expand) return 'flowExpanded flow'
+					else return 'flow'
+				}
+
+        this.newContention = function () {
           this.data.push({"title": "", "args": []})
         }
       },
