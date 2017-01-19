@@ -219,7 +219,7 @@ app.factory('navDropdown', function navDropdownFactory() {
 		},
 		init: function () {
 			//console.log('initDropown')
-			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#' class = 'purple-text'>Home</a></li><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#flow' class = 'grey-text'>Flow<span class='notif green black-text'>WIP</span></a></li></ul>")
+			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#' class = 'purple-text'>Home</a></li><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#flow' class = 'purple-text'>Flow</a></li></ul>")
 			$('.dropdown-button').dropdown()
 		}, destroy: function () {
 			//console.log('destroyDropdown')

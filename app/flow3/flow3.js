@@ -198,22 +198,20 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
         boxes: '='
       },
       controller: function () {
+				console.log('tooltipped')
+				$('.tooltipped').tooltip()
         this.extend = function() {
           this.boxes.push({"type": "extension", "text": ""})
         }
-
         this.respond = function() {
           this.boxes.push({"type": "response", "text": ""})
         }
-
         this.arrow = function() {
           this.boxes.push({"type": "arrow"})
         }
-
         this.remove = function(index) {
           this.boxes.splice(index, 1)
         }
-				jQuery('.tooltipped').tooltip()
       },
       controllerAs: 'a',
       bindToController: true,
