@@ -24,9 +24,11 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       }]
     }, 'Flow')
     $scope.dataL = []
+		$scope.leftTeam
     $scope.dataR = []
+		$scope.rightTeam
     $scope.title
-    $scope.version = '0.1.2'
+    $scope.version = '0.2.0'
     $scope.isSaved = false
 
     if(localStorage){
@@ -49,15 +51,13 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       console.log('flow3 requires a browser with localstorage')
     }
 
-    $scope.upload = function () {
-      $('#ulModal').openModal()
-    }
-
     $scope.openFromLS = function (n) {
       var f = JSON.parse(localStorage[n]).flow3
       console.log(f)
       $scope.dataL = f.left
+			$scope.leftTeam = f.leftTeam
       $scope.dataR = f.right
+			$scope.rightTeam = f.rightTeam
       $scope.title = f.name
       $scope.isSaved = n
       $('#lsManagerModal').closeModal()
@@ -65,6 +65,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
 
     $scope.save = function () {
       if(localStorage) {
+				console.log($scope.document())
         if($scope.isSaved) {
           localStorage[$scope.isSaved] = JSON.stringify($scope.document())
         } else {
@@ -79,13 +80,8 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       }
     }
 
-    $scope.download = function () {
-      $scope.dlLink = makeTextFile(JSON.stringify($scope.document()))
-      $('#dlModal').openModal()
-    }
-
     $scope.document = function () {
-      return {flow3: {version: $scope.version, name: $scope.title, left: $scope.dataL, right: $scope.dataR}}
+      return {flow3: {version: $scope.version, name: $scope.title, left: $scope.dataL, leftTeam: $scope.leftTeam, right: $scope.dataR, rightTeam: $scope.rightTeam}}
     }
 
     $scope.lsManagerOpen = function () {
@@ -145,29 +141,6 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       loadFlows()
     }
   })
-  .controller('ulManager', function ulManager($scope) {
-    $scope.onChange = function () {
-      var input = event.target
-
-      $scope.reader = new FileReader()
-      $scope.reader.openFile = function(){
-        console.log('ok 3then')
-      }
-
-      function openFile () {
-        console.log('ok 2then')
-
-      }
-
-      $scope.reader.onload = function(){
-        console.log('ok then')
-        var dataURL = $scope.reader.result
-        var output = document.getElementById('output')
-        output.src = dataURL
-      }
-      $scope.reader.readAsDataURL(input.files[0])
-    }
-  })
   .config([
     '$compileProvider',
     function( $compileProvider )
@@ -182,8 +155,8 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
         tag: '=',
         text: '=',
         type: '=',
-        index: '=',
-        remove: '&'
+        index: '=boxindex',
+        removeBox: '&boxrm'
       },
       controller: function () {
         this.color = function (type) {
@@ -193,9 +166,24 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
           return ''
         }
 
-        this.rm = function () {
-          this.remove({index: this.index});
+        this.rmbox = function () {
+          this.removeBox({index: this.boxindex})
         }
+
+				this.critical = false
+
+				this.toggleCritical = function () {
+					this.critical = !this.critical
+				}
+
+				this.isCritical = function () {
+					if (this.critical) return 'boxCriticalBorder'
+					return ''
+				}
+
+				this.getStyle = function (type) {
+					return this.isCritical() + ' ' + this.color(type)
+				}
       },
       controllerAs: 'b',
       bindToController: true,
@@ -207,25 +195,28 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       restrict: 'AE',
       transclude: true,
       scope: {
-        boxes: '='
+        boxes: '=',
+				index: '=argindex',
+				removeArguement: '&argrm'
       },
       controller: function () {
-        $('.tooltipped').tooltip({delay: 50})
+				console.log('tooltipped')
+				$('.tooltipped').tooltip()
         this.extend = function() {
           this.boxes.push({"type": "extension", "text": ""})
         }
-
         this.respond = function() {
           this.boxes.push({"type": "response", "text": ""})
         }
-
         this.arrow = function() {
           this.boxes.push({"type": "arrow"})
         }
-
-        this.remove = function(index) {
+        this.removeBox = function(index) {
           this.boxes.splice(index, 1)
         }
+				this.rmarg = function () {
+					this.removeArguement({index: this.argindex})
+				}
       },
       controllerAs: 'a',
       bindToController: true,
@@ -237,12 +228,15 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       restrict: 'E',
       scope: {
         args: '=',
-        title: '='
+        name: '='
       },
       controller: function () {
         this.newArg = function () {
           this.args.push([{"title": "", "text": "", "type": "constructive"}])
         }
+				this.removeArguement = function(index) {
+					this.args.splice(index, 1)
+				}
       },
       controllerAs: 'c',
       bindToController: true,
@@ -253,12 +247,23 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
     return {
       restrict: 'E',
       scope: {
-        data: '='
+        data: '=',
+				id: '@',
+				team: '='
       },
       controller: function () {
-        this.newContention = function() {
+				this.expand = false
+				this.toggleExpand = function () {
+					this.expand = !this.expand
+				}
+				this.isExpanded = function () {
+					if (this.expand) return 'flowExpanded flow'
+					else return 'flow'
+				}
+        this.newContention = function () {
           this.data.push({"title": "", "args": []})
         }
+
       },
       controllerAs: 'f',
       bindToController: true,
