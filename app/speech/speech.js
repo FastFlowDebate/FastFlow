@@ -1,4 +1,4 @@
-module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete', 'ngDragDrop',  'ngSanitize', 'angular-medium-editor',  'ngAnimate'])
+module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete',  'ngSanitize', 'angular-medium-editor',  'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/speech/:tag', {
 			templateUrl: 'speech/speech.html',
@@ -21,11 +21,10 @@ module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoCompl
 				}
 			}
  		})
-		
+
 				$scope.none = "NONE"
 				$scope.aff = "AFF"
 				$scope.neg = "NEG"
-
 				$scope.titleContent = {
 					title: "",
 					author: "",

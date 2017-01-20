@@ -80,7 +80,12 @@ function speechindex(datab) {
 
 }
 
-crashReporter.start()
+crashReporter.start({
+  productName: 'FastFlow',
+  companyName: 'FastFlowDebate',
+  submitURL: 'http://FastFlowDebate.com',
+  uploadToServer: true
+})
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') app.quit()
