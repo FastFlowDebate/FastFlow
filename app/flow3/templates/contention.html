@@ -3,7 +3,7 @@
       <input type="text" ng-model="c.name" placeholder="Contention">
   </div>
   <table>
-    <tr arguement ng-repeat="i in c.args track by $index" boxes="i"></tr>
+    <tr arguement ng-repeat="i in c.args track by $index" boxes="i" argindex="$index" argrm="c.removeArguement($index)"></tr>
   </table>
   <div ng-click="c.newArg()" id="addArg" class="waves-effect waves-teal btn-flat">New Arg</div>
   <div class="divider"></div>

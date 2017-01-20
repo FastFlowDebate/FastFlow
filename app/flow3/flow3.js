@@ -155,8 +155,8 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
         tag: '=',
         text: '=',
         type: '=',
-        index: '=',
-        remove: '&'
+        index: '=boxindex',
+        removeBox: '&boxrm'
       },
       controller: function () {
         this.color = function (type) {
@@ -166,8 +166,8 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
           return ''
         }
 
-        this.rm = function () {
-          this.remove({index: this.index});
+        this.rmbox = function () {
+          this.removeBox({index: this.boxindex})
         }
 
 				this.critical = false
@@ -195,7 +195,9 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       restrict: 'AE',
       transclude: true,
       scope: {
-        boxes: '='
+        boxes: '=',
+				index: '=argindex',
+				removeArguement: '&argrm'
       },
       controller: function () {
 				console.log('tooltipped')
@@ -209,9 +211,12 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
         this.arrow = function() {
           this.boxes.push({"type": "arrow"})
         }
-        this.remove = function(index) {
+        this.removeBox = function(index) {
           this.boxes.splice(index, 1)
         }
+				this.rmarg = function () {
+					this.removeArguement({index: this.argindex})
+				}
       },
       controllerAs: 'a',
       bindToController: true,
@@ -229,6 +234,9 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
         this.newArg = function () {
           this.args.push([{"title": "", "text": "", "type": "constructive"}])
         }
+				this.removeArguement = function(index) {
+					this.args.splice(index, 1)
+				}
       },
       controllerAs: 'c',
       bindToController: true,
@@ -252,10 +260,10 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
 					if (this.expand) return 'flowExpanded flow'
 					else return 'flow'
 				}
-
         this.newContention = function () {
           this.data.push({"title": "", "args": []})
         }
+
       },
       controllerAs: 'f',
       bindToController: true,
