@@ -29,6 +29,15 @@ body {
   position: absolute;
 }
 
+main > .input-field {
+  padding-left: 1em;
+}
+
+main > .input-field > input {
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
 .viewPort {
   margin: 0 2%;
 }
@@ -137,6 +146,10 @@ contention tr {
 
 contention > table {
   margin-top: 0.5em;
+}
+
+contention .input-field {
+  padding-left: 1em;
 }
 
 /*
