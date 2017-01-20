@@ -14,11 +14,16 @@ Cards:
 * Add notes to cards
 * Show what other files reference the card (For example do you use it in blocks or speeches)
 
-
 Speeches:
 
 * Write speeches in a simple, organized manner
 * Mark speeches as aff or neg to make locating them easier
+
+Flowing:
+
+* Create organized flows
+* Save and manage flows
+* Mark individual cards as important you can easily refer to them in speeches
 
 ## Planned Features:
 
@@ -37,7 +42,6 @@ Blocks:
 
 Flowing:
 
-* Intelligent structure which emphasizes readability for help during speeches
 * Add cards to your flow, and they'll automatically display the bolded text for easy reference
 * Autocorrect taglines to streamline flowing
 * [LONG TERM] Based on contention name allow you to one-click add your blocks to your flow
@@ -47,12 +51,7 @@ Make sure you have NodeJS installed
 
 *in /fastflow*
 
-    npm install
-
-*then in /fastflow/app*
-
-    npm install
-    bower install
+    npm run setup
 
 ## Running
 
