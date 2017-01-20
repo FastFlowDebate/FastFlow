@@ -1,4 +1,4 @@
-module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'toaster', 'ngAnimate'])
+module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/newCard/:tag', {
 			templateUrl: 'newCard/newCard.html',
@@ -10,7 +10,7 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 			controller: 'newCardCtrl'
 		})
 	}])
-	.controller('newCardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
+	.controller('newCardCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
 		$scope.$parent.setNav({
 			left: [{
 				icon: 'arrow_back',
