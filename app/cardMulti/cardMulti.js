@@ -14,7 +14,7 @@ module.exports = angular.module('fastflowApp.cardMulti', ['ngRoute'])
 			left: [{
 				icon: 'arrow_back',
 				attrs: [
-					{ attr: 'href', value: '#/cardManager' },
+					{ attr: 'href', value: '#!/cardManager' },
 					{ attr: 'class', value: 'active' }
 				]
 			}],
