@@ -7,10 +7,10 @@
   "main": "app/main.js",
   "scripts": {
     "postinstall": "install-app-deps",
-    "start": "electron ./app",
-    "build": "./app/node_modules/.bin/webpack",
-    "pack": "npm run build && build --dir",
-    "dist": "npm run build && build",
+    "start": "ENVIRONMENT=DEV electron ./app",
+    "compile": "cd app && npm run compile",
+    "pack": "npm run compile && build --dir",
+    "dist": "npm run compile && build",
     "setup": "npm install && cd app && npm install && bower install"
   },
   "build": {
@@ -51,8 +51,7 @@
     "fbjs-scripts": "^0.5.0",
     "jsdom": "^7.0.2",
     "minimist": "^1.2.0",
-    "node-gyp": "^3.2.1",
-    "webpack": "^1.14.0"
+    "node-gyp": "^3.2.1"
   },
   "dependencies": {},
   "devEngines": {

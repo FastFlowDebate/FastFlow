@@ -9,6 +9,8 @@ node_modules/*
 
 app/bower_components/*
 
+app/public/*
+
 .jshintrc
 
 .settings/.jsdtscope

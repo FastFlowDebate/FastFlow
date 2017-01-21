@@ -6,8 +6,8 @@
   "description": "Debate: Modernized",
   "main": "main.js",
   "scripts": {
-    "test": "echo lol no",
-    "start": "cd ../ && npm start"
+    "start": "cd ../ && npm start",
+    "compile": "./node_modules/.bin/webpack"
   },
   "keywords": [
     "debate",
@@ -35,7 +35,10 @@
   },
   "author": "Adam Towers",
   "license": "ISC",
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack": "^1.14.0",
+    "webpack-uglify-js-plugin": "^1.1.9"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FastFlowDebate/FastFlow.git"
