@@ -11,7 +11,7 @@
     "compile": "cd app && npm run compile",
     "pack": "npm run compile && build --dir",
     "dist": "npm run compile && build",
-    "setup": "npm install && cd app && npm install && bower install"
+    "setup": "./setup.sh"
   },
   "build": {
     "appId": "fastflowdebate",
