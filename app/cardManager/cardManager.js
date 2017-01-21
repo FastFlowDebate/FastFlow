@@ -1,9 +1,3 @@
-$(document).ready(function(){
-	$('.collapsible').collapsible({
-		accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-	});
-});
-
 module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/cardManager', {
@@ -23,11 +17,14 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 			}
  		})
 
+		$('.collapsible').collapsible({
+			accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+		})
+
 		$scope.$parent.setNav(defaultNav, 'Cards')
-		jQuery('.tooltipped').tooltip({delay: 50})
+		$('.tooltipped').tooltip({delay: 50})
 		$scope.dataJSON = ipcRenderer.sendSync('CardManager', 'ready')
 		$scope.sTags = Object.keys($scope.dataJSON)
-		console.log($scope.sTags)
 		$scope.URIGenerate = function(name) {
 			return encodeURIComponent(name)
 		}

@@ -15,6 +15,10 @@ require('./speechManager/speechManager')
 require('./settings/settings')
 
 
+const Hammer = require('hammerjs')
+var $ = require('jquery')
+require('materialize-css')
+
 require('angular-mass-autocomplete')
 require('angular-sanitize')
 require('angular-animate')
@@ -37,25 +41,25 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.speech',
 	'fastflowApp.speechManager',
 	'fastflowApp.settings'
-]).config(['$routeProvider', function($routeProvider) {
+]).config(['$routeProvider', function ($routeProvider) {
   $routeProvider.otherwise({
 	   redirectTo: '/index'
    })
 }])
 
-app.directive('ffcardref', function() {
-	//style explanation:
-	// 1 - version used in flow, short and has only the bolded text
-	// 2 - version for modal, all text maintaining original formatting
+app.directive('ffcardref', function () {
+// style explanation:
+//  1 - version used in flow, short and has only the bolded text
+//  2 - version for modal, all text maintaining original formatting
 	return {
 		restrict: 'E',
 		scope: {
 			title: '=',
-			deleteFunc: '&', //todo
+			deleteFunc: '&', // todo
 			style: '='
 		},
 		templateUrl: 'cardRef.html',
-		controller: function($scope, $element, $attrs) {
+		controller: function ($scope, $element, $attrs) {
 			$scope.overlay = function () {
 				var title = $scope.title
 				var content = FileArray[2]
@@ -192,12 +196,12 @@ app.factory('navDropdown', function navDropdownFactory() {
 		},
 		init: function () {
 			//console.log('initDropown')
-			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#!/' class = 'purple-text'>Home</a></li><li><a href='#!/cardManager' class = 'purple-text'>Cards</a></li><li><a href='#!/speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#!/flow' class = 'purple-text'>Flow</a></li></ul>")
+			$('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#!/' class = 'purple-text'>Home</a></li><li><a href='#!/cardManager' class = 'purple-text'>Cards</a></li><li><a href='#!/speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#!/flow' class = 'purple-text'>Flow</a></li></ul>")
 			$('.dropdown-button').dropdown()
 		}, destroy: function () {
 			//console.log('destroyDropdown')
 			$('.dropdown-button').dropdown('close');
-			jQuery('#navDropdown').remove()
+			$('#navDropdown').remove()
 		}
 	}
 })

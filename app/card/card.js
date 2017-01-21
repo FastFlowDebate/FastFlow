@@ -38,7 +38,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			var tags = []
 			for(c in t) tags.push({tag:t[c]})
 			console.log(JSON.stringify(tags))
-			jQuery('.chips').material_chip({
+			$('.chips').material_chip({
 			 data: tags
 		 })
 		} else {
