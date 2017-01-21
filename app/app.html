@@ -8,33 +8,41 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
 
+	<script>
+		var bundlePath = './build/bundle.js'
+		if (typeof process !== 'undefined' && process.env.ENVIRONMENT === 'DEV') {
+			bundlePath = 'http://localhost:8080/build/bundle.js'
+		}
+		var bundleScriptEl = document.createElement('script')
+		bundleScriptEl.src = bundlePath
+		document.currentScript.parentNode.insertBefore(bundleScriptEl, document.currentScript)
+	</script>
 
 </head>
 
 <body ng-app="fastflowApp" ng-controller="navbar" ng-cloak>
 
-		<nav class="purple darken-1 navbar-fixed" style = "position: fixed; top:0px;">
-			<div class="nav-wrapper">
-				<ul class="left navIcons">
-					<li>
-						<navside data="nav" side="left"></navside>
-					</li>
-				</ul>
-				<span id="navTitle" ng-bind="navTitle"></span>
-				<ul class="right navIcons">
-					<li>
-						<navside data="nav" side="right"></navside>
-					</li>
-				</ul>
-			</div>
-
-		</nav>
-
-		<div class="viewPort">
-			<div ng-view class="{{transitionClass}}">
-			</div>
+	<nav class="purple darken-1 navbar-fixed" style="position: fixed; top:0px;">
+		<div class="nav-wrapper">
+			<ul class="left navIcons">
+				<li>
+					<navside data="nav" side="left"></navside>
+				</li>
+			</ul>
+			<span id="navTitle" ng-bind="navTitle"></span>
+			<ul class="right navIcons">
+				<li>
+					<navside data="nav" side="right"></navside>
+				</li>
+			</ul>
 		</div>
-		<script src="build/bundle.js"></script>
+
+	</nav>
+
+	<div class="viewPort">
+		<div ng-view class="{{transitionClass}}">
+		</div>
+	</div>
 </body>
 
 </html>
