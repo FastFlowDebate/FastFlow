@@ -19,10 +19,39 @@ $(document).ready(function(){
 	<ul ng-show="sTags.length >= 0" class="bodyCentered">
 
 		<div class="collection">
-      <a ng-href="#speech/{{URIGenerate(x[0])}}" class="collection-item black-text" ng-repeat="x in sTags track by $index">{{x[0]}}<span class="badge">{{x[1]}}</span></a>
+			<a ng-click="openSpeech(x[0])" class="collection-item black-text" ng-repeat="x in sTags track by $index">{{x[0]}}<span class="badge">{{x[1]}}</span></a>
     </div>
 
-</ul>
+	</ul>
+
+	<div id="speechModal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<span id="modalButtons" class="right">
+				<a class="tooltipped" ng-click = "fullscreen()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">fullscreen</i></a>
+				<a class="tooltipped" ng-click="detatch()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">flip_to_front</i></a>
+			</span>
+			<h4 class="truncate">{{titleContent.title}} | {{titleContent.side}}</h4>
+			<div id="modalText" >author: {{titleContent.author}}</div>
+			<div id="modalText" >framework: {{titleContent.framework}}</div>
+
+			<div ng-repeat="i in points track by $index">
+
+					<h5>{{$index + 1}}. {{points[$index].tagline}}</h5>
+					<div id="modalText" ng-bind-html="points[$index].content" style = "padding-left: 10px;"></div>
+					<br>
+
+
+			</div>
+
+
+
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
+		</div>
+	</div>
+
+
 <div class = "addButton">
 <a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href = "#speech"><i class="material-icons">add</i></a>
 </div>

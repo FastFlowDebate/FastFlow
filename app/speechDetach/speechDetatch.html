@@ -1,0 +1,18 @@
+<!doctype html>
+<link href="bower_components/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
+<link href = "css/mediumEditorTheme.css" rel="stylesheet">
+<link href="css/materialize.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="cardDetatch/cardDetatch.css" rel="stylesheet">
+<body>
+	<div id="card-wrapper" class="card bodyCentered">
+		<div id="card-content">
+			<div id="cite" class="textDiv">
+				<div ng-bind-html="cite"></div>
+			</div>
+			<div class="textDiv" id="content">
+				<div ng-bind-html="content" placeholder="No Content? This is an error!"></div>
+			</div>
+		</div>
+	</div>
+</body>
