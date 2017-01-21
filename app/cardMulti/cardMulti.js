@@ -23,12 +23,17 @@ module.exports = angular.module('fastflowApp.cardMulti', ['ngRoute'])
 
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)
-			console.log('fetching cards with tag: ' + decodedURI)
 			$scope.multicard = ipcRenderer.sendSync('OpenCards', decodedURI)
 			if ($scope.multicard == []) console.log('error, card not found')
-			console.log($scope.multicard)
 		} else {
 			console.log('no param, this is an error, go back to safety!')
 			$scope.error = true
+		}
+
+		$scope.URIGenerate = function (name) {
+			return encodeURIComponent(name)
+		}
+		$scope.url = function (name) {
+			return '#!/card/' + $scope.URIGenerate(name)
 		}
   }])
