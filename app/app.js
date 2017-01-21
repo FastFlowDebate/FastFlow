@@ -214,7 +214,7 @@ app.factory('defaultNav', ['navDropdown', function (navDropdown){
 		right: [{
 			icon: 'settings',
 			attrs: [
-				{ attr: 'href', value: '#settings' }
+				{ attr: 'href', value: '#!/settings' }
 			]
 		}]
 	}
