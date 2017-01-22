@@ -18,6 +18,7 @@ body {
   font-family: -apple-system, Roboto;
   font-size: 2em;
   width: auto;
+  max-width: 65%;
   float:left;
   padding-left: .5em;
 }
