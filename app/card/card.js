@@ -51,7 +51,7 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			left: [{
 				icon: 'arrow_back',
 				attrs: [
-					{ attr: 'href', value: '#/cardManager' },
+					{ attr: 'href', value: '#!/cardManager' },
 					{ attr: 'class', value: 'active' }
 				]
 			}],
@@ -79,46 +79,43 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 									id:$scope.id
 								}
 			if (card.tagLine === "" || card.tagLine === null || card.tagLine === undefined) {
-				alert("Card Title is Empty", "A Card has no name...")
+				Materialize.toast('Card Title is Empty', 1500)
 			} else if (card.sTags === "" || card.sTags === null || card.sTags === undefined || card.sTags === []) {
-				alert('error', "Card Tags are Empty", "Tell FastFlow where to find your card!")
+				Materialize.toast('Card Tags are Empty', 1500)
 			} else if (card.content === "" || card.content === null || card.content === undefined) {
-				alert('error', "Card has no content", "Tell FastFlow what information to remember!")
+				Materialize.toast('Card has no content', 1500)
 			} else {
 				ipcRenderer.send('FileSave', card)
-				window.location.replace('#cardManager')
+				window.location.replace('#!/cardManager')
 				Materialize.toast('Card Saved!', 3000) // 4000 is the duration of the toast
 			}
 			$scope.saving = false
 		}
 
 		$scope.deleteFunction = function() {
-			$('#deleteConfirmation').openModal();
+			$('#deleteConfirmation').openModal()
 		}
 
 		$scope.delete = function(){
 			ipcRenderer.send('FileRemove', $scope.title)
 			Materialize.toast('Card Deleted', 2500)
-			window.location.replace('#index')
-			$('#deleteConfirmation').closeModal();
+			window.location.replace('#!/index')
+			$('#deleteConfirmation').closeModal()
 
 		}
 	}]).directive("contenteditable", function() {
   return {
     require: "ngModel",
     link: function(scope, element, attrs, ngModel) {
-
       function read() {
         ngModel.$setViewValue(element.html());
       }
-
       ngModel.$render = function() {
-        element.html(ngModel.$viewValue || "");
-      };
-
+        element.html(ngModel.$viewValue || "")
+      }
       element.bind("blur keyup change", function() {
-        scope.$apply(read);
-      });
+        scope.$apply(read)
+      })
     }
   };
 });

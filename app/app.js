@@ -216,9 +216,9 @@ app.factory('defaultNav', ['navDropdown', function (navDropdown){
 			navDropdown.destroy()
 		},
 		right: [{
-			icon: 'settings',
+			icon: 'search',
 			attrs: [
-				{ attr: 'href', value: '#settings' }
+				{ attr: 'href', value: '' }
 			]
 		}]
 	}

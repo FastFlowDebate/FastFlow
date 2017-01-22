@@ -40,12 +40,12 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		}
 
 		$scope.openMultiCard = function (tag) {
-			window.location.replace('#cardMulti/' + $scope.URIGenerate(tag))
+			window.location.replace('#!/cardMulti/' + $scope.URIGenerate(tag))
 		}
 
 		$scope.fullscreen = function () {
 			$('#cardModal').closeModal()
-			window.location.replace('#card/' + $scope.URIGenerate($scope.modalCardTag))
+			window.location.replace('#!/card/' + $scope.URIGenerate($scope.modalCardTag))
 		}
 		$scope.detatch = function () {
 			$('#cardModal').closeModal()
