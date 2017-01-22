@@ -304,15 +304,15 @@ app.on('ready', () => {
                 "number": {},
                 "string": {}
             },
-            objs = [];
+            objs = []
 
         return a.filter(function(item) {
-            var type = typeof item;
+            var type = typeof item
             if (type in prims)
                 return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
             else
                 return objs.indexOf(item) >= 0 ? false : objs.push(item);
-        });
+        })
     }
 
     function addCardToLoki(datab, cardTagline, cardTags, cardCitation, cardContent, cardNotes) {
@@ -332,9 +332,7 @@ app.on('ready', () => {
     function addCardToSpeech(datab, cardTagline, cardTags, cardContent) {
         //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
         //get a different profession. It legit says "addCardToSpeech" cuz thats what it does
-        console.log("------------------------------")
         var cards = datab.getCollection("speech")
-        console.log(cardTags)
         cards.insert({
             tagLine: cardTagline,
             sTags: cardTags,
@@ -361,13 +359,13 @@ app.on('ready', () => {
                 'tagLine': {
                     '$contains': searchTerm
                 }
-            });
+            })
         } else {
             var cardNames = cards.where(function(obj) {
-                return (obj.tagLine["title"] == searchTerm);
-            });
+                return (obj.tagLine["title"] == searchTerm)
+            })
         }
-        return cardNames;
+        return cardNames
     }
 
     function getCardsWithTag(datab, collection, searchTerm) {
@@ -464,13 +462,13 @@ app.on('ready', () => {
     ipcMain.on('SpeechRemove', function(event, arg) {
         var cards = cardDb.getCollection("speech");
         var temp = cards.where(function(obj) {
-            return (obj.$loki == arg);
-        });
+            return (obj.$loki == arg)
+        })
 
         if (temp.length !== 0) {
             cards.removeWhere(function(obj) {
-                return (obj.$loki == arg);
-            });
+                return (obj.$loki == arg)
+            })
         }
     })
 
@@ -481,13 +479,11 @@ app.on('ready', () => {
 
     ipcMain.on('SpeechManager', function(event, arg) {
         var dataJSON = speechindex(cardDb)
-        //console.log(dataJSON)
         event.returnValue = dataJSON
     })
 
     /* card saving */
-    ipcMain.on('FileSave', function(event, arg) {
-        // [TitleString, TagString, ContentString]
+    ipcMain.on('FileSave', function(event, arg) { // [TitleString, TagString, ContentString]
         var cards = cardDb.getCollection("cards");
         var tagLine = arg.tagLine
         var sTags = arg.sTags
@@ -497,37 +493,34 @@ app.on('ready', () => {
         var id = arg.id
         var temp = cards.where(function(obj) {
             return (obj.$loki == id);
-        });
-
+        })
         if (temp.length !== 0) {
             cards.removeWhere(function(obj) {
-                return (obj.$loki == id);
-            });
+                return (obj.$loki == id)
+            })
         }
-        addCardToLoki(cardDb, tagLine, sTags, cite, content, notes);
+        addCardToLoki(cardDb, tagLine, sTags, cite, content, notes)
         tagindex(cardDb)
     })
 
     /* speech saving */
-    ipcMain.on('SpeechSave', function(event, arg) {
-        console.log(arg)
-            // [TitleString, TagString, ContentString]
+    ipcMain.on('SpeechSave', function(event, arg) { // [TitleString, TagString, ContentString]
         var cards = cardDb.getCollection("speech");
         var tagLine = arg.tagLine
         var sTags = arg.sTags
         var content = arg.content
         var id = arg.id
         var temp = cards.where(function(obj) {
-            return (obj.$loki == id);
-        });
+            return (obj.$loki == id)
+        })
 
         if (temp.length !== 0) {
             cards.removeWhere(function(obj) {
-                return (obj.$loki == id);
-            });
+                return (obj.$loki == id)
+            })
         }
-        addCardToSpeech(cardDb, tagLine, sTags, content);
-        speechindex(cardDb);
+        addCardToSpeech(cardDb, tagLine, sTags, content)
+        speechindex(cardDb)
     })
 
 })
