@@ -17,9 +17,14 @@ require('materialize-css/dist/js/materialize.js')
 require('angular-mass-autocomplete')
 require('angular-sanitize')
 require('angular-animate')
-//MediumEditor added by webpack provideplugin
-//var MediumEditor = require('medium-editor').MediumEditor
 require('angular-medium-editor')
+
+require('materialize-css/dist/css/materialize.css')
+require('./fonts/iconfont/material-icons.css')
+require('./css/style.css')
+
+
+
 
 global.ipcRenderer = require('electron').ipcRenderer
 

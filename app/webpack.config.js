@@ -1,6 +1,7 @@
 // webpack.config.js
 var webpack = require('webpack')
 var webpackUglifyJsPlugin = require('webpack-uglify-js-plugin')
+
 var path = require('path')
 
 var bower_dir = __dirname + '/bower_components'
@@ -24,7 +25,7 @@ module.exports = {
         new webpackUglifyJsPlugin({
             cacheFolder: path.resolve(__dirname, 'public/cached_uglify/'),
             debug: true,
-            minimize: true,
+            minimize: false,
             sourceMap: false,
             output: {
                 comments: false
@@ -41,13 +42,23 @@ module.exports = {
             MediumEditor: "medium-editor"
         })
     ],
-    loaders: [{
-            test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
-            loader: "imports?this=>window"
-        },
-        {
-            test: /materialize-css\/bin\//,
-            loader: 'imports?jQuery=jquery,$=jquery,hammerjs'
-        },
-    ]
+    module: {
+      loaders: [{
+          test: /\.css$/,
+          loader: 'style!css'
+      },{
+          test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "url?limit=10000&mimetype=application/font-woff"
+      }, {
+          test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+          loader: "file"
+      }, {
+          test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
+          loader: "imports?this=>window"
+      }, {
+          test: /materialize-css\/bin\//,
+          loader: 'imports?jQuery=jquery,$=jquery,hammerjs'
+      }]
+    }
+
 }

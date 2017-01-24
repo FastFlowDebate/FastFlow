@@ -41,6 +41,7 @@
   "homepage": "https://github.com/FastFlowDebate/FastFlow#readme",
   "devDependencies": {
     "chromedriver": "^2.19.0",
+    "css-loader": "^0.26.1",
     "del": "^2.2.0",
     "electron": "^1.4.15",
     "electron-builder": "^11.5.1",
@@ -48,9 +49,12 @@
     "electron-rebuild": "^1.0.0",
     "eslint": "^3.14.0",
     "fbjs-scripts": "^0.7.1",
+    "file-loader": "^0.9.0",
     "jsdom": "^9.9.1",
     "minimist": "^1.2.0",
-    "node-gyp": "^3.2.1"
+    "node-gyp": "^3.2.1",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7"
   },
   "dependencies": {},
   "devEngines": {

@@ -1,10 +1,4 @@
 <!doctype html>
-<link href="node_modules/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
-<link href = "css/mediumEditorTheme.css" rel="stylesheet">
-<link href="css/materialize.css" rel="stylesheet">
-<script href="js/materialize.js"></script>
-<link href="card/card.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
 <div id="card-wrapper" class="card bodyCentered">
 	<div class = "card-content">
 		<div class="card-title" contenteditable ng-model="title"></div>
@@ -24,7 +18,6 @@
 		<h4 class="truncate">Delete Card</h4>
 		<p>Are you sure you want to delete <i>{{title}}</i></p>
 		<p>This action is final, this evidence will be gone forever.</p>
-
 	</div>
 	<div class="modal-footer">
 		<a class=" modal-action modal-close waves-effect waves-red btn-flat" ng-click="delete()">Delete Card</a>

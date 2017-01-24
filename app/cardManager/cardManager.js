@@ -1,3 +1,4 @@
+require('./cardManager.css')
 module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/cardManager', {
