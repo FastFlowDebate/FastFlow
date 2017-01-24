@@ -1,3 +1,4 @@
+
 module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/card/:tag', {
@@ -11,6 +12,8 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		})
 	}])
 	.controller('cardCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+		console.log(MediumEditor)
+
 		$scope.$on('$routeChangeStart', function(event, next, current) {
 			if (next.$$route) {
 				if (next.$$route.controller === "indexCtrl") {
@@ -24,25 +27,20 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)
-			console.log('opening card: ' + decodedURI)
 			card = ipcRenderer.sendSync('FileOpen', decodedURI)
 			if (card == []) console.log('error, card not found')
 			$scope.title = card.tagLine
-			console.log(card.tagLine)
 			$scope.content = card.content
 			$scope.cite = card.citation
 			$scope.notes = card.notes
 			$scope.id = card.$loki
-			console.log(card.sTags)
 			var t = JSON.parse(card.sTags)
 			var tags = []
 			for(c in t) tags.push({tag:t[c]})
-			console.log(JSON.stringify(tags))
 			$('.chips').material_chip({
 			 data: tags
 		 })
 		} else {
-			console.log('no param, this is an error, go back to safety!')
 			$scope.content = "ERROR"
 			$scope.title = "ERROR"
 		}
@@ -69,7 +67,6 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			if($scope.saving) return //don't let function run twice at same time
 			$scope.saving = true
 			var sTags = $('.chips').material_chip('data')
-			console.log('sTags: ' + JSON.stringify(sTags))
 			for(t in sTags) sTags[t] = sTags[t].tag //I'm sorry -Zarkoix
 			var card = {tagLine:$scope.title,
 									sTags:JSON.stringify(sTags),

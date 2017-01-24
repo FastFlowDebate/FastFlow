@@ -10,7 +10,6 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 			if (next.$$route) {
 				if (next.$$route.controller === "indexCtrl") {
 					$scope.transitionClass = 'exitRight'
-					console.log('exitLeft because indexCtrl')
 				} else {
 					$scope.transitionClass = 'exitLeft'
 				}
@@ -20,6 +19,7 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		$('.collapsible').collapsible({
 			accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
 		})
+		$('.modal').modal()
 
 		$scope.$parent.setNav(defaultNav, 'Cards')
 		$('.tooltipped').tooltip({delay: 50})
@@ -35,8 +35,7 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 			$scope.modalCardTag = cardID
 			$scope.modalCardContent = card.content
 			$scope.modalCardCite = card.citation
-
-			$('#cardModal').openModal()
+			$('#cardModal').modal('open')
 		}
 
 		$scope.openMultiCard = function (tag) {
@@ -44,11 +43,11 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		}
 
 		$scope.fullscreen = function () {
-			$('#cardModal').closeModal()
+			$('#cardModal').modal('close')
 			window.location.replace('#!/card/' + $scope.URIGenerate($scope.modalCardTag))
 		}
 		$scope.detatch = function () {
-			$('#cardModal').closeModal()
-			window.open('#cardDetatch/' + $scope.URIGenerate($scope.modalCardTag))
+			$('#cardModal').modal('close')
+			window.open('#!/cardDetatch/' + $scope.URIGenerate($scope.modalCardTag))
 		}
   }])

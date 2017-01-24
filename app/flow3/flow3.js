@@ -51,6 +51,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
       console.log('flow3 requires a browser with localstorage')
     }
 
+		$('.modal').modal()
     $scope.openFromLS = function (n) {
       var f = JSON.parse(localStorage[n]).flow3
       console.log(f)
@@ -60,7 +61,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
 			$scope.rightTeam = f.rightTeam
       $scope.title = f.name
       $scope.isSaved = n
-      $('#lsManagerModal').closeModal()
+      $('#lsManagerModal').modal('close')
     }
 
     $scope.save = function () {
@@ -86,7 +87,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
 
     $scope.lsManagerOpen = function () {
       if(localStorage){
-        $('#lsManagerModal').openModal()
+        $('#lsManagerModal').modal('open')
       } else {
         Materialize.toast('Needs localStorage', 4000) // 4000 is the duration of the toast
       }
@@ -130,7 +131,7 @@ module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
     $scope.beginDelete = function (n) {
       $scope.deleting = n
       console.log('begin deleting flow: ' + n)
-      $('#delConfirmation').openModal()
+      $('#delConfirmation').modal('open')
     }
 
     $scope.completeDelete = function () {

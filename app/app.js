@@ -1,10 +1,8 @@
-'use strict'
 var angular = require('angular')
 var angularRoute = require('angular-route')
 
 require('./index/index')
 require('./flow3/flow3')
-require('./flowManager/flowManager')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
@@ -14,25 +12,22 @@ require('./speech/speech')
 require('./speechManager/speechManager')
 require('./settings/settings')
 
-
-const Hammer = require('hammerjs')
 var $ = require('jquery')
-require('materialize-css')
-
+require('materialize-css/dist/js/materialize.js')
 require('angular-mass-autocomplete')
 require('angular-sanitize')
 require('angular-animate')
-var MediumEditor = require('./bower_components/medium-editor/dist/js/medium-editor').MediumEditor
-require('./bower_components/angular-medium-editor/dist/angular-medium-editor')
+//MediumEditor added by webpack provideplugin
+//var MediumEditor = require('medium-editor').MediumEditor
+require('angular-medium-editor')
 
-const ipcRenderer = require('electron').ipcRenderer
+global.ipcRenderer = require('electron').ipcRenderer
 
 var app = angular.module('fastflowApp', [
 	'ngRoute',
 	'ngAnimate',
 	'fastflowApp.index',
 	'fastflowApp.flow',
-	'fastflowApp.flowManager',
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
