@@ -1,3 +1,4 @@
+require('./cardMulti.css')
 module.exports = angular.module('fastflowApp.cardMulti', ['ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/cardMulti/:tag', {

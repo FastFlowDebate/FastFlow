@@ -1,3 +1,5 @@
+require('./speechManager.css')
+
 module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/speechManager', {

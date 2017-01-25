@@ -1,3 +1,5 @@
+require('./index.css')
+
 module.exports = angular.module('fastflowApp.index', ['ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/index', {

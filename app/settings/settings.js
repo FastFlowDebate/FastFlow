@@ -1,3 +1,4 @@
+require('./settings.css')
 
 module.exports = angular.module('fastflowApp.settings', ['ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {

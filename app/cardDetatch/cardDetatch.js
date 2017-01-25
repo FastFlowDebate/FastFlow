@@ -1,3 +1,6 @@
+require('../node_modules/medium-editor/dist/css/medium-editor.css')
+require('../css/mediumEditorTheme.css')
+require('./cardDetatch.css')
 module.exports = angular.module('fastflowApp.cardDetatch', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/cardDetatch/:tag', {

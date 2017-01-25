@@ -1,7 +1,6 @@
 require("../node_modules/medium-editor/dist/css/medium-editor.css")
 require("../css/mediumEditorTheme.css")
 require("./card.css")
-require("../css/style.css")
 module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/card/:tag', {

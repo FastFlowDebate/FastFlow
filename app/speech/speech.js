@@ -1,3 +1,6 @@
+require('../node_modules/medium-editor/dist/css/medium-editor.css')
+require('../css/mediumEditorTheme.css')
+require('./speech.css')
 module.exports = angular.module('fastflowApp.speech', ['ngRoute', 'MassAutoComplete',  'ngSanitize', 'angular-medium-editor',  'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/speech/:tag', {

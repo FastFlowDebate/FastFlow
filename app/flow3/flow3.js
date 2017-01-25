@@ -1,3 +1,4 @@
+require('./flow.css')
 
 module.exports = angular.module('fastflowApp.flow', ['ngRoute'])
 	.config(['$routeProvider', function($routeProvider) {
