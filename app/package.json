@@ -6,9 +6,7 @@
   "description": "Debate: Modernized",
   "main": "main.js",
   "scripts": {
-    "start": "cd ../ && npm start",
-    "webpack": "./node_modules/.bin/webpack",
-    "watch": "./node_modules/.bin/webpack-dev-server --hot --inline"
+    "start": "cd ../ && npm start"
   },
   "keywords": [
     "debate",
@@ -36,14 +34,7 @@
   "author": "Adam Towers",
   "license": "ISC",
   "devDependencies": {
-    "css-loader": "^0.26.1",
-    "file-loader": "^0.9.0",
-    "imports-loader": "^0.7.0",
-    "url-loader": "^0.5.7",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2",
-    "webpack-target-electron-renderer": "^0.4.0",
-    "webpack-uglify-js-plugin": "^1.1.9"
+
   },
   "repository": {
     "type": "git",

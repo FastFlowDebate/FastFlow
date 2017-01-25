@@ -4,11 +4,11 @@ var webpackUglifyJsPlugin = require('webpack-uglify-js-plugin')
 
 var path = require('path')
 
-var bower_dir = __dirname + '/bower_components'
-var node_dir = __dirname + '/node_modules'
+var bower_dir = __dirname + '/app/bower_components'
+var node_dir = __dirname + '/app/node_modules'
 
 module.exports = {
-    context: __dirname + '',
+    context: __dirname + '/app',
     entry: './app.js',
     target: 'electron-renderer',
     output: {
