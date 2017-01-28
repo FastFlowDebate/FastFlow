@@ -15,7 +15,7 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 			left: [{
 				icon: 'arrow_back',
 				attrs: [
-					{ attr: 'href', value: '#/cardManager' },
+					{ attr: 'href', value: '#!/cardManager' },
 				]
 			}]
 		}, 'Card Creator')
@@ -38,7 +38,6 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 		$scope.content = "<i>card content from the article or pdf goes here</i>"
 		$scope.notes = "<i>optional notes or analysis goes here</i>"
 
-
 		$scope.saveFunction = function() {
 			var sTags = $('.chips').material_chip('data')
 			for(t in sTags) sTags[t] = sTags[t].tag //I'm sorry -Zarkoix
@@ -57,7 +56,7 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 				Materialize.toast("Card has no content", "Tell FastFlow what information to remember!", 2500)
 			} else {
 				ipcRenderer.send('FileSave', card)
-				window.location.replace('#cardManager')
+				window.location.replace('#!/cardManager')
 				Materialize.toast('Card Created!', 3000) // 4000 is the duration of the toast
 			}
 		}

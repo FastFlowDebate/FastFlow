@@ -4,6 +4,14 @@ body {
   font-family: Roboto;
 }
 
+h2, h3, h4 {
+  font-weight: lighter;
+}
+
+blockquote {
+  border-color: purple;
+}
+
 .cardPad {
   padding-bottom: 10px;
 }
