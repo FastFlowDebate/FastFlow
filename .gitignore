@@ -26,3 +26,5 @@ app/public/*
 .settings/org.eclipse.wst.jsdt.ui.superType.name
 
 .settings/org.eclipse.wst.jsdt.core.prefs
+
+public/*
