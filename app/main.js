@@ -3,6 +3,7 @@ var path = require('path')
 var fs = require('fs')
 const Regex = require("regex");
 const electron = require('electron')
+var pjson = require('./package.json')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const Menu = electron.Menu
@@ -411,6 +412,11 @@ app.on('ready', () => {
     }
 
     /* The rest of this is IPC stuff */
+    ipcMain.on('Version', function(event) {
+      console.log('version called')
+      console.log(pjson.version)
+      event.returnValue = pjson.version
+    })
 
     ipcMain.on('Search', function(event, arg) {
         console.log(arg)
