@@ -26,7 +26,7 @@ blockquote {
   font-family: -apple-system, Roboto;
   font-size: 2em;
   width: auto;
-  max-width: 65%;
+  max-width: 50%;
   float:left;
   padding-left: .5em;
 }
@@ -61,7 +61,6 @@ nav {
 
 nav li {
   margin: none;
-  line-height: 0;
   height: auto;
   padding: none;
 }
