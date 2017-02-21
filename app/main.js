@@ -13,8 +13,6 @@ let menu
 let template
 let mainWindow = null
 
-
-
 const loki = require("lokijs")
 
 console.log(app.getPath('userData'))

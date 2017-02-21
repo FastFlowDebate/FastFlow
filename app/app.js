@@ -8,14 +8,12 @@ require('./flowManager/flowManager')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
-require('./cardDetatch/cardDetatch')
+require('./cardDetach/cardDetach')
 require('./speech/speech')
 require('./speechView/speechView')
 require('./speechManager/speechManager')
 require('./settings/settings')
-
-
-
+require('./speechDetach/speechDetach')
 
 var toaster = require('angularjs-toaster')
 require('ng-dialog')
@@ -38,10 +36,11 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
-	'fastflowApp.cardDetatch',
+	'fastflowApp.cardDetach',
 	'fastflowApp.speech',
 	'fastflowApp.speechView',
 	'fastflowApp.speechManager',
+    'fastflowApp.speechDetach',
 	'fastflowApp.settings'
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
 

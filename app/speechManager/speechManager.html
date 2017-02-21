@@ -28,7 +28,7 @@ $(document).ready(function(){
 		<div class="modal-content">
 			<span id="modalButtons" class="right">
 				<a class="tooltipped" ng-click = "fullscreen()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">fullscreen</i></a>
-				<a class="tooltipped" ng-click="detatch()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">flip_to_front</i></a>
+				<a class="tooltipped" ng-click="detach()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">flip_to_front</i></a>
 			</span>
 			<h4 class="truncate">{{titleContent.title}} | {{titleContent.side}}</h4>
 			<div id="modalText" >author: {{titleContent.author}}</div>
@@ -43,8 +43,6 @@ $(document).ready(function(){
 
 			</div>
 
-
-
 		</div>
 		<div class="modal-footer">
 			<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
@@ -53,7 +51,7 @@ $(document).ready(function(){
 
 
 <div class = "addButton">
-<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href = "#speech"><i class="material-icons">add</i></a>
+    <a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href = "#speech"><i class="material-icons">add</i></a>
 </div>
 
 </div>
