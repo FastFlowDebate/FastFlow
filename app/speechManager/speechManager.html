@@ -30,16 +30,15 @@ $(document).ready(function(){
 				<a class="tooltipped" ng-click = "fullscreen()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">fullscreen</i></a>
 				<a class="tooltipped" ng-click="detach()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small">flip_to_front</i></a>
 			</span>
-			<h4 class="truncate">{{titleContent.title}} | {{titleContent.side}}</h4>
-			<div id="modalText" >author: {{titleContent.author}}</div>
-			<div id="modalText" >framework: {{titleContent.framework}}</div>
+			<h4 class="truncate">{{titleContent.title}}</h4>
+            <div>{{titleContent.side}}</div>
+			<div>author: {{titleContent.author}}</div>
+			<div ng-bind-html="framework"></div>
 
 			<div ng-repeat="i in points track by $index">
 
 					<h5>{{$index + 1}}. {{points[$index].tagline}}</h5>
-					<div id="modalText" ng-bind-html="points[$index].content" style = "padding-left: 10px;"></div>
-					<br>
-
+					<div ng-bind-html="points[$index].content" class = "point"></div>
 
 			</div>
 
