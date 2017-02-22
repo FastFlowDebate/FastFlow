@@ -6,21 +6,24 @@ module.exports = angular.module('fastflowApp.speechDetach', ['ngRoute', 'MassAut
 		})
 	}])
 	.controller('speechDetachCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+		$scope.titleContent
+		$scope.framework
+		$scope.points
+
 		if ($routeParams.tag) {
-            console.log($routeParams)
-			var decodedURI = decodeURIComponent($routeParams.tag)
-            console.log("decodedURI: " + decodedURI)
-			card = ipcRenderer.sendSync('SpeechOpen', decodedURI)
+            var speech = $routeParams.tag
+            console.log(speech)
+			card = ipcRenderer.sendSync('SpeechOpen', speech)
 			if (card == []) console.log('error, speech not found')
             mCard = JSON.parse(card)
             console.log(mCard)
-			$scope.title = mCard.tagLine
+			$scope.titleContent = mCard.tagLine
 			$scope.$parent.setNav({
 				left: [],
 				right: []
-			}, $scope.title)
-			$scope.content = mCard.content
-			$scope.cite = mCard.citation
+			}, $scope.titleContent.title)
+			$scope.points = mCard.content
+			$scope.framework = mCard.sTags
 		} else {
 			console.log('no param, this is an error, go back to safety!')
 			$scope.content = "ERROR"
