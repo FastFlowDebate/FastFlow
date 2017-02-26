@@ -2,3 +2,22 @@
   color: #424242;
   cursor: pointer;
 }
+
+.point {
+    padding-left: 20px !important;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    /*margin-bottom: 20px;*/
+}
+
+p {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+/*
+h4 {
+    padding-top: 0px !important;
+    margin-top: 0px !important;
+}
+*/
