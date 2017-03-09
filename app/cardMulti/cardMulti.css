@@ -1,0 +1,18 @@
+.viewPort {
+  margin: 0 2%;
+}
+
+.multiBtn {
+  display: inline;
+  padding-left: 0.5em;
+  color: #424242;
+  opacity: 0.25;
+  cursor: pointer;
+}
+
+.card-title {
+}
+
+.multiBtn:hover {
+  opacity: 1;
+}

@@ -3,7 +3,6 @@
 <!--<link href="bower_components/medium-editor/dist/css/themes/flat.css" rel="stylesheet">-->
 <link href = "css/mediumEditorTheme.css" rel="stylesheet">
 <link href="css/materialize.css" rel="stylesheet">
-<link href="node_modules/angularjs-toaster/toaster.css" rel="stylesheet">
 <link href="speech/speech.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 
@@ -39,21 +38,13 @@
 		<div class="card-content">
 			<span class="card-title">
 				<div class = "inline">{{$index + 1}}</div>
-				<div contenteditable="true" class="inline pointCard" ng-model="points[$index].tagline" placeholder="Tagline"></div>
-				<i class="material-icons right inline" ng-click = "deletePoint($index)">close</i>
+				<h2 contenteditable="true" class="inline pointCard" ng-model="points[$index].tagline" placeholder="Tagline"></h2>
+				<i class="material-icons right inline contention__delete" ng-click="deletePoint($index)">close</i>
 			</span>
-
 			<div contenteditable="true" ng-model="points[$index].content" placeholder = "Content" data-placeholder = " " style = "padding-left: 25px;" medium-editor></div>
 		</div>
 
 </div>
-
-
-<!--
-<p>{{titleContent}}</p>
-<p>{{framework}}</p>
- <p>{{points}}</p>
--->
 
 <div class="fixed-action-btn addButton">
 	<a class="addbutton btn-floating btn-large waves-effect waves-light purple lighten-1" ng-click="newPoint()"><i class="material-icons" >add</i></a>
@@ -65,7 +56,6 @@
 		<h4 class="truncate">Delete Speech</h4>
 		<p>Are you sure you want to delete <i>{{title}}</i></p>
 		<p>This action is final, this speech will be gone forever.</p>
-
 	</div>
 	<div class="modal-footer">
 		<a class=" modal-action modal-close waves-effect waves-red btn-flat" ng-click="delete()">Delete Speech</a>

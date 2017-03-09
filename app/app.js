@@ -8,57 +8,62 @@ require('./flowManager/flowManager')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
+<<<<<<< HEAD
 require('./cardDetach/cardDetach')
+=======
+require('./cardMulti/cardMulti')
+require('./cardDetatch/cardDetatch')
+>>>>>>> origin/linkfix
 require('./speech/speech')
 require('./speechView/speechView')
 require('./speechManager/speechManager')
 require('./settings/settings')
+<<<<<<< HEAD
 require('./speechDetach/speechDetach')
 
 var toaster = require('angularjs-toaster')
 require('ng-dialog')
+=======
+
+
+>>>>>>> origin/linkfix
 require('angular-mass-autocomplete')
 require('angular-sanitize')
 require('angular-animate')
 var MediumEditor = require('./bower_components/medium-editor/dist/js/medium-editor').MediumEditor
 require('./bower_components/angular-medium-editor/dist/angular-medium-editor')
 
-var ngDragDrop = require('./bower_components/angular-dragdrop/src/angular-dragdrop.js')
 const ipcRenderer = require('electron').ipcRenderer
 
 var app = angular.module('fastflowApp', [
 	'ngRoute',
 	'ngAnimate',
-	'ngDialog',
 	'fastflowApp.index',
 	'fastflowApp.flow',
 	'fastflowApp.flowManager',
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
+<<<<<<< HEAD
 	'fastflowApp.cardDetach',
+=======
+	'fastflowApp.cardMulti',
+	'fastflowApp.cardDetatch',
+>>>>>>> origin/linkfix
 	'fastflowApp.speech',
 	'fastflowApp.speechView',
 	'fastflowApp.speechManager',
     'fastflowApp.speechDetach',
 	'fastflowApp.settings'
+<<<<<<< HEAD
 ]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
 
+=======
+]).config(['$routeProvider', function($routeProvider) {
+>>>>>>> origin/linkfix
   $routeProvider.otherwise({
 	   redirectTo: '/index'
    })
-
-	ngDialogProvider.setDefaults({
-	 className: 'ngdialog-theme-default',
-	 plain: false,
-	 showClose: true,
-	 closeByDocument: true,
-	 closeByEscape: true,
-	 appendTo: false,
-	 preCloseCallback: function () {
-			 console.log('default pre-close callback');
-	 }
-	})
 }])
 
 app.directive('ffcardref', function() {
@@ -73,19 +78,11 @@ app.directive('ffcardref', function() {
 			style: '='
 		},
 		templateUrl: 'cardRef.html',
-		controller: function($scope, $element, $attrs, ngDialog) {
+		controller: function($scope, $element, $attrs) {
 			$scope.overlay = function () {
 				var title = $scope.title
 				var content = FileArray[2]
-				ngDialog.open({
-						template: 'cardRefModal.html',
-						className: 'ngdialog-theme-default',
-						controller: ['$scope', function($scope) {
-        			// controller logic
-							$scope.title = title
-							$scope.content = content
-    				}]
-				});
+				//open dialog here
     	}
 
 			var FileArray = ipcRenderer.sendSync('FileOpen', $scope.title)
@@ -218,7 +215,7 @@ app.factory('navDropdown', function navDropdownFactory() {
 		},
 		init: function () {
 			//console.log('initDropown')
-			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#' class = 'purple-text'>Home</a></li><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#flow' class = 'grey-text'>Flow<span class='notif green black-text'>WIP</span></a></li></ul>")
+			jQuery('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#!/' class = 'purple-text'>Home</a></li><li><a href='#cardManager' class = 'purple-text'>Cards</a></li><li><a href='#speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#flow' class = 'purple-text'>Flow</a></li></ul>")
 			$('.dropdown-button').dropdown()
 		}, destroy: function () {
 			//console.log('destroyDropdown')
@@ -238,9 +235,9 @@ app.factory('defaultNav', ['navDropdown', function (navDropdown){
 			navDropdown.destroy()
 		},
 		right: [{
-			icon: 'settings',
+			icon: 'search',
 			attrs: [
-				{ attr: 'href', value: '#settings' }
+				{ attr: 'href', value: '' }
 			]
 		}]
 	}

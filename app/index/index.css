@@ -28,8 +28,10 @@ img {
   font-size: 5em;
 }
 
-#authors {
-  padding: 0.2em;
-  bottom: 2em;
-  font-size: 36px;
+.index__version {
+  position: absolute;
+  left: 4px;
+  bottom: 2px;
+  font-size: 1em;
+  font-weight: lighter;
 }

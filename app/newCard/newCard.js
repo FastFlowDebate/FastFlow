@@ -1,4 +1,4 @@
-module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'toaster', 'ngAnimate'])
+module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/newCard/:tag', {
 			templateUrl: 'newCard/newCard.html',
@@ -10,12 +10,12 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 			controller: 'newCardCtrl'
 		})
 	}])
-	.controller('newCardCtrl', ['$scope', 'toaster', '$routeParams', function($scope, toaster, $routeParams) {
+	.controller('newCardCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
 		$scope.$parent.setNav({
 			left: [{
 				icon: 'arrow_back',
 				attrs: [
-					{ attr: 'href', value: '#/cardManager' },
+					{ attr: 'href', value: '#!/cardManager' },
 				]
 			}]
 		}, 'Card Creator')
@@ -38,7 +38,6 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 		$scope.content = "<i>card content from the article or pdf goes here</i>"
 		$scope.notes = "<i>optional notes or analysis goes here</i>"
 
-
 		$scope.saveFunction = function() {
 			var sTags = $('.chips').material_chip('data')
 			for(t in sTags) sTags[t] = sTags[t].tag //I'm sorry -Zarkoix
@@ -57,7 +56,7 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 				Materialize.toast("Card has no content", "Tell FastFlow what information to remember!", 2500)
 			} else {
 				ipcRenderer.send('FileSave', card)
-				window.location.replace('#cardManager')
+				window.location.replace('#!/cardManager')
 				Materialize.toast('Card Created!', 3000) // 4000 is the duration of the toast
 			}
 		}

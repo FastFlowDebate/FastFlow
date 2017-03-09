@@ -1,0 +1,12 @@
+<!doctype html>
+<link href="cardMulti/cardMulti.css" rel="stylesheet" type="text/css" />
+<div ng-repeat="card in multicard">
+	<div class="card darken-1">
+		<div class="card-content">
+			<span class="card-title"ng-bind="card.tagLine"></span>
+			<a ng-href="{{url(card.tagLine)}}" class="right multiBtn"><i class="material-icons">send</i></a>
+			<p class="grey-text darken-1" ng-bind="card.citation"/>
+			<p ng-bind-html="card.content"/>
+		</div>
+	</div>
+</div>

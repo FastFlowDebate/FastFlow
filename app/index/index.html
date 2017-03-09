@@ -5,14 +5,17 @@
   <div id="icon" class="valign center-align">
     <img class="center-align responsive-img" src="graphics/fficon.png">
   </div>
-  <div class="panel">
-    <div class="input-field col s6">
-          <input placeholder="#" ng-model="route" id="routeTest" type="text">
-          <label>Route</label>
-        </div>
-    <a ng-href="{{route}}" class="waves-effect blue waves-light btn">{{route}}</a>
-  </div>
-  <div class="tb" id="authors">
-    Built by Adam Towers, Isaac Lo, and Pranav Seetharaman
-  </div>
 </div>
+<div class=" addButton fixed-action-btn horizontal">
+    <a class="btn-floating btn-large purple">
+      <i class="large material-icons" data-position="top" data-delay="50" data-tooltip="New Files">mode_edit</i>
+    </a>
+    <ul>
+      <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a></li>
+      <li><a class="btn-floating yellow darken-1" href="#!/speech" data-position="top" data-delay="50" data-tooltip="New Speech"><i class="material-icons">chat</i></a></li>
+      <li><a class="btn-floating green" href="#!/newCard" data-position="top" data-delay="50" data-tooltip="New Card"><i class="material-icons">note_add</i></a></li>
+      <li><a class="btn-floating blue" href="#!/settings" data-position="top" data-delay="50" data-tooltip="Settings"><i class="material-icons">settings</i></a></li>
+    </ul>
+  </div>
+
+  <div class="index__version" ng-bind="Version"/>
