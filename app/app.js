@@ -3,30 +3,20 @@ var angular = require('angular')
 var angularRoute = require('angular-route')
 
 require('./index/index')
-require('./flow3/flow3')
 require('./flowManager/flowManager')
+require('./flow/flow')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
-<<<<<<< HEAD
 require('./cardDetach/cardDetach')
-=======
-require('./cardMulti/cardMulti')
-require('./cardDetatch/cardDetatch')
->>>>>>> origin/linkfix
 require('./speech/speech')
 require('./speechView/speechView')
 require('./speechManager/speechManager')
 require('./settings/settings')
-<<<<<<< HEAD
 require('./speechDetach/speechDetach')
 
 var toaster = require('angularjs-toaster')
 require('ng-dialog')
-=======
-
-
->>>>>>> origin/linkfix
 require('angular-mass-autocomplete')
 require('angular-sanitize')
 require('angular-animate')
@@ -44,23 +34,14 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
-<<<<<<< HEAD
 	'fastflowApp.cardDetach',
-=======
-	'fastflowApp.cardMulti',
-	'fastflowApp.cardDetatch',
->>>>>>> origin/linkfix
 	'fastflowApp.speech',
 	'fastflowApp.speechView',
 	'fastflowApp.speechManager',
     'fastflowApp.speechDetach',
 	'fastflowApp.settings'
-<<<<<<< HEAD
-]).config(['$routeProvider', 'ngDialogProvider', function($routeProvider, ngDialogProvider) {
 
-=======
 ]).config(['$routeProvider', function($routeProvider) {
->>>>>>> origin/linkfix
   $routeProvider.otherwise({
 	   redirectTo: '/index'
    })
