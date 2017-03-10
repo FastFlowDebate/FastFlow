@@ -1,48 +1,4 @@
 <!DOCTYPE html>
 <main>
-	<div class="input-field card">
-    <input placeholder="Flow Title: ToC Finals 2016" id="flowTitle" type="text" ng-model="title">
-  </div>
-	<div id="flowContainer">
-		<flow data="dataL" id="L" team="leftTeam"></flow><flow data="dataR" id="R" team="rightTeam"></flow>
-	</div>
+	Visit flow.fastflowdebate.com hehexd
 </main>
-<div ng-controller="lsManager">
-	<div id="lsManagerModal" class="modal">
-		<div class="modal-content">
-      <h4>Manage Saved Flows</h4>
-			{{message}}
-			<table class="highlight">
-        <thead>
-          <tr>
-              <th data-field="id">#</th>
-              <th data-field="name">Name</th>
-              <th data-field="version">Version</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="f in flows" ng-cloak>
-            <td>{{f.id}}</td>
-            <td>{{f.name}}</td>
-            <td>{{f.version}}</td>
-						<td><a ng-click="open(f.id)" class="waves-effect waves-green btn-flat"><i class="material-icons">send</i></a></td>
-						<td><a ng-click="beginDelete(f.id)" class="waves-effect waves-red btn-flat"><i class="material-icons">close</i></a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <a href="" class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</a>
-    </div>
-	</div>
-	<div id="delConfirmation" class="modal">
-		<div class="modal-content">
-			<h4>Delete Modal</h4>
-			<p>Are You sure you would like to delete this flow, this action is not reversible.</p>
-		</div>
-		<div class="modal-footer">
-			<a ng-click="completeDelete()" class="modal-action modal-close waves-effect waves-red btn-flat">Delete</a>
-			<button class="modal-action modal-close waves-effect waves-red btn-flat">Nevermind</button>
-		</div>
-	</div>
-</div>

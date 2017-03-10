@@ -1,0 +1,28 @@
+<!doctype html>
+<link href="bower_components/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
+<link href = "css/mediumEditorTheme.css" rel="stylesheet">
+<link href="css/materialize.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<link href="speechDetach/speechDetach.css" rel="stylesheet">
+<body>
+	<div id="card-wrapper" class="card bodyCentered">
+		<div id="card-content">
+			<div>
+			<h4 class="truncate">{{titleContent.title}}</h4>
+            <div>{{titleContent.side}}</div>
+			<div>author: {{titleContent.author}}</div>
+			<div ng-bind-html="framework"></div>
+
+			<div ng-repeat="i in points track by $index">
+
+					<h5>{{$index + 1}}. {{points[$index].tagline}}</h5>
+					<div ng-bind-html="points[$index].content" class = "point"></div>
+
+			</div>
+			</div>
+			<div class="textDiv" id="content">
+				<div ng-bind-html="content" placeholder="No Content? This is an error!"></div>
+			</div>
+		</div>
+	</div>
+</body>

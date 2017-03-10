@@ -3,29 +3,14 @@
   cursor: pointer;
 }
 
-.multiBtn {
-  color: #424242;
-  opacity: 0.25;
+.point {
+    padding-left: 20px !important;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    /*margin-bottom: 20px;*/
 }
 
-.multiBtn:hover {
-  opacity: 1;
-}
-
-.modal-header {
-  position: absolute;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: #fafafa;
-  z-index: 2;
-  width: 100%;
-  padding: 0.1em 0.4em;
-  color: #424242;
-}
-
-.modal-content {
-  margin-top: 1.8em;
-}
-
-h4 {
-  margin: 0.2em;
+p {
+    padding: 0px !important;
+    margin: 0px !important;
 }

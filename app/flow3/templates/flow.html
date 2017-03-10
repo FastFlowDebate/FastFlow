@@ -1,8 +1,0 @@
-<div ng-class="f.isExpanded()" class="flow">
-  <div class="input-field card">
-      <input type="text" ng-model="f.team" placeholder="Team Name and Side">
-      <a ng-click="f.toggleExpand()" class="flowExpandBtn"><i class="material-icons">launch</i></a>
-  </div>
-  <contention ng-repeat="x in f.data track by $index" name="x.title" args="x.args"></contention>
-  <div ng-click="f.newContention()" class="waves-effect waves-teal btn-flat">New Contention</div>
-</div>

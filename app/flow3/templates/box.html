@@ -1,9 +1,0 @@
-<td class="card" ng-class="b.getStyle(b.type)">
-  <a ng-click="b.toggleCritical()" ng-show="b.index !== 0" class="left boxCriticalBtn"><i class="material-icons">star_rate</i></a>
-  <a ng-click="b.rmbox()" ng-show="b.index !== 0" class="waves-effect waves-red right boxClose"><i class="material-icons">clear</i></a>
-  <div ng-show="b.index == 0" class="input-field constructiveTitle">
-      <input type="text" ng-model="b.tag" placeholder="Tagline">
-  </div>
-  <textarea ng-show="b.type != 'arrow'" ng-model="b.text" class="materialize-textarea"></textarea>
-  <img ng-show="b.type == 'arrow'" class="arrow" src="flow3/arrow.svg">
-</td>

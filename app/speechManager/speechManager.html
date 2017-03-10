@@ -1,18 +1,44 @@
 <!doctype html>
 <html>
+
 <div ng-controller="speechManagerCtrl" id="viewNav">
 	<div ng-show="sTags.length == 0" class="card-panel">
 		<p> You haven't made any speeches. Click the purple plus below to get started!</p>
 	</div>
 	<ul ng-show="sTags.length >= 0" class="bodyCentered">
-
 		<div class="collection">
-			<a ng-href="#!/speech/{{URIGenerate(x[0])}}" class="collection-item black-text" ng-repeat="x in sTags track by $index">{{x[0]}}<span class="badge">{{x[1]}}</span></a>
+			<a ng-click="openSpeech(x[0])" class="collection-item black-text" ng-repeat="x in sTags track by $index">{{x[0]}}<span class="badge">{{x[1]}}</span></a>
 		</div>
-
 	</ul>
+
+	<div id="speechModal" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<span id="modalButtons" class="right">
+				<a class="tooltipped" ng-click = "fullscreen()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small grey-text text-darken-2">fullscreen</i></a>
+				<a class="tooltipped" ng-click="detach()" data-position="bottom" data-delay="50" data-tooltip="I am tooltip"><i class="material-icons small grey-text text-darken-2">flip_to_front</i></a>
+			</span>
+			<h4 class="truncate">{{titleContent.title}}</h4>
+			<div>{{titleContent.side}}</div>
+			<div>author: {{titleContent.author}}</div>
+			<div ng-bind-html="framework"></div>
+
+			<div ng-repeat="i in points track by $index">
+
+				<h5>{{$index + 1}}. {{points[$index].tagline}}</h5>
+				<div ng-bind-html="points[$index].content" class="point"></div>
+
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
+		</div>
+	</div>
+
+
 	<div class="addButton">
 		<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href="#!/speech"><i class="material-icons">add</i></a>
 	</div>
+
 </div>
 </html>

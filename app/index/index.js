@@ -13,4 +13,6 @@ module.exports = angular.module('fastflowApp.index', ['ngRoute'])
 		$scope.transitionClass = 'index'
 		$scope.route = "#"
 		$scope.$parent.setNav(defaultNav, 'Fast Flow')
+
+		$scope.Version = ipcRenderer.sendSync('Version')
 	}])

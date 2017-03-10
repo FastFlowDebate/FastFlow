@@ -6,14 +6,16 @@ require('./flow3/flow3')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
-require('./cardMulti/cardMulti')
-require('./cardDetatch/cardDetatch')
+require('./cardDetach/cardDetach')
 require('./speech/speech')
+require('./speechView/speechView')
 require('./speechManager/speechManager')
 require('./settings/settings')
+require('./speechDetach/speechDetach')
 
 var $ = require('jquery')
 require('materialize-css/dist/js/materialize.js')
+
 require('angular-mass-autocomplete')
 require('angular-sanitize')
 require('angular-animate')
@@ -36,49 +38,18 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
-	'fastflowApp.cardMulti',
-	'fastflowApp.cardDetatch',
+	'fastflowApp.cardDetach',
 	'fastflowApp.speech',
+	'fastflowApp.speechView',
 	'fastflowApp.speechManager',
+  'fastflowApp.speechDetach',
 	'fastflowApp.settings'
-]).config(['$routeProvider', function ($routeProvider) {
+
+]).config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({
 	   redirectTo: '/index'
    })
 }])
-
-app.directive('ffcardref', function () {
-// style explanation:
-//  1 - version used in flow, short and has only the bolded text
-//  2 - version for modal, all text maintaining original formatting
-	return {
-		restrict: 'E',
-		scope: {
-			title: '=',
-			deleteFunc: '&', // todo
-			style: '='
-		},
-		templateUrl: 'cardRef.html',
-		controller: function ($scope, $element, $attrs) {
-			$scope.overlay = function () {
-				var title = $scope.title
-				var content = FileArray[2]
-				//open dialog here
-    	}
-
-			var FileArray = ipcRenderer.sendSync('FileOpen', $scope.title)
-			if (FileArray) {
-				if($scope.style === 1) {
-					$scope.content = getCardBold(FileArray[2], '...')
-				} else if($scope.style ===2){
-					$scope.content = FileArray[2]
-				}
-			} else {
-				$scope.content = '<em>Error 404 card not found</em>'
-			}
-		}
-	}
-})
 
 app.controller('navbar', ['$scope', '$routeParams', '$timeout', function($scope, $routeParams, $timeout) {
 
@@ -223,15 +194,3 @@ app.factory('defaultNav', ['navDropdown', function (navDropdown){
 		}]
 	}
 }])
-
-function getCardBold(content, bold) {
-	var i = content.indexOf('<strong>'),
-		j = content.indexOf('</strong>')
-	if (i !== -1 && j !== -1) {
-		bold = bold + content.substring(i + 8, j) + '...'
-		content = content.substring(j + 9)
-		return getCardBold(content, bold)
-	} else {
-		return bold
-	}
-}

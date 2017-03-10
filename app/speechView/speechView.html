@@ -1,0 +1,34 @@
+<!doctype html>
+<link href="bower_components/medium-editor/dist/css/medium-editor.css" rel="stylesheet">
+<!--<link href="bower_components/medium-editor/dist/css/themes/flat.css" rel="stylesheet">-->
+<link href = "css/mediumEditorTheme.css" rel="stylesheet">
+<link href="css/materialize.css" rel="stylesheet">
+<link href="node_modules/angularjs-toaster/toaster.css" rel="stylesheet">
+<!--<link href="speech/speech.css" rel="stylesheet">-->
+<link href="css/style.css" rel="stylesheet">
+
+
+<div class="card bodyCentered cardPad">
+	<div class="card-content">
+
+		<p>{{titleContent.side}}</p>
+		<p>{{titleContent.title}}</p>
+		<p>{{titleContent.author}}</p>
+		<br>
+		<p>{titleContent.framework}</p>
+
+		<div ng-repeat="i in points track by $index">
+
+				<div class="card-content">
+					<span class="card-title">
+						<div class = "inline">{{$index + 1}}.</div>
+						{{points[$index].tagline}}
+					</span>
+
+					<p>{{points[$index].content}}</p>
+				</div>
+
+		</div>
+
+	</div>
+</div>

@@ -38,3 +38,17 @@
   margin-right: 10px;
   margin-left: -10px;
 }*/
+
+p {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.point {
+    padding-left: 20px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 20px;
+}
+
+
