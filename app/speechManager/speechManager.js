@@ -56,10 +56,10 @@ module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
             $('#speechModal').closeModal()
 			console.log("speechManagerTest")
 			console.log($scope.titleContent.title)
-            window.location.replace('#speech/' + $scope.URIGenerate($scope.titleContent.title))
+            window.location.replace('#!/speech/' + $scope.URIGenerate($scope.titleContent.title))
         }
         $scope.detach = function () {
             $('#speechModal').closeModal()
-            window.open('#speechDetach/' + $scope.URIGenerate($scope.titleContent.title))
+            window.open('#!/speechDetach/' + $scope.URIGenerate($scope.titleContent.title))
         }
   }])

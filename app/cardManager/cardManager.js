@@ -52,6 +52,6 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 		}
 		$scope.detach = function () {
 			$('#cardModal').closeModal()
-			window.open('#cardDetach/' + $scope.URIGenerate($scope.modalCardTag))
+			window.open('#!/cardDetach/' + $scope.URIGenerate($scope.modalCardTag))
 		}
   }])
