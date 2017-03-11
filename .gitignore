@@ -11,6 +11,8 @@ app/bower_components/*
 
 app/public/*
 
+app/build/*
+
 .jshintrc
 
 .settings/.jsdtscope
