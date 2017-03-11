@@ -13,7 +13,7 @@ module.exports = {
     target: 'electron-renderer',
     output: {
         filename: 'bundle.js',
-        path: __dirname + '/build',
+        path: __dirname + '/app/build',
         publicPath: 'http://localhost:8080/build/'
     },
     resolve: {
@@ -22,10 +22,10 @@ module.exports = {
         }
     },
     plugins: [
-        new webpackUglifyJsPlugin({
+        /*new webpackUglifyJsPlugin({
             cacheFolder: path.resolve(__dirname, 'public/cached_uglify/'),
             debug: true,
-            minimize: false,
+            minimize: true,
             sourceMap: false,
             output: {
                 comments: false
@@ -33,7 +33,7 @@ module.exports = {
             compressor: {
                 warnings: false
             }
-        }),
+        }),*/
         new webpack.ProvidePlugin({
             $: "jquery",
             'window.$': "jquery",
@@ -45,13 +45,13 @@ module.exports = {
     module: {
       loaders: [{
           test: /\.css$/,
-          loader: 'style!css'
+          loader: 'style-loader!css-loader'
       },{
           test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "url?limit=10000&mimetype=application/font-woff"
+          loader: "url-loader?limit=10000&mimetype=application/font-woff"
       }, {
           test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "file"
+          loader: "file-loader"
       }, {
           test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
           loader: "imports?this=>window"

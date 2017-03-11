@@ -1,8 +1,11 @@
 var angular = require('angular')
 var angularRoute = require('angular-route')
 
+require('materialize-css/dist/css/materialize.css')
+require('./fonts/iconfont/material-icons.css')
+require('./css/style.css')
+
 require('./index/index')
-require('./flow3/flow3')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
@@ -10,8 +13,10 @@ require('./cardDetach/cardDetach')
 require('./speech/speech')
 require('./speechView/speechView')
 require('./speechManager/speechManager')
-require('./settings/settings')
 require('./speechDetach/speechDetach')
+require('./flow3/flow3')
+
+require('./settings/settings')
 
 var $ = require('jquery')
 require('materialize-css/dist/js/materialize.js')
@@ -20,12 +25,6 @@ require('angular-mass-autocomplete')
 require('angular-sanitize')
 require('angular-animate')
 require('angular-medium-editor')
-
-require('materialize-css/dist/css/materialize.css')
-require('./fonts/iconfont/material-icons.css')
-require('./css/style.css')
-
-
 
 
 global.ipcRenderer = require('electron').ipcRenderer

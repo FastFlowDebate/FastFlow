@@ -16,7 +16,6 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 				}
 			}
  		})
-
 		$('.collapsible').collapsible({
 			accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
 		})

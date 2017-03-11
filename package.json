@@ -18,12 +18,11 @@
   "build": {
     "appId": "fastflowdebate",
     "category": "public.app-category.productivity",
-    "asar": false,
+    "asar": true,
     "win": {
       "iconUrl": "https://raw.githubusercontent.com/FastFlowDebate/assets/master/FastFlowIcon.png"
     }
   },
-  "postinstall": "install-app-deps",
   "bin": {
     "electron": "./node_modules/.bin/electron"
   },
@@ -45,7 +44,7 @@
     "chromedriver": "^2.19.0",
     "del": "^2.2.0",
     "electron": "^1.4.15",
-    "electron-builder": "^11.5.1",
+    "electron-builder": "^15.2.0",
     "electron-packager": "^8.5.0",
     "electron-rebuild": "^1.0.0",
     "eslint": "^3.14.0",
@@ -54,12 +53,12 @@
     "minimist": "^1.2.0",
     "node-gyp": "^3.2.1",
     "style-loader": "^0.13.1",
-    "css-loader": "^0.26.1",
-    "file-loader": "^0.9.0",
+    "css-loader": "^0.27.1",
+    "file-loader": "^0.10.1",
     "imports-loader": "^0.7.0",
     "url-loader": "^0.5.7",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1",
     "webpack-target-electron-renderer": "^0.4.0",
     "webpack-uglify-js-plugin": "^1.1.9"
   },

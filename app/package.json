@@ -25,14 +25,13 @@
     "electron-debug": "^0.5.1",
     "hammerjs": "^2.0.8",
     "lokijs": "^1.4.3",
+    "materialize-css": "^0.98.0",
     "path": "^0.12.7",
     "regex": "^0.1.1"
   },
   "author": "Adam Towers",
   "license": "ISC",
-  "devDependencies": {
-
-  },
+  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FastFlowDebate/FastFlow.git"

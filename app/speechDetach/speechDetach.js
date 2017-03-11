@@ -1,3 +1,5 @@
+require('./speechDetach.css')
+
 module.exports = angular.module('fastflowApp.speechDetach', ['ngRoute', 'MassAutoComplete', 'ngSanitize', 'angular-medium-editor', 'ngAnimate'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider.when('/speechDetach/:tag', {
