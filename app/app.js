@@ -10,6 +10,7 @@ require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
 require('./cardDetach/cardDetach')
+require('./cardMulti/cardMulti')
 require('./speech/speech')
 require('./speechView/speechView')
 require('./speechManager/speechManager')
@@ -38,6 +39,7 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
 	'fastflowApp.cardDetach',
+	'fastflowApp.cardMulti',
 	'fastflowApp.speech',
 	'fastflowApp.speechView',
 	'fastflowApp.speechManager',

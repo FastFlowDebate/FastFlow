@@ -55,11 +55,15 @@ Make sure you have NodeJS installed
 
 ## Running
 
+* in one terminal tab
+
+    npm run watch
+
+* in second terminal tab
+
     npm run start
 
 ## Contribution
-
-* Use the [Javascript Standard code style](https://github.com/feross/standard) for any and all JS development
 
 * A branch will have to pass the build check (Travis-CI) before being considered for merge
 

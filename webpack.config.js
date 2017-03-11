@@ -14,7 +14,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: __dirname + '/app/build',
-        publicPath: 'http://localhost:8080/build/'
+        publicPath: 'http://localhost:8080/app/build/'
     },
     resolve: {
         alias: {
@@ -22,7 +22,7 @@ module.exports = {
         }
     },
     plugins: [
-        /*new webpackUglifyJsPlugin({
+        new webpackUglifyJsPlugin({
             cacheFolder: path.resolve(__dirname, 'public/cached_uglify/'),
             debug: true,
             minimize: true,
@@ -33,7 +33,7 @@ module.exports = {
             compressor: {
                 warnings: false
             }
-        }),*/
+        }),
         new webpack.ProvidePlugin({
             $: "jquery",
             'window.$': "jquery",
@@ -51,7 +51,7 @@ module.exports = {
           loader: "url-loader?limit=10000&mimetype=application/font-woff"
       }, {
           test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-          loader: "file-loader"
+          loader: "url-loader?limit=10000"
       }, {
           test: /[\/\\]node_modules[\/\\]some-module[\/\\]index\.js$/,
           loader: "imports?this=>window"
