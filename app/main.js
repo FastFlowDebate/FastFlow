@@ -1,7 +1,6 @@
 'use strict'
 var path = require('path')
 var fs = require('fs')
-const Regex = require("regex");
 const electron = require('electron')
 var pjson = require('./package.json')
 const app = electron.app
@@ -86,15 +85,11 @@ crashReporter.start({
   uploadToServer: true
 })
 
-app.on('window-all-closed', () => {
+app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
 })
 
-require('electron-debug')({
-    //showDevTools: true
-})
-
-app.on('ready', () => {
+app.on('ready', function () {
     mainWindow = new BrowserWindow({
         width: 1024,
         height: 728,
@@ -103,7 +98,7 @@ app.on('ready', () => {
 
     mainWindow.loadURL(`file://${__dirname}/app.html`)
 
-    mainWindow.on('closed', () => {
+    mainWindow.on('closed', function () {
         mainWindow = null
     })
 

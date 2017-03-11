@@ -4,9 +4,9 @@
 <head>
 	<title> FastFlow </title>
 	<script>
-		var bundlePath = './build/bundle.js'
+		var bundlePath = './build/app.entry.js'
 		if (typeof process !== 'undefined' && process.env.ENVIRONMENT === 'DEV') {
-			bundlePath = 'http://localhost:8080/app/build/bundle.js'
+			bundlePath = 'http://localhost:8080/app/build/app.entry.js'
 		}
 		var bundleScriptEl = document.createElement('script')
 		bundleScriptEl.src = bundlePath

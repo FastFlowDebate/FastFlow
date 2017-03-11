@@ -5,6 +5,7 @@
   "version": "0.9.0",
   "description": "Debate application for keeping your files organized",
   "main": "main.js",
+  "appDir": "app",
   "scripts": {
     "postinstall": "install-app-deps",
     "start": "ENVIRONMENT=DEV electron ./app",
@@ -17,10 +18,16 @@
   },
   "build": {
     "appId": "fastflowdebate",
-    "category": "public.app-category.productivity",
-    "asar": true,
-    "win": {
-      "iconUrl": "https://raw.githubusercontent.com/FastFlowDebate/assets/master/FastFlowIcon.png"
+    "asar": false,
+    "files": [
+      "**/*",
+      "!node_modules/*",
+      "node_modules/.bin",
+      "node_modules/electron",
+      "node_modules/lokijs/src/lokijs.js"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity"
     }
   },
   "bin": {
