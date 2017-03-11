@@ -30,7 +30,9 @@ blockquote {
   float:left;
   padding-left: .5em;
 }
-
+navside {
+  display: flex;
+}
 
 .bodyCentered {
     max-width: 800px;

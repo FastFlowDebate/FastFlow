@@ -47,7 +47,7 @@ module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
             $scope.points = mCard.content
             $scope.framework = mCard.sTags
             $scope.id = mCard.$loki
-
+            $('.tooltipped').tooltip('remove');
             $('#speechModal').modal('open')
         }
 
