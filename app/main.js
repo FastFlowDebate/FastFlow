@@ -78,6 +78,10 @@ function speechindex(datab) {
 
 }
 
+require('electron-debug')({
+    //showDevTools: true
+})
+
 crashReporter.start({
   productName: 'FastFlow',
   companyName: 'FastFlowDebate',

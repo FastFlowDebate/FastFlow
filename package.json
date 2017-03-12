@@ -9,11 +9,10 @@
   "scripts": {
     "postinstall": "install-app-deps",
     "start": "ENVIRONMENT=DEV electron ./app",
-    "webpack": "npm run webpack",
+    "webpack": "./node_modules/.bin/webpack",
     "pack": "npm run webpack && build --dir",
     "dist": "npm run webpack && build",
     "setup": "./setup.sh",
-    "webpack": "./node_modules/.bin/webpack",
     "watch": "./node_modules/.bin/webpack-dev-server --hot --inline"
   },
   "build": {
@@ -24,7 +23,8 @@
       "!node_modules/*",
       "node_modules/.bin",
       "node_modules/electron",
-      "node_modules/lokijs/src/lokijs.js"
+      "node_modules/lokijs/src/lokijs.js",
+      "node_modules/electron-debug/index.js"
     ],
     "mac": {
       "category": "public.app-category.productivity"
@@ -69,7 +69,9 @@
     "webpack-target-electron-renderer": "^0.4.0",
     "webpack-uglify-js-plugin": "^1.1.9"
   },
-  "dependencies": {},
+  "dependencies": {
+    "electron-debug": "^1.1.0"
+  },
   "devEngines": {
     "node": "4.x || 5.x",
     "npm": "2.x || 3.x"
