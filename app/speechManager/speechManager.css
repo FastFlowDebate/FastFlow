@@ -44,6 +44,7 @@ p {
     margin: 0px !important;
 }
 
+
 .point {
     padding-left: 20px;
     padding-bottom: 0px;
@@ -51,4 +52,6 @@ p {
     margin-bottom: 20px;
 }
 
-
+.modal {
+  width: 80vw;
+}

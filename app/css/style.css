@@ -108,6 +108,23 @@ nav li {
   right: 24px;
 }
 
+.modal-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: fixed;
+  height: 56px;
+  width: 100%;
+}
+
+.modal-header > h4 {
+  margin-left: 0.4em;
+  margin-top: 0.4em;
+}
+
+.modal-header + .modal-content {
+  margin-top: 56px;
+}
+
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
