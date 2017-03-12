@@ -3,6 +3,11 @@
   cursor: pointer;
 }
 
+.modalpad {
+    padding: 20px !important;
+    width: 90%;
+}
+
 .point {
     padding-left: 20px !important;
     padding-bottom: 0px;
