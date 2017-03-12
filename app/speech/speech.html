@@ -1,56 +1,57 @@
 <!doctype html>
-<div class="card bodyCentered cardPad">
-	<div class="card-content">
-
-		<div contenteditable="true" class="card-title" ng-model="titleContent.title" placeholder="Title" style="margin-bottom: 0px;"></div>
-		<div style = "margin-left: -5px; padding-bottom: 10px;">
-      <input name="group1" class = "noLabelPad" type="radio" id="test1" ng-model = "titleContent.side" ng-value = "none">
-      <label class = "radioPad" for="test1"  >none</label>
-
-      <input name="group1" class = "noLabelPad" type="radio" id="test2" ng-model = "titleContent.side" ng-value = "aff">
-      <label class = "radioPad" for="test2">aff</label>
-
-			<input name="group1" class = "noLabelPad" type="radio" id="test3" ng-model = "titleContent.side" ng-value = "neg">
-      <label class = "radioPad" for="test3">neg</label>
-    </div>
-		<div contenteditable="true" ng-model="titleContent.author" placeholder="Author" style="margin-bottom: 0px;"></div>
-	</div>
-</div>
-
-
-<div class="card bodyCentered">
-	<div class="card-content">
-		<div contenteditable="true" ng-model="framework" medium-editor data-placeholder = " "></div>
-	</div>
-</div>
-
-
-<div class="card bodyCentered" ng-repeat="i in points track by $index">
-
+<div id="speech">
+	<div class="card bodyCentered cardPad speech__header">
 		<div class="card-content">
-			<span class="card-title">
-				<div class = "inline">{{$index + 1}}</div>
-				<h2 contenteditable="true" class="inline pointCard" ng-model="points[$index].tagline" placeholder="Tagline"></h2>
-				<i class="material-icons right inline contention__delete" ng-click="deletePoint($index)">close</i>
-			</span>
-			<div contenteditable="true" ng-model="points[$index].content" placeholder = "Content" data-placeholder = " " style = "padding-left: 25px;" medium-editor></div>
+
+			<div contenteditable="true" class="card-title" ng-model="titleContent.title" placeholder="Title" style="margin-bottom: 0px;"></div>
+			<div style="margin-left: -5px; padding-bottom: 10px;">
+				<input name="group1" class="noLabelPad" type="radio" id="test1" ng-model="titleContent.side" ng-value="none">
+				<label class="radioPad" for="test1">none</label>
+
+				<input name="group1" class="noLabelPad" type="radio" id="test2" ng-model="titleContent.side" ng-value="aff">
+				<label class="radioPad" for="test2">aff</label>
+
+				<input name="group1" class="noLabelPad" type="radio" id="test3" ng-model="titleContent.side" ng-value="neg">
+				<label class="radioPad" for="test3">neg</label>
+			</div>
+			<div contenteditable="true" ng-model="titleContent.author" placeholder="Author" style="margin-bottom: 0px;"></div>
 		</div>
-
-</div>
-
-<div class="fixed-action-btn addButton">
-	<a class="addbutton btn-floating btn-large waves-effect waves-light purple lighten-1" ng-click="newPoint()"><i class="material-icons" >add</i></a>
-</div>
-
-
-<div id="deleteConfirmation" class="modal modal-fixed-footer">
-	<div class="modal-content">
-		<h4 class="truncate">Delete Speech</h4>
-		<p>Are you sure you want to delete <i>{{title}}</i></p>
-		<p>This action is final, this speech will be gone forever.</p>
 	</div>
-	<div class="modal-footer">
-		<a class=" modal-action modal-close waves-effect waves-red btn-flat" ng-click="delete()">Delete Speech</a>
-		<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Cancel</a>
+	<div class="row">
+		<div class="col s8">
+			<div class="card bodyCentered">
+				<div class="card-content">
+					<div contenteditable="true" ng-model="framework" medium-editor data-placeholder=" "></div>
+				</div>
+			</div>
+			<div class="card bodyCentered" ng-repeat="i in points track by $index">
+				<div class="card-content">
+					<span class="card-title">
+						<div class = "inline">{{$index + 1}}</div>
+						<h2 contenteditable="true" class="inline pointCard" ng-model="points[$index].tagline" placeholder="Tagline"></h2>
+						<i class="material-icons right inline contention__delete" ng-click="deletePoint($index)">close</i>
+					</span>
+					<div contenteditable="true" ng-model="points[$index].content" placeholder="Content" data-placeholder=" " style="padding-left: 25px;" medium-editor></div>
+				</div>
+			</div>
+			<a class="waves-effect waves-light purple btn" ng-click="newPoint()"><i class="material-icons left" >add</i>Add Contention</a>
+
+		</div>
+		<div class = "col s4">
+			<flow data="preflow.data" team="preflow.name"></flow>
+		</div>
+	</div>
+
+
+	<div id="deleteConfirmation" class="modal modal-fixed-footer">
+		<div class="modal-content">
+			<h4 class="truncate">Delete Speech</h4>
+			<p>Are you sure you want to delete <i>{{title}}</i></p>
+			<p>This action is final, this speech will be gone forever.</p>
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action modal-close waves-effect waves-red btn-flat" ng-click="delete()">Delete Speech</a>
+			<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Cancel</a>
+		</div>
 	</div>
 </div>

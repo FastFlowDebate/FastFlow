@@ -1,3 +1,8 @@
+.speech__header {
+  width: 100%;
+  max-width: 100%;
+}
+
 .pointCard {
   padding-left: 5px;
   width: calc(100% - 60px);
@@ -40,4 +45,48 @@
 
 .contention__delete:hover {
   opacity: 1;
+}
+
+#speech .flow {
+  margin-top: 0.5rem;
+}
+#speech .flow > .input-field {
+  margin-top: 0;
+}
+
+ #speech .contention__close {
+  position: absolute;
+  right: 0.4em;
+  top: -0.1em;
+  color: #424242;
+  opacity: 0.3;
+}
+
+ #speech .contention__close:hover {
+  opacity: 1;
+}
+
+ #speech .contention__box {
+  width: 96%;
+  margin: 1% 2%;
+}
+
+#speech .boxClose {
+  position: absolute;
+  top: 0.1em;
+  right: 0.1em;
+  color: #424242;
+  opacity: 0.3;
+}
+
+#speech .boxClose:hover {
+  opacity: 1;
+}
+
+#speech td {
+  padding: 2px 2px;
+}
+
+#speech .constructiveTitle {
+  margin: 0;
 }

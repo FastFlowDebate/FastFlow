@@ -86,7 +86,7 @@ crashReporter.start({
   productName: 'FastFlow',
   companyName: 'FastFlowDebate',
   submitURL: 'http://FastFlowDebate.com',
-  uploadToServer: true
+  uploadToServer: false
 })
 
 app.on('window-all-closed', function () {
@@ -210,7 +210,7 @@ app.on('ready', function () {
             submenu: [{
                 label: 'Learn More',
                 click() {
-                    shell.openExternal('http://fastflowdebate.com')
+                    shell.openExternal('https://fastflowdebate.com')
                 }
             }, {
                 label: 'Documentation',
@@ -327,14 +327,15 @@ app.on('ready', function () {
         datab.saveDatabase()
     }
 
-    function addCardToSpeech(datab, cardTagline, cardTags, cardContent) {
+    function addSpeechToSpeechDB(datab, speechTitleContent, speechFramework, speechContent, speechPreflow) {
         //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
-        //get a different profession. It legit says "addCardToSpeech" cuz thats what it does
+        //get a different profession. It legit says "addSpeechToSpeechDB" cuz thats what it does
         var cards = datab.getCollection("speech")
         cards.insert({
-            tagLine: cardTagline,
-            sTags: cardTags,
-            content: cardContent
+            tagLine: speechTitleContent,
+            sTags: speechFramework,
+            content: speechContent,
+            preflow: speechPreflow
         })
         datab.saveDatabase()
     }
@@ -410,8 +411,6 @@ app.on('ready', function () {
 
     /* The rest of this is IPC stuff */
     ipcMain.on('Version', function(event) {
-      console.log('version called')
-      console.log(pjson.version)
       event.returnValue = pjson.version
     })
 
@@ -463,13 +462,12 @@ app.on('ready', function () {
     })
 
     ipcMain.on('SpeechRemove', function(event, arg) {
-        var cards = cardDb.getCollection("speech");
-        var temp = cards.where(function(obj) {
+        var speechDB = cardDb.getCollection("speech");
+        var temp = speechDB.where(function(obj) {
             return (obj.$loki == arg)
         })
-
         if (temp.length !== 0) {
-            cards.removeWhere(function(obj) {
+            speechDB.removeWhere(function(obj) {
                 return (obj.$loki == arg)
             })
         }
@@ -508,21 +506,22 @@ app.on('ready', function () {
 
     /* speech saving */
     ipcMain.on('SpeechSave', function(event, arg) { // [TitleString, TagString, ContentString]
-        var cards = cardDb.getCollection("speech");
+        var speechDB = cardDb.getCollection("speech")
         var tagLine = arg.tagLine
         var sTags = arg.sTags
         var content = arg.content
+        var preflow = arg.preflow ? arg.preflow : {}
         var id = arg.id
-        var temp = cards.where(function(obj) {
+        var temp = speechDB.where(function(obj) {
             return (obj.$loki == id)
         })
 
         if (temp.length !== 0) {
-            cards.removeWhere(function(obj) {
+            speechDB.removeWhere(function(obj) {
                 return (obj.$loki == id)
             })
         }
-        addCardToSpeech(cardDb, tagLine, sTags, content)
+        addSpeechToSpeechDB(cardDb, tagLine, sTags, content, preflow)
         speechindex(cardDb)
     })
 
