@@ -30,7 +30,7 @@
 		<div class="card-content">
 			<span class="card-title">
 				<div class = "inline">{{$index + 1}}</div>
-				<h2 contenteditable="true" class="inline pointCard" ng-model="points[$index].tagline" placeholder="Tagline"></h2>
+				<h5 contenteditable="true" class="light inline pointCard" ng-model="points[$index].tagline" placeholder="Tagline"></h5>
 				<i class="material-icons right inline contention__delete" ng-click="deletePoint($index)">close</i>
 			</span>
 			<div contenteditable="true" ng-model="points[$index].content" placeholder = "Content" data-placeholder = " " style = "padding-left: 25px;" medium-editor></div>

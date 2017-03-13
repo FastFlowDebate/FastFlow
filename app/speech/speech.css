@@ -20,7 +20,6 @@
   padding-right: -10px !important;
 }
 
-
 .radioPad {
   padding-right: 10px;
 }
@@ -40,4 +39,11 @@
 
 .contention__delete:hover {
   opacity: 1;
+}
+
+.point {
+    padding-left: 20px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 20px;
 }

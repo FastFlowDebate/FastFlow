@@ -227,3 +227,12 @@ textarea.materialize-textarea:focus:not([readonly]) {
     from    { transform:translateY(100%); }
     to      { transform: translateY(0); }
 }
+
+/*manager settings*/
+
+.modalpad {
+    padding: 20px !important;
+    width: 90% !important;
+    max-width: 800px !important;
+}
+
