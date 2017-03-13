@@ -19,26 +19,22 @@
 			</span>
 			<h4 class="truncate">{{titleContent.title}}</h4>
 		</div>
-		<div class="modal-content" style = "padding-left: 10px;">
+		<div class="modal-content" style="padding-left: 10px;">
 			<div ng-bind-html="framework"></div>
-
 			<div ng-repeat="i in points track by $index">
-
-                <h5 class = "light">{{$index + 1}}. {{points[$index].tagline}}</h5>
+				<h5 class="light">{{$index + 1}}. {{points[$index].tagline}}</h5>
 				<div ng-bind-html="points[$index].content" class="point"></div>
-
 			</div>
-
 		</div>
 		<div class="modal-footer">
-			<a class=" modal-action modal-close waves-effect waves-blue btn-flat" style = "margin-right: 20px;">Close</a>
+			<a class=" modal-action modal-close waves-effect waves-blue btn-flat" style="margin-right: 20px;">Close</a>
 		</div>
 	</div>
-
 
 	<div class="addButton">
 		<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href="#!/speech"><i class="material-icons">add</i></a>
 	</div>
 
 </div>
+
 </html>

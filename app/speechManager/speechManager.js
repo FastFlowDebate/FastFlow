@@ -21,7 +21,6 @@ module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
         $('.collapsible').collapsible({
             accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
         })
-        $('.tooltipped').tooltip({delay: 50})
 
         $scope.transitionClass = 'SpeechManager'
         $scope.$parent.setNav(defaultNav, 'Speech')
@@ -47,8 +46,9 @@ module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
             $scope.points = mCard.content
             $scope.framework = mCard.sTags
             $scope.id = mCard.$loki
-            $('.tooltipped').tooltip('remove');
+            $('.tooltipped').tooltip('remove')
             $('#speechModal').modal('open')
+            $('.tooltipped').tooltip({delay: 50})
         }
 
         $scope.fullscreen = function() {
