@@ -11,27 +11,27 @@
 		</div>
 	</ul>
 
-	<div id="speechModal" class="modal modal-fixed-footer">
+	<div id="speechModal" class="modalpad modal modal-fixed-footer">
 		<div class="modal-header">
 			<span id="modalButtons" class="right">
 				<a class="tooltipped" ng-click="fullscreen()" data-position="bottom" data-delay="50" data-tooltip="Edit Card"><i class="material-icons small">fullscreen</i></a>
-				<a class="tooltipped" ng-click="detatch()" data-position="bottom" data-delay="50" data-tooltip="New Window"><i class="material-icons small">flip_to_front</i></a>
+				<a class="tooltipped" ng-click="detach()" data-position="bottom" data-delay="50" data-tooltip="New Window"><i class="material-icons small">flip_to_front</i></a>
 			</span>
 			<h4 class="truncate">{{titleContent.title}}</h4>
 		</div>
-		<div class="modal-content">
+		<div class="modal-content" style = "padding-left: 0px; padding-top:10px;">
 			<div ng-bind-html="framework"></div>
 
 			<div ng-repeat="i in points track by $index">
 
-				<h5>{{$index + 1}}. {{points[$index].tagline}}</h5>
+                <h5 class = "light">{{$index + 1}}. {{points[$index].tagline}}</h5>
 				<div ng-bind-html="points[$index].content" class="point"></div>
 
 			</div>
 
 		</div>
 		<div class="modal-footer">
-			<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
+			<a class=" modal-action modal-close waves-effect waves-blue btn-flat" style = "margin-right: 20px;">Close</a>
 		</div>
 	</div>
 

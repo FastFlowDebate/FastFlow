@@ -25,7 +25,6 @@
   padding-right: -10px !important;
 }
 
-
 .radioPad {
   padding-right: 10px;
 }
@@ -89,4 +88,10 @@
 
 #speech .constructiveTitle {
   margin: 0;
+
+.point {
+    padding-left: 20px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 20px;
 }

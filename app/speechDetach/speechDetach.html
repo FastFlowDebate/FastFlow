@@ -10,7 +10,7 @@
 
 			<div ng-repeat="i in points track by $index">
 
-					<h5>{{$index + 1}}. {{points[$index].tagline}}</h5>
+					<h5 class = "light">{{$index + 1}}. {{points[$index].tagline}}</h5>
 					<div ng-bind-html="points[$index].content" class = "point"></div>
 
 			</div>
