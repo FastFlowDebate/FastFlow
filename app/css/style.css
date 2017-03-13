@@ -122,6 +122,7 @@ nav li {
 
 .modal-header + .modal-content {
   margin-top: 56px;
+  padding-bottom: 56px;
 }
 
 
@@ -248,8 +249,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 /*manager settings*/
 
 .modalpad {
-    padding: 20px !important;
     width: 90% !important;
     max-width: 800px !important;
 }
-

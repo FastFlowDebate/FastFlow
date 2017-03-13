@@ -35,6 +35,7 @@ module.exports = angular.module('fastflowApp.cardManager', ['ngRoute'])
 			$scope.modalCardTag = cardID
 			$scope.modalCardContent = card.content
 			$scope.modalCardCite = card.citation
+			$('.tooltipped').tooltip('remove')
 			$('#cardModal').modal('open')
 		}
 

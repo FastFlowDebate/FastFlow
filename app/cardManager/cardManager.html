@@ -1,38 +1,39 @@
 <!doctype html>
 <html>
-	<div ng-controller="cardManagerCtrl" id="viewNav">
+<div ng-controller="cardManagerCtrl" id="viewNav">
 
-		<div ng-show="sTags.length == 0" class="card-panel">
-			<p> You haven't made any cards. Click the blue plus below to get started!</p>
-		</div>
-		<ul ng-show="sTags.length >= 0" class="collapsible bodyCentered" data-collapsible="accordion">
-			<li ng-repeat="x in sTags track by $index">
-				<div class="collapsible-header"> {{x}} <a class="right multiBtn" ng-click="openMultiCard(x)"><i class="material-icons">send</i></a></div>
-				<div class="collapsible-body collection" style = "padding: 0px;">
-					<a ng-click="openCard(y)" class="collection-item purple-text" ng-repeat="y in dataJSON[x]">{{y}}</a>
-                    <div></div>
-				</div>
-			</li>
-		</ul>
-		<div id="cardModal" class="modal modal-fixed-footer modalpad">
+	<div ng-show="sTags.length == 0" class="card-panel">
+		<p> You haven't made any cards. Click the blue plus below to get started!</p>
+	</div>
+	<ul ng-show="sTags.length >= 0" class="collapsible bodyCentered" data-collapsible="accordion">
+		<li ng-repeat="x in sTags track by $index">
+			<div class="collapsible-header"> {{x}} <a class="right multiBtn" ng-click="openMultiCard(x)"><i class="material-icons">send</i></a></div>
+			<div class="collapsible-body collection" style="padding: 0px;">
+				<a ng-click="openCard(y)" class="collection-item purple-text" ng-repeat="y in dataJSON[x]">{{y}}</a>
+				<div></div>
+			</div>
+		</li>
+	</ul>
+	<div id="cardModal" class="modal modal-fixed-footer modalpad">
 
-			<div class="modal-header">
-				<span id="modalButtons" class="right">
+		<div class="modal-header">
+			<span id="modalButtons" class="right">
 					<a class="tooltipped" ng-click="fullscreen()" data-position="bottom" data-delay="50" data-tooltip="Edit Card"><i class="material-icons small">fullscreen</i></a>
 					<a class="tooltipped" ng-click="detatch()" data-position="bottom" data-delay="50" data-tooltip="New Window"><i class="material-icons small">flip_to_front</i></a>
 				</span>
-				<h4 class="truncate">{{modalCardTag}}</h4>
-			</div>
-
-			<div ng-bind-html="modalCardContent"></div>
-			
-            <div class="modal-footer">
-			    <a class="modal-action modal-close waves-effect waves-blue btn-flat" style = "margin-right: 20px;">Close</a>
-		    </div>
-
+			<h4 class="truncate">{{modalCardTag}}</h4>
 		</div>
-		<div class = "addButton">
-			<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href="#!/newCard"><i class="material-icons">add</i></a>
+
+		<div ng-bind-html="modalCardContent" class="modal-content"></div>
+
+		<div class="modal-footer">
+			<a class="modal-action modal-close waves-effect waves-blue btn-flat" style="margin-right: 20px;">Close</a>
 		</div>
+
 	</div>
+	<div class="addButton">
+		<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href="#!/newCard"><i class="material-icons">add</i></a>
+	</div>
+</div>
+
 </html>

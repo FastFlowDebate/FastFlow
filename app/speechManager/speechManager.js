@@ -21,6 +21,7 @@ module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
         $('.collapsible').collapsible({
             accordion: false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
         })
+        $('.tooltipped').tooltip({delay: 50})
 
         $scope.transitionClass = 'SpeechManager'
         $scope.$parent.setNav(defaultNav, 'Speech')
@@ -38,7 +39,6 @@ module.exports = angular.module('fastflowApp.speechManager', ['ngRoute'])
         $scope.points
 
         $scope.openSpeech = function(speechID) {
-
             card = ipcRenderer.sendSync('SpeechOpen', speechID)
             if (card == []) console.log('error, speech not found')
             mCard = JSON.parse(card)
