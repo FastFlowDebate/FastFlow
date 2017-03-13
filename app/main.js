@@ -77,10 +77,12 @@ function speechindex(datab) {
     return PFST;
 
 }
+if(process.env.ENVIRONMENT === 'DEV'){
+  require('electron-debug')({
+      //showDevTools: true
+  })
+}
 
-require('electron-debug')({
-    //showDevTools: true
-})
 
 crashReporter.start({
   productName: 'FastFlow',

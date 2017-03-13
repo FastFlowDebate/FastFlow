@@ -8,7 +8,8 @@
   "appDir": "app",
   "scripts": {
     "postinstall": "install-app-deps",
-    "start": "ENVIRONMENT=DEV electron ./app",
+    "startdev": "ENVIRONMENT=DEV electron ./app",
+    "start": "electron ./app",
     "webpack": "./node_modules/.bin/webpack",
     "pack": "npm run webpack && build --dir",
     "dist": "npm run webpack && build",
