@@ -19,6 +19,7 @@ module.exports = angular.module('fastflowApp.newCard', ['ngRoute', 'MassAutoComp
 				icon: 'arrow_back',
 				attrs: [
 					{ attr: 'href', value: '#!/cardManager' },
+					{ attr: 'class', value: 'active' }
 				]
 			}]
 		}, 'Card Creator')

@@ -1,10 +1,10 @@
-#wrapper {
+#indexRoute #wrapper {
   display: flex;
   flex-direction: column;
   height: 90%;
 }
 
-.tb {
+#indexRoute .tb {
  background-color:rgba(255, 255, 255, 0.58);
  margin-top: 2%;
  padding: 0.2em;
@@ -15,16 +15,18 @@
  border-radius: 6px;
 }
 
-img {
+#indexRoute img {
   width: auto;
+
 }
 
-#icon {
+#indexRoute #icon {
   padding-top: 6%;
   height: 65%;
+  user-select: none;
 }
 
-#title {
+#indexRoute #title {
   font-size: 5em;
 }
 

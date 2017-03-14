@@ -252,3 +252,8 @@ textarea.materialize-textarea:focus:not([readonly]) {
     width: 90% !important;
     max-width: 800px !important;
 }
+
+#modalButtons {
+  margin-top: 16px;
+  margin-right: 10px;
+}
