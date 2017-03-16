@@ -11,7 +11,7 @@
 	</div>
 	<ul ng-show="cardTags.length >= 0" class="collapsible bodyCentered" data-collapsible="accordion">
 		<li ng-repeat="x in cardTags track by $index">
-			<div class="collapsible-header"> {{x}} <a class="right multiBtn" ng-click="openMultiCard(x)"><i class="material-icons">send</i></a></div>
+			<div class="collapsible-header" > {{x}} <a class="right multiBtn" ng-click="openMultiCard(x)" style = "padding-right: 0px; margin-right: -15px;"><i class="material-icons">send</i></a></div>
 			<div class="collapsible-body collection" style="padding: 0px;">
 				<a ng-click="openCard(y)" class="collection-item purple-text" ng-repeat="y in dataJSON.cards[x]">{{y}}</a>
 				<div></div>
@@ -31,14 +31,14 @@
 		<div ng-bind-html="modalCardContent" class="modal-content"></div>
 
 		<div class="modal-footer">
-			<a class="modal-action modal-close waves-effect waves-blue btn-flat" style="margin-right: 20px;">Close</a>
+			<a class="modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
 		</div>
 
 	</div>
 
     <!-- Speech -->
     
-    <div class = "grey-text text-darken-2 identifier" style = "margin-bottom: -5px;">Speech</div>
+    <div class = "grey-text text-darken-2 identifier">Speech</div>
 
     <div ng-show="speechTags.length == 0" class="card-panel">
 		<p> You haven't made any speeches. Click the purple plus below to get started!</p>
@@ -46,7 +46,7 @@
 
 	<ul ng-show="speechTags.length >= 0" class="bodyCentered">
 		<div class="collection">
-			<a ng-click="openSpeech(x[0])" class="collection-item black-text" ng-repeat="x in speechTags track by $index">{{x[0]}}<span class="badge">{{x[1]}}</span></a>
+			<a style = "padding-left: 15px" ng-click="openSpeech(x[0])" class="collection-item black-text" ng-repeat="x in speechTags track by $index">{{x[0]}}<span class="badge" style = "margin-right: -10px; padding-left: 15px">{{x[1]}}</span></a>
 		</div>
 	</ul>
 
@@ -66,7 +66,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<a class=" modal-action modal-close waves-effect waves-blue btn-flat" style="margin-right: 20px;">Close</a>
+			<a class=" modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
 		</div>
 	</div>
 
