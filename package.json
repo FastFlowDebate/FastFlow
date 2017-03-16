@@ -8,6 +8,7 @@
   "appDir": "app",
   "scripts": {
     "postinstall": "install-app-deps",
+    "rebuild": "electron-rebuild -f -w sqlite3",
     "startdev": "ENVIRONMENT=DEV electron ./app",
     "start": "electron ./app",
     "webpack": "./node_modules/.bin/webpack",
@@ -50,20 +51,20 @@
   "homepage": "https://github.com/FastFlowDebate/FastFlow#readme",
   "devDependencies": {
     "chromedriver": "^2.19.0",
+    "css-loader": "^0.27.1",
     "del": "^2.2.0",
     "electron": "^1.4.15",
     "electron-builder": "^15.2.0",
     "electron-packager": "^8.5.0",
-    "electron-rebuild": "^1.0.0",
+    "electron-rebuild": "^1.5.7",
     "eslint": "^3.14.0",
     "fbjs-scripts": "^0.7.1",
+    "file-loader": "^0.10.1",
+    "imports-loader": "^0.7.0",
     "jsdom": "^9.9.1",
     "minimist": "^1.2.0",
     "node-gyp": "^3.2.1",
     "style-loader": "^0.13.1",
-    "css-loader": "^0.27.1",
-    "file-loader": "^0.10.1",
-    "imports-loader": "^0.7.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1",
@@ -71,7 +72,8 @@
     "webpack-uglify-js-plugin": "^1.1.9"
   },
   "dependencies": {
-    "electron-debug": "^1.1.0"
+    "electron-debug": "^1.1.0",
+    "uuid": "^3.0.1"
   },
   "devEngines": {
     "node": "4.x || 5.x",

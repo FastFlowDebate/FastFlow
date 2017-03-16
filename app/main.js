@@ -15,6 +15,57 @@ let mainWindow = null
 
 const loki = require("lokijs")
 
+//sql database
+var sqlite3 = require('sqlite3').verbose();
+//in memory for now
+var db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, function(error) {
+    console.log(error);
+    db.close();
+});
+//uuid generator
+const uuidV1 = require('uuid/v1');
+
+db.serialize(function() {
+    //the main table
+    db.run("CREATE TABLE IF NOT EXISTS MAINTABLE(ID CHAR(36), NAME TEXT, TYPE INTEGER(1))")
+    //defs for main table
+    //TYPE
+    //1. block: 1
+    //2. card: 2
+    //3. flow: 3
+    //4. speech: 4
+    db.run("CREATE TABLE IF NOT EXISTS MAINDEF(TYPE INTEGER(1), REALTYPE TEXT)")
+    var maindef = db.prepare("INSERT INTO MAINDEF VALUES (?, ?)")
+    maindef.run(1, "BLOCK")
+    maindef.run(2, "CARD")
+    maindef.run(3, "FLOW")
+    maindef.run(4, "SPEECH")
+    maindef.finalize();
+
+    //defs for side table
+    //SIDE
+    //true: aff
+    //false: neg
+    //NULL: none
+    db.run("CREATE TABLE IF NOT EXISTS SIDEDEF(SIDE BOOLEAN, REALSIDE TEXT)")
+    var sidedef = db.prepare("INSERT INTO SIDEDEF VALUES (?, ?)")
+    sidedef.run(true, "AFF")
+    sidedef.run(false, "NEG")
+    sidedef.run(null, "NONE")
+
+    //the block table
+    db.run("CREATE TABLE IF NOT EXISTS BLOCKTABLE(ID CHAR(36), ARG TEXT, SIDE BOOLEAN)")
+
+    //the card table
+    db.run("CREATE TABLE IF NOT EXISTS CARDTABLE(ID CHAR(36), TAG TEXT)")
+
+    //the flow table
+    db.run("CREATE TABLE IF NOT EXISTS FLOWTABLE(ID CHAR(36), AFF TEXT, NEG TEXT)")
+
+    //the speech table
+    db.run("CREATE TABLE IF NOT EXISTS SPEECHTABLE(ID CHAR(36), SIDE BOOLEAN)")
+});
+
 console.log(app.getPath('userData'))
 
 const cardDb = new loki(app.getPath('userData') + '/mainDatabase.ffdb', {
