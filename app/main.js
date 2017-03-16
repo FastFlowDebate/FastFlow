@@ -14,57 +14,68 @@ let template
 let mainWindow = null
 
 const loki = require("lokijs")
+var file = app.getPath('userData') + '/testDatabase.ffdb'
 
+if (!fs.existsSync(file)) {
+    console.log("Creating DB file")
+    fs.openSync(file, "w")
+}
+console.log("Database created at " + file)
+console.log("file exists" + fs.existsSync(file))
 //sql database
 var sqlite3 = require('sqlite3').verbose();
 //in memory for now
-var db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE, function(error) {
+var db = new sqlite3.Database(file, sqlite3.OPEN_READWRITE, function(error) {
     console.log(error);
-    db.close();
 });
 //uuid generator
 const uuidV1 = require('uuid/v1');
 
-db.serialize(function() {
-    //the main table
-    db.run("CREATE TABLE IF NOT EXISTS MAINTABLE(ID CHAR(36), NAME TEXT, TYPE INTEGER(1))")
-    //defs for main table
-    //TYPE
-    //1. block: 1
-    //2. card: 2
-    //3. flow: 3
-    //4. speech: 4
-    db.run("CREATE TABLE IF NOT EXISTS MAINDEF(TYPE INTEGER(1), REALTYPE TEXT)")
-    var maindef = db.prepare("INSERT INTO MAINDEF VALUES (?, ?)")
-    maindef.run(1, "BLOCK")
-    maindef.run(2, "CARD")
-    maindef.run(3, "FLOW")
-    maindef.run(4, "SPEECH")
-    maindef.finalize();
+if (!fs.existsSync(file)) {
+    db.serialize(function() {
+        //the main table
+        db.run("CREATE TABLE MAINTABLE(ID CHAR(36), NAME TEXT, TYPE INTEGER(1))")
+        //defs for main table
+        //TYPE
+        //1. block: 1
+        //2. card: 2
+        //3. flow: 3
+        //4. speech: 4
+        var maindefval = ["BLOCK", "CARD", "FLOW", "SPEECH"]
+        db.run("CREATE TABLE MAINDEF(TYPE INTEGER(1), REALTYPE TEXT)")
+        var maindef = db.prepare("INSERT INTO MAINDEF VALUES (?, ?)")
+        for (var i = 1; i < 5; i++) {
+            maindef.run(i, maindefval[i])
+        }
+        maindef.finalize();
 
-    //defs for side table
-    //SIDE
-    //true: aff
-    //false: neg
-    //NULL: none
-    db.run("CREATE TABLE IF NOT EXISTS SIDEDEF(SIDE BOOLEAN, REALSIDE TEXT)")
-    var sidedef = db.prepare("INSERT INTO SIDEDEF VALUES (?, ?)")
-    sidedef.run(true, "AFF")
-    sidedef.run(false, "NEG")
-    sidedef.run(null, "NONE")
+        //defs for side table
+        //SIDE
+        //true: aff
+        //false: neg
+        //NULL: none
+        var sidebools = [true, false, null]
+        var sidedefval = ["AFF", "NEG", "NONE"]
+        db.run("CREATE TABLE SIDEDEF(SIDE BOOLEAN, REALSIDE TEXT)")
+        var sidedef = db.prepare("INSERT INTO SIDEDEF VALUES (?, ?)")
+        for (var i = 0; i < 3; i++) {
+            sidedef.run(sidebools[i], sidedefval[i])
+        }
+        sidedef.finalize()
 
-    //the block table
-    db.run("CREATE TABLE IF NOT EXISTS BLOCKTABLE(ID CHAR(36), ARG TEXT, SIDE BOOLEAN)")
+        //the block table
+        db.run("CREATE TABLE BLOCKTABLE(ID CHAR(36), ARG TEXT, SIDE BOOLEAN)")
 
-    //the card table
-    db.run("CREATE TABLE IF NOT EXISTS CARDTABLE(ID CHAR(36), TAG TEXT)")
+        //the card table
+        db.run("CREATE TABLE CARDTABLE(ID CHAR(36), TAG TEXT)")
 
-    //the flow table
-    db.run("CREATE TABLE IF NOT EXISTS FLOWTABLE(ID CHAR(36), AFF TEXT, NEG TEXT)")
+        //the flow table
+        db.run("CREATE TABLE FLOWTABLE(ID CHAR(36), AFF TEXT, NEG TEXT)")
 
-    //the speech table
-    db.run("CREATE TABLE IF NOT EXISTS SPEECHTABLE(ID CHAR(36), SIDE BOOLEAN)")
-});
+        //the speech table
+        db.run("CREATE TABLE SPEECHTABLE(ID CHAR(36), SIDE BOOLEAN)")
+    });
+}
 
 console.log(app.getPath('userData'))
 
