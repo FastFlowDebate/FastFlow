@@ -6,12 +6,12 @@ require('./fonts/iconfont/material-icons.css')
 require('./css/style.css')
 
 require('./index/index')
+require('./search/search')
 require('./card/card')
 require('./newCard/newCard')
 require('./cardManager/cardManager')
 require('./cardDetach/cardDetach')
 require('./cardMulti/cardMulti')
-require('./speech/speech')
 require('./speechView/speechView')
 require('./speechManager/speechManager')
 require('./speechDetach/speechDetach')
@@ -34,16 +34,17 @@ var app = angular.module('fastflowApp', [
 	'ngRoute',
 	'ngAnimate',
 	'fastflowApp.index',
+    'fastflowApp.search',
 	'fastflowApp.flow',
 	'fastflowApp.card',
 	'fastflowApp.newCard',
 	'fastflowApp.cardManager',
 	'fastflowApp.cardDetach',
 	'fastflowApp.cardMulti',
-	'fastflowApp.speech',
+	'fastflowApp.search',
 	'fastflowApp.speechView',
 	'fastflowApp.speechManager',
-  'fastflowApp.speechDetach',
+    'fastflowApp.speechDetach',
 	'fastflowApp.settings'
 
 ]).config(['$routeProvider', function($routeProvider) {
@@ -168,7 +169,7 @@ app.factory('navDropdown', function navDropdownFactory() {
 		},
 		init: function () {
 			//console.log('initDropown')
-			$('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#!/' class = 'purple-text'>Home</a></li><li><a href='#!/cardManager' class = 'purple-text'>Cards</a></li><li><a href='#!/speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#!/flow' class = 'purple-text'>Flow</a></li></ul>")
+			$('nav').append("<ul id='navDropdown' class='dropdown-content'><li><a href='#!/search' class = 'purple-text'>search</a></li><li><a href='#!/' class = 'purple-text'>Home</a></li><li><a href='#!/cardManager' class = 'purple-text'>Cards</a></li><li><a href='#!/speechManager' class = 'purple-text'>Speeches</a></li><li><a class = 'grey-text'>Blocks<span class='notif green black-text'>WIP</span></a></li><li><a href='#!/flow' class = 'purple-text'>Flow</a></li></ul>")
 			$('.dropdown-button').dropdown()
 		}, destroy: function () {
 			//console.log('destroyDropdown')

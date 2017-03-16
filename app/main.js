@@ -485,6 +485,15 @@ app.on('ready', function () {
         event.returnValue = dataJSON
     })
 
+    ipcMain.on('search', function(event, arg) {
+        var dataJSON = {
+            speeches : speechindex(cardDb),
+            cards : tagindex(cardDb)
+        }
+        console.log(dataJSON)
+        event.returnValue = dataJSON
+    })
+
     /* card saving */
     ipcMain.on('FileSave', function(event, arg) { // [TitleString, TagString, ContentString]
         var cards = cardDb.getCollection("cards");

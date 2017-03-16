@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<div ng-controller="searchCtrl" id="viewNav">
+
+    <!-- Cards -->
+
+    <div class = "grey-text text-darken-2 identifier">Cards</div>
+
+	<div ng-show="cardTags.length == 0" class="card-panel">
+		<p> You haven't made any cards. Click the blue plus below to get started!</p>
+	</div>
+	<ul ng-show="cardTags.length >= 0" class="collapsible bodyCentered" data-collapsible="accordion">
+		<li ng-repeat="x in cardTags track by $index">
+			<div class="collapsible-header"> {{x}} <a class="right multiBtn" ng-click="openMultiCard(x)"><i class="material-icons">send</i></a></div>
+			<div class="collapsible-body collection" style="padding: 0px;">
+				<a ng-click="openCard(y)" class="collection-item purple-text" ng-repeat="y in dataJSON.cards[x]">{{y}}</a>
+				<div></div>
+			</div>
+		</li>
+	</ul>
+	<div id="cardModal" class="modal modal-fixed-footer modalpad">
+
+		<div class="modal-header">
+			<span id="modalButtons" class="right">
+					<a class="tooltipped" ng-click="cardFullscreen()" data-position="bottom" data-delay="50" data-tooltip="Edit Card"><i class="material-icons small">edit</i></a>
+					<a class="tooltipped" ng-click="cardDetach()" data-position="bottom" data-delay="50" data-tooltip="New Window"><i class="material-icons small">flip_to_front</i></a>
+				</span>
+			<h4 class="truncate">{{modalCardTag}}</h4>
+		</div>
+
+		<div ng-bind-html="modalCardContent" class="modal-content"></div>
+
+		<div class="modal-footer">
+			<a class="modal-action modal-close waves-effect waves-blue btn-flat" style="margin-right: 20px;">Close</a>
+		</div>
+
+	</div>
+
+    <!-- Speech -->
+    
+    <div class = "grey-text text-darken-2 identifier" style = "margin-bottom: -5px;">Speech</div>
+
+    <div ng-show="speechTags.length == 0" class="card-panel">
+		<p> You haven't made any speeches. Click the purple plus below to get started!</p>
+	</div>
+
+	<ul ng-show="speechTags.length >= 0" class="bodyCentered">
+		<div class="collection">
+			<a ng-click="openSpeech(x[0])" class="collection-item black-text" ng-repeat="x in speechTags track by $index">{{x[0]}}<span class="badge">{{x[1]}}</span></a>
+		</div>
+	</ul>
+
+	<div id="speechModal" class="modalpad modal modal-fixed-footer">
+		<div class="modal-header">
+			<span id="modalButtons" class="right">
+				<a class="tooltipped" ng-click="speechFullscreen()" data-position="bottom" data-delay="50" data-tooltip="Edit Card"><i class="material-icons small">edit</i></a>
+				<a class="tooltipped" ng-click="speechDetach()" data-position="bottom" data-delay="50" data-tooltip="New Window"><i class="material-icons small">flip_to_front</i></a>
+			</span>
+			<h4 class="truncate">{{titleContent.title}}</h4>
+		</div>
+		<div class="modal-content" style="padding-left: 10px;">
+			<div ng-bind-html="framework"></div>
+			<div ng-repeat="i in points track by $index">
+				<h5 class="light">{{$index + 1}}. {{points[$index].tagline}}</h5>
+				<div ng-bind-html="points[$index].content" class="point"></div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a class=" modal-action modal-close waves-effect waves-blue btn-flat" style="margin-right: 20px;">Close</a>
+		</div>
+	</div>
+
+	<div class="addButton">
+		<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href="#!/speech"><i class="material-icons">add</i></a>
+	</div>
+
+
+	<div class="addButton">
+		<a class="btn-floating btn-large waves-effect waves-light purple lighten-1" href="#!/newCard"><i class="material-icons">add</i></a>
+	</div>
+</div>
+
+</html>

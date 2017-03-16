@@ -1,0 +1,35 @@
+#modalButtons a {
+  color: #424242;
+  cursor: pointer;
+}
+
+.point {
+    padding-left: 20px !important;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    /*margin-bottom: 20px;*/
+}
+
+p {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.identifier {
+    padding-left: 15px !important;
+    padding-top: 10px !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+}
+
+.removeTopPad {
+    margin-top: -5px !important;
+    padding-top: -5px !important;
+}
+
+#speechManager .point {
+    padding-left: 20px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 20px;
+}
