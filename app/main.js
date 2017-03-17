@@ -23,18 +23,17 @@ if (!fs.existsSync(file)) {
 console.log("Database created at " + file)
 console.log("file exists" + fs.existsSync(file))
 //sql database
-var sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('sqlite3').verbose();
 //in memory for now
-var db = new sqlite3.Database(file, sqlite3.OPEN_READWRITE, function(error) {
+const db = new sqlite3.Database(file, sqlite3.OPEN_READWRITE, function(error) {
     console.log(error);
 });
 //uuid generator
 const uuidV1 = require('uuid/v1');
 
-if (!fs.existsSync(file)) {
     db.serialize(function() {
         //the main table
-        db.run("CREATE TABLE MAINTABLE(ID CHAR(36), NAME TEXT, TYPE INTEGER(1))")
+        db.run("CREATE TABLE IF NOT EXISTS MAINTABLE(ID CHAR(36), TYPE INTEGER(1))")
         //defs for main table
         //TYPE
         //1. block: 1
@@ -42,7 +41,7 @@ if (!fs.existsSync(file)) {
         //3. flow: 3
         //4. speech: 4
         var maindefval = ["BLOCK", "CARD", "FLOW", "SPEECH"]
-        db.run("CREATE TABLE MAINDEF(TYPE INTEGER(1), REALTYPE TEXT)")
+        db.run("CREATE TABLE IF NOT EXISTS MAINDEF(TYPE INTEGER(1), REALTYPE TEXT)")
         var maindef = db.prepare("INSERT INTO MAINDEF VALUES (?, ?)")
         for (var i = 1; i < 5; i++) {
             maindef.run(i, maindefval[i])
@@ -56,7 +55,7 @@ if (!fs.existsSync(file)) {
         //NULL: none
         var sidebools = [true, false, null]
         var sidedefval = ["AFF", "NEG", "NONE"]
-        db.run("CREATE TABLE SIDEDEF(SIDE BOOLEAN, REALSIDE TEXT)")
+        db.run("CREATE TABLE IF NOT EXISTS SIDEDEF(SIDE BOOLEAN, REALSIDE TEXT)")
         var sidedef = db.prepare("INSERT INTO SIDEDEF VALUES (?, ?)")
         for (var i = 0; i < 3; i++) {
             sidedef.run(sidebools[i], sidedefval[i])
@@ -64,18 +63,21 @@ if (!fs.existsSync(file)) {
         sidedef.finalize()
 
         //the block table
-        db.run("CREATE TABLE BLOCKTABLE(ID CHAR(36), ARG TEXT, SIDE BOOLEAN)")
+        //db.run("CREATE TABLE IF NOT EXISTS BLOCKTABLE(ID CHAR(36), ARG TEXT, SIDE BOOLEAN)")
 
-        //the card table
-        db.run("CREATE TABLE CARDTABLE(ID CHAR(36), TAG TEXT)")
+        //the card tag table
+        db.run("CREATE TABLE IF NOT EXISTS CARDTAG(ID CHAR(36), TAG TEXT)")
+        //card table
+        db.run("CREATE TABLE IF NOT EXISTS CARDTABLE(ID CHAR(36), TAGLINE TEXT, CITATION TEXT, CONTENT TEXT, NOTES TEXT)")
 
         //the flow table
-        db.run("CREATE TABLE FLOWTABLE(ID CHAR(36), AFF TEXT, NEG TEXT)")
+        //db.run("CREATE TABLE IF NOT EXISTS FLOWTABLE(ID CHAR(36), AFF TEXT, NEG TEXT)")
 
-        //the speech table
-        db.run("CREATE TABLE SPEECHTABLE(ID CHAR(36), SIDE BOOLEAN)")
+        //the speech sides table
+        db.run("CREATE TABLE IF NOT EXISTS SPEECHSIDE(ID CHAR(36), SIDE BOOLEAN)")
+        //speech table
+        db.run("CREATE TABLE IF NOT EXISTS SPEECHTABLE(ID CHAR(36), TITLECONTENT TEXT, FRAMEWORK TEXT, CONTENT TEXT, PREFLOW TEXT)")
     });
-}
 
 console.log(app.getPath('userData'))
 
@@ -377,9 +379,10 @@ app.on('ready', function () {
         })
     }
 
-    function addCardToLoki(datab, cardTagline, cardTags, cardCitation, cardContent, cardNotes) {
+    function addCard(cardTagline, cardTags, cardCitation, cardContent, cardNotes) {
         //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
-        //get a different profession. It legit says "addCardToLoki" cuz thats what it does
+        //get a different profession. It legit says "addCard" cuz thats what it does
+        /*
         var cards = datab.getCollection("cards")
         cards.insert({
             tagLine: cardTagline,
@@ -388,7 +391,13 @@ app.on('ready', function () {
             content: cardContent,
             notes: cardNotes
         })
-        datab.saveDatabase()
+        datab.saveDatabase()*/
+        var id = uuidV1()
+        db.run("INSERT INTO MAINTABLE VALUES(?, ?)", [id, 2])
+        db.run("INSERT INTO CARDTABLE VALUES(?, ?, ?, ?, ?)", [id, cardTagline, cardCitation, cardContent, cardNotes])
+        for (var i = 0; i < cardTags.length; i++) {
+            db.run("INSERT INTO CARDTAG VALUES(?, ?)", [id, cardTags[i]])
+        }
     }
 
     function addSpeechToSpeechDB(datab, speechTitleContent, speechFramework, speechContent, speechPreflow) {
@@ -416,6 +425,7 @@ app.on('ready', function () {
 
     function getCard(datab, collection, searchTerm) {
         //ok, so this should be used to get cards from anything, but as you can see, its not, so maybe we'll integrate that to make it better
+        /*
         var cards = datab.getCollection(collection);
         if (collection != "speech") {
             var cardNames = cards.find({
@@ -429,6 +439,7 @@ app.on('ready', function () {
             })
         }
         return cardNames
+        */
     }
 
     function getCardsWithTag(datab, collection, searchTerm) {
@@ -558,13 +569,12 @@ app.on('ready', function () {
 
     /* card saving */
     ipcMain.on('FileSave', function(event, arg) { // [TitleString, TagString, ContentString]
-        var cards = cardDb.getCollection("cards");
         var tagLine = arg.tagLine
         var sTags = arg.sTags
         var content = arg.content
         var notes = arg.notes
         var cite = arg.citation
-        var id = arg.id
+        /*
         var temp = cards.where(function(obj) {
             return (obj.$loki == id);
         })
@@ -572,9 +582,10 @@ app.on('ready', function () {
             cards.removeWhere(function(obj) {
                 return (obj.$loki == id)
             })
-        }
-        addCardToLoki(cardDb, tagLine, sTags, cite, content, notes)
-        tagindex(cardDb)
+        }*/
+        console.log("Adding card to database")
+        addCard(tagLine, sTags, cite, content, notes)
+        //tagindex(cardDb)
     })
 
     /* speech saving */

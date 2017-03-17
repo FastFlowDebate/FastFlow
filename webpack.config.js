@@ -27,7 +27,7 @@ var app = {
         new webpackUglifyJsPlugin({
             cacheFolder: path.resolve(__dirname, 'public/cached_uglify/'),
             debug: true,
-            minimize: true,
+            minimize: false,
             sourceMap: false,
             output: {
                 comments: false
