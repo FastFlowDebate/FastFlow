@@ -34,7 +34,6 @@ var app = angular.module('fastflowApp', [
 	'ngRoute',
 	'ngAnimate',
 	'fastflowApp.index',
-    'fastflowApp.search',
 	'fastflowApp.flow',
 	'fastflowApp.card',
 	'fastflowApp.newCard',
@@ -44,7 +43,7 @@ var app = angular.module('fastflowApp', [
 	'fastflowApp.search',
 	'fastflowApp.speechView',
 	'fastflowApp.speechManager',
-    'fastflowApp.speechDetach',
+  'fastflowApp.speechDetach',
 	'fastflowApp.settings'
 
 ]).config(['$routeProvider', function($routeProvider) {

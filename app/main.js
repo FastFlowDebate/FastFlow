@@ -23,13 +23,13 @@ if (!fs.existsSync(file)) {
 console.log("Database created at " + file)
 console.log("file exists" + fs.existsSync(file))
 //sql database
-const sqlite3 = require('sqlite3').verbose();
+const sqlite3 = require('sqlite3').verbose()
 //in memory for now
-const db = new sqlite3.Database(file, sqlite3.OPEN_READWRITE, function(error) {
-    console.log(error);
+const db = new sqlite3.Database(file, sqlite3.OPEN_READWRITE, function (error) {
+    console.log(error)
 });
 //uuid generator
-const uuidV1 = require('uuid/v1');
+const uuidV1 = require('uuid/v1')
 
     db.serialize(function() {
         //the main table
@@ -46,7 +46,7 @@ const uuidV1 = require('uuid/v1');
         for (var i = 1; i < 5; i++) {
             maindef.run(i, maindefval[i])
         }
-        maindef.finalize();
+        maindef.finalize()
 
         //defs for side table
         //SIDE
@@ -99,7 +99,7 @@ function loadHandler() {
     }
 }
 
-function cardIndex() {
+function cardIndex(callback) {
         //tab index will return JSON in the form of a map of sTag:[CardTitles]
         /* example JSON
         {
@@ -107,9 +107,7 @@ function cardIndex() {
           Pro: [card1, card22, card4]
         }
         */
-    //needs callbacks
     var dataJSON = {}
-    /*
     db.each("SELECT TAG, TAGLINE FROM CARDTAG JOIN CARDTABLE USING (ID)", function(err, row) {
         if (typeof row.TAGLINE === "string") {
             dataJSON[row.TAG] = [row.TAGLINE]
@@ -117,32 +115,25 @@ function cardIndex() {
         else {
             dataJSON[row.TAG] = row.TAGLINE
         }
-    })*/
-    db.each("SELECT TAGLINE, TAG FROM CARDTAG JOIN CARDTABLE USING (ID)", function(err,row) {
-        console.log(row)
+    }, function (err, numRows) {
+        callback(dataJSON)
     })
-    console.log(dataJSON)
-    return dataJSON
-    
 }
 
 function speechindex(datab) {
-    console.log('\n')
     var dict = {}
     var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
     var cards = datab.getCollection("speech").data;
     var card, s, sTags, content, tagline, author
     for (card in cards) {
-        console.log(cards[card].$loki)
         tagline = cards[card].tagLine
         PFST.push([tagline.title, tagline.side])
     }
-
     //console.log(dict)
-    console.log('\n')
     return PFST;
 
 }
+
 if(process.env.ENVIRONMENT === 'DEV'){
   require('electron-debug')({
       //showDevTools: true
@@ -362,25 +353,6 @@ app.on('ready', function () {
         mainWindow.setMenu(menu)
     }
 
-
-    function uniq(a) {
-        //Im not walking through this, cuz honestly, i dont know what this does anymore, but it works, so be happy
-        var prims = {
-                "boolean": {},
-                "number": {},
-                "string": {}
-            },
-            objs = []
-
-        return a.filter(function(item) {
-            var type = typeof item
-            if (type in prims)
-                return prims[type].hasOwnProperty(item) ? false : (prims[type][item] = true);
-            else
-                return objs.indexOf(item) >= 0 ? false : objs.push(item);
-        })
-    }
-
     function addCard(cardTagline, cardTags, cardCitation, cardContent, cardNotes) {
         //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
         //get a different profession. It legit says "addCard" cuz thats what it does
@@ -429,7 +401,7 @@ app.on('ready', function () {
         })*/
         /*
         db.serialize(function(){
-            var id = 
+            var id =
 
         })*/
 
@@ -464,55 +436,10 @@ app.on('ready', function () {
     }
 
 
-    function searchSimple(datab, collection, searchTerm) {
-        /*Okie dokie kids, this should work, I'm fairly confident, but if it doesnt, Uncle Pranav
-         has a long day ahead of him or maybe a short day depending on what he wants to do with it idk*/
-        var cards = datab.getCollection(collection);
-        var returnListCards = []
-        var cardTags = cards.find({
-            'sTags': {
-                '$contains': searchTerm
-            }
-        })
-        var cardNames = cards.find({
-            'tagLine': {
-                '$contains': searchTerm
-            }
-        })
-        var temp1 = 0;
-        var temp2 = 0;
-
-        if (cardTags != []) {
-            for (temp1 in cardTags) {
-                returnListCards.push(cardTags[temp1].name)
-            }
-        }
-
-        if (cardNames != []) {
-            for (temp2 in cardNames) {
-                returnListCards.push(cardNames[temp2].name)
-            }
-        }
-        return uniq(returnListCards)
-    }
 
     /* The rest of this is IPC stuff */
     ipcMain.on('Version', function(event) {
       event.returnValue = pjson.version
-    })
-
-    ipcMain.on('Search', function(event, arg) {
-        console.log(arg)
-        console.log("-----------")
-        console.log(searchSimple(cardDb, "cards", arg))
-        event.returnValue = searchSimple(cardDb, arg)
-    })
-
-    ipcMain.on('SearchSpeeches', function(event, arg) {
-        console.log(arg)
-        console.log("-----------")
-        console.log(searchSimple(cardDb, "speech", arg))
-        event.returnValue = searchSimple(cardDb, "speech", arg)
     })
 
     ipcMain.on('FileOpen', function(event, arg) {
@@ -561,8 +488,9 @@ app.on('ready', function () {
     })
 
     ipcMain.on('CardManager', function(event, arg) {
-        var dataJSON = cardIndex(cardDb)
-        event.returnValue = dataJSON
+          cardIndex(function (dataJSON) {
+            event.returnValue = dataJSON
+          })
     })
 
     ipcMain.on('SpeechManager', function(event, arg) {
@@ -589,7 +517,6 @@ app.on('ready', function () {
 
         console.log("Adding card to database")
         addCard(tagLine, sTags, cite, content, notes)
-        //cardIndex(cardDb)
     })
 
     /* speech saving */
