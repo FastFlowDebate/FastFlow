@@ -73,6 +73,7 @@
   },
   "dependencies": {
     "electron-debug": "^1.1.0",
+    "sqlite-json": "^1.0.1",
     "uuid": "^3.0.1"
   },
   "devEngines": {

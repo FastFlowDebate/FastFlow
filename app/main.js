@@ -99,7 +99,7 @@ function loadHandler() {
     }
 }
 
-function tagindex(datab) {
+function cardIndex() {
         //tab index will return JSON in the form of a map of sTag:[CardTitles]
         /* example JSON
         {
@@ -107,21 +107,18 @@ function tagindex(datab) {
           Pro: [card1, card22, card4]
         }
         */
-    var dict = {}
-    var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
-    var cards = datab.getCollection("cards").data;
-    var card, s, sTags
-    for (card in cards) { //  go through each card
-        sTags = JSON.parse(cards[card].sTags) // turn sTags String into an array for transversal
-        for (s in sTags) { // go through each sTag
-            if (dict.hasOwnProperty(sTags[s]) && !dict[sTags[s]].includes(cards[card].tagLine)) { // if the node already exists and tag is not already in node then
-                dict[sTags[s]].push(cards[card].tagLine) // add the tag to the node
-            } else {
-                dict[sTags[s]] = [cards[card].tagLine] // if the node does not already exist then create it and add tag
-            }
+    //needs callbacks
+    var dataJSON = {}
+    db.each("SELECT TAG, TAGLINE FROM CARDTAG JOIN CARDTABLE USING (ID)", function(err, row) {
+        if (typeof row.TAGLINE === "string") {
+            dataJSON[row.TAG] = [row.TAGLINE]
         }
-    }
-    return dict;
+        else {
+            dataJSON[row.TAG] = row.TAGLINE
+        }
+    })
+    return dataJSON
+    
 }
 
 function speechindex(datab) {
@@ -383,15 +380,14 @@ app.on('ready', function () {
         //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
         //get a different profession. It legit says "addCard" cuz thats what it does
         /*
-        var cards = datab.getCollection("cards")
-        cards.insert({
+        {
             tagLine: cardTagline,
             sTags: cardTags,
             citation: cardCitation,
             content: cardContent,
             notes: cardNotes
-        })
-        datab.saveDatabase()*/
+        }
+        */
         var id = uuidV1()
         db.run("INSERT INTO MAINTABLE VALUES(?, ?)", [id, 2])
         db.run("INSERT INTO CARDTABLE VALUES(?, ?, ?, ?, ?)", [id, cardTagline, cardCitation, cardContent, cardNotes])
@@ -400,9 +396,9 @@ app.on('ready', function () {
         }
     }
 
-    function addSpeechToSpeechDB(datab, speechTitleContent, speechFramework, speechContent, speechPreflow) {
+    function addSpeech(datab, speechTitleContent, speechFramework, speechContent, speechPreflow) {
         //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
-        //get a different profession. It legit says "addSpeechToSpeechDB" cuz thats what it does
+        //get a different profession. It legit says "addSpeech" cuz thats what it does
         var cards = datab.getCollection("speech")
         cards.insert({
             tagLine: speechTitleContent,
@@ -413,14 +409,21 @@ app.on('ready', function () {
         datab.saveDatabase()
     }
 
-    function deleteCard(datab, collection, cardName) {
+    function deleteCard(cardName) {
         //Umm, its pretty obvious, it deletes a card, duh
+        /*
         var cards = datab.getCollection(collection);
         cards.removeWhere({
             'tagLine': {
                 '$eq': cardName
             }
-        })
+        })*/
+        /*
+        db.serialize(function(){
+            var id = 
+
+        })*/
+
     }
 
     function getCard(datab, collection, searchTerm) {
@@ -549,7 +552,7 @@ app.on('ready', function () {
     })
 
     ipcMain.on('CardManager', function(event, arg) {
-        var dataJSON = tagindex(cardDb)
+        var dataJSON = cardIndex(cardDb)
         event.returnValue = dataJSON
     })
 
@@ -561,7 +564,7 @@ app.on('ready', function () {
     ipcMain.on('search', function(event, arg) {
         var dataJSON = {
             speeches : speechindex(cardDb),
-            cards : tagindex(cardDb)
+            cards : cardIndex(cardDb)
         }
         console.log(dataJSON)
         event.returnValue = dataJSON
@@ -574,18 +577,10 @@ app.on('ready', function () {
         var content = arg.content
         var notes = arg.notes
         var cite = arg.citation
-        /*
-        var temp = cards.where(function(obj) {
-            return (obj.$loki == id);
-        })
-        if (temp.length !== 0) {
-            cards.removeWhere(function(obj) {
-                return (obj.$loki == id)
-            })
-        }*/
+
         console.log("Adding card to database")
         addCard(tagLine, sTags, cite, content, notes)
-        //tagindex(cardDb)
+        //cardIndex(cardDb)
     })
 
     /* speech saving */
@@ -605,7 +600,7 @@ app.on('ready', function () {
                 return (obj.$loki == id)
             })
         }
-        addSpeechToSpeechDB(cardDb, tagLine, sTags, content, preflow)
+        addSpeech(cardDb, tagLine, sTags, content, preflow)
         speechindex(cardDb)
     })
 
