@@ -109,6 +109,7 @@ function cardIndex() {
         */
     //needs callbacks
     var dataJSON = {}
+    /*
     db.each("SELECT TAG, TAGLINE FROM CARDTAG JOIN CARDTABLE USING (ID)", function(err, row) {
         if (typeof row.TAGLINE === "string") {
             dataJSON[row.TAG] = [row.TAGLINE]
@@ -116,7 +117,11 @@ function cardIndex() {
         else {
             dataJSON[row.TAG] = row.TAGLINE
         }
+    })*/
+    db.each("SELECT TAGLINE, TAG FROM CARDTAG JOIN CARDTABLE USING (ID)", function(err,row) {
+        console.log(row)
     })
+    console.log(dataJSON)
     return dataJSON
     
 }
@@ -388,10 +393,14 @@ app.on('ready', function () {
             notes: cardNotes
         }
         */
+        cardTags = JSON.parse(cardTags)
+        console.log("cardTags")
+        console.log(cardTags)
         var id = uuidV1()
         db.run("INSERT INTO MAINTABLE VALUES(?, ?)", [id, 2])
         db.run("INSERT INTO CARDTABLE VALUES(?, ?, ?, ?, ?)", [id, cardTagline, cardCitation, cardContent, cardNotes])
         for (var i = 0; i < cardTags.length; i++) {
+            console.log(cardTags[i])
             db.run("INSERT INTO CARDTAG VALUES(?, ?)", [id, cardTags[i]])
         }
     }
