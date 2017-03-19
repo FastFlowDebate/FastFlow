@@ -109,11 +109,11 @@ function cardIndex(callback) {
         */
     var dataJSON = {}
     db.each("SELECT TAG, TAGLINE FROM CARDTAG JOIN CARDTABLE USING (ID)", function(err, row) {
-        if (typeof row.TAGLINE === "string") {
-            dataJSON[row.TAG] = [row.TAGLINE]
+        if (dataJSON.hasOwnProperty(row.TAG)){
+            dataJSON[row.TAG].push(row.TAGLINE)
         }
         else {
-            dataJSON[row.TAG] = row.TAGLINE
+            dataJSON[row.TAG] = [row.TAGLINE]
         }
     }, function (err, numRows) {
         callback(dataJSON)
@@ -407,23 +407,41 @@ app.on('ready', function () {
 
     }
 
-    function getCard(datab, collection, searchTerm) {
+    function getCard(searchTerm, callback) {
         //ok, so this should be used to get cards from anything, but as you can see, its not, so maybe we'll integrate that to make it better
-        /*
-        var cards = datab.getCollection(collection);
-        if (collection != "speech") {
-            var cardNames = cards.find({
-                'tagLine': {
-                    '$contains': searchTerm
-                }
+        var tags = []
+        var card = {}
+        db.serialize(function() {
+            db.each("SELECT TAG FROM CARDTAG JOIN CARDTABLE USING (ID) WHERE TAGLINE = (?)", [searchTerm], function(err, row) {
+                tags.push(row.TAG)
             })
-        } else {
-            var cardNames = cards.where(function(obj) {
-                return (obj.tagLine["title"] == searchTerm)
+            db.get("SELECT * FROM CARDTABLE WHERE TAGLINE = (?)", [searchTerm], function(err, row) {
+                //("CREATE TABLE IF NOT EXISTS CARDTABLE(ID CHAR(36), TAGLINE TEXT, CITATION TEXT, CONTENT TEXT, NOTES TEXT)")
+                /*
+            {
+                tagLine: cardTagline,
+                sTags: cardTags,
+                citation: cardCitation,
+                content: cardContent,
+                notes: cardNotes
+            }*/
+                card["tagLine"] = row.TAGLINE
+                console.log(row.TAGLINE)
+                card["sTags"] = tags
+                console.log(tags)
+                card["citation"] = row.CITATION
+                console.log(row.CITATION)
+                card["content"] = row.CONTENT
+                console.log(row.CONTENT)
+                card["notes"] = row.NOTES
+                console.log(row.NOTES)
+            }, function (err, numRows) {
+                console.log(tags)
+                console.log(card)
+                callback(card)
             })
-        }
-        return cardNames
-        */
+
+        })
     }
 
     function getCardsWithTag(datab, collection, searchTerm) {
@@ -443,12 +461,9 @@ app.on('ready', function () {
     })
 
     ipcMain.on('FileOpen', function(event, arg) {
-        var foundCard = getCard(cardDb, "cards", arg)
-        if (foundCard[0]) {
-            event.returnValue = foundCard[0]
-        } else {
-            event.returnValue = false
-        }
+        getCard(arg, function (dataJSON) {
+            event.returnValue = dataJSON
+        })
     })
 
     ipcMain.on('OpenCards', function(event, arg) {

@@ -51,7 +51,15 @@ Make sure you have NodeJS installed
 
 *in /fastflow*
 
-    npm run setup
+    npm install
+
+*in /fastflow/app*
+
+    npm install
+
+*in /fastflow*
+
+    npm run rebuild
 
 ## Running
 
