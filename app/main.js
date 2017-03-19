@@ -414,30 +414,21 @@ app.on('ready', function () {
                 tags.push(row.TAG)
             })
             db.get("SELECT * FROM CARDTABLE WHERE TAGLINE = (?)", [searchTerm], function(err, row) {
-                //("CREATE TABLE IF NOT EXISTS CARDTABLE(ID CHAR(36), TAGLINE TEXT, CITATION TEXT, CONTENT TEXT, NOTES TEXT)")
-                /*
-            {
+            /*{
                 tagLine: cardTagline,
                 sTags: cardTags,
                 citation: cardCitation,
                 content: cardContent,
                 notes: cardNotes
             }*/
-                card["tagLine"] = row.TAGLINE
-                console.log(row.TAGLINE)
-                card["sTags"] = tags
-                console.log(tags)
-                card["citation"] = row.CITATION
-                console.log(row.CITATION)
-                card["content"] = row.CONTENT
-                console.log(row.CONTENT)
-                card["notes"] = row.NOTES
-                console.log(row.NOTES)
-            }, function (err, numRows) {
-                console.log(tags)
-                console.log(card)
-                callback(card)
-            })
+            }, function (err, value) {
+                  card["tagLine"] = value.TAGLINE
+                  card["sTags"] = tags
+                  card["citation"] = value.CITATION
+                  card["content"] = value.CONTENT
+                  card["notes"] = value.NOTES
+                  callback(card)
+              })
 
         })
     }
