@@ -392,18 +392,16 @@ app.on('ready', function () {
 
     function deleteCard(cardName) {
         //Umm, its pretty obvious, it deletes a card, duh
-        /*
-        var cards = datab.getCollection(collection);
-        cards.removeWhere({
-            'tagLine': {
-                '$eq': cardName
-            }
-        })*/
-        /*
-        db.serialize(function(){
-            var id =
-
-        })*/
+        var id
+        db.serialize(function() {
+            db.get("SELECT ID FROM CARDTABLE WHERE TAGLINE = (?)", [cardName], function(err, row) {
+                id = row.ID
+            })
+            db.parallelize(function() {
+                db.run("DELETE FROM CARDTAG WHERE ID = (?)", [id])
+                db.run("DELETE FROM CARDTABLE WHERE ID = (?)", [id])
+            })
+        })
 
     }
 
