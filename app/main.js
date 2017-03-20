@@ -392,14 +392,14 @@ app.on('ready', function () {
 
     function deleteCard(cardName) {
         //Umm, its pretty obvious, it deletes a card, duh
-        var id
+        console.log(cardName)
         db.serialize(function() {
-            db.get("SELECT ID FROM CARDTABLE WHERE TAGLINE = (?)", [cardName], function(err, row) {
+            var id
+            console.log(id)
+            db.get("SELECT ID FROM CARDTABLE WHERE TAGLINE = (?)", cardName, function(err, row) {
                 id = row.ID
-            })
-            db.parallelize(function() {
-                db.run("DELETE FROM CARDTAG WHERE ID = (?)", [id])
-                db.run("DELETE FROM CARDTABLE WHERE ID = (?)", [id])
+                db.run("DELETE FROM CARDTAG WHERE ID = (?)", id)
+                db.run("DELETE FROM CARDTABLE WHERE ID = (?)", id)
             })
         })
 
@@ -476,7 +476,7 @@ app.on('ready', function () {
 
     ipcMain.on('FileRemove', function(event, arg) {
         //removeCard(db, cardName, cardTags, cardContent)
-        deleteCard(cardDb, "cards", arg)
+        deleteCard(arg)
     })
 
     ipcMain.on('SpeechRemove', function(event, arg) {

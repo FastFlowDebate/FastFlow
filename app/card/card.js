@@ -63,6 +63,8 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 			}]
 		}, $scope.title)
 
+        $('.modal').modal();
+
 		$scope.saving = false
 		$scope.saveFunction = function() {
 			if($scope.saving) return //don't let function run twice at same time
@@ -91,14 +93,14 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		}
 
 		$scope.deleteFunction = function() {
-			$('#deleteConfirmation').openModal()
+			$('#deleteConfirmation').modal("open")
 		}
 
 		$scope.delete = function(){
 			ipcRenderer.send('FileRemove', $scope.title)
 			Materialize.toast('Card Deleted', 2500)
-			window.location.replace('#!/index')
-			$('#deleteConfirmation').closeModal()
+			window.location.replace('#!/cardManager')
+			$('#deleteConfirmation').modal("close")
 
 		}
 	}]).directive("contenteditable", function() {
