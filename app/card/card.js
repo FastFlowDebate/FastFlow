@@ -28,13 +28,14 @@ module.exports = angular.module('fastflowApp.card', ['ngRoute', 'MassAutoComplet
 		if ($routeParams.tag) {
 			var decodedURI = decodeURIComponent($routeParams.tag)
 			card = ipcRenderer.sendSync('FileOpen', decodedURI)
+            console.log(card)
 			if (card == []) console.log('error, card not found')
 			$scope.title = card.tagLine
 			$scope.content = card.content
 			$scope.cite = card.citation
 			$scope.notes = card.notes
 			$scope.id = card.$loki
-			var t = JSON.parse(card.sTags)
+			var t = card.sTags
 			var tags = []
 			for(c in t) tags.push({tag:t[c]})
 			$('.chips').material_chip({
