@@ -73,8 +73,6 @@ const uuidV1 = require('uuid/v1')
         //the flow table
         //db.run("CREATE TABLE IF NOT EXISTS FLOWTABLE(ID CHAR(36), AFF TEXT, NEG TEXT)")
 
-        //the speech sides table
-        db.run("CREATE TABLE IF NOT EXISTS SPEECHSIDE(ID CHAR(36), SIDE BOOLEAN)")
         //speech table
         db.run("CREATE TABLE IF NOT EXISTS SPEECHTABLE(ID CHAR(36), TITLECONTENT TEXT, FRAMEWORK TEXT, CONTENT TEXT, PREFLOW TEXT)")
     });
@@ -120,18 +118,13 @@ function cardIndex(callback) {
     })
 }
 
-function speechindex(datab) {
-    var dict = {}
-    var PFST = [] //Previously Found S Tags, to avoid needless transversal of dict
-    var cards = datab.getCollection("speech").data;
-    var card, s, sTags, content, tagline, author
-    for (card in cards) {
-        tagline = cards[card].tagLine
-        PFST.push([tagline.title, tagline.side])
-    }
-    //console.log(dict)
-    return PFST;
-
+function speechIndex(callback) {
+    var dataJSON = {}
+    db.each("SELECT SIDE, TITLECONTENT FROM SPEECHTABLE", function(err, row) {
+        dataJSON.push([JSON.parse(row.TITLECONTENT).tagLine, row.SIDE])
+    }, function (err, numRows) {
+        callback(dataJSON)
+    })
 }
 
 if(process.env.ENVIRONMENT === 'DEV'){
@@ -377,17 +370,10 @@ app.on('ready', function () {
         }
     }
 
-    function addSpeech(datab, speechTitleContent, speechFramework, speechContent, speechPreflow) {
+    function addSpeech(speechTitleContent, speechFramework, speechContent, speechPreflow) {
         //If you are reading this code and cant figure out what this does, then you need to stop reading this code right now and
         //get a different profession. It legit says "addSpeech" cuz thats what it does
-        var cards = datab.getCollection("speech")
-        cards.insert({
-            tagLine: speechTitleContent,
-            sTags: speechFramework,
-            content: speechContent,
-            preflow: speechPreflow
-        })
-        datab.saveDatabase()
+        db.run("INSERT INTO SPEECHTABLE VALUES(?, ?, ?, ?, ?, ?)", [uuidVi(), JSON.stringify(speechTitleContent), JSON.stringify(speechFramework), JSON.stringify(speechContent), JSON.stringify(speechPreflow)])
     }
 
     function deleteCard(cardName) {
@@ -433,13 +419,23 @@ app.on('ready', function () {
         })
     }
 
-    function getCardsWithTag(datab, collection, searchTerm) {
+    function getCardsWithTag(searchTerm, callback) {
       //return name of all cards with tag
-      return datab.getCollection(collection).find({
-          'sTags': {
-              '$contains': searchTerm
-          }
-      })
+        console.log("getCardsWithTag")
+        console.log(searchTerm)
+        var cards = []
+        db.each('SELECT * FROM CARDTAG JOIN CARDTABLE WHERE TAG = (?)', [searchTerm],
+        function(err, row) {
+            console.log(row)
+            cards.push({
+                "tagLine" : row.TAGLINE,
+                "citation" : row.CITATION,
+                "content" : row.CONTENT,
+                "notes" : row.NOTES
+            })
+        }, function (err, value) {
+            callback(cards)
+        })
     }
 
 
@@ -456,12 +452,9 @@ app.on('ready', function () {
     })
 
     ipcMain.on('OpenCards', function(event, arg) {
-        var foundCards = getCardsWithTag(cardDb, "cards", arg)
-        if (foundCards) {
-            event.returnValue = foundCards
-        } else {
-            event.returnValue = false
-        }
+        getCardsWithTag(arg, function(dataJSON) {
+            event.returnValue = dataJSON
+        })
     })
 
     ipcMain.on('SpeechOpen', function(event, arg) {
@@ -492,19 +485,21 @@ app.on('ready', function () {
     })
 
     ipcMain.on('CardManager', function(event, arg) {
-          cardIndex(function (dataJSON) {
+          cardIndex(function(dataJSON) {
             event.returnValue = dataJSON
           })
     })
 
     ipcMain.on('SpeechManager', function(event, arg) {
-        var dataJSON = speechindex(cardDb)
-        event.returnValue = dataJSON
+        speechIndex(function(dataJSON) {
+            event.returnValue = dataJSON
+        })
     })
 
     ipcMain.on('search', function(event, arg) {
+        //not working right now
         var dataJSON = {
-            speeches : speechindex(cardDb),
+            speeches : speechIndex(cardDb),
             cards : cardIndex(cardDb)
         }
         console.log(dataJSON)
@@ -541,7 +536,6 @@ app.on('ready', function () {
             })
         }
         addSpeech(cardDb, tagLine, sTags, content, preflow)
-        speechindex(cardDb)
     })
 
 })
